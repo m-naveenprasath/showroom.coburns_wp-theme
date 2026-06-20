@@ -1,0 +1,9 @@
+{% if date %}
+<time datetime="{{ date }}">
+	{% if date | date('Y') == now | date('Y') %}
+	{{ date | date("F j") }}
+	{% else %}
+	{{ date | date("F j, Y") }}
+	{% endif %}
+</time>
+{% endif %}

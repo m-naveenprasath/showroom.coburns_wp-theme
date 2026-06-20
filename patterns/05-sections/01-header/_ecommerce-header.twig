@@ -1,0 +1,29 @@
+<header class="site-header">
+	<div id="desktop-header">
+		{% include "@components/05-menus/_utility.twig" with {"navClass": "has-blue-dark-background-color","liveChat": '<li class="nav-item">
+    <a href="" class="nav-link"><svg class="icon icon-chat" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path fill="currentColor" d="M16,0 C24.836556,0 32,6.39593215 32,14.2857143 C32,22.1754964 24.836556,28.5714286 16,28.5714286 C14.7305159,28.5714286 13.4955631,28.439423 12.3114208,28.1899467 L6.38768161,32 L6.09379802,25.5047862 C2.3822378,22.8886179 0,18.8355596 0,14.2857143 C0,6.39593215 7.163444,0 16,0 Z"></path></svg> Live Chat </a>
+      </li>'} %}
+		<div class="header-container container-fluid">
+			<div class="navigation-wrapper">
+				{% include "@elements/13-logos/03-supply-color.twig" %}
+				{% include "@components/05-menus/_primary.twig" with {"ShopActive": " active"}  %}
+				{% include "@components/05-menus/_search.twig" with { "buttonClass": "btn-outline-blue-dark", "searchText": "Type product name" } %}
+			</div>
+			{% include "@components/05-menus/02-ecommerce-mega.twig" %}
+		</div>
+	</div>
+	<div id="mobile-header" class="mobile-header has-blue-dark-background-color">
+		<div class="mobile-header__logo">
+			<a href="#">{% include "@elements/13-logos/13-supply-reverse.twig" %}</a>
+		</div>
+		<div class="mobile-header__buttons">
+			<a href="#" class="btn btn-sm btn-search" aria-pressed="false" aria-label="Open Search">{% include "@global/10-icons/search.twig" %}</a>
+			<a href="#" class="btn btn-sm btn-cart" aria-pressed="false" aria-label="View Cart">{% include "@global/10-icons/cart.twig" %}</a>
+			<button class="btn btn-sm btn-menu" aria-pressed="false" aria-label="Toggle Menu">{% include "@global/10-icons/universal-icons/hamburger.twig" %}</button>
+		</div>
+		<nav class="mobile-header__nav">
+			<ul class="mobile-nav-primary nav"></ul>
+			<ul class="mobile-nav-mega nav"></ul>
+		</nav>
+	</div>
+</header>

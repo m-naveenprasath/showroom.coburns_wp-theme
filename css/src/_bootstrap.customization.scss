@@ -1,0 +1,7 @@
+// Generalized overrides of Bootstrap stuff that can't be accomplished using variables.
+
+.container {
+	@include media-breakpoint-only(md) {
+		max-width: calc(100% - (#{$grid-gutter-width * 2}));
+	}
+}

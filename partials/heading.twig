@@ -1,0 +1,8 @@
+{%- apply spaceless -%}
+{%- if heading.text -%}
+<{{ heading.tag }} class="{{ heading.style }} {{ heading.size }} {{ heading.color ? 'has-' ~ heading.color ~ '-color' }} {{ class }}">
+{%- if icon -%}{%- include ['partials/icon.twig'] ignore missing with { 'icon': icon } -%}{%- endif -%}
+{{ heading.text }}
+</{{ heading.tag }}>
+{%- endif -%}
+{%- endapply -%}

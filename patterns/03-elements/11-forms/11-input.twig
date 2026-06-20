@@ -1,0 +1,105 @@
+<div class="form-group">
+	<label for="inputWithLabel">Input with Label</label>
+  <input class="form-control" type="text" id="inputWithLabel" placeholder="placeholder">
+</div>
+
+<div class="form-group">
+  <label for="inputWithoutLabel" class="sr-only">Input with Hidden Label</label>
+  <input class="form-control" type="text" id="inputWithoutLabel" placeholder="Input with Hidden Label">
+</div>
+
+
+<div class="form-group">
+  <label for="inputGroupIconBorder">Input Group with Icon</label>
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">
+        {% include "@icons/person.twig" %}
+      </span>
+    </div>
+    <input class="form-control" type="text" id="inputGroupIconBorder" placeholder="Username">
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="inputGroupIconMinimal">Input Group with Minimal Icon</label>
+
+  <div class="input-group input-group--minimal">
+
+    <div class="input-group-prepend">
+      <span class="input-group-text">
+        {% include "@icons/person.twig" %}
+      </span>
+    </div>
+    <input class="form-control" type="text" id="inputGroupIconMinimal" placeholder="Username">
+  </div>
+</div>
+
+
+<div class="form-group">
+  <label for="inputPassword">Password Field</label>
+
+  <div class="input-group input-group--minimal">
+    <input class="form-control" type="password" id="inputPassword">
+    <div class="input-group-append">
+      <span class="input-group-text">
+        {% include "@icons/eye.twig" %}
+      </span>
+    </div>
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="inputNumber">Input Group with Buttons</label>
+
+  <div class="input-group">
+
+    <div class="input-group-prepend">
+      <button class="btn btn-outline-gray-light" type="button" id="button-addon1">
+        <span aria-hidden="true">-</span>
+        <span class="sr-only">Decrease Quantity</span>
+      </button>
+    </div>
+
+    <input type="text" id="inputNumber" class="addition form-control">
+
+    <div class="input-group-append">
+      <button class="btn btn-outline-gray-light" type="button" id="button-addon2">
+        <span aria-hidden="true">+</span>
+        <span class="sr-only">Increase Quantity</span>
+      </button>
+
+    </div>
+
+  </div>
+</div>
+
+<div class="form-group">
+
+  <label for="inputNumber">Input Group with Minimal Buttons</label>
+
+  <div class="input-group input-group--minimal">
+
+    <div class="input-group-prepend">
+
+      <button class="btn btn-outline-gray-light" type="button" id="button-addon1">
+        <span aria-hidden="true">-</span>
+        <span class="sr-only">Decrease</span>
+      </button>
+    </div>
+
+    <input type="text" id="inputNumber" class="addition form-control">
+
+    <div class="input-group-append">
+
+      <button class="btn btn-outline-gray-light" type="button" id="button-addon2">
+        <span aria-hidden="true">+</span>
+        <span class="sr-only">Increase</span>
+      </button>
+
+    </div>
+
+  </div>
+</div>
+
+</form>

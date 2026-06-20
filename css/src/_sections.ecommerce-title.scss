@@ -1,0 +1,52 @@
+main .page-title {
+	@include media-breakpoint-up(lg) {
+		margin-top: -36px;
+	}
+}
+.page-title {
+	text-align: left;
+	// Needed so text doesn't center on mobile.
+	padding: 0;
+	@include media-breakpoint-up(lg) {
+		display: flex;
+		flex-direction: column-reverse;
+	}
+}
+.jumbotron {
+	background-size: cover;
+	background-color: transparent;
+	margin-bottom: 1.25rem;
+	padding: 0;
+    position: relative;
+    overflow: hidden;
+    z-index: -1;
+	@include media-breakpoint-up(lg) {
+		background-color: $blue-dark;
+		padding: ($jumbotron-padding * 3) $jumbotron-padding ($jumbotron-padding * 1.5);
+		h1 {
+			color: $white;
+		}
+	}
+	@include media-breakpoint-up(md) {
+		margin-left: 20px;
+		margin-right: 20px;
+	}
+	.img-wrap {
+	    height: 200px;
+		width: 100%;
+		position: absolute;
+	    top: 0;
+	    left: 0;
+	    z-index: -1;
+		@include media-breakpoint-down(md) {
+			display:none;
+		}
+	}
+}
+.jumbotron-breadcrumbs.breadcrumbs {
+	padding-top: .75rem;
+	@include media-breakpoint-up(lg) {
+		padding-top: 0;
+		margin-bottom: 2rem;
+	}
+}

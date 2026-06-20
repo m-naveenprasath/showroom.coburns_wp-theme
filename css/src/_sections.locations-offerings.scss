@@ -1,0 +1,29 @@
+.locations-offerings {
+	.display-1,
+	.display-2 {
+		@include media-breakpoint-up(md) {
+			position: relative;
+			display: inline;
+
+			&:before {
+				content: "";
+				background-color: $red;
+				height: 2px;
+				left: calc(100% + 0.5em);
+				position: absolute;
+				bottom: 0.5em;
+				width: 1.5em;
+				width: calc(1.5em + 0.5vw);
+				max-width: 2em;
+			}
+		}
+	}
+
+	.container--text-right {
+		--container--text-right--padding: 4rem;
+	}
+	.container--text-right ul {
+		columns: 2;
+		list-style-type: none;
+	}
+}

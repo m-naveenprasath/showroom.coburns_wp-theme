@@ -1,0 +1,61 @@
+.hero-locations {
+	@include media-breakpoint-down(sm) {
+		.hero--text {
+			padding-top: 2rem;
+		}
+		.hero--image {
+			display: none;
+		}
+	}
+}
+.locations--page-content {
+	margin-top: 1rem;
+	text-align: center;
+	@include media-breakpoint-up(md) {
+		margin-top: 3rem;
+	}
+}
+.section-map {
+	min-height: 320px;
+	@include media-breakpoint-up(md) {
+		min-height: 470px;
+	}
+	max-height: 50vh;
+
+	// max-width: 100%;
+}
+.section-map .map-location {
+	padding: 0.25rem;
+}
+.section-map__overlay {
+	position: absolute;
+	z-index: 500;
+	left: 0;
+	right: 0;
+	bottom: 0;
+
+	padding: 2rem;
+
+	background-color: $white;
+}
+.gm-style {
+	font-family: $font-family-base;
+	@include font-size($font-size-base);
+	font-weight: $font-weight-base;
+	line-height: 1.5;
+	color: $body-color;
+}
+.section-map.map-loaded img {
+	box-shadow: none;
+}
+.map-loaded {
+	opacity: 1;
+	overflow-anchor: none; //Prevents jump in page when infowindow is closed.
+	z-index: 3; //Places map above hero-image fade on mobile
+	@include media-breakpoint-up(md) {
+		box-shadow: $box-shadow;
+	}
+}
+.map-not-loaded {
+	display: none;
+}

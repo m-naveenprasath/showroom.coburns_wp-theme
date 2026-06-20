@@ -1,0 +1,31 @@
+.style-page-content--images {
+    text-align: center;
+	padding-top: 0;
+	position: relative;
+	&:before {
+		@include background-texture;
+		content: '';
+		height: 150px;
+		width: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: -1;
+		@include media-breakpoint-up(lg) {
+			box-shadow: inset 20px 0 0 #fff, inset -20px 0 0 #fff;
+		}
+	}
+	.style-page-content--links {
+		margin-bottom: 1.5em;
+
+		@include media-breakpoint-up(sm) {
+			margin-bottom: 4em;
+			margin-top: 1em;
+		}
+	}
+}
+@include media-breakpoint-down(xs) {
+	.style-page-content--col:last-child .style--links:last-child {
+		margin: 0;
+	}
+}

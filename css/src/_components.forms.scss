@@ -1,0 +1,66 @@
+.form--login {
+	border: $border-width solid $border-color;
+	padding: 1.25rem;
+
+	.form--login-header,
+	.form--login-footer {
+		text-align: center;
+	}
+}
+
+.form--login__title,
+.form--login h2 {
+	margin-bottom: 1.25rem;
+
+	color: $headings-color;
+	font-family: $headings-font-family;
+	font-size: $h2-font-size;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+// Loading Bar
+.loading-bar {
+	padding-bottom: 2rem;
+	padding-top: 2rem;
+	@include media-breakpoint-up(xs) {
+		position: relative;
+		text-align: center;
+		@include heading-style-minimal($font-size: 0.75rem, $color: $gray-light);
+		.loading-background {
+			background: $accent;
+			border-radius: 8px;
+			height: 8px;
+			position: absolute;
+		}
+		.loading-bar--step {
+			.loading-bar--bar {
+				background: $gray-light;
+				border-radius: 8px;
+				height: 8px;
+				margin-bottom: 1.5rem;
+			}
+			&.active .loading-bar--bar {
+				background: $teal;
+				box-shadow: 0 4px 9px 0 rgba(17, 164, 195, 0.37);
+			}
+		}
+		.active {
+			color: $gray;
+		}
+	}
+	@include media-breakpoint-down(xs) {
+		display: none;
+	}
+}
+.progress {
+	background: $accent;
+	height: 8px;
+	overflow: visible;
+}
+.progress-bar {
+	border-radius: 8px;
+	box-shadow: 0 4px 9px 0 rgba(17, 164, 195, 0.37);
+}

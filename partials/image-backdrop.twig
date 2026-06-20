@@ -1,0 +1,12 @@
+{% if backdrop.css_filters %}
+	{% set filter_style = 'filter: ' %}
+	{% for filter in backdrop.css_filters %}
+		{% set filter_style = filter_style ~ ' ' ~ filter.name ~ '(' ~ filter.value ~ ')' %}
+	{% endfor %}
+	{% set filter_style = filter_style ~ ';' %}
+{% endif %}
+
+
+{% if backdrop.image %}
+<img src="{{ backdrop.image.src }}" alt="{{ backdrop.image.alt|e }}" style="{{ filter_style }}" />
+{% endif %}

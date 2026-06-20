@@ -1,0 +1,17 @@
+//Base elements
+:root {
+	scroll-behavior: smooth;
+}
+
+html {
+}
+body {
+	margin-top: $mobile-nav-sticky-height;
+	@include media-breakpoint-up(lg) {
+		margin: 0;
+	}
+}
+
+::placeholder {
+	@include descriptive-text;
+}

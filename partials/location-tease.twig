@@ -1,0 +1,33 @@
+<div class="{{ local_namespace }}__location map-location">
+	{% if location.name %}
+	<h3 class="{{ local_namespace }}__location__name map-location__name">{{ location.name }}</h3>
+	{% endif %}
+
+	{% if location.address %}
+		<h4 class="h5 subhead mb-0">{{ address_label ?: "Address" }}</h4>
+		<address class="{{ local_namespace }}__location__address map-location__address">
+		{% if location.address.street_number %}
+			{{ location.address.street_number }} {{ location.address.street_name_short ? location.address.street_name_short : location.address.street_name }}<br/>
+			{{ location.address.city }}, {{ location.address.state_short ? location.address.state_short : location.address.state }} {{ location.address.post_code }}
+		{% else %}
+			{{ location.address }}<br/>
+			{{ location.city }}, {{ location.state }} {{ location.zip }}
+		{% endif %}
+		</address>
+	{% endif %}
+
+	{% if location.phone %}
+		<h4 class="h5 subhead mb-0">{{ phone_label ?: "Phone" }}</h4>
+		<p><a class="has-gray-color" href="tel:+1{{ location.phone | replace({' ': '', '(': '', ')': '', '-': '' })  }}"  target="_blank">{{ location.phone }}</a></p>
+	{% endif %}
+
+	{% if location.showroomSchedule %}
+		<h4 class="h5 subhead mb-0">{{ hours_label ?: "Hours" }}</h4>
+		<p>{{ location.showroomSchedule | nl2br }}</p>
+	{% endif %}
+
+	{% if location.link %}
+	<a href="{{ location.link }}" target="_self" class="btn btn-link"><span>View Location</span>{%- include ['partials/icon.twig'] ignore missing with {'icon': 'arrow'} -%}</a>
+	{% endif %}
+</div>
+

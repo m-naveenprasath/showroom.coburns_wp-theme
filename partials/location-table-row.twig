@@ -1,0 +1,60 @@
+{% if location.address.place_id %}
+	{% set google_maps_query = location.address.lat ~ "," ~ location.address.lng ~ "&query_place_id=" ~ location.address.place_id %}
+	{% set google_maps_link = "https://www.google.com/maps/search/?api=1&query="~ google_maps_query %}
+{% elseif location.address %}
+	{% set google_maps_query = "Coburn's Showroom" ~ " " ~ location.address ~ " " ~ location.city ~ " " ~ location.state ~ " " ~ location.zip %}
+	{% set google_maps_link = "https://www.google.com/maps/search/?api=1&query="~ google_maps_query|url_encode %}
+{% endif %}
+
+<tr class="{{ map_list_namespace }}-listing__locations {{ map_namespace }}__row listing-item" id="listing-{{ location.id }}" data-city="{{ location.city }}" data-latitude="{{ location.lat ?: location.address.lat }}" data-longitude="{{ location.lon ?: location.address.lng }}">
+	<td class="listing-name">
+		<a href="{{ location.link }}">
+			{% if location.city and location.state %}
+				{{ location.city }}, {{ location.state }}
+			{% else %}
+				{{ location.name }}
+			{% endif %}
+		</a>
+	</td>
+	<td class="listing-address">
+		<address>
+		{% if google_maps_link %}<a href="{{ google_maps_link }}" target="_blank">{% endif %}
+			{% if location.address.street_number %}
+				{{ location.address.street_number }} {{ location.address.street_name_short ? location.address.street_name_short : location.address.street_name }}, {{ location.address.city }}, {{ location.address.state_short ? location.address.state_short : location.address.state }} {{ location.address.post_code }}
+			{% else %}
+				{{ location.address }}, {{ location.city }}, {{ location.state }} {{ location.zip }}
+			{% endif %}
+		{% if google_maps_link %}</a>{% endif %}
+		</address>
+	</td>
+	<td class="listing-dist" data-sort-default></td>
+	<td class="listing-phone">
+		{% if location.phone %}
+			<a href="tel:+1{{ location.phone | replace({' ': '', '(': '', ')': '', '-': '' }) }}" target="_blank">{{ location.phone }}</a>
+		{% endif %}
+	</td>
+	<td class="listing-actions">
+		<a href="{{ location.link }}" class="btn btn-primary btn-shadow" title="{{ location_view_info_button_label.before }} {{ location.name }} {{ location_view_info_button_label.after }}">
+			{% include ['partials/icon.twig'] ignore missing with {'icon': 'info'} %}
+			<span class="sr-only">{{ location_view_info_button_label.before }} {{ location.name }} {{ location_view_info_button_label.after }}</span>
+		</a>
+		{% if google_maps_link %}
+			<a href="{{ google_maps_link }}" target="_blank" class="btn btn-primary btn-shadow" title="{{ location_directions_button_label.before }} {{ location.name }} {{ location_directions_button_label.after }}">
+				{% include ['partials/icon.twig'] ignore missing with {'icon': 'location'} %}
+				<span class="sr-only">{{ location_directions_button_label.before }} {{ location.name }} {{ location_directions_button_label.after }}</span>
+			</a>
+		{% endif %}
+		{% if 'SectionAppointments' in location.pageComponents %}
+			<a href="{{ location.link }}#appointments" class="btn btn-primary btn-shadow" title="{{ location_appointment_button_label.before }} {{ location.name }} {{ location_appointment_button_label.after }}">
+				{% include ['partials/icon.twig'] ignore missing with {'icon': 'calendar'} %}
+				<span class="sr-only">{{ location_appointment_button_label.before }} {{ location.name }} {{ location_appointment_button_label.after }}</span>
+			</a>
+		{% endif %}
+		{% if location.virtual_tour_link %}
+			<a href="{{ location.virtual_tour_link.url }}" target="_blank" class="btn btn-primary btn-shadow" title="{{ location.name }} Virtual Tour" target="_blank">
+				{% include ['partials/icon.twig'] ignore missing with {'icon': 'cube-sm'} %}
+				<span class="sr-only">{{ location.name }} Virtual Tour (opens in new window)</span>
+			</a>
+		{% endif %}
+	</td>
+</tr>

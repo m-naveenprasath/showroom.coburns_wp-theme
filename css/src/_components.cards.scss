@@ -1,0 +1,198 @@
+.card,
+.card-img-top {
+	border-radius: 0;
+}
+.blog-card,
+.promo-card,
+.review-card {
+	border: 0;
+}
+.card-product-carousel,
+.matching-products-sidebar,
+.product-detail {
+	border: 0;
+	@include media-breakpoint-up(sm) {
+		border: $border-width solid $border-color;
+	}
+}
+.gallery-wrap {
+	.btn {
+		position: absolute;
+		left: 0;
+		margin-top: 27px;
+	}
+	.img-big-wrap {
+		display: block;
+		height: 300px;
+		@include media-breakpoint-up(lg) {
+			height: 450px;
+		}
+		img {
+			height: 100% !important;
+			width: 100% !important;
+		}
+		div.compat-object-fit {
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: center center;
+			img {
+				opacity: 0;
+			}
+		}
+	}
+	.img-small-wrap {
+		@include media-breakpoint-up(sm) {
+			@include make-row();
+			margin: 0 -4px;
+			&.carousel-indicators {
+				display: flex;
+			}
+		}
+		li.item-gallery {
+			background: $gray-light;
+			border: $gray-light;
+			border-radius: 50%;
+			margin: 8px 8px 0;
+			width: 8px;
+			height: 8px;
+			div {
+				border: 1px solid $gray-light;
+				height: 100%;
+				box-shadow: inset 5px 5px 0 #fff, inset 5px 0 0 #fff, inset -5px -5px 0 #fff;
+				display: none;
+				@include media-breakpoint-up(sm) {
+					display: block;
+				}
+				&.compat-object-fit {
+					background-repeat: no-repeat;
+					background-size: cover;
+					background-position: center center;
+					@include media-breakpoint-down(sm) {
+						background-image: none !important;
+					}
+					img {
+						opacity: 0;
+					}
+				}
+			}
+			&.active {
+				background: $blue-dark;
+				div {
+					border: 1px solid $blue-dark;
+				}
+			}
+			&:hover {
+				background: $gray;
+				div {
+					border: 1px solid $gray;
+				}
+			}
+			@include media-breakpoint-up(sm) {
+				height: 98px;
+				border-radius: 0;
+				box-sizing: border-box;
+				margin: 8px 0 0;
+				text-indent: 0;
+				@include make-col-ready();
+				@include make-col(3);
+				padding: 0 4px;
+				&,
+				&.active,
+				&:hover {
+					background: $white;
+				}
+			}
+			@include media-breakpoint-up(md) {
+				height: 143px;
+			}
+			@include media-breakpoint-up(lg) {
+				height: 55px;
+			}
+			@include media-breakpoint-up(xl) {
+				height: 74px;
+			}
+			img {
+				display: none;
+				@include media-breakpoint-up(sm) {
+					border-radius: 0;
+					display: block;
+					padding: 5px;
+					height: 100%;
+					width: 100%;
+				}
+			}
+		}
+	}
+}
+.card-product {
+	position: relative;
+	.title {
+		margin-top: 0.5rem;
+	}
+	.img-wrap {
+		border-radius: 0;
+		height: auto;
+		img {
+			height: 100%;
+			width: 100%;
+			max-height: none;
+			max-width: none;
+			min-height: 100%;
+			min-width: 100%;
+		}
+	}
+	.info-wrap {
+		border: 0;
+		.stock {
+			font-size: 1rem;
+			line-height: 1.15;
+			@include media-breakpoint-up(xl) {
+				text-align: right;
+			}
+		}
+	}
+}
+.promo-badge {
+	position: absolute;
+	z-index: 99;
+	top: 14px;
+	right: 12px;
+}
+.btn-wishlist-heart,
+.btn-trash {
+	position: absolute;
+	z-index: 99;
+	top: 0;
+	right: 0;
+}
+.promo-badge {
+	@include heading-style-minimal($font-size: 0.75rem, $color: $white);
+	height: 25px;
+	width: 62px;
+	top: 10px;
+	left: -8px;
+	padding: 0.25rem;
+	text-align: center;
+	&:after {
+		content: "";
+		width: 0;
+		height: 0;
+		border-style: solid;
+		border-width: 0 8px 8px 0;
+		position: absolute;
+		left: 0;
+		bottom: -8px;
+	}
+	&.promo-badge--sale {
+		background: $red;
+		&:after {
+			border-color: transparent darken($red, 25%) transparent transparent;
+		}
+	}
+	&.promo-badge--new {
+		background: $beige;
+		&:after {
+			border-color: transparent darken($beige, 25%) transparent transparent;
+		}
+	}
+}

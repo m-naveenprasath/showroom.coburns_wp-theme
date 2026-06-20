@@ -1,0 +1,30 @@
+<article class="blog-card blog-card-full">
+	{% if post.thumbnail %}
+	<figure class="image">
+		{% include ['partials/image.twig'] ignore missing with { 'image': post.thumbnail, 'class': 'shadow' } %}
+	</figure>
+	{% endif %}
+
+	{% if post.type.slug == 'post' %}
+		<span class="eyebrow | minimal-2">
+			{{ cardLabels.postTypePostsEyebrow ?: "Blog" }}
+		</span>
+	{% else %}
+		<span class="eyebrow | minimal-2">
+			{{ post.type.labels.name_admin_bar | capitalize }}
+		</span>
+	{% endif %}
+
+	<h2><a href="{{ post.link }}" class="headline">{{ post.title }}</a></h2>
+
+	{% if post.type.slug=='locations' %}
+		<address class="address">
+			{{ post.address }}<br/>
+			{{ post.city }}, {{ post.state }} {{ post.zip }}
+		</address>
+	{% endif %}
+
+	{% if post.post_excerpt %}
+		{{ post.preview.read_more('') | wpautop }}
+	{% endif %}
+</article>

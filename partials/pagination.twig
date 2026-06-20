@@ -1,0 +1,50 @@
+{% if pagination.total > 1 %}
+<nav class="pagination-wrapper {{ class }}" aria-label="Pagination">
+	<ul class="pagination justify-content-center">
+		{% if pagination.prev %}
+		<li class="page-item">
+			<a href="{{ pagination.prev.link }}" class="page-link">
+				&laquo; <span class="sr-only">{{ labels.next ?: "Newer Posts" }}</span>
+			</a>
+		</li>
+		{% else %}
+		<li class="page-item disabled">
+			<span class="page-link">
+				&laquo; <span class="sr-only">{{ labels.next ?: "Newer Posts" }}</span>
+			</span>
+		</li>
+		{% endif %}
+
+		{% for page in pagination.pages %}
+			{% if page.link %}
+			<li class="page-item">
+				<a href="{{page.link}}" class="page-link {{page.class}}">{{page.title}}</a>
+			</li>
+			{% elseif page.current %}
+			<li class="page-item active" aria-current="page">
+				<span class="{{page.class}} page-link">{{page.title}}</span>
+			</li>
+			{% else %}
+			<li class="page-item">
+				<span class="{{page.class}} page-link">{{page.title}}</span>
+			</li>
+			{% endif %}
+			<script>console.log({{page|json_encode}})</script>
+		{% endfor %}
+
+		{% if pagination.next %}
+		<li class="page-item">
+			<a href="{{ pagination.next.link }}" class="page-link">
+				<span class="sr-only">{{ labels.previous ?: "Older Posts" }}</span> &raquo;
+			</a>
+		</li>
+		{% else %}
+		<li class="page-item disabled">
+			<span class="page-link">
+				<span class="sr-only">{{ labels.previous ?: "Older Posts" }}</span> &raquo;
+			</span>
+		</li>
+		{% endif %}
+	</ul>
+</nav>
+{% endif %}

@@ -1,0 +1,100 @@
+<div class="return-top">
+    <a class="btn btn-link"><span>Return to Top</span>{%- include ['partials/icon.twig'] ignore missing with {'icon': 'arrow'} -%}</a>
+</div>
+
+<footer class="footer-container">
+  <div class="container">
+    <div class="footer-secondary">
+          <div class="row reverse-col-sm">
+            <div class="col-md-8 col-lg-7">
+              <div class="row">
+                {%- if nav_footer_1 -%}
+                <div class="col-md-4">
+                    <ul class="nav">
+                      {%- include ['partials/menu.twig'] ignore missing with { 'menu': nav_footer_1 } -%}
+                    </ul>
+                </div>
+                {%- endif -%}
+                {%- if nav_footer_2 -%}
+                <div class="col-md-4">
+                    <ul class="nav">
+                      {%- include ['partials/menu.twig'] ignore missing with { 'menu': nav_footer_2 } -%}
+                    </ul>
+                </div>
+                {%- endif -%}
+                {%- if nav_footer_3 or nav_footer_3_bottom -%}
+                <div class="col-md-4">
+                {%- if nav_footer_3 -%}
+                  <ul class="nav">
+                    {%- include ['partials/menu.twig'] ignore missing with { 'menu': nav_footer_3 } -%}
+                  </ul>
+                  <hr/>
+                {%- endif -%}
+                {%- if nav_footer_3_bottom -%}
+                  <ul class="nav">
+                    <li class="nav-item menu-item-has-children">
+                      <span class="d-none d-sm-block nav-link">{{ nav_footer_3_bottom_title }}</span>
+                      <button type="button" class="d-sm-none nav-link" data-toggle="collapse" data-target="#footer--resources" aria-expanded="true" aria-controls="footer--resources">{{ nav_footer_3_bottom_title }}
+                      </button>
+                      <ul class="nav sub-menu resources collapse" id="footer--resources">
+                        {%- include ['partials/menu.twig'] ignore missing with { 'menu': nav_footer_3_bottom } -%}
+                      </ul>
+                    </li>
+                  </ul>
+                {%- endif -%}
+              </div>
+              {%- endif -%}
+              </div>
+        </div>
+        <div class="col-md-4 col-lg-5 footer-right">
+          <div class="textwidget">
+            <div class="footer-logo" aria-label="{{ corporate.name ?: site.name }} Logo">
+              {%- include ['patterns/03-elements/13-logos/11-primary-reverse.twig'] ignore missing -%}
+            </div>
+
+            {%- if corporate.address -%}
+              <address>
+                <a href="https://www.google.com/maps/search/?api=1&query={{corporate.address.lat}},{{corporate.address.lng}}&query_place_id={{corporate.address.place_id}}" target="_blank">
+                  {{ corporate.name ?: site.name }}<br/>
+                  {{ corporate.address.street_number }} {{ corporate.address.street_name }} {{ corporate.address_suite ? " - " ~ corporate.address_suite }}<br/>
+                  {{ corporate.address.city }}, {{ corporate.address.state_short ? corporate.address.state_short : corporate.address.state }} {{ corporate.address.post_code }}
+                </a>
+              </address>
+            {%- endif -%}
+
+            {%- if corporate.link -%}
+              {%- include ['partials/button.twig'] ignore missing with { 'button': corporate.link } -%}
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-primary">
+      <div class="row">
+        {%- if nav_family_sites -%}
+        <div class="col">
+          <ul class="nav">
+            {%- include ['partials/menu.twig'] ignore missing with { 'menu': nav_family_sites } -%}
+          </ul>
+        </div>
+        {%- endif -%}
+
+        <div class="{% if nav_family_sites %}col-sm-auto {% else %}col {% endif %} footer-right footer__copyright">
+            {%- if socialCorporate -%}
+          {%- include ['partials/social-link-list.twig'] ignore missing with { 'accounts': socialCorporate } -%}
+          {%- endif -%}
+        {%- if copyright -%}
+          <em>
+          {%- apply spaceless -%}
+          {{ copyright.label ? copyright.label : '&copy;' }}
+          {{ now|date('Y') }},
+          {{ copyright.company_name ? copyright.company_name : site.name }}.
+          {{ copyright.text ? ' ' ~ copyright.text }}
+          {%- endapply -%}
+          </em>
+        </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</footer>

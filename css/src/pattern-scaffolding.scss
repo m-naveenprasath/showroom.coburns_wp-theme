@@ -1,0 +1,105 @@
+@import "settings.colors";
+
+//Bootstrap's default variables and mixins to use for media queries
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
+
+/**
+ * This stylesheet is for styles you want to include only when displaying demo
+ * styles for grids, animations, color swatches, etc.
+ * These styles will not be your production CSS.
+ */
+
+.sg-page-wrapper {
+	padding: 3rem;
+}
+
+.sg-headline {
+	padding-bottom: 0.5em;
+	border-bottom: 1px solid #eee;
+}
+
+.sg-generic-grid {
+	display: grid;
+	grid-gap: 1.5rem;
+	grid-template-columns: repeat(auto-fit, minmax(150px, max-content));
+	padding: 1.5rem 0;
+}
+
+.sg-swatch-grid {
+	display: grid;
+	grid-gap: 1.5rem;
+	@include media-breakpoint-up(md) {
+		grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+	}
+	padding: 1.5rem 0;
+}
+
+.sg-swatch {
+	display: grid;
+	grid-gap: 1rem;
+	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	padding: 0;
+	margin: 0;
+
+	li {
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+
+	.sg-page--label {
+		font-size: 90%;
+		line-height: 1;
+	}
+}
+.sg-swatch__inverted {
+	padding: 0.5em;
+	color: white;
+	background-color: $blue-dark;
+}
+
+.sg-swatch--title {
+	width: 100%;
+	grid-column: 1 / -1;
+}
+
+.sg-swatch--color {
+	display: block;
+	height: 3rem;
+}
+
+//Awkwardly add borders to swatches with border colors
+.sg-swatch--color[class*="border-color"] {
+	border-width: 2px;
+	border-style: solid;
+}
+
+.pl-c-main {
+	padding: 0 1.5rem 1.5rem 1.5rem;
+}
+
+.pl-js-pattern-example >,
+.pl body > {
+	//Make sure these styles are only applied in PL
+	svg.logo {
+		margin: 1em;
+	}
+	svg.logo-reverse {
+		background-color: $blue-dark;
+		box-shadow: 0 0 0 0.75em $blue-dark;
+	}
+	.blog-card,
+	.promo-card,
+	.review-card {
+		max-width: 350px;
+		margin: 0 auto;
+	}
+	.card-product {
+		margin: 0 auto;
+	}
+	.footer-primary {
+		background-color: $blue-dark;
+	}
+}

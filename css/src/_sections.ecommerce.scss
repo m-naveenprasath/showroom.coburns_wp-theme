@@ -1,0 +1,26 @@
+.ecommerce-container {
+	padding-top: 0;
+	text-align: left;
+	.ecommerce--content {
+		@include media-breakpoint-up(lg) {
+			align-items: flex-start;
+		}
+	}
+	.ecommerce--text-top {
+		img { 
+			height: auto;
+			width: 100%;
+		}
+	}
+	.mobile-hide {
+		display: none;
+		@include media-breakpoint-up(lg) {
+			display: block;
+		}
+	}
+	.desktop-hide {
+		@include media-breakpoint-up(lg) {
+			display: none;
+		}
+	}
+}

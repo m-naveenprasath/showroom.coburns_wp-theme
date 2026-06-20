@@ -1,0 +1,26 @@
+{% set local_namespace = 'other-styles' %}
+
+<section class="{{ local_namespace }}-container has-background-{{ sectionBackground }}">
+	<div class="container">
+		<h2 class="{{ local_namespace }}-container--headline subhead text-center">{{ featured_brands_label ?: "Other Styles" }}</h2>
+
+		<div class="{{ local_namespace }}--images row">
+			{% for post in posts %}
+				<article class="{{ local_namespace }}--col col-md-6 col-xl-3" id="style-{{ post.id }}">
+					{% if post.thumbnail %}
+						<div class="img-wrap shadow">
+							<a href="{{ post.link }}">
+								{% include ['partials/image.twig'] ignore missing with { 'image': post.thumbnail } %}
+							</a>
+						</div>
+					{% endif %}
+					<div class="{{ local_namespace }}--links">
+						<a href="{{ post.link }}" class="btn btn-link">
+							<span>{{ post.title }}</span>{% include ['partials/icon.twig'] ignore missing with {'icon': 'arrow'} %}
+						</a>
+					</div>
+				</article>
+			{% endfor %}
+		</div>
+	</div>
+</section>

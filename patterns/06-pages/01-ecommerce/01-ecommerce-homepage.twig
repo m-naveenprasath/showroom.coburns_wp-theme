@@ -1,0 +1,223 @@
+<div class="home">
+	{% include "@sections/01-header/_ecommerce-header.twig" %}
+	<main>
+		<section class="hero-container">
+			<div class="container">
+				<div class="row">
+					<div class="hero--image">
+						<img height="468" width="712" src="../../../images/hero-homepage.jpg" alt="">
+					</div>
+					<div class="hero--text">
+						<div class="content-flow-headings">
+							<h1 class="heading-style-minimal">Lorem ipsum dolor</h1>
+							<h2 class="h1 display">Lorem Ipsum Dolor sit Amet.</h2>
+						</div>
+						<div class="row">
+							<div class="col-md content-flow">
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitaGon ullamco laboris nisi ut aliquip ex ea commodo consequat adipiscing elit sed do eiusmod tempor.</p>
+							</div>
+						</div>
+						<div class="button-group"><span class="btn-link--previous hero-btn-line"></span>
+							<div class="button-col"><a class="btn btn-primary btn-shadow btn-lg" href="#">Lorem ipsum</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="promo-container">
+			<div class="container">
+				<div id="carouselFeaturedPromos" class="carousel slide image-carousel" data-ride="carousel">
+					<div class="carousel-inner row">
+						<div class="carousel-item active">
+							<div class="carousel-col">
+								{% include "@components/03-cards/02-promo.twig"%}
+							</div>
+						</div>
+						<div class="carousel-item">
+							<div class="carousel-col">
+								{% include "@components/03-cards/02-promo.twig"%}
+							</div>
+						</div>
+						<div class="carousel-item">
+							<div class="carousel-col">
+								{% include "@components/03-cards/02-promo.twig"%}
+							</div>
+						</div>
+					</div>
+					<ol class="carousel-indicators">
+						<li data-target="#carouselFeaturedPromos" data-slide-to="0" class="active"></li>
+						<li data-target="#carouselFeaturedPromos" data-slide-to="1"></li>
+						<li data-target="#carouselFeaturedPromos" data-slide-to="2"></li>
+					</ol>
+				</div>
+			</div>
+		</section>
+		{% include "@sections/05-ecommerce/_05-shop-by.twig"%}
+		{% include "@sections/06-showroom/_style-finder.twig"%}
+		{% include "@sections/06-showroom/_brands.twig"%}
+		<section class="category-container">
+			<div class="container">
+				<h5 class="subhead text-center">Popular Categories</h5>
+				<div class="row category--popular">
+					<div class="col-12">
+						<div class="row ">
+							<article class="col-6 col-lg-3 category--product">
+								<div class="card card-product">
+									<figure class="img-wrap">
+										<a href="#"><img src="../../../images/sample/thumb-square-yosemite.jpg"></a>
+									</figure>
+									<div class="info-wrap">
+										<h4 class="title">
+											<a href="#">Accessories</a>
+										</h4>
+									</div>
+								</div>
+							</article>
+							<article class="col-6 col-lg-3 category--product">
+								<div class="card card-product">
+									<figure class="img-wrap">
+										<a href="#"><img src="../../../images/sample/thumb-square-yosemite.jpg"></a>
+									</figure>
+									<div class="info-wrap">
+										<h4 class="title">
+											<a href="#">Bathroom Cabinets &amp; Furniture</a>
+										</h4>
+									</div>
+								</div>
+							</article>
+							<article class="col-6 col-lg-3 category--product">
+								<div class="card card-product">
+									<figure class="img-wrap">
+										<a href="#"><img src="../../../images/sample/thumb-square-yosemite.jpg"></a>
+									</figure>
+									<div class="info-wrap">
+										<h4 class="title">
+											<a href="#">Bathroom Faucets</a>
+										</h4>
+									</div>
+								</div>
+							</article>
+							<article class="col-6 col-lg-3 category--product">
+								<div class="card card-product">
+									<figure class="img-wrap">
+										<a href="#"><img src="../../../images/sample/thumb-square-yosemite.jpg"></a>
+									</figure>
+									<div class="info-wrap">
+										<h4 class="title">
+											<a href="#">Bathroom Lighting</a>
+										</h4>
+									</div>
+								</div>
+							</article>
+							<article class="col-6 col-lg-3 category--product">
+								<div class="card card-product">
+									<figure class="img-wrap">
+										<a href="#"><img src="../../../images/sample/thumb-square-yosemite.jpg"></a>
+									</figure>
+									<div class="info-wrap">
+										<h4 class="title">
+											<a href="#">Bathroom Safety &amp; Accessibility</a>
+										</h4>
+									</div>
+								</div>
+							</article>
+							<article class="col-6 col-lg-3 category--product">
+								<div class="card card-product">
+									<figure class="img-wrap">
+										<a href="#"><img src="../../../images/sample/thumb-square-yosemite.jpg"></a>
+									</figure>
+									<div class="info-wrap">
+										<h4 class="title">
+											<a href="#">Bathroom Sinks</a>
+										</h4>
+									</div>
+								</div>
+							</article>
+							<article class="col-6 col-lg-3 category--product">
+								<div class="card card-product">
+									<figure class="img-wrap">
+										<a href="#"><img src="../../../images/sample/thumb-square-yosemite.jpg"></a>
+									</figure>
+									<div class="info-wrap">
+										<h4 class="title">
+											<a href="#">Bathroom Vanities &amp; Vanity Tops</a>
+										</h4>
+									</div>
+								</div>
+							</article>
+							<article class="col-6 col-lg-3 category--product">
+								<div class="card card-product">
+									<figure class="img-wrap">
+										<a href="#"><img src="../../../images/sample/thumb-square-yosemite.jpg"></a>
+									</figure>
+									<div class="info-wrap">
+										<h4 class="title">
+											<a href="#">Bathroom Vents, Fans &amp; Parts</a>
+										</h4>
+									</div>
+								</div>
+							</article>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<div class="about-text-container page-content">
+			<div class="container">
+				<div class="justify-content-md-center row">
+					<div class="about--page-content text-center col-md-8">
+						<h1>About Coburn Supply Company</h1>
+						<p>Founder Albert J. Coburn, a New Orleans native who began his career as a plumbing and heating contractor, approached opportunities with nerve, imagination and persuasiveness. His strong commitment to fair play, hard work, family and faith influenced his career and continues to impact the lives of almost 1,000 employees who work at Coburn’s today.</p>
+						<p>By providing real solutions and stellar customer service, Coburn’s has remained a top distributor of quality products since first opening in 1934 in Beaumont, Texas. Today, Coburn’s has more than 50 locations and three centrally located distribution centers serving Texas, Louisiana, Mississippi, Alabama and Tennessee. In addition to its physical stores, Coburns.com provides product availability for customers everywhere. While the company has grown, it is still run by third and fourth generations of Albert Coburn’s family. The family business shares the same vision it started with and has never lost sight of the main reason the company exists: its customers.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<section class="featured-testimonials-container">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4">
+						<div class="featured-testimonials--text">
+							<figure class="image-circle image-circle--small"><img src="../../images/author-image.jpg" alt="Firstname Lastname"></figure>
+							<p class="featured-testimonials--quote">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed condimentum tellus. Donec volutpat a turpis nec consectetur. Nunc sed velit venenatis.</p>
+							<p class="featured-testimonials--author">– Firstname Lastname</p>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="featured-testimonials--text">
+							<figure class="image-circle image-circle--small"><img src="../../images/author-image.jpg" alt="Firstname Lastname"></figure>
+							<p class="featured-testimonials--quote">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed condimentum tellus. Donec volutpat a turpis nec consectetur. Nunc sed velit venenatis.</p>
+							<p class="featured-testimonials--author">– Firstname Lastname</p>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="featured-testimonials--text">
+							<figure class="image-circle image-circle--small"><img src="../../images/author-image.jpg" alt="Firstname Lastname"></figure>
+							<p class="featured-testimonials--quote">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed condimentum tellus. Donec volutpat a turpis nec consectetur. Nunc sed velit venenatis.</p>
+							<p class="featured-testimonials--author">– Firstname Lastname</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="questions-container text-center has-background-stripes">
+			<div class="container">
+				<div class="row questions-card">
+					<div class="questions-card--title col-12">
+						<div class="h3 questions-card__title">Have questions?</div>
+						<p>Our exports are here to help!</p>
+					</div>
+					<div class="questions-card--buttons col-12">
+						<div class="button-group">
+							<div class="button-col"><a class="btn btn-primary btn-shadow" href="#">{% include "@icons/chat.twig" %}<span>Live Chat</span></a></div>
+							<div class="button-col"><a class="btn btn-primary btn-shadow" href="#">{% include "@icons/email.twig" %}<span>Email</span></a></div>
+							<div class="button-col"><a class="btn btn-primary btn-shadow" href="#">{% include "@icons/location.twig" %}<span>Find Your Nearest Location</span></a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+	<div class="ankle-container">{% include "@sections/03-ankle.twig"%}</div>
+	{% include "@sections/04-footer/_footer.twig" %}
+</div>

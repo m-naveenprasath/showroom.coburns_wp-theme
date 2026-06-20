@@ -1,0 +1,86 @@
+.SectionAbout {
+	box-shadow: none !important;
+
+	&:after {
+	}
+}
+
+.SectionAbout--intro {
+	.row {
+		@include media-breakpoint-up(md) {
+			align-items: center;
+		}
+	}
+
+	&.has-pseudo-background::after {
+		content: "";
+		height: calc(100% + 4.5em + 106px);
+		width: 100%;
+		position: absolute;
+		top: -2rem;
+		left: 0;
+		z-index: -1;
+		@include media-breakpoint-up(lg) {
+			height: calc(100% + 7.5em + 196px);
+		}
+		@include media-breakpoint-up(lg) {
+			top: -4rem;
+			height: calc(100% + 7.5em + 146px);
+		}
+	}
+}
+
+.SectionAbout--carousel {
+	.container {
+		@include media-breakpoint-down(sm) {
+			max-width: 100%;
+			padding: 0;
+		}
+	}
+	.carousel {
+		margin: 2.5rem 0 4rem;
+		@include media-breakpoint-up(sm) {
+			max-width: 360px;
+			margin: 2.5rem auto 4rem;
+		}
+		@include media-breakpoint-up(lg) {
+			max-width: none;
+		}
+		.img-wrap {
+			height: 180px;
+			@include media-breakpoint-up(sm) {
+				height: 250px;
+			}
+		}
+	}
+}
+
+.SectionAbout--family {
+	text-align: center;
+}
+
+.SectionAbout--family-logo {
+	img,
+	svg {
+		max-width: 186px;
+		height: auto;
+		margin-bottom: 1rem;
+	}
+}
+.SectionAbout--family-buttons {
+	@include media-breakpoint-down(sm) {
+		display: none;
+	}
+	@include media-breakpoint-up(md) {
+		margin-top: 3rem;
+		h1,
+		.h1 {
+			margin-bottom: 2rem;
+		}
+	}
+	.button-group .button-col {
+		@include media-breakpoint-up(sm) {
+			margin: 8px;
+		}
+	}
+}

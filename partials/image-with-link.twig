@@ -1,0 +1,13 @@
+{%- if link.url -%}
+{%- apply spaceless -%}
+<a
+	 href="{{ link.url }}"
+	{%- if link.target -%} target="{{ link.target }}"{%- endif -%}
+	{%- if link.title -%} aria-label="{{ link.title }}"{%- endif -%}
+>
+	{%- include "partials/image.twig" ignore missing with { 'image': image, 'id': id } -%}
+</a>
+{%- endapply -%}
+{%- else -%}
+	{%- include "partials/image.twig" ignore missing with { 'image': image, 'id': id } -%}
+{%- endif -%}

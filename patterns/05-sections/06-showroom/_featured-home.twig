@@ -1,0 +1,41 @@
+  <section class="featured-home-container">
+    <div class="container">
+      <div class="row">
+        <div class="featured-home--text col-md-6 col-lg-3">
+          <div class="featured-home--headline">Featured Room</div>
+		  <figure class="image-circle image-circle--small"><img src="../../images/author-image.jpg" alt="Firstname Lastname"></figure>
+          <p class="featured-home--quote">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed condimentum tellus. Donec volutpat a turpis nec consectetur. Nunc sed velit venenatis.</p>
+		  <p class="featured-home--author">– Firstname Lastname</p>
+        </div>
+          <div id="carouselFeaturedHome" class="carousel slide image-carousel" data-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+				  <div class="carousel-col">
+                	  <div class="img-wrap shadow"><img width="100%" src="../../../images/featured-home-1.jpg" alt=""></div>
+				  </div>
+              </div>
+              <div class="carousel-item">
+				  <div class="carousel-col">
+                	  <div class="img-wrap shadow"><img width="100%" src="../../../images/featured-home-2.jpg" alt=""></div>
+				  </div>
+              </div>
+              <div class="carousel-item">
+				  <div class="carousel-col">
+                	  <div class="img-wrap shadow"><img width="100%" src="../../../images/featured-home-3.jpg" alt=""></div>
+				  </div>
+              </div>
+            </div>
+            <ol class="carousel-indicators">
+              <li data-target="#carouselFeaturedHome" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselFeaturedHome" data-slide-to="1"></li>
+              <li data-target="#carouselFeaturedHome" data-slide-to="2"></li>
+            </ol>
+          </div>
+      </div>
+	  <div class="row">
+		  <div class="featured-home--link col-lg-3">
+			<a href="" class="btn btn-link btn-link--previous"><span>See More</span>{% include "@icons/arrow.twig" %}</a>
+		  </div>
+	  </div>
+    </div>
+  </section>

@@ -1,0 +1,37 @@
+
+{% set local_namespace = 'product-feature-container' %}
+
+{% extends "partials/_component-base.twig" %}
+
+{% block container %}
+<div class="container">
+
+<h2 class="minimal-2 text-center">{{ featured_products_heading ?: featured_products_heading_default }}</h2>
+	
+		{% if products|length is divisible by(2) %}
+			{% set product_count_odd_even = "even" %}
+		{% else %}
+			{% set product_count_odd_even = "odd" %}
+		{% endif %}
+
+		{% if products|length <= 5 %}
+			{% set product_count_overflow = false %}
+		{% else %}
+			{% set product_count_overflow = true %}
+		{% endif %}
+
+		<div class="featured-product-container has-{{products|length}}-products has-{{ product_count_odd_even }}-number-of-products {{ product_count_overflow ? "has-product-overflow" }} ">
+			
+			{% for product in products %}
+				<article class="featured-product-item {% if product.button %}has-link{% endif %}">
+					{% include ['partials/image.twig'] ignore missing with { 'image': product.image } %}
+					{% include ['partials/heading-array.twig'] ignore missing with { 'headings': product.headings } %}
+					{% include ['partials/button.twig'] ignore missing with { 'button': product.button, "class": "stretched-link" } %}
+				</article>
+			{% endfor %}
+			
+		</div>
+
+
+</div>
+{% endblock %}

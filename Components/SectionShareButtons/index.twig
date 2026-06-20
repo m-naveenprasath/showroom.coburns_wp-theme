@@ -1,0 +1,24 @@
+{% set share_title = post.title | url_encode %}
+{% set share_text = post.link | url_encode %}
+{% set share_url = post.link | url_encode %}
+
+<section class="questions-container questions--{{ local_namespace }} text-center has-background-{{sectionBackground}}">
+	<div class="container">
+		<div class="row questions-card">
+			{% if shareWithHeading %}
+			<div class="questions-card--title col-12">
+				{% include ['partials/heading.twig'] ignore missing with { 'heading': shareWithHeading, class: 'hero--sharetoolbar__heading' } %}
+			</div>
+			{% endif %}
+			{% if shareWith.Facebook or shareWith.LinkedIn or shareWith.Twitter or shareWith.Pinterest or shareWith.Email %}<div class="questions-card--buttons col-12">
+				<div class="button-group">
+					{% if shareWith.Facebook %}<div class="button-col"><a class="btn btn-facebook btn-icon-{{ iconPosition }}" target="_blank" rel="noopener" href="https://www.facebook.com/sharer.php?u={{share_url}}">{% include ['partials/icon.twig'] ignore missing with {'icon': 'facebook'} %}<span>Facebook</span></a></div>{% endif %}
+					{% if shareWith.LinkedIn %}<div class="button-col"><a class="btn btn-linkedin btn-icon-{{ iconPosition }}" target="_blank" rel="noopener" href="https://www.linkedin.com/shareArticle?mini=true&url={{share_url}}&title={{share_title}}&summary={{share_text}}&source={{site.url}}">{% include ['partials/icon.twig'] ignore missing with {'icon': 'linkedin'} %}<span>LinkedIn</span></a></div>{% endif %}
+					{% if shareWith.Twitter %}<div class="button-col"><a class="btn btn-twitter btn-icon-{{ iconPosition }}" target="_blank" rel="noopener" href="https://twitter.com/intent/tweet?url={{share_url}}&text={{share_title}}{% if socialmedia.socialmedia.share_twitter_account %}&via={{socialmedia.socialmedia.share_twitter_account}}{% endif %}{% if socialmedia.socialmedia.share_twitter_hashtags %}&hashtags={{socialmedia.socialmedia.share_twitter_hashtags}}{% endif %}">{% include ['partials/icon.twig'] ignore missing with {'icon': 'twitter'} %}<span>Twitter</span></a></div>{% endif %}
+					{% if shareWith.Pinterest %}<div class="button-col"><a class="btn btn-pinterest btn-icon-{{ iconPosition }}" target="_blank" rel="noopener" href="http://pinterest.com/pin/create/link/?url={{share_url}}">{% include ['partials/icon.twig'] ignore missing with {'icon': 'pinterest'} %}<span>Pinterest</span></a></div>{% endif %}
+					{% if shareWith.Email %}<div class="button-col"><a class="btn btn-primary btn-icon-{{ iconPosition }}" target="_blank" rel="noopener" href="mailto:?subject={{share_title}}&body={{share_url}}">{% include ['partials/icon.twig'] ignore missing with {'icon': 'email'} %}<span>Email</span></a></div>{% endif %}
+				</div>
+			</div>{% endif %}
+		</div>
+	</div>
+</section>

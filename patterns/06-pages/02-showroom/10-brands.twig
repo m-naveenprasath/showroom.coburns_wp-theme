@@ -1,0 +1,89 @@
+<div class="sg-theme-showroom">
+	<div class="page-template-page-locations">
+		{% include "@sections/01-header/_showroom-header.twig" %}
+		<main>
+			<section class="hero-container">
+				<div class="container">
+					<div class="row">
+						<div class="hero--image">
+							<img height="auto" width="712" src="../../../images/hero-brands.jpg" alt="">
+						</div>
+						<div class="hero--text">
+							<div class="content-flow-headings">
+								<h1 class="heading-style-minimal">Coburn's Brands</h1>
+								<h2 class="h1 display">Bring the Best Brands Home</h2>
+							</div>
+							<div class="row">
+								<div class="col-md content-flow">
+									<p>We are proud to carry a wide variety of unique, hand-picked items from the industry's top-quality brands in our showroom.</p>
+									<p>Select a category to view just a few of the distinguished brands you'll find in the Coburn's Showroom near you.</p>
+								</div>
+							</div>
+							<form class="hero--form" id="categories-search">
+							<div class="form-group">
+							      <label for="categories" class="sr-only">Cateogry</label>
+							      <select class="form-control" id="categories">
+							        <option value="">Choose a Category...</option>
+							        <option value="Accessories">Accessories</option>
+							        <option value="Faucets">Faucets</option>
+							        <option value="Furniture / Vanities">Furniture / Vanities</option>
+							        <option value="Lavatories &amp; Sinks">Lavatories &amp; Sinks</option>
+							      </select>
+							  </div>
+						  </form>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section>
+				<div class="container">
+					<div class="table listing-table">
+						<table class="table-hover">
+							<thead>
+								<tr>
+									<th scope="col">Brand</th>
+									<th scope="col">Product Lines</th>
+									<th scope="col">Actions</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="listing-name">American Standard</td>
+									<td class="listing-products">Accessories, Medicine Cabinet, Mirrors, Shower, Toilets, Tubs</td>
+									<td class="listing-actions"><a href="" class="btn btn-primary btn-shadow"><span>Shop This Brand</span></a><a href="" class="btn btn-primary btn-shadow" aria-label="Visit Brand's Website">{% include "@icons/link.twig" %}</a></td>
+								</tr>
+								<tr>
+									<td class="listing-name">American Standard</td>
+									<td class="listing-products">Faucets, Medicine Cabinet, Mirrors, Shower, Toilets, Tubs</td>
+									<td class="listing-actions"><a href="" class="btn btn-primary btn-shadow"><span>Shop This Brand</span></a><a href="" class="btn btn-primary btn-shadow" aria-label="Visit Brand's Website">{% include "@icons/link.twig" %}</a></td>
+								</tr>
+								<tr>
+									<td class="listing-name">American Standard</td>
+									<td class="listing-products">Furniture / Vanities, Medicine Cabinet, Mirrors, Shower, Toilets, Tubs</td>
+									<td class="listing-actions"><a href="" class="btn btn-primary btn-shadow"><span>Shop This Brand</span></a><a href="" class="btn btn-primary btn-shadow" aria-label="Visit Brand's Website">{% include "@icons/link.twig" %}</a></td>
+								</tr>
+								<tr>
+									<td class="listing-name">American Standard</td>
+									<td class="listing-products">Lavatories &amp; Sinks, Medicine Cabinet, Mirrors, Shower, Toilets, Tubs</td>
+									<td class="listing-actions"><a href="" class="btn btn-primary btn-shadow"><span>Shop This Brand</span></a><a href="" class="btn btn-primary btn-shadow" aria-label="Visit Brand's Website">{% include "@icons/link.twig" %}</a></td>
+								</tr>
+								<tr>
+									<td class="listing-name">American Standard</td>
+									<td class="listing-products">Accessories, Lavatories &amp; Sinks, Medicine Cabinet, Mirrors, Shower, Toilets, Tubs</td>
+									<td class="listing-actions"><a href="" class="btn btn-primary btn-shadow"><span>Shop This Brand</span></a><a href="" class="btn btn-primary btn-shadow" aria-label="Visit Brand's Website">{% include "@icons/link.twig" %}</a></td>
+								</tr>
+								<tr>
+									<td class="listing-name">American Standard</td>
+									<td class="listing-products">Furniture / Vanities, Hardware, Lavatories &amp; Sinks, Medicine Cabinet, Mirrors, Shower, Toilets, Tubs</td>
+									<td class="listing-actions"><a href="" class="btn btn-primary btn-shadow"><span>Shop This Brand</span></a><a href="" class="btn btn-primary btn-shadow" aria-label="Visit Brand's Website">{% include "@icons/link.twig" %}</a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</section>
+		</main>
+		<div class="ankle-container">{% include "@sections/03-ankle.twig"%}</div>
+		{% include "@sections/04-footer/_footer.twig" %}
+	</div>
+</div>

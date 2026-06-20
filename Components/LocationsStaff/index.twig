@@ -1,0 +1,38 @@
+{% set local_namespace = 'location-bios' %}
+{% extends "partials/_component-base.twig" %}
+
+{% block container %}
+
+{% if staff %}
+<div class="container">
+
+	<div class="{{ local_namespace }}-headings text-center">
+		{% include ['partials/heading-array.twig'] ignore missing with { 'headings': staff_section_headings_default.headings } %}
+
+		{% if staff_section_headings_default.intro %}
+		<div class="{{ local_namespace }}-intro content-flow">
+			{{ staff_section_headings_default.intro }}
+		</div>
+		{% endif %}
+	</div>
+
+
+	<div class="row justify-content-center accordion {{ local_namespace }}-accordion" id="{{ component_ID ?: local_namespace }}-accordion">
+		{% for person in staff %}
+			{% include ['partials/staff-member.twig'] ignore missing with { 'person': person, 'size': 'desktop', 'loopIndex': loop.index } %}
+		{% endfor %}
+		{% for person in staff %}
+			{% include ['partials/staff-member.twig'] ignore missing with { 'person': person, 'size': 'mobile', 'loopIndex': loop.index } %}
+
+			{% if person.bio %}
+			<div class="bio-details col-12 collapse" id="collapseBio{{ loop.index }}" data-parent="#{{ component_ID ?: local_namespace }}-accordion">
+				{{ person.bio }}
+			</div>
+			{% endif %}
+		{% endfor %}
+	</div>
+
+</div>
+{% endif %}
+
+{% endblock %}

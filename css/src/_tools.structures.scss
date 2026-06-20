@@ -1,0 +1,80 @@
+@mixin responsive-tables {
+	thead {
+		display: none;
+	}
+	tbody {
+		tr td {
+			border: 0;
+			vertical-align: middle;
+		}
+		td {
+			display: block;
+			padding-bottom: 0;
+		}
+		td:last-child {
+			padding-bottom: $table-cell-padding;
+		}
+		tr {
+			border-bottom: $border-width solid $border-color;
+			padding-bottom: $table-cell-padding;
+		}
+		tr:last-child {
+			border-bottom: 0;
+		}
+	}
+	.listing-actions {
+		white-space: nowrap;
+	}
+	.table-sm {
+		tbody tr td:last-child {
+			padding-bottom: $table-cell-padding-sm;
+		}
+	}
+	@include media-breakpoint-up(sm) {
+		table {
+			border: $border-width solid $border-color;
+		}
+	}
+	@include media-breakpoint-up(md) {
+		thead {
+			background-color: $blue-dark;
+			display: table-header-group;
+			@include heading-style-minimal($font-size: 0.75rem, $color: $white);
+			th {
+				border: 0;
+			}
+		}
+		tbody {
+			tr td {
+				border-top: $border-width solid $border-color;
+				display: table-cell;
+				padding-bottom: $table-cell-padding;
+			}
+			tr:first-child td {
+				border-top: 0;
+			}
+		}
+		.table-sm {
+			tr td {
+				padding-bottom: $table-cell-padding-sm;
+			}
+		}
+	}
+}
+
+@mixin lists {
+	dl {
+		@include media-breakpoint-down(xs) {
+			margin: 0;
+			// Adds spacing around content on mobile.
+		}
+	}
+	dt,
+	dd {
+		border-bottom: 1px solid $gray-light;
+		margin-bottom: 0.25rem;
+		@include media-breakpoint-up(md) {
+			border: 0;
+		}
+	}
+}

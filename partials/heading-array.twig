@@ -1,0 +1,9 @@
+{%- apply spaceless -%}
+{%- if headings -%}
+<div class="content-flow-headings">
+{%- for heading in headings -%}
+{%- include ['partials/heading.twig'] ignore missing with { 'heading': heading } -%}
+{%- endfor -%}
+</div>
+{%- endif -%}
+{%- endapply -%}

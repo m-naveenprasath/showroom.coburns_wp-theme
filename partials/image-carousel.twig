@@ -1,0 +1,24 @@
+{% if not component_ID %}
+	{% set component_ID = local_namespace ~ "-" ~ _key %}
+{% endif %}
+<div id="carousel-{{component_ID}}" class="carousel slide {% if local_namespace != "rooms-inspire-container" %}image-carousel{% endif %}" data-ride="carousel">
+	<div class="carousel-inner">
+		{% for item in carousel %}
+			<div class="carousel-item{% if loop.first %} active{% endif %}">
+				<div class="carousel-col">
+					<figure class="wp-block-image">
+						<div class="img-wrap shadow img-border">{% include ['partials/image.twig'] ignore missing with { 'image': item.image } %}</div>
+						{% if item.image.caption %}
+						<figcaption>{{ item.image.caption }}</figcaption>
+						{% endif %}
+					</figure>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+	<ol class="carousel-indicators">
+		{% for item in carousel %}
+			<li data-target="#carousel-{{component_ID}}" data-slide-to="{{ loop.index0 }}"{% if loop.first %} class="active"{% endif %}></li>
+		{% endfor %}
+	</ol>
+</div>

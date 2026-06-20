@@ -1,0 +1,110 @@
+<form class="product-filter">
+	<div class="filter-buttons">
+		<a class="btn btn-outline-gray-light has-gray-color btn-filter" role="button" aria-pressed="false" aria-label="Filter Products">{% include "@icons/filter.twig" %}<span>Sort &amp; Filter</span></a>
+	</div>
+	<div class="filter-settings">
+		<fieldset class="form-group sort-settings">
+			<legend class="filter-section__heading">Sort By</legend>
+			<div class="custom-control custom-radio">
+			      <input type="radio" class="custom-control-input" id="recommended" name="sort" value="recommended" checked>
+			      <label class="custom-control-label" for="recommended" data-value="recommended">Recommended</label>
+			</div>
+			<div class="custom-control custom-radio">
+			      <input type="radio" class="custom-control-input" id="best-sellers" name="sort" value="best-sellers">
+			      <label class="custom-control-label" for="best-sellers" data-value="best-sellers">Best Sellers</label>
+			</div>
+			<div class="custom-control custom-radio">
+			      <input type="radio" class="custom-control-input" id="newest-products" name="sort" value="newest-products">
+			      <label class="custom-control-label" for="newest-products" data-value="newest-products">Newest Products</label>
+			</div>
+			<div class="custom-control custom-radio">
+			      <input type="radio" class="custom-control-input" id="priced-low-to-high" name="sort" value="priced-low-to-high">
+			      <label class="custom-control-label" for="priced-low-to-high" data-value="priced-low-to-high">Priced Low to High</label>
+			</div>
+			<div class="custom-control custom-radio">
+			      <input type="radio" class="custom-control-input" id="priced-high-to-low" name="sort" value="priced-high-to-low">
+			      <label class="custom-control-label" for="priced-high-to-low" data-value="priced-high-to-low">Priced High to Low</label>
+			</div>
+			<div class="custom-control custom-radio">
+			      <input type="radio" class="custom-control-input" id="product-name" name="sort" value="product-name">
+			      <label class="custom-control-label" for="product-name" data-value="product-name">Product Name</label>
+			</div>
+		</fieldset>
+		<fieldset class="form-group">
+			<legend class="filter-section__heading">Brand</legend>
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="custom-control-input" id="check1">
+				<label class="custom-control-label" for="check1">Hunter Fan Company
+					<span class="h5 subhead">(2)</span>
+				</label>
+			</div>
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="custom-control-input" id="check2">
+				<label class="custom-control-label" for="check2">Craftmade
+					<span class="h5 subhead">(3)</span>
+				</label>
+			</div>
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="custom-control-input" id="check3">
+				<label class="custom-control-label" for="check3">Emerson
+					<span class="h5 subhead">(3)</span>
+				</label>
+			</div>
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="custom-control-input" id="check4">
+				<label class="custom-control-label" for="check4">Progress Lighting
+					<span class="h5 subhead">(1)</span>
+				</label>
+			</div>
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="custom-control-input" id="check5">
+				<label class="custom-control-label" for="check5">Sunway
+					<span class="h5 subhead">(2)</span>
+				</label>
+			</div>
+		</fieldset>
+		<div class="form-group">
+			<div class="filter-section__heading">Price</div>
+			<input
+			class="custom-range" min="0" max="100" name="" type="range" title="Price Range">
+			<div class="form-row">
+				<div class="col-6">
+					<input aria-label="Min Price" type="number" class="form-control" id="min-price" placeholder="Min">
+				</div>
+				<div class="col-6 text-right">
+					<input aria-label="Max Price" type="number" class="form-control" id="max-price" placeholder="Max">
+				</div>
+			</div>
+		</div>
+		<fieldset class="form-group">
+			<legend class="filter-section__heading">Style</legend>
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="custom-control-input" id="check6">
+				<label class="custom-control-label" for="check6">Indoor
+					<span class="h5 subhead">(11)</span>
+				</label>
+			</div>
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="custom-control-input" id="check7">
+				<label class="custom-control-label" for="check7">Outdoor
+					<span class="h5 subhead">(8)</span>
+				</label>
+			</div>
+		</fieldset>
+		<fieldset class="form-group">
+			<legend class="filter-section__heading">Finish</legend>
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="custom-control-input" id="check8">
+				<label class="custom-control-label" for="check8">Brass
+					<span class="h5 subhead">(11)</span>
+				</label>
+			</div>
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="custom-control-input" id="check9">
+				<label class="custom-control-label" for="check9">Steal
+					<span class="h5 subhead">(8)</span>
+				</label>
+			</div>
+		</fieldset>
+	</div>
+</form> 

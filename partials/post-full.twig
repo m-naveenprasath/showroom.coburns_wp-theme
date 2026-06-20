@@ -1,0 +1,27 @@
+<article class="single-{{ post.post_type }}" id="post-{{ post.id }}">
+
+	<section class="blog--page-content page-content">
+		<div class="container">
+
+			<div class="row justify-content-md-center">
+
+				<div class="col-md-10 blog--image mb-3">
+					{% include ['partials/image.twig'] ignore missing with { 'image': post.thumbnail, 'class': 'img-fluid' } %}
+				</div>
+
+				<div class="col-md-8 blog--headline">
+					<h1 class="display-1">
+						{{ post.title }}
+					</h1>
+				</div>
+
+				<div class="col-md-8 blog--content">
+					{{ post.content }}
+				</div>
+
+			</div>
+
+		</div>
+	</section>
+
+</article>

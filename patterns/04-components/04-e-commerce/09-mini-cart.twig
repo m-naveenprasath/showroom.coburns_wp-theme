@@ -1,0 +1,25 @@
+<div class="mini-cart">
+
+  <div class="h5 subhead mini-cart-header">
+    1 Item in Your Cart
+  </div>
+
+  <div class="mini-cart-contents">
+
+    {% include "@components/04-e-commerce/_product-card-small--quantity.twig" %}
+
+    {% include "@components/04-e-commerce/_product-card-small--quantity.twig" %}
+
+    {% include "@components/04-e-commerce/_product-card-small--quantity.twig" %}
+
+  </div>
+
+  <div class="mini-cart-footer">
+    <div class="h4 price">Subtotal: $85.15</div>
+
+    <div class="mini-cart-footer__actions">
+      <a class="btn btn-primary has-white-color" href="#">Proceed to Checkout</a><br/>
+      <a href="" class="btn btn-link cart-link">View Full Cart {% include "@icons/arrow.twig" %}</a>
+    </div>
+  </div>
+</div>

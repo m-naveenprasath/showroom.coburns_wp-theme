@@ -1,0 +1,22 @@
+{# This card is not necessary since it is the same as product-large with responsive styles. #}
+<article class="card card-product product-grid">
+  <figure class="img-wrap">
+    <a href="#"><img src="../../../images/sample/thumb-square-yosemite.jpg"></a>
+  </figure>
+
+  <div class="info-wrap">
+    <h4 class="title">
+      <a href="#">Original Version of Some Product Name</a>
+    </h4>
+    <h5 class="subhead">Whirlpool</h5>
+    <div class="price h4">$139.48</div>
+    <div>Low in stock</div>
+    <div class="rating-wrap">
+{% include "@components/_rating-stars.twig" %}
+
+    </div>
+  </div>
+  <div class="promo-badge promo-badge--sale">sale</div>
+  <input type="submit" value="" class="btn btn-wishlist-heart">
+
+</article>

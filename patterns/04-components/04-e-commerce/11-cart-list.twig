@@ -1,0 +1,44 @@
+<h2>Your Items</h2>
+<div class="product-cart-list">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Item</th>
+        <th scope="col" width="100">Price</th>
+        <th scope="col" width="120">Qty</th>
+        <th scope="col" width="100">Subtotal</th>
+        <th scope="col" width="72">
+          <span class="sr-only">Wishlist</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {% include "@components/04-e-commerce/_product-cart-item.twig" with {"class":" has-alert"} %}
+      {# @todo: It would be best if these alerts were somehow in the same <tr> as the actual product #}
+      <tr class="product-cart-item__alert">
+        <td colspan="5">
+          <small>
+            <strong>This item is currently out of stock.</strong>
+          </small>
+        </td>
+      </tr>
+      {% include "@components/04-e-commerce/_product-cart-item.twig" with {"class":" has-alert"} %}
+      <tr class="product-cart-item__alert">
+        <td colspan="5">
+          <small>The quantity your ordered is
+            <u>not available</u>
+            at the
+            <strong>Baton Rouge, LA</strong>
+            location. It is available at another Coburn’s location. If you complete this order, allow a few business days to transfer in the items.</small>
+        </td>
+      </tr>
+      {% include "@components/04-e-commerce/_product-cart-item.twig" with {"class":""} %}
+    </tbody>
+  </table>
+  <div class="btn-wrapper">
+	<div class="button-group">
+		<div class="button-col"><a href="" class="btn btn-outline-primary btn-shadow has-blue-dark-color">Clear Cart</a></div>
+		<div class="button-col"><a href="" class="btn btn-outline-primary btn-shadow has-blue-dark-color">Update Cart</a></div>
+	</div>
+  </div>
+</div>

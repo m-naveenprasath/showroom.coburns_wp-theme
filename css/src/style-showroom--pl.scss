@@ -1,0 +1,9 @@
+// *** This file is only for use in Pattern Lab *** //
+
+.sg-theme-showroom {
+	@import "style-showroom";
+}
+
+// *** Wordpress' default editor styles *** //
+@import url("https://coburns.wpengine.com/wp-includes/css/dist/block-library/style.min.css");
+// It's kinda weird this ends up coming first in the .css file //

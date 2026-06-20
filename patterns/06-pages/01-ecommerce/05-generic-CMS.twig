@@ -1,0 +1,47 @@
+{% include "@sections/01-header/_ecommerce-header.twig" %}
+<main>
+	{% include "@sections/05-ecommerce/03-title.twig"%}
+	<section class="generic--page-content ecommerce-container">
+		<div class="container">
+			<div class="row ecommerce--content">
+				<div class="ecommerce--text-top col-lg-3">
+					{% include "@components/05-menus/07-sidebar.twig" %}
+					<div class="mobile-hide">
+						{# Information repeated twice #}
+						{% include "@components/03-cards/_questions-or-comments.twig" %}
+					</div>
+				</div>
+				<div class="ecommerce--items page-content col-lg-9">	
+					<div>
+						<h1 class="display">Coburn's Commitment to our Customers</h1>
+						<p>Our commitment to the customer is obvious from the moment you enter any Coburn’s store or showroom. Although we have more than 50 locations, we consider each Coburn branch a hometown company with strong support for their local community. Our experienced staff is the key to our success and provides the quality service you expect and deserve before, during, and after the sale.</p>
+						<h2>Return & Exchange Policy - Purchased on Coburns.com</h2>
+						<p>If for any reason you would like to return or exchange your web purchase, you must make your return or exchange within 30 days from the date of purchase,</p>
+						<ol>
+							<li>Click here to fill out a form to return web purchases. A representative will respond via email to let you know if that item can be returned for a refund, and provide you with a shipping address and information needed for the return.</li>
+							<li>Indicate the reason for returning the purchase.</li>
+							<li>Furnish your sales receipt in the returned package when exchanging or returning your purchase at the address we provide you.</li>
+							<li>Return your unused and new item(s) in its original carton or package within 30 days. You will be responsible for shipping the product(s) and a copy of the original invoice to a Coburn’s store location. Coburn Supply is not responsible for item(s) that are lost in a return to us. We highly recommend that you ship the merchandise using a method that can provide us with a tracking number.</li>
+							<li>Once we receive the product(s) and verify that the item(s) are in unused condition, you will receive a refund with the amount of your order minus the shipping cost.</li>
+							<li>Your refund will be based on the method you used originally to pay for your order. Please read the next section to understand the time frame for your refund.</li>
+							<li>NOTE: We are unable to refund products ordered out of the clearance section.</li>
+						</ol>
+						<p>If the four (4) conditions listed are complied with, Coburn's will refund your purchase based on the original payment method, as follows:</p>
+						<ul>
+							<li><strong>Charge Account</strong> – a credit memo will be issued on your account.</li>
+							<li><strong>Paid by Credit Card</strong> – your credit card will be credited for the amount of the refund. It may take 10 to 14 business days or more. The time frame can vary based on your banks processing times.</li>
+							<li><strong>Paid by Cash</strong> – Coburn’s will refund a maximum of $100 cash back at the location where the purchase is returned. For amounts greater than $100, a refund will be mailed to you within 10 working days from the date the purchase was returned.</li>
+							<li><strong>Paid by Check and Coburn’s has Collected the Amount of your Check</strong> – a refund will be mailed after 10 working days from the date the purchase was returned.</li>
+						</ul>
+					</div>
+				</div>
+				<div class="ecommerce--text-bottom col-lg-3 desktop-hide">
+					{# Information repeated twice #}
+					{% include "@components/03-cards/_questions-or-comments.twig" %}
+				</div>
+			</div>
+		</div>	
+	</section>			
+</main>
+<div class="ankle-container">{% include "@sections/03-ankle.twig"%}</div>
+{% include "@sections/04-footer/_footer.twig" %}

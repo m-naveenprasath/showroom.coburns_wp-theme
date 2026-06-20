@@ -1,0 +1,97 @@
+.featured-product-container {
+	text-align: center;
+
+	display: flex;
+	flex-flow: row wrap;
+	align-items: flex-start;
+	justify-content: center;
+
+	.featured-product-item {
+		flex-grow: 0;
+		flex-shrink: 1;
+		flex-basis: calc(50% - #{$grid-gutter-width});
+		min-width: 200px;
+		margin: $grid-gutter-width $grid-gutter-width / 2;
+
+		@include media-breakpoint-up(sm) {
+			min-width: unset;
+			max-width: calc(50% - #{$grid-gutter-width * 2});
+			margin: $grid-gutter-width;
+		}
+	}
+
+	// 5 products or less
+	&.has-odd-number-of-products .featured-product-item {
+		@include media-breakpoint-up(md) {
+			max-width: calc(33% - #{$grid-gutter-width * 2});
+		}
+		@include media-breakpoint-up(lg) {
+		}
+	}
+	&.has-even-number-of-products .featured-product-item {
+		@include media-breakpoint-up(md) {
+			max-width: calc(50% - #{$grid-gutter-width * 2});
+		}
+		@include media-breakpoint-up(lg) {
+			max-width: calc(25% - #{$grid-gutter-width * 2});
+		}
+	}
+
+	// exactly 5 products
+	&.has-5-products .featured-product-item {
+		@include media-breakpoint-up(md) {
+			max-width: calc(33% - #{$grid-gutter-width * 2});
+		}
+		@include media-breakpoint-up(xl) {
+			max-width: calc(20% - #{$grid-gutter-width * 2});
+		}
+	}
+
+	// more than 5 products
+	&.has-product-overflow.has-odd-number-of-products .featured-product-item {
+		@include media-breakpoint-up(md) {
+			max-width: calc(50% - #{$grid-gutter-width * 2});
+		}
+		@include media-breakpoint-up(lg) {
+			max-width: calc(25% - #{$grid-gutter-width * 2});
+		}
+	}
+	&.has-product-overflow.has-even-number-of-products .featured-product-item {
+		@include media-breakpoint-up(md) {
+			max-width: calc(33% - #{$grid-gutter-width * 2});
+		}
+		@include media-breakpoint-up(lg) {
+			max-width: calc(33% - #{$grid-gutter-width * 2});
+		}
+	}
+}
+
+.featured-product-item {
+	position: relative;
+	display: inline-block;
+
+	> * + * {
+		margin-top: $grid-gutter-width * 0.5;
+		@include media-breakpoint-up(sm) {
+			margin-top: $grid-gutter-width * 0.66;
+		}
+	}
+
+	img {
+		max-width: 100%;
+	}
+
+	.content-flow-headings {
+		padding: 0 1em;
+	}
+	.content-flow-headings > * {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+	.content-flow-headings > * + * {
+		margin-top: $grid-gutter-width * 0.25;
+		@include media-breakpoint-up(sm) {
+			margin-top: $grid-gutter-width * 0.33;
+		}
+	}
+}

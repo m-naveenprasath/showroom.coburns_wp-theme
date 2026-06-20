@@ -1,0 +1,27 @@
+<div class="carousel-item {{ activeClass }}">
+  <div class="carousel-col col-sm-6 col-lg-3">
+
+    <article class="card card-product card-product-carousel">
+
+      <figure class="img-wrap">
+        <a href="#"><img src="../../../images/sample/{{ sampleImage }}"></a>
+      </figure>
+
+      <div class="info-wrap">
+        <h3 class="title">
+          <a href="#">Original Version of Some Product Name</a>
+        </h3>
+        <h5 class="subhead">Whirlpool</h5>
+        <div class="row">
+          <div class="col-xl-6 price h4">$139.48</div>
+          <div class="col-xl-6 stock">Low in stock</div>
+        </div>
+        {% include "@components/_rating-stars.twig" %}
+      </div>
+
+      {{ badgeStatus }}
+      <input type="submit" value="" class="btn btn-wishlist-heart {{ wishlistActive }}">
+    </article>
+
+  </div>
+</div>

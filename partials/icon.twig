@@ -1,0 +1,12 @@
+{% if id %}
+	{% set image = TimberImage(id | number_format(0,'','')) %}
+{% endif %}
+
+{% if image and ".svg" in image.file_loc %}
+{% set icon_svg %}
+{%- include image.file_loc ignore missing -%}
+{% endset %}
+{{ icon_svg | replace({"#000000": "currentColor", "#000": "currentColor"}) }}
+{% elseif icon %}
+{%- include "icons/" ~ icon ~ ".svg" ignore missing -%}
+{% endif %}

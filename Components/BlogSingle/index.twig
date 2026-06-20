@@ -1,0 +1,99 @@
+
+<article class="single-post" id="post-{{post.id}}">
+	<section class="hero-container {{ local_namespace }} {% if post.thumbnail or image %} has-hero-image{% endif %}">
+		<div class="container">
+
+			{% include "partials/breadcrumb-trail.twig" %}
+
+			<div class="row justify-content-center">
+
+				{% if post.thumbnail or image %}
+				<div class="col hero--image hero--full-image">
+					<div class="img-wrap">
+					{% include ['partials/image.twig'] ignore missing with { 'image': image ?: post.thumbnail } %}
+					</div>
+				</div>
+				{% endif %}
+
+			</div>
+
+		</div>
+	</section>
+
+	<section class="blog--page-content page-content">
+		<div class="container">
+
+			<div class="row justify-content-md-center">
+
+				<div class="col-md-8 blog--headline">
+
+					<h1 class="display-1">{{ post.title }}</h1>
+
+					<p class="minimal-3">
+						<time>{{ post.date }}</time>
+
+						{# User 13: jstelly@coburns.com / "Coburn Supply Company" #}
+						{# User 14: lightgray-goat-239778.hostingersite.com #}
+						{% if post.author.id != 13 and post.author.id != 14 %}
+							<span class="blog--headline-separator"></span>
+							{{ post.author }}
+						{% endif %}
+					</p>
+
+				</div>
+
+			</div>
+
+			<div class="row justify-content-md-center">
+
+				<div class="col-md-8 blog--content">
+					{{ post.content }}
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class="container-fluid container-lg">
+			<div class="blog-newsletter-signup">
+				<div class="blog-newsletter-copy">				
+					<h3
+				</div>
+			</div>
+		</div>
+
+		<div class="container-fluid container-lg">
+
+			<div class="blog--post-nav">
+				{% if post.prev.link -%}
+				<div class="blog--post-nav-item  blog--post-nav-item--previous">
+					<span class="btn-link--previous"></span>
+					<div class="blog--post-nav-item-text-wrap">
+						<div class="minimal-3">
+							{{ postNavLabels.prev ?: "Previous Post" }}
+						</div>
+						<a href="{{ post.prev.link }}" class="blog--post-nav-item--title">
+							{{ post.prev.title }}
+						</a>
+					</div>
+				</div>
+				{%- endif %}
+
+				{% if post.next.link -%}
+				<div class="blog--post-nav-item blog--post-nav-item--next">
+					<div class="blog--post-nav-item-text-wrap">
+						<div class="minimal-3">
+							{{ postNavLabels.next ?: "Next Post"  }}
+						</div>
+						<a href="{{ post.next.link }}" class="blog--post-nav-item--title">
+							{{ post.next.title }}
+						</a>
+					</div>
+					<span class="btn-link--next"></span>
+				</div>
+				{%- endif %}
+			</div>
+
+		</div>
+	</section>
+</article>

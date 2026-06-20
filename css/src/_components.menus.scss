@@ -1,0 +1,43 @@
+.menu-item-has-children {
+	@include menu-item-has-children(light);
+	.sub-menu {
+		@include media-breakpoint-up(lg) {
+			border: $border-width solid $border-color;
+			border-top: 0;
+			background: $white;
+			max-width: 265px;
+		}
+	}
+}
+.sidebar,
+.sub-menu {
+	li {
+		width: 100%;
+	}
+	.nav-item {
+		border-top: $border-width solid $border-color;
+	}
+}
+.sidebar {
+	.nav-item {
+		.nav-link {
+			@include heading-style-minimal($font-size: 0.75rem, $color: $gray);
+			@include link-color($primary);
+		}
+	}
+	.menu-item-has-children {
+		> .nav-link {
+			@include heading-style-minimal($font-size: 0.75rem, $color: $white);
+			@include link-color($white);
+			background-color: $blue-dark;
+			cursor: pointer;
+		}
+	}
+}
+.sub-menu {
+	.nav-item {
+		.nav-link {
+			@include link-color($main-nav-color);
+		}
+	}
+}

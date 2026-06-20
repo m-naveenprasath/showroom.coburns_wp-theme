@@ -1,0 +1,59 @@
+.ankle {
+	display: none;
+	@include media-breakpoint-up(md) {
+		display: block;
+		background: white;
+	}
+	position: relative;
+
+	border: $border-width solid $border-color;
+	text-align: center;
+}
+
+.ankle-container {
+	.ankle {
+		@include media-breakpoint-up(md) {
+			margin-top: -1rem;
+			margin-bottom: -1rem;
+
+			@supports (padding: var(--last-section-padding)) {
+				left: 50%;
+				transform: translate(-50%, -50%);
+				position: absolute;
+				z-index: 1000;
+			}
+		}
+	}
+	.row {
+		align-items: flex-start;
+		justify-content: center;
+	}
+}
+
+.ankle-item {
+	//these are bootstrap columns
+	padding: 2rem 1rem;
+	@include media-breakpoint-up(lg) {
+		padding: 2rem;
+	}
+}
+
+.ankle-item-icon {
+	@include link-color($ankle-icons);
+
+	@include background-ankle-stripes;
+	background-repeat: repeat;
+	border-radius: 50%;
+	height: 96px;
+	width: 96px;
+	display: inline-block;
+	position: relative;
+
+	.ankle-icon {
+		left: 0;
+		position: absolute;
+	}
+}
+.ankle-item-title {
+	margin: 1rem 0;
+}

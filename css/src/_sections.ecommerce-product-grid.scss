@@ -1,0 +1,36 @@
+.nav-pagination {
+	text-align: center;
+	padding-bottom: 1rem;
+	padding-top: 1rem;
+	@include media-breakpoint-up(lg) {
+		padding-bottom: 0;
+	}
+	.pagination {
+		display: inline-flex;
+		.icon {
+			width: 0.75em;
+			height: 0.75em;
+			bottom: 0em;
+		}
+		.page-item {
+			&:first-child {
+				.page-link {
+					margin-left: 0;
+					@include border-left-radius(45%);
+				}
+			}
+			&:last-child {
+				.page-link {
+					@include border-right-radius(45%);
+				}
+			}
+			.page-link.page-link-current {
+				@include link-color($white);
+				background-color: $blue-dark;
+			}
+		}
+		.page-item:first-child .icon {
+			transform: rotate(180deg);
+		}
+	}
+}

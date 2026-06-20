@@ -1,0 +1,38 @@
+figure {
+}
+figcaption {
+	@include descriptive-text;
+}
+
+.image-circle {
+	@include circle(200px);
+	&.compat-object-fit {
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center center;
+		border-radius: 50%;
+		img {
+			opacity: 0;
+		}
+	}
+}
+
+.image-circle--small {
+	height: 60px;
+	width: 60px;
+}
+.img-border {
+	border: 1px solid #979797;
+}
+
+.img-wrap {
+	height: 250px;
+	@include media-breakpoint-up(sm) {
+		height: 300px;
+	}
+	img {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
+}

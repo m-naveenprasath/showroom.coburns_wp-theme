@@ -1,0 +1,27 @@
+<header class="site-header">
+	<div id="desktop-header">
+		{% include "@components/05-menus/_utility.twig" with {"navClass": "has-blue-dark-background-color"} %}
+		<div class="header-container container-fluid">
+			<div class="navigation-wrapper">
+				{% include "@elements/13-logos/04-showroom-color.twig" %}
+				{% include "@components/05-menus/_primary.twig" with {"InspirationActive": " active"} %}
+				{% include "@components/05-menus/_search.twig" with { "buttonClass": "btn-outline-primary", "searchText": "Enter search" } %}
+			</div>
+			{% include "@components/05-menus/_showroom-mega.twig" %}
+		</div>
+	</div>
+	<div id="mobile-header" class="mobile-header has-blue-dark-background-color">
+		<div class="mobile-header__logo">
+			<a href="#">{% include "@elements/13-logos/14-showroom-reverse.twig" %}</a>
+		</div>
+		<div class="mobile-header__buttons">
+			<a href="#" class="btn btn-sm btn-search" aria-pressed="false" aria-label="Open Search">{% include "@global/10-icons/search.twig" %}</a>
+			<a href="#" class="btn btn-sm btn-cart" aria-pressed="false" aria-label="View Cart">{% include "@global/10-icons/cart.twig" %}</a>
+			<button class="btn btn-sm btn-menu" aria-pressed="false" aria-label="Toggle Menu">{% include "@global/10-icons/universal-icons/hamburger.twig" %}</button>
+		</div>
+		<nav class="mobile-header__nav">
+			<ul class="mobile-nav-primary nav"></ul>
+			<ul class="mobile-nav-mega nav"></ul>
+		</nav>
+	</div>
+</header>

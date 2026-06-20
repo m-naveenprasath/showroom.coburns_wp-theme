@@ -1,0 +1,20 @@
+<section class="hero-container {{ local_namespace }} {% if post.thumbnail or image %} has-hero-image{% endif %}">
+
+	<div class="container">
+		{% include "partials/breadcrumb-trail.twig" %}
+
+		<div class="row {% if not (post.thumbnail or image) %}justify-content-center{% endif %}">
+
+			{% if post.thumbnail or image %}
+			<div class="col hero--image hero--full-image">
+				<div class="img-wrap">
+				{% include ['partials/image.twig'] ignore missing with { 'image': image ?: post.thumbnail } %}
+				</div>
+			</div>
+			{% endif %}
+
+		</div>
+
+	</div>
+
+</section>

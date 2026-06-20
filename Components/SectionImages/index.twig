@@ -1,0 +1,26 @@
+{% set local_namespace = "image-gallery-container" %}
+
+<section class="{{ global_namespace }} {{ local_namespace }} {{ sectionBackground ? "has-background-" ~ sectionBackground }} text-center">
+
+	{% if headings %}
+
+		<div class="text-center">
+			{% include ['partials/heading-array.twig'] ignore missing with { 'headings': headings } %}
+		</div>
+	{% else %}
+		<h2 class="subhead text-center">{{ featured_brands_label ?: "Featured Brands" }}</h2>
+	{% endif %}
+
+	{% include "partials/image-gallery.twig" with { 'carousel' : imagesLinks } %}
+
+	{% if sectionHtml_1 or buttons %}
+	<div class="container">
+
+		{% if sectionHtml_1 %}{{ sectionHtml_1 }}{% endif %}
+
+		{% include ['partials/button-array.twig'] ignore missing with { 'buttons': buttons } %}
+
+	</div>
+	{% endif %}
+
+</section>

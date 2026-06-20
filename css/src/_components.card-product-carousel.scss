@@ -1,0 +1,46 @@
+.card-product-carousel {
+	text-align: left;
+	// Needed for mobile layout.
+	.img-wrap {
+		margin: 0;
+		padding: 0;
+		height: 180px;
+		@include media-breakpoint-up(sm) {
+			margin: 22px 22px 0;
+			height: 200px;
+		}
+	}
+	.info-wrap {
+		padding: 0;
+		@include media-breakpoint-up(sm) {
+			padding: 22px;
+		}
+	}
+	h3.title,
+	.h3.title {
+		margin-top: 0.5rem;
+		@include media-breakpoint-up(sm) {
+			@include product(sm);
+			margin-top: 0;
+		}
+	}
+	.price {
+		margin-right: 0;
+	}
+	.subhead,
+	.stock {
+		display: none;
+		@include media-breakpoint-up(xl) {
+			display: block;
+		}
+	}
+	@include media-breakpoint-up(sm) {
+		.promo-badge {
+			top: 32px;
+		}
+		.btn-wishlist-heart {
+			top: 17px;
+			right: 17px;
+		}
+	}
+}

@@ -1,0 +1,189 @@
+main {
+	@include media-breakpoint-up(md) {
+		//@question: what is this accounting for? The accent text?
+		min-height: 13rem;
+	}
+}
+
+main > * {
+	@include media-breakpoint-up(md) {
+		&:first-child {
+			box-shadow: $section-box-shadow;
+			box-shadow: var(--first-section-box-shadow, #{$section-box-shadow});
+		}
+		&:last-child {
+			box-shadow: $section-box-shadow;
+			box-shadow: var(--last-section-box-shadow, #{$section-box-shadow});
+
+			padding-bottom: var(--last-section-padding-bottom, 13.5rem);
+		}
+	}
+}
+
+main section,
+.section {
+	padding-bottom: 2rem;
+	padding-top: 2rem;
+	text-align: center;
+
+	@include media-breakpoint-up(md) {
+		padding-bottom: 4rem;
+		padding-top: 4rem;
+		text-align: left;
+	}
+}
+.section {
+	position: relative;
+}
+
+// "main section" should be considered deprecated. We're only leaving it here for backwards compatibility. Do not add anything else in here.
+main section {
+	section {
+		padding: 0;
+	}
+}
+
+main section {
+	&:last-child.has-background-texture {
+		@include media-breakpoint-down(xs) {
+			padding-bottom: 0;
+			// Removes extra spacing if background matches Return to Top.
+		}
+	}
+}
+
+.container-image-right .row {
+	margin-bottom: 1rem;
+	@include media-breakpoint-up(md) {
+		flex-direction: row-reverse;
+	}
+
+	.container--image-right {
+		margin-bottom: 1rem;
+		@include media-breakpoint-up(md) {
+			margin-bottom: 0;
+		}
+	}
+}
+
+.container--image,
+.container--text {
+	@include make-col-ready();
+
+	&:only-child {
+		@include make-col(8);
+
+		> * {
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
+}
+.container--image {
+	img {
+		height: auto;
+		max-width: 100%;
+	}
+	iframe {
+		max-width: 100%;
+	}
+}
+
+.container--image-left,
+.container--text-right,
+.container--image-right,
+.container--text-left {
+	@include media-breakpoint-up(md) {
+		@include make-col(6);
+	}
+}
+.container--image-left,
+.container--image-right {
+	@include media-breakpoint-down(xs) {
+		padding: 0;
+	}
+}
+
+.container--image-left {
+	@include media-breakpoint-up(md) {
+		text-align: right;
+	}
+}
+.container--text-left {
+	@include media-breakpoint-up(md) {
+		padding-right: 22px;
+	}
+}
+
+.container--text-right {
+	padding: 2rem 1rem 0;
+
+	@include media-breakpoint-up(md) {
+		//@todo: Get rid of whatever makes this !important necessary.
+		// padding: 0 0 0 110px !important;
+		padding: 0 0 0 110px;
+		padding: 0 0 0 var(--container--text-right--padding, 110px);
+	}
+}
+
+//
+.container--text-right {
+	@include media-breakpoint-up(md) {
+		.display-1,
+		.display-2 {
+			position: relative;
+
+			&:before {
+				content: "";
+				background-color: $red;
+				height: 2px;
+				left: -178px;
+				position: absolute;
+				top: 0.5em;
+				width: 136px;
+			}
+		}
+	}
+}
+
+// Wraps text and applies a max content width
+@include media-breakpoint-up(md) {
+	.content-flow {
+		max-width: 40rem;
+		@supports (max-width: 60ch) {
+			max-width: 60ch;
+		}
+	}
+	.content-flow-headings {
+		max-width: 95ch;
+	}
+	.text-center.content-flow,
+	.text-center .content-flow,
+	.text-center.content-flow-headings,
+	.text-center .content-flow-headings {
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+// @todo: If this is for normal content flow, these should be set as the baseline in the elements.* files.
+.page-content {
+	.h1,
+	.h2,
+	.h3,
+	.h4,
+	.h5,
+	.h6,
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	p {
+		margin-bottom: 1rem;
+	}
+	.h4,
+	h4 {
+		@include heading-style-minimal($font-size: 0.75rem, $color: $primary);
+	}
+}

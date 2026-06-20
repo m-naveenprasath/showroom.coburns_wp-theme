@@ -1,0 +1,213 @@
+// ===
+// Gravity Forms
+
+// Basic reset
+.gform_fields {
+	//<ul>
+	padding: 0;
+	margin: 0;
+}
+
+.gfield {
+	//<li>
+	list-style-type: none;
+	list-style-image: none;
+}
+
+// Mapping to Bootstrap
+// Using @extend can cause inheritance issues and file bloating. As many classes as possible have been added to GF fields directly in gravity-forms.php.
+
+// Containers
+.gform_fields {
+	// Prevents horizontal scroll overflow introduced by .form-row
+	@include media-breakpoint-down(sm) {
+		padding-left: $grid-gutter-width / 2;
+		padding-right: $grid-gutter-width / 2;
+	}
+}
+.ginput_complex > * {
+	display: flex;
+	flex-flow: column-reverse;
+	margin-top: $grid-gutter-width / 2;
+}
+.ginput_complex > * + * {
+}
+
+// Labels
+.ginput_complex label {
+	color: $text-muted;
+}
+
+// Fields / Field Types
+.gfield {
+	// Counteract global text-align: center at small device widths
+	text-align: left;
+}
+
+// Checkboxes / Radios
+// * It would be nice if these used the fancy custom control checkboxes, but this'll do for now.
+.gfield_checkbox,
+.gfield_radio {
+	padding: 0;
+	margin: 0;
+
+	li {
+		list-style-type: none;
+		list-style-image: none;
+
+		display: flex;
+		flex-flow: row nowrap;
+		align-items: center;
+		justify-content: flex-start;
+
+		margin-top: 0.25rem;
+		margin-bottom: 0.25rem;
+
+		* + * {
+			margin-left: 0.5rem;
+		}
+		label {
+			font-family: $font-family-base;
+			font-size: $font-size-base;
+			font-weight: $font-weight-base;
+			letter-spacing: normal;
+			text-transform: none;
+		}
+	}
+}
+
+// Name
+.ginput_container_name {
+	> * {
+		margin-top: 0;
+	}
+
+	.name_prefix,
+	.name_suffix {
+		flex-grow: 0;
+		flex-basis: 8ch;
+	}
+
+	.name_first {
+		flex-grow: 5;
+	}
+	.name_middle {
+		flex-grow: 4;
+	}
+	.name_last {
+		flex-grow: 6;
+	}
+}
+.ginput_container_name.gf_name_has_1,
+.ginput_container_name.gf_name_has_2,
+.ginput_container_name.gf_name_has_3 {
+	flex-wrap: nowrap;
+}
+.ginput_container_name.gf_name_has_4,
+.ginput_container_name.gf_name_has_5 {
+	flex-direction: column;
+
+	@include media-breakpoint-up(sm) {
+		flex-direction: row;
+		flex-wrap: nowrap;
+		align-items: flex-start;
+
+		> * {
+			margin-top: 0;
+		}
+	}
+}
+
+// Date & Time
+
+.gfield_date_year,
+.gfield_date_month,
+.gfield_date_day,
+.gfield_date_dropdown_year,
+.gfield_date_dropdown_month,
+.gfield_date_dropdown_day {
+	max-width: 12ch;
+
+	display: flex;
+	flex-flow: column-reverse;
+}
+.gfield_date_year {
+	flex-grow: 4;
+}
+.gfield_date_month {
+	flex-grow: 3;
+}
+.gfield_date_day {
+	flex-grow: 2;
+}
+
+.form-control--time {
+	max-width: 12ch;
+}
+.ginput_container_time i {
+	// This is the colon in HH : MM
+	display: none;
+}
+
+// List
+
+.gfield_list_cell {
+	width: 100%;
+}
+.gfield_list_icons {
+	vertical-align: middle;
+	padding: 0 0.25rem;
+}
+
+// Section Headers
+
+.gsection_title {
+	font-family: $font-family-base;
+	font-weight: $headings-font-weight;
+
+	margin-top: 2.5rem;
+	margin-bottom: 1rem;
+}
+
+// Field Descriptions
+.gfield_description {
+	color: $text-muted;
+	font-size: $small-font-size;
+	line-height: 1.33;
+}
+
+// Validation
+
+.gform_validation_container {
+}
+
+.gfield_required {
+	font-weight: $font-weight-strong;
+}
+.gfield_error {
+	padding: $grid-gutter-width;
+	margin-left: -($grid-gutter-width / 2);
+	margin-right: -($grid-gutter-width / 2);
+
+	background-color: rgba($danger, 0.05);
+	border-radius: $border-radius;
+	box-shadow: inset 0 0 0 2px $danger;
+}
+
+.validation_message {
+	font-weight: bolder;
+}
+.validation_error {
+	@include sr-only;
+}
+
+//Honeypot field
+.gform_validation_container,
+.gform_wrapper .gform_validation_container,
+body .gform_wrapper .gform_body ul.gform_fields li.gfield.gform_validation_container,
+body .gform_wrapper li.gform_validation_container,
+body .gform_wrapper ul.gform_fields li.gfield.gform_validation_container {
+	display: none !important;
+	position: absolute !important;
+	left: -9000px;
+}

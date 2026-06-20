@@ -1,0 +1,13 @@
+{% set local_namespace='style' %}
+<section class="{{ local_namespace }}-page-content--images">
+	<div class="container">
+		<div class="row">
+			{% for style in styles %}
+			<div class="{{ local_namespace }}-page-content--col col-md-6 col-xl-4">
+				{% if style.thumbnail %}<div class="img-wrap shadow"><a href="{{ style.link }}">{% include ['partials/image.twig'] ignore missing with { 'image': style.thumbnail } %}</a></div>{% endif %}
+				<div class="{{ local_namespace }}-page-content--links"><a href="{{ style.link }}" class="btn btn-link"><span>{{ style.title }}</span>{% include ['partials/icon.twig'] ignore missing with {'icon': 'arrow'} %}</a></div>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</section>

@@ -1,0 +1,53 @@
+{% extends "partials/_component-base.twig" %}
+
+{% block container %}
+
+	<div class="container">
+		<div class="row align-items-center justify-content-center">
+
+			{% if media.type != 'none' or media.image %}
+			{% block image %}
+			<div class="container--image {{ mediaPosition ? "container--image-" ~ mediaPosition }}">
+
+				{% if media.type %}
+
+					{% if media.type=='image' %}
+						{% include ['partials/image.twig'] ignore missing with { 'image': media.image ?: image, 'class': 'shadow' } %}
+					{% endif %}
+
+					{% if media.type=='map' %}
+						{% include ['partials/location-map.twig'] ignore missing with { 'location': locations } %}
+					{% endif %}
+
+					{% if media.type=='video' %}
+						{% if media.video_url %}
+							<div class="embed-responsive embed-responsive-16by9">
+								<iframe src="{{ media.video_url }}" class="embed-responsive-item" frameborder="0"></iframe>
+							</div>
+						{% endif %}
+					{% endif %}
+
+				{% else %}
+
+					{% include ['partials/image.twig'] ignore missing with { 'image': media.image } %}
+
+				{% endif %}
+
+			</div>
+			{% endblock %}
+			{% endif %}
+
+			<div class="container--text {{ textPosition ? "container--text-" ~ textPosition }}">
+				{% block headings %}
+					{% include ['partials/heading-array.twig'] ignore missing with { 'headings': headings } %}
+				{% endblock %}
+
+				{% block content %}
+					{% if sectionHtml_1 %}<div class="content-flow">{{sectionHtml_1}}</div>{% endif %}
+				{% endblock %}
+			</div>
+
+		</div>
+	</div>
+
+{% endblock %}

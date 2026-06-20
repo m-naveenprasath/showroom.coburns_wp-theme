@@ -1,0 +1,51 @@
+.nav-utility {
+	display: none;
+}
+@include media-breakpoint-up(lg) {
+	.nav-utility {
+		display: flex;
+		margin: 0 auto;
+		max-width: 1440px;
+		.nav-item .nav-link,
+		.nav-color-white .nav-item .icon {
+			color: $blue-light;
+			&:hover {
+				color: lighten($blue-light, 20%);
+			}
+		}
+		.active.nav-item .nav-link {
+			color: $white;
+		}
+		.nav-color-white {
+			color: $white;
+			.nav-item .nav-link {
+				@include link-color($white);
+				&:hover .icon {
+					color: darken($blue-light, 20%);
+				}
+			}
+		}
+		@include heading-style-minimal($font-size: 0.75rem, $color: $gray);
+		.nav-item .nav-link:after {
+			display: none;
+		}
+		.menu-item-has-children {
+			@include menu-item-has-children(light);
+			> .nav-link:after {
+				margin-top: 0.5em;
+				margin-left: 0.5em;
+			}
+		}
+		.sub-menu {
+			position: absolute;
+			z-index: 999;
+		}
+	}
+	.navbar-expand-lg .navbar-nav .nav-link,
+	.navbar-expand-lg .navbar-nav .navbar-text {
+		padding: $navbar-nav-link-padding-y $navbar-nav-link-padding-x;
+	}
+	.navbar-expand-lg .navbar-nav {
+		flex-direction: row;
+	}
+}

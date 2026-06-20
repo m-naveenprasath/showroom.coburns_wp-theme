@@ -1,0 +1,16 @@
+{% set global_namespace = "SbBlogPost" %}
+{% set local_namespace = "SbBlogPostTease" %}
+
+
+<article class="{{ global_namespace }} {{ local_namespace }} {{ local_namespace }}--{{ list.layout }}">
+
+	{% if 'date' in list.elements %}
+	{% include ['partials/date-long.twig'] ignore missing with { 'date': post.post_date } %}
+	{% endif %}
+
+	<p class="{{ global_namespace }}__title is-size-h6">
+		<a href="{{ post.link }}">
+			{{ post.title }}
+		</a>
+	</p>
+</article>

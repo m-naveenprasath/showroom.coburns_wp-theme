@@ -1,0 +1,24 @@
+<article class="card blog-card blog-card-narrow">
+	{% if post.thumbnail %}
+		<a href="{{ post.link }}" class="card-img-link">
+			{% include ['partials/image.twig'] ignore missing with { 'image': post.thumbnail,'class': 'shadow' } %}
+		</a>
+	{% endif %}
+	<div class="card-body">
+		<h2 class="h3 is-style-body"><a href="{{ post.link }}" class="headline">{{ post.title }}</a></h2>
+		{% if post.type.slug=='locations' or post.type.slug=='styles' %}
+			<p class="search-tag heading-style-minimal">
+				{{ post.type.labels.name_admin_bar | capitalize }}
+			</p>
+		{% endif %}
+
+		{% if post.post_excerpt %}
+		{{ post.preview.read_more('') | wpautop }}
+		{% endif %}
+
+		<a href="{{ post.link }}" class="btn btn-link">
+			<span>{{ labels.readMore ?: "View " ~ post.type.labels.name_admin_bar | capitalize }}</span>
+			{% include ['partials/icon.twig'] ignore missing with {'icon': 'arrow'} %}
+		</a>
+	</div>
+</article>

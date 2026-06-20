@@ -1,0 +1,64 @@
+$lato: lato, sans-serif;
+$teko: teko, sans-serif;
+$poynter: poynter-oldstyle-display, serif;
+$hardware: "ddc_hardware_regularregular", serif;
+
+// Bootstrap Settings
+$font-size-base: 1.0625rem;
+$line-height-base: 1.7;
+
+$font-family-base: $lato;
+
+$font-weight-base: 500;
+$font-weight-strong: 900;
+
+// - Headings
+$headings-font-family: $font-family-base !default;
+$headings-font-weight: 900 !default;
+
+$h1-font-size: 2.5rem;
+$h2-font-size: 1.75rem;
+$h3-font-size: 1.25rem;
+$h4-font-size: 1.15rem;
+$h5-font-size: 1.05rem;
+$h6-font-size: $font-size-base;
+
+$headings-line-height: 1.15;
+
+// -- Display/marketing titles (big, bold)
+$display1-weight: $headings-font-weight !default;
+$display2-weight: $headings-font-weight !default;
+$display3-weight: $headings-font-weight !default;
+$display4-weight: $headings-font-weight !default;
+
+$display1-size: 2.75rem !default;
+$display2-size: 1.9rem !default;
+$display3-size: $h3-font-size !default;
+$display4-size: $h4-font-size !default;
+
+$display1-size-desktop: $display1-size !default;
+$display1-size-mobile: $display1-size !default;
+
+$display2-size-desktop: $display2-size !default;
+$display2-size-mobile: $display2-size !default;
+
+$display-line-height: 0.9 !default;
+
+// Buttons
+$btn-font-size: 0.75rem;
+$btn-padding-x: 1rem;
+$btn-padding-y: 0.657rem;
+$btn-line-height: 1.8;
+$btn-line-height-sm: $btn-line-height;
+$btn-line-height-lg: $btn-line-height;
+// Default was too large.
+$btn-font-size-lg: 1.1rem;
+$btn-line-height-lg: 1.3;
+
+$btn-font-family: $font-family-base;
+$btn-font-weight: 900;
+
+$input-font-size: 1rem;
+$input-btn-padding-y: 0.5rem !default;
+
+$font-title: $font-family-base;

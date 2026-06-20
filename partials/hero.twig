@@ -1,0 +1,36 @@
+<section class="hero-container {{ local_namespace }}{% if (post.thumbnail or image) and featuredImage_show %} has-hero-image{% endif %}{% if styleFinderStamp_show %} hero--style-finder{% endif %}{% if styleFinderStamp_show and featuredImage_show == false %} hero--style-finder-center{% endif %}">
+
+	<div class="container-xl">
+		{% block breadcrumbs %}
+			{% include "partials/breadcrumb-trail.twig" %}
+		{% endblock %}
+
+		<div class="row {% if featuredImage_show == false and heroVideo.videoSection_show == false  %}justify-content-center{% endif %}">
+
+			<div class="hero--image {% if featuredImage_show == false  %} hero--hide-image{% endif %}">
+				{% block image %}
+				{% endblock %}
+			</div>
+					{# used same image class for video to avoid duplicate css #}
+				<div class="hero--image {% if heroVideo.videoSection_show == false  %} hero--hide-image{% endif %}">
+				{% block video %}
+				{% endblock %}
+			</div>
+
+			<div class="hero--text {% if featuredImage_show == false and heroVideo.videoSection_show == false %} text-center hero--text-wide{% endif %}">
+				{% block headings %}
+					{% include ['partials/heading-array.twig'] ignore missing with { 'headings': headings } %}
+				{% endblock %}
+
+				{% block content %}
+				{% endblock %}
+			</div>
+
+		</div>
+
+	</div>
+
+</section>
+
+{% block extracontent %}
+{% endblock %}

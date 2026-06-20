@@ -1,0 +1,28 @@
+{% if styleFinderStamp_show %}
+{% set local_namespace = "style-finder-container" %}
+{% endif %}
+{% if styleFinderAccent_show %}
+{% set local_namespace = "style-finder-quiz--quiz" %}
+{% endif %}
+
+{% extends "partials/section.twig" %}
+
+{% block content %}
+
+{% if sectionHtml_1 %}
+<div class="content-flow">
+	{{sectionHtml_1}}
+</div>
+{% endif %}
+
+{% include ['partials/button-array.twig'] ignore missing with { 'buttons': buttons } %}
+
+{% if sectionHtml_2 %}
+<div class="content-flow">
+	{{sectionHtml_2}}
+</div>
+{% endif %}
+
+{{ shortcode | shortcodes }}
+
+{% endblock %}

@@ -1,0 +1,26 @@
+.product-filter-container {
+	@include media-breakpoint-up(lg) {
+		.ecommerce--text-bottom {
+			padding-top: 1rem;
+			&:before {
+				content: '';
+				border-top: 2px $gray-light solid;
+				display: block;
+				padding-bottom: 1rem;
+				width: 100%;
+			}
+			
+		}
+		.ecommerce--items,.ecommerce--items-2 {
+			padding-left: 2rem;
+		}
+	}
+	.product-sort {
+		display: none;
+		@include media-breakpoint-up(lg) {
+			display: block;
+			min-width: 275px;
+			position: relative;
+		}
+	}
+}

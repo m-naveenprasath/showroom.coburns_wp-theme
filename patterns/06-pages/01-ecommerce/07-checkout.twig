@@ -1,0 +1,346 @@
+<div class="checkout">
+	{% include "@sections/01-header/_checkout-header.twig" %}
+	<main>
+		<section class="ecommerce-container">
+			<div class="container">{% include "@components/04-e-commerce/10-loading-bar.twig" %}</div>
+			<div class="container">
+				<form>
+					<div class="row ecommerce--content">
+						<div class="ecommerce--text-top your-cart col-lg-4 order-lg-3">
+							<div>
+								<h2 class="collapsable-headline" data-toggle="collapse" href="#collapseCart" role="button" aria-expanded="true" aria-controls="collapseCart"><span class="items-count">3 Items</span>Your Cart</h2>
+								<div class="collapse show" id="collapseCart"><div class="card your-cart-card">
+									<div class="card-body">
+										<article class="product-small">
+											<figure class="product-small__image img-wrap">
+												<a href="#"><img src="../../../images/sample/thumb-square-yosemite.jpg" alt="placeholder image"></a>
+											</figure>
+											<div class="product-small__text">
+												<h4 class="product-small__title"><a href="#">Original Version of Some Product Name</a></h4>
+												<div class="row">
+													<div class="col">
+														<div class="product-small__price">$139.48</div>
+													</div>
+												</div>
+											</div>
+										</article>
+										<article class="product-small">
+											<figure class="product-small__image img-wrap">
+												<a href="#"><img src="../../../images/sample/thumb-square-yosemite.jpg" alt="placeholder image"></a>
+											</figure>
+											<div class="product-small__text">
+												<h4 class="product-small__title"><a href="#">Original Version of Some Product Name</a></h4>
+												<div class="row">
+													<div class="col">
+														<div class="product-small__price">$139.48</div>
+													</div>
+												</div>
+											</div>
+										</article>
+										<article class="product-small">
+											<figure class="product-small__image img-wrap">
+												<a href="#"><img src="../../../images/sample/thumb-square-yosemite.jpg" alt="placeholder image"></a>
+											</figure>
+											<div class="product-small__text">
+												<h4 class="product-small__title"><a href="#">Original Version of Some Product Name</a></h4>
+												<div class="row">
+													<div class="col">
+														<div class="product-small__price">$139.48</div>
+													</div>
+												</div>
+											</div>
+										</article>
+									</div>
+								</div>
+								<div class="ecommerce--text-bottom your-cart mobile-hide">
+									{# Information repeated twice #}
+									<div class="form-group">
+										<a href="" class="btn-discount" aria-pressed="false" aria-label="Click to enter discount code."><strong>Have a discount code?</strong></a>
+										<div class="discount-settings">
+											<label for="discount">Discount Code</label>
+											<div class="row">
+												<div class="col-7 col-sm-8"><input class="form-control" name="discount" type="text"></div>
+												<div class="col-5 col-sm-4">
+													<a class="btn btn-outline-primary btn-block btn-shadow has-blue-dark-color" href="#">Apply</a>
+												</div>
+											</div>
+										</div>
+										<p><hr/></p>
+									</div>
+									<div class="row m-0">
+										<div class="col-7 col-sm-8 h5 has-gray-color">Subtotal:</div>
+										<div class="col-5 col-sm-4 h5 has-gray-color text-right">$1,952.30</div>
+									</div>
+									<div class="row m-0">
+										<div class="col-7 col-sm-8 h5">Shipping:</div>
+										<div class="col-5 col-sm-4 h5 text-right">$1,952.30</div>
+									</div>
+									<div class="row m-0">
+										<div class="col-7 col-sm-8 h5">Discounts:</div>
+										<div class="col-5 col-sm-4 h5 text-right">$1,952.30</div>
+									</div>
+									<div class="row m-0">
+										<div class="col-7 col-sm-8 h5">Taxes (Exempt? <a href="#">Click Here</a>):</div>
+										<div class="col-5 col-sm-4 h5 text-right">$1,952.30</div>
+									</div>
+									<hr/>
+									<div class="row m-0">
+										<div class="col-7 col-sm-8 h5 has-black-color">Total:</div>
+										<div class="col-5 col-sm-4 h5 has-black-color text-right">$1,952.30</div>
+									</div>
+									<div class="form-group">
+										<button type="submit" class="btn btn-beige btn-block btn-lg has-white-color">{% include "@icons/forms/lock.twig" %}<span>Place Order</span></button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="ecommerce--items col-lg-8 order-lg-1">
+						<div>
+							<h2 class="collapsable-headline" data-toggle="collapse" href="#collapseCustomerInfo" role="button" aria-expanded="true" aria-controls="collapseCart">Customer Info</h2>
+							<div class="collapse show" id="collapseCustomerInfo">
+								<div class="form-row">
+									<div class="form-group col-sm-8">
+										<label for="email">Email</label>
+										<input class="form-control" type="email" name="email" placeholder="">
+									</div>
+									<div class="form-group col-sm-4">
+										<label>Existing Customer?</label>
+										<a class="btn btn-outline-primary btn-block has-blue-dark-color" href="#">Login</a>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input" id="mailing_list">
+										<label class="custom-control-label" for="mailing_list">Add me to your mailing list</label>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="form-group col-sm-6">
+										<label for="first_name">First name</label>
+										<input class="form-control" type="text" name="first_name" placeholder="">
+									</div>
+									<div class="form-group col-sm-6">
+										<label for="last_name">Last name</label>
+										<input class="form-control" type="text" name="last_name" placeholder="">
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="form-group col-sm-6">
+										<label for="phone">Phone Number</label>
+										<input class="form-control" type="text" name="phone" placeholder="">
+									</div>
+									<div class="form-group col-sm-6">
+										<label for="mobile">Mobile Number</label>
+										<input class="form-control" type="text" name="mobile" placeholder="">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="comments">Comments</label>
+									<input class="form-control" type="text" name="comments" placeholder="">
+								</div>
+							</div>
+							<h2 class="collapsable-headline" data-toggle="collapse" href="#collapseBillingInfo" role="button" aria-expanded="true" aria-controls="collapseCart">Billing Info</h2>
+							<div class="collapse show" id="collapseBillingInfo">
+								<div class="form-row">
+									<div class="form-group col-sm-6">
+										<label for="billing_first_name">First name</label>
+										<input class="form-control" type="text" name="billing_first_name" placeholder="">
+									</div>
+									<div class="form-group col-sm-6">
+										<label for="billing_last_name">Last name</label>
+										<input class="form-control" type="text" name="billing_last_name" placeholder="">
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="form-group col-sm-6">
+										<label for="billing_phone">Phone Number</label>
+										<input class="form-control" type="text" name="billing_phone" placeholder="">
+									</div>
+									<div class="form-group col-sm-6">
+										<label for="billing_mobile">Mobile Number</label>
+										<input class="form-control" type="text" name="billing_mobile" placeholder="">
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="form-group col-sm-6">
+										<label for="billing_address_1">Address Line 1</label>
+										<input class="form-control" type="text" name="billing_address_1" placeholder="">
+									</div>
+									<div class="form-group col-sm-6">
+										<label for="billing_address_2">Address Line 2</label>
+										<input class="form-control" type="text" name="billing_address_2" placeholder="">
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="form-group col-sm-4">
+										<label for="billing_city">City</label>
+										<input class="form-control" type="text" name="billing_city">
+									</div>
+									<div class="form-group col-sm-4">
+										<label for="billing_state">State</label>
+										<select class="form-control" id="billing_state">
+											<option value="" disabled="" selected="" hidden="">Choose...</option>
+											<option>Louisiana</option>
+											<option>Rhode Island</option>
+										</select>
+									</div>
+									<div class="form-group col-sm-4">
+										<label for="billing_zip">Zip</label>
+										<input class="form-control" type="text" name="billing_zip">
+									</div>
+								</div>
+							</div>
+							<h2 class="collapsable-headline collapsable-headline-inline" data-toggle="collapse" href="#collapseShippingInfo" role="button" aria-expanded="true" aria-controls="collapseCart">Shipping Info</h2>
+							<div class="custom-control custom-checkbox same-as">
+								<input type="checkbox" class="custom-control-input" id="same_as_billing">
+								<label class="custom-control-label" for="same_as_billing">Same as Billing Address</label>
+							</div>
+							<div class="collapse show" id="collapseShippingInfo">
+								<div class="form-row">
+									<div class="form-group col-sm-6">
+										<label for="shipping_address_1">Address Line 1</label>
+										<input class="form-control" type="text" name="shipping_address_1" placeholder="">
+									</div>
+									<div class="form-group col-sm-6">
+										<label for="shipping_address_2">Address Line 2</label>
+										<input class="form-control" type="text" name="shipping_address_2" placeholder="">
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="form-group col-sm-4">
+										<label for="shipping_city">City</label>
+										<input class="form-control" type="text" name="shipping_city">
+									</div>
+									<div class="form-group col-sm-4">
+										<label for="shipping_state">State</label>
+										<select class="form-control" id="shipping_state">
+											<option value="" disabled="" selected="" hidden="">Choose...</option>
+											<option>Louisiana</option>
+											<option>Rhode Island</option>
+										</select>
+									</div>
+									<div class="form-group col-sm-4">
+										<label for="shipping_zip">Zip</label>
+										<input class="form-control" type="text" name="shipping_zip">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="shipping_method">Shipping Method</label>
+									<select class="form-control" id="shipping_method">
+										<option value="" disabled="" selected="" hidden="">Choose...</option>
+										<option value="">Ship to Address</option>
+										<option value="customer_pickup">Customer Pickup - $0.00</option>
+									</select>
+								</div>
+								<div class="form-group" id="customer_pickup" style="display:none;">
+									<label for="shipping_pickup">Branch Pickup</label>
+									<select class="form-control" id="shipping_pickup">
+										<option value="" disabled="" selected="" hidden="">Choose...</option>
+										<option>Baton Rouge</option>
+									</select>
+								</div>
+							</div>
+							<h2 class="collapsable-headline" data-toggle="collapse" href="#collapsePayment" role="button" aria-expanded="true" aria-controls="collapseCart">Payment</h2>
+							<div class="collapse show" id="collapsePayment">
+								<div class="form-row">
+									<div class="form-group col-sm-6">
+										<label for="payment_type">Payment Type</label>
+										<select class="form-control" id="payment_type">
+											<option value="" disabled="" selected="" hidden="">Choose...</option>
+											<option>Credit Card</option>
+										</select>
+									</div>
+									<div class="form-group col-sm-6">
+										<label for="payment_card_type">Card Type</label>
+										<select class="form-control" id="payment_card_type">
+											<option value="" disabled="" selected="" hidden="">Choose...</option>
+											<option>Visa</option>
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="payment_card_number">Card Number</label>
+									<input class="form-control" type="email" name="payment_card_number" placeholder="">
+								</div>
+								<div class="form-group">
+									<label for="payment_card_name">Name on Card</label>
+									<input class="form-control" type="email" name="payment_card_name" placeholder="">
+								</div>
+								<div class="form-row">
+									<div class="form-group col-sm-4">
+										<label for="payment_cvv">CVV Number</label>
+										<input class="form-control" type="text" name="payment_cvv">
+									</div>
+									<div class="form-group col-sm-4">
+										<label for="payment_expiration_month">Expiration Month</label>
+										<select class="form-control" id="payment_expiration_month">
+											<option value="" disabled="" selected="" hidden="">Month...</option>
+											<option>January</option>
+										</select>
+									</div>
+									<div class="form-group col-sm-4">
+										<label for="payment_expiration_month">Expiration Year</label>
+										<select class="form-control" id="payment_expiration_month">
+											<option value="" disabled="" selected="" hidden="">Year...</option>
+											<option>2020</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="form-row justify-content-end btn-place-order"><div class="form-group col-lg-8">
+								{# Submit repeated twice #}
+								<div class="mobile-hide">
+									<button type="submit" class="btn btn-beige btn-block btn-lg has-white-color">{% include "@icons/forms/lock.twig" %}<span>Place Order</span></button>
+								</div>
+							</div></div>
+						</div>
+					</div>
+					<div class="ecommerce--text-bottom your-cart col-lg-4 desktop-hide">
+						{# Form submit repeated twice #}
+						<div class="form-group">
+							<a href="" class="btn-discount" aria-pressed="false" aria-label="Click to enter discount code."><strong>Have a discount code?</strong></a>
+							<div class="discount-settings">
+								<label for="discount">Discount Code</label>
+								<div class="row">
+									<div class="col-7 col-sm-8"><input class="form-control" name="discount" type="text"></div>
+									<div class="col-5 col-sm-4">
+										<a class="btn btn-outline-primary btn-block btn-shadow has-blue-dark-color" href="#">Apply</a>
+									</div>
+								</div>
+							</div>
+							<p><hr/></p>
+						</div>
+						<div class="row m-0">
+							<div class="col-7 col-sm-8 h5 has-gray-color">Subtotal:</div>
+							<div class="col-5 col-sm-4 h5 has-gray-color text-right">$1,952.30</div>
+						</div>
+						<div class="row m-0">
+							<div class="col-7 col-sm-8 h5">Shipping:</div>
+							<div class="col-5 col-sm-4 h5 text-right">$1,952.30</div>
+						</div>
+						<div class="row m-0">
+							<div class="col-7 col-sm-8 h5">Discounts:</div>
+							<div class="col-5 col-sm-4 h5 text-right">$1,952.30</div>
+						</div>
+						<div class="row m-0">
+							<div class="col-7 col-sm-8 h5">Taxes (Exempt? <a href="#">Click Here</a>):</div>
+							<div class="col-5 col-sm-4 h5 text-right">$1,952.30</div>
+						</div>
+						<hr/>
+						<div class="row m-0">
+							<div class="col-7 col-sm-8 h5 has-black-color">Total:</div>
+							<div class="col-5 col-sm-4 h5 has-black-color text-right">$1,952.30</div>
+						</div>
+						<div class="form-group">
+							{# Form submit repeated twice #}
+							<button type="submit" class="btn btn-beige btn-block btn-lg has-white-color">{% include "@icons/forms/lock.twig" %}<span>Place Order</span></button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</section>
+	</main>
+	<div class="ankle-container">{% include "@sections/03-ankle.twig"%}</div>
+	{% include "@sections/04-footer/_footer.twig" %}
+</div>

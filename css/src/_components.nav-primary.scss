@@ -1,0 +1,43 @@
+.nav-primary {
+    display: none;
+}
+.nav-primary {
+	@include media-breakpoint-up(lg) {
+		display: block;
+		a {
+			color: $main-nav-color;
+			&:hover {
+				color: $blue-light;
+			}
+		}
+		.active > a {
+			@include link-color($blue-light);
+			border-bottom: 2px solid $blue-light;
+		}
+        .nav-item {
+            padding: $nav-link-padding-y;
+            .nav-link:after {
+                display: none;
+            }
+        }
+        .nav-link {
+            padding: 0;
+        }
+		.menu-item-has-children {
+			@include menu-item-has-children(body-color);
+			> .nav-link:after {
+				margin-top: .8rem;
+			}
+		}
+        .sub-menu {
+            position: absolute;
+            z-index: 999;
+        }
+	}
+	@include media-breakpoint-up(xl) {
+		font-size: 1.25rem;
+        .nav-item {
+            padding: $nav-link-padding-y $nav-link-padding-x;
+		}
+	}
+}

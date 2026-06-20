@@ -1,0 +1,47 @@
+.product-small {
+	background-color: $white;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: center;
+	justify-content: flex-start;
+	padding: 1rem 0;
+	border-bottom: $border-width solid $border-color;
+}
+
+.product-small__image {
+	flex-shrink: 0;
+	margin: 0;
+	height: 64px;
+	width: 64px;
+}
+.product-small__text {
+	padding: 0 1rem;
+	flex-grow: 1;
+	.btn-wishlist-heart {
+	    right: -17px;
+	    bottom: -10px;
+	    top: auto;
+	}
+}
+
+.product-small__title {
+	font-size: 0.75rem;
+	color: $product-title-color;
+	a {
+		@include link-color($product-title-color);
+	}
+}
+
+.product-small__price {
+	padding-right: 0.75em;
+
+	font-weight: $font-weight-bold;
+	color: $black;
+}
+.product-small__quantity {
+	.form-control {
+		max-width: 10ch;
+		//@todo: this width restriction would be better accomplished some other way
+	}
+}

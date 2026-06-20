@@ -1,0 +1,119 @@
+<header class="site-header">
+	<div id="desktop-header">
+		{% if nav_utility %}
+		<div class="has-blue-dark-background-color">
+			<nav class="navbarTop navbar nav-utility navbar-expand-lg" aria-label="{{ nav_utility.name }}">
+				<ul class="nav navbar-nav mr-auto">
+					{% include ['partials/menu.twig'] ignore missing with { 'menu': nav_utility } %}
+				</ul>
+				{% if EcommerceNav_show %}
+				<div id="accart-app">
+					<ac-cart>
+					<ul class="nav navbar-nav ml-auto">
+						<li class="nav-item">
+							<a href="https://www.coburns.com/store/shopcart.aspx" class="nav-link">{% include ['partials/icon.twig'] ignore missing with {'icon': 'cart'} %}</a>
+						</li>
+					</ul>
+					</ac-cart>
+				</div>
+				{% endif %}
+			</nav>
+		</div>
+		{% endif %}
+		<div class="header-container container-fluid">
+			<div class="navigation-wrapper">
+				<a href="{{ site.url }}" aria-label="{{ site.name }}">
+					{% include 'patterns/03-elements/13-logos/04-showroom-color.twig' %}
+				</a>
+
+				{% if nav_primary %}
+				<nav class="nav nav-primary" aria-label="{{ nav_primary.name }}">
+					<ul class="nav justify-content-center">
+						{% include ['partials/menu.twig'] ignore missing with { 'menu': nav_primary } %}
+					</ul>
+				</nav>
+				{% endif %}
+
+				{% if HeaderSearch_show %}
+				<form class="form-search" role="search" action="{{ site.url }}">
+					<label class="sr-only">{{ searchField.label }}</label>
+					<div class="input-group">
+						<input name="s" class="form-control form-control-lg" placeholder="{{ searchField.placeholder }}">
+						<button type="submit" class="btn btn-outline-primary">{% include ['partials/icon.twig'] ignore missing with {'icon': 'search'} %}
+							<span class="form-search-text">{{ searchField.button }}</span>
+						</button>
+					</div>
+				</form>
+				{% endif %}
+
+			</div>
+			{% if nav_mega %}
+			<nav class="nav-mega" aria-label="{{ nav_mega.name }}">
+				<ul class="nav">
+					{% include ['partials/menu.twig'] ignore missing with { 'menu': nav_mega } %}
+				</ul>
+			</nav>
+			{% endif %}
+		</div>
+	</div>
+	<div id="mobile-header" class="has-blue-dark-background-color">
+		<div class="mobile-header__logo">
+			<a href="{{ site.url }}" aria-label="{{ site.name }}">
+				{% include "patterns/03-elements/13-logos/14-showroom-reverse.twig" ignore missing %}
+			</a>
+		</div>
+		<div class="mobile-header__buttons">
+			{% if HeaderSearch_show %}
+			<a href="/?s=" class="btn btn-sm btn-search" aria-pressed="false" aria-label="{{ mobileNavSearchButton.label }}">{% include ['partials/icon.twig'] ignore missing with {'icon': 'search'} %}</a>
+			{% endif %}
+			{% if EcommerceNav_show %}
+			<a href="https://www.coburns.com/store/shopcart.aspx" class="btn btn-sm btn-cart" data-target="#MiniCart" aria-pressed="false" aria-label="{{ mobileNavCartButton.label }}">{% include ['partials/icon.twig'] ignore missing with {'icon': 'cart'} %}</a>
+			{% endif %}
+			<button class="btn btn-sm btn-menu" aria-pressed="false" aria-label="{{ mobileNavMenuButton.label }}">{% include ['partials/icon.twig'] ignore missing with {'icon': 'hamburger'} %}</button>
+		</div>
+
+		<nav class="mobile-header__nav">
+			{% if nav_mobile %}
+			<ul class="nav">
+				{% include ['partials/menu.twig'] ignore missing with { 'menu': nav_mobile } %}
+			</ul>
+			{% endif %}
+			{% if nav_primary %}
+			<ul class="mobile-nav-primary nav">
+				{% include ['partials/menu.twig'] ignore missing with { 'menu': nav_primary } %}
+			</ul>
+			{% endif %}
+			{% if nav_mega %}
+			<ul class="nav">
+				{% include ['partials/menu.twig'] ignore missing with { 'menu': nav_mega } %}
+			</ul>
+			{% endif %}
+			{% if nav_ecommerce %}
+			<ul class="mobile-nav-mega nav">
+				{% include ['partials/menu.twig'] ignore missing with { 'menu': nav_ecommerce } %}
+			</ul>
+			{% endif %}
+			{% if nav_utility %}
+			<ul class="mobile-nav-utility nav">
+				{% include ['partials/menu.twig'] ignore missing with { 'menu': nav_utility } %}
+			</ul>
+			{% endif %}
+
+			{% if EcommerceNav_show %}
+			<ul class="nav">
+				<li class="nav-item nav-header nav-item--split">
+					<a class="nav-link nav-link--split" href="#!" onclick="LC_API.open_chat_window();return false">
+						{% include ['partials/icon.twig'] ignore missing with {'icon': 'chat'} %}
+						<span>Live Chat</span>
+					</a>
+					{% if ecommerce_login_link %}
+					<a class="nav-link nav-link--split" href="{{ ecommerce_login_link }}" >
+						{% include ['partials/icon.twig'] ignore missing with {'icon': 'person'} %}<span>Log In</span>
+					</a>
+					{% endif %}
+				</li>
+			</ul>
+			{% endif %}
+		</nav>
+	</div>
+</header>

@@ -1,0 +1,17 @@
+{% extends contentOnly ? 'templates/_contentOnly.twig' : 'templates/_document.twig' %}
+
+{% block content %}
+	{% for component in post.meta('pageComponents') %}
+		{% if component.acf_fc_layout == "SectionHero" %}
+			{{ renderComponent(component) }}
+		{% endif %}
+	{% endfor %}
+
+	{{ renderComponent('BlogListArchive', { posts: posts, 'local_namespace': 'BlogList' }) }}
+
+	{% for component in post.meta('pageComponents') %}
+		{% if component.acf_fc_layout != "SectionHero" %}
+			{{ renderComponent(component) }}
+		{% endif %}
+	{% endfor %}
+{% endblock %}

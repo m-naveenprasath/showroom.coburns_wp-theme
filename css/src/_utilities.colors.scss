@@ -1,0 +1,46 @@
+@each $name, $hex in $colors {
+	.has-#{$name}-color {
+		color: $hex;
+
+		&.custom-control-label {
+			&:before {
+				background-color: $hex;
+				border-color: $hex;
+			}
+		}
+	}
+	.custom-control-input:checked ~ .custom-control-label.has-#{$name}-color:before {
+		background-color: $hex;
+		border-color: $hex;
+	}
+	.has-#{$name}-background-color {
+		color: color-yiq($hex);
+		background-color: $hex;
+	}
+	.has-#{$name}-border-color {
+		border-color: $hex;
+	}
+}
+
+@each $name, $hex in $social-colors {
+	.has-#{$name}-color {
+		color: $hex;
+		&.btn:hover {
+			color: darken($hex, 15%);
+		}
+	}
+	.btn-#{$name} {
+		color: color-yiq($hex);
+		background-color: $hex;
+		&.btn:hover {
+			color: darken(color-yiq($hex), 15%);
+			background-color: darken($hex, 15%);
+		}
+	}
+	.has-#{$name}-border-color {
+		border-color: $hex;
+		&.btn:hover {
+			border-color: darken($hex, 15%);
+		}
+	}
+}

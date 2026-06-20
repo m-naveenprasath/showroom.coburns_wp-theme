@@ -1,0 +1,38 @@
+{% if ankle.SiteAnkle_show %}
+
+{% if ankle.ankle_content %}
+
+<div class="ankle-container">
+	<div class="ankle container">
+		<div class="row">
+			{% for item in ankle.ankle_content %}
+				<div class="col-md-3 ankle-item">
+					{% if item.ankle_link %}<a href="{{ item.ankle_link.url }}" target="{{ item.ankle_link.target ? item.ankle_link.target : '_self' }}" class="ankle-item-icon">{% endif %}
+						{% if item.ankle_icon == 'Account' %}
+							{% include ['partials/icon.twig'] ignore missing with {'icon': 'access-account'} %}
+						{% elseif item.ankle_icon == 'Shop' %}
+							{% include ['partials/icon.twig'] ignore missing with {'icon': 'shop-online'} %}
+						{% elseif item.ankle_icon == 'Wishlist' %}
+							{% include ['partials/icon.twig'] ignore missing with {'icon': 'start-wishlist'} %}
+						{% elseif item.ankle_icon == 'Location' %}
+							{% include ['partials/icon.twig'] ignore missing with {'icon': 'find-location'} %}
+						{% elseif item.ankle_icon == 'Upload My Own' %}
+							{% include ['partials/icon.twig'] ignore missing with {'id': item.ankle_icon_upload.id} %}
+						{% endif %}
+					{% if item.ankle_link %}</a><br/>{% endif %}
+
+					{% if item.ankle_link %}
+					<a href="{{ item.ankle_link.url }}" target="{{ item.ankle_link.target ? item.ankle_link.target : '_self' }}" class="btn btn-link ankle-item-title">
+						<span>{{ item.ankle_link.title }}</span>{% include ['partials/icon.twig'] ignore missing with {'icon': 'arrow'} %}
+					</a>
+					{% endif %}
+					{% if item.ankle_text %}<p>{{item.ankle_text}}</p>{% endif %}
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+
+{% endif %}
+
+{% endif %}

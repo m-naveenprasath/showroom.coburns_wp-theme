@@ -1,0 +1,16 @@
+main {
+	.pinterest-container,
+	.brands-container,
+	.image-gallery-container,
+	.about--family-buttons {
+		.btn:not([type="submit"]) {
+			margin: 8px 10px;
+			@include media-breakpoint-up(sm) {
+				margin: 8px 20px 8px 0;
+				&:last-of-type {
+					margin-right: 0;
+				}
+			}
+		}
+	}
+}

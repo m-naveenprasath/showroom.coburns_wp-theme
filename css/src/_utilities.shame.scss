@@ -1,0 +1,19 @@
+//The color palette chosen does not produce white as the contrasting color when run through Bootstrap's accessibility checker
+.btn-primary {
+	color: white;
+}
+.btn-outline-primary,
+.btn-beige {
+	&:not(:disabled):not(.disabled) {
+		&:hover,
+		&:active {
+			color: white;
+		}
+	}
+}
+
+// This overrides bad behavior in Bootstrap's default pagination styles
+.page-link:not(a) {
+	pointer-events: none;
+	color: inherit;
+}

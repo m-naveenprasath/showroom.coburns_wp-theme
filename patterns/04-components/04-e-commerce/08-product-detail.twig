@@ -1,0 +1,133 @@
+<article class="card product-detail">
+	<div class="row">
+		<div class="col-lg-5 col-xl-6">
+			<div id="carouselGallery" class="carousel slide gallery-wrap" data-ride="carousel">
+				<div class="promo-badge promo-badge--sale">sale</div>
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<div class="carousel-col">
+							<a class="img-big-wrap img-wrap" href="../../../images/sample/tout-4x3-climbers.jpg" data-fancybox="">
+								<img src="../../../images/sample/tout-4x3-climbers.jpg">
+							</a>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<div class="carousel-col">
+							<a class="img-big-wrap img-wrap" href="../../../images/sample/thumb-square-river.jpg" data-fancybox="">
+								<img src="../../../images/sample/thumb-square-river.jpg">
+							</a>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<div class="carousel-col">
+							<a class="img-big-wrap img-wrap" href="../../../images/sample/thumb-square-ivy.jpg" data-fancybox="">
+								<img src="../../../images/sample/thumb-square-ivy.jpg">
+							</a>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<div class="carousel-col">
+							<a class="img-big-wrap img-wrap" href="../../../images/sample/thumb-square-fire.jpg" data-fancybox="">
+								<img src="../../../images/sample/thumb-square-fire.jpg">
+							</a>
+						</div>
+					</div>
+				</div>
+				<ol class="carousel-indicators carousel-indicators-photos img-small-wrap">
+					<li data-target="#carouselGallery" data-slide-to="0" class="item-gallery active"><div><img src="../../../images/sample/tout-4x3-climbers.jpg"></div></li>
+					<li data-target="#carouselGallery" data-slide-to="1" class="item-gallery"><div><img src="../../../images/sample/thumb-square-river.jpg"></div></li>
+					<li data-target="#carouselGallery" data-slide-to="2" class="item-gallery"><div><img src="../../../images/sample/thumb-square-ivy.jpg"></div></li>
+					<li data-target="#carouselGallery" data-slide-to="3" class="item-gallery"><div><img src="../../../images/sample/thumb-square-fire.jpg"></div></li>
+				</ol>
+			</div>
+			<div class="product-detail--help mobile-hide">{# Help section repeated twice for different mobile/desktop order. #}
+				<div class="h1 heading-style-minimal">Have questions about this product?</div>
+				<p>Our experts are here to help!</p>
+				<p>
+					<a class="btn btn-link" href="#">{% include "@icons/chat.twig" %}<span class="has-gray-color">Live Chat</span></a>
+					<a class="btn btn-link" href="#">{% include "@icons/email.twig" %}<span class="has-gray-color">Email</span></a>
+					<a class="btn btn-link" href="#">{% include "@icons/location.twig" %}<span class="has-gray-color">Find Your Nearest Location</span></a>
+				</p>
+			</div>
+		</div>
+		<div class="col-lg-7 col-xl-6 pl-lg-4">
+			<h3 class="title">Original Version of Some product name</h3>
+			<p class="subtitle">Whirlpool</p>
+			<div class="product-detail--rating">
+				{% include "@components/_rating-stars.twig" %} <span class="rating-count">(1000)</span>
+			</div>
+			<div class="product-detail--description">
+				<ul>
+					<li>Here goes description consectetur adipisicing elit</li>
+					<li>Ut enim ad minim veniam, quis nostrud exercitation ullamco</li>
+					<li>Sed do eiusmod tempor incididunt</li>
+					<li>labore et dolore magna aliqua</li>
+				</ul>
+			</div>
+			<div class="product-detail--price">
+				<div class="price h3">$139.48</div>
+			</div>
+			<div class="product-detail--info">
+				<div>{% include "@global/10-icons/product-icons/pickup.twig" %} Available for Pickup Only</div>
+				<div>{% include "@global/10-icons/product-icons/stock.twig" %} Out of Stock</div>
+			</div>
+			<div class="row product-order-form">
+				<div class="col-sm-4 col-lg-3">
+					{% include "@components/01-forms/05-ecommerce/20-color-picker.twig" %}
+				</div>
+				<div class="col-sm-4 col-lg-3">
+					<div class="form-group">
+						<label for="size">Size</label>
+						<select class="custom-select custom-select-sm" id="size">
+							<option>S</option>
+							<option>M</option>
+							<option>L</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-4 col-lg-3">
+					<div class="form-group">
+						<label for="quantity">Quantity</label>
+						<div class="input-group input-group--minimal input-group-sm">
+
+							<input type="text" id="quantity" class="form-control" value="1">
+
+							<div class="input-group-append">
+								<button class="btn btn-outline-gray-light" type="button" id="button-addon2">
+									<span aria-hidden="true">+</span>
+									<span class="sr-only">Increase Quantity</span>
+								</button>
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<div class="col-12">
+					<span class="add-to-cart"><input type="submit" value="Add to Cart" id="btnAddToCart" class="btn btn-lg btn-beige btn-addtocart"></span>
+					<span class="wishlist"><input type="submit" aria-label="Wishlist" value="" class="btn btn-lg btn-outline-primary btn-wishlist"><!--Add class .active when selected.-->
+						<span class="links">
+							<a href="javascript:window.print()">{% include "@global/10-icons/product-icons/print.twig" %} Print</a>
+							<a href="#">{% include "@global/10-icons/product-icons/share.twig" %} Share</a>
+						</span>
+					</span>
+				</div>
+				<div class="col-12 product-detail--offerings">
+					<div class="h1 heading-style-minimal">What we offer</div>
+					<p><strong>Protection Plan</strong><br>Coverage from $158.99.</p>
+					<p><strong>Installation &amp; Haul Away</strong><br>Save time when you add these services at checkout.</p>
+					<p><strong>Flexible Payment Options</strong><br>Choose the financing option that fits your budget.</p>
+				</div>
+				<div class="col-12 product-detail--help desktop-hide">{# Help section repeated twice for different mobile/desktop order. #}
+					<div class="h1 heading-style-minimal">Have questions about this product?</div>
+					<p>Our experts are here to help!</p>
+					<p>
+						<a class="btn btn-link" href="#">{% include "@icons/chat.twig" %}<span class="has-gray-color">Live Chat</span></a>
+						<a class="btn btn-link" href="#">{% include "@icons/email.twig" %}<span class="has-gray-color">Email</span></a>
+						<a class="btn btn-link" href="#">{% include "@icons/location.twig" %}<span class="has-gray-color">Find Your Nearest Location</span></a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</article>

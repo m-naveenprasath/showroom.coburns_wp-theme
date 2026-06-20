@@ -1,0 +1,14 @@
+.cart-summary {
+	border: 0;
+	@include media-breakpoint-up(lg) {
+		h2 {
+			color: $gray;
+		}
+	}
+	.card-body {
+		padding: 0;
+	}
+    .h5,hr {
+        margin-bottom: 1.25rem;
+	}
+}

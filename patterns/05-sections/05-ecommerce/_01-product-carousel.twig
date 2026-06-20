@@ -1,0 +1,28 @@
+<section class="product-carousel-container has-background-stripes">
+	<div class="container">
+		<h2 class="subhead text-center">Featured Products</h2>
+
+		<div id="carouselProducts" class="carousel slide product-carousel" data-ride="carousel">
+			<div class="carousel-inner">
+				{% include "@components/04-e-commerce/_product-card-carousel.twig" with {"activeClass": "active","badgeStatus":"<div class='promo-badge promo-badge--new'>new</div>","sampleImage":"landscape-16x9-mountains.jpg"} %}
+				{% include "@components/04-e-commerce/_product-card-carousel.twig" with {"badgeStatus":"<div class='promo-badge promo-badge--sale'>sale</div>","sampleImage":"tout-3x4-climber.jpg"} %}
+				{% include "@components/04-e-commerce/_product-card-carousel.twig" with {"activeWishlist": "active","badgeStatus":"<div class='promo-badge promo-badge--sale'>sale</div>","sampleImage":"thumb-square-yosemite.jpg"} %}
+				{% include "@components/04-e-commerce/_product-card-carousel.twig" with {"badgeStatus":"<div class='promo-badge promo-badge--new'>new</div>","sampleImage":"tout-4x3-stream.jpg"} %}
+			</div>
+			<ol class="carousel-indicators">
+				<li data-target="#carouselProducts" data-slide-to="0" class="active"></li>
+				<li data-target="#carouselProducts" data-slide-to="1"></li>
+				<li data-target="#carouselProducts" data-slide-to="2"></li>
+				<li data-target="#carouselProducts" data-slide-to="3"></li>
+			</ol>
+		</div>
+		<button class="btn carousel-control-prev" data-target="#carouselProducts" data-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="sr-only">Previous</span>
+		</button>
+		<button class="btn carousel-control-next" data-target="#carouselProducts" data-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="sr-only">Next</span>
+		</button>
+	</div>
+</section>

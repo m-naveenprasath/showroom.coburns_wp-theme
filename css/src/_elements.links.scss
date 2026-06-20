@@ -1,0 +1,37 @@
+a {
+	@include basic-transition;
+}
+
+.btn-link:hover,
+.btn-link:active,
+.btn-link:focus {
+	text-decoration: none;
+}
+
+.btn-link--next,
+.btn-link--previous {
+	color: $teal;
+}
+.btn-link--next:after,
+.btn-link--previous:before {
+	background-color: $red;
+	content: "";
+	display: inline-block;
+	height: 2px;
+	width: 75px;
+	width: min(10vw, 75px);
+	vertical-align: middle;
+	position: relative;
+}
+.btn-link--next:after {
+	margin-left: 1rem;
+	@include media-breakpoint-up(lg) {
+		margin-left: 2rem;
+	}
+}
+.btn-link--previous:before {
+	margin-right: 1rem;
+	@include media-breakpoint-up(lg) {
+		margin-right: 2rem;
+	}
+}

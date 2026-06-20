@@ -1,0 +1,22 @@
+{% if locations %}
+{% set map_namespace = "section-map" %}
+<div class="{{ map_namespace }}">
+	<div class="{{ map_namespace }}__embed">
+		{% for location in locations %}
+			<div hidden class="{{ map_namespace }}__marker" id="marker-{{ location.id }}" data-name="{{ location.name }}" data-city="{{ location.city }}" data-latitude="{{ location.lat ?: location.address.lat }}" data-longitude="{{ location.lon ?: location.address.lng }}">
+				{% include ['partials/location-tease.twig'] ignore missing with { 'location': location } %}
+			</div>
+		{% endfor %}
+	</div>
+</div>
+<div class="{{ map_namespace }}__overlay" id="search-location-none" hidden>
+	<h2>{{ no_locations_found_headline ?: "No Locations Found" }}</h2>
+
+	{{ no_locations_found_content ? no_locations_found_content|wpautop : "<p>There are no Coburn’s Supply or Coburn’s Kitchen & Bath Showrooms within 100 miles of this location.</p>" }}
+
+	<button id="search-location-reset" type="button" class="btn btn-link | search-location-reset">
+		<span>{{ location_reset_button_label ?: "Show All Locations" }}</span>
+		{% include ['partials/icon.twig'] ignore missing with {'icon': 'arrow'} %}
+	</button>
+</div>
+{% endif %}

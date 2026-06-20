@@ -1,0 +1,155 @@
+.rooms-inspire-container {
+	background: none !important;
+	overflow: hidden;
+	position: relative;
+
+	@include media-breakpoint-up(md) {
+		padding-bottom: 0;
+		padding-top: 0;
+		.btn-link--previous:before {
+			margin-right: 20px;
+			width: 75px;
+		}
+	}
+	.container {
+		@include media-breakpoint-down(sm) {
+			max-width: 100%;
+			padding: 0;
+		}
+	}
+	&:before {
+		@include background-texture;
+
+		@include media-breakpoint-up(md) {
+			box-shadow: inset 20px 0 0 #fff, inset -20px 0 0 #fff;
+			content: "";
+			height: 225px;
+			width: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: -1;
+		}
+		@include media-breakpoint-up(xl) {
+			height: 175px;
+		}
+	}
+}
+
+.rooms-inspire-container--headline {
+	@include heading-style-minimal($font-size: 0.75rem, $color: $gray);
+
+	padding-bottom: 1rem;
+	@include media-breakpoint-up(sm) {
+		padding-bottom: 2rem;
+	}
+
+	@media (min-width: 1300px) {
+		position: absolute;
+		top: 0em;
+		left: 3em;
+		padding-top: 0;
+		transform: translateX(-100%) rotate(270deg);
+		transform-origin: right;
+
+		text-transform: uppercase;
+		font-family: $hardware;
+		font-size: 1.25rem;
+		color: $watermark;
+		letter-spacing: 0.2em;
+	}
+}
+
+.rooms-inspire-container--slider-wrapper {
+	padding-left: $grid-gutter-width;
+	padding-right: $grid-gutter-width;
+
+	margin-bottom: 1.5rem;
+}
+.rooms-inspire-container--slider {
+	@include media-breakpoint-up(md) {
+		transform: translateX(calc(#{$grid-gutter-width / 2} + 1rem));
+	}
+	@include media-breakpoint-up(lg) {
+		transform: translateX(calc(#{$grid-gutter-width} + 2rem));
+	}
+	overflow: visible !important; //remove later
+}
+
+.rooms-inspire-container--carousel {
+	margin-bottom: 1.5rem;
+	@include media-breakpoint-up(lg) {
+		min-height: 400px;
+	}
+}
+.rooms-inspire-container--carousel .carousel {
+	@include media-breakpoint-up(lg) {
+		position: absolute;
+		width: 1428px;
+	}
+	.carousel-col {
+		padding: 16px 8px;
+		@include make-col-ready();
+		left: -62%;
+		flex: 0 0 75%;
+		max-width: 75%;
+		.wp-block-image figcaption,
+		figure {
+			margin-bottom: 0;
+		}
+		@include media-breakpoint-up(md) {
+			left: auto;
+			@include make-col(12);
+			align-items: center;
+			justify-content: center;
+		}
+		@include media-breakpoint-up(lg) {
+			@include make-col(4);
+		}
+	}
+	.carousel-indicators,
+	.carousel-inner .carousel-item.active,
+	.carousel-inner .carousel-item-next,
+	.carousel-inner .carousel-item-prev {
+		display: flex;
+	}
+	.carousel-item-next,
+	.carousel-item-prev {
+		position: absolute;
+		top: 0;
+	}
+	.carousel-inner .carousel-item-right.active,
+	.carousel-inner .carousel-item-next {
+		@include media-breakpoint-up(lg) {
+			transform: translateX(33.33333%);
+		}
+	}
+	.carousel-inner .carousel-item-left.active,
+	.carousel-inner .carousel-item-prev {
+		@include media-breakpoint-up(lg) {
+			transform: translateX(-33.33333%);
+		}
+	}
+	.carousel-inner .carousel-item-right,
+	.carousel-inner .carousel-item-left {
+		@include media-breakpoint-up(lg) {
+			transform: translateX(0);
+		}
+	}
+}
+
+.rooms-inspire-container--buttons {
+	.button-group {
+		display: inline-block;
+		margin-bottom: 0;
+	}
+	@include media-breakpoint-down(md) {
+		display: none;
+	}
+}
+
+@include media-breakpoint-down(sm) {
+	.other-styles--col:last-child .other-styles--links {
+		margin-bottom: 0;
+	}
+}

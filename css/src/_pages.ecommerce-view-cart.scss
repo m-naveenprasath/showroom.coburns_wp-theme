@@ -1,0 +1,24 @@
+.view-cart {
+	.view-cart-container {
+		text-align: left;
+		.product-cart-list { 
+			margin-bottom: 1rem;
+			@include media-breakpoint-down(xs) {
+				table {
+					border-bottom: $border-width solid $border-color;
+					border-top: $border-width solid $border-color;
+					margin-left: -$gutter-padding;
+					margin-right: -$gutter-padding;
+					width: auto;
+				}
+			}
+		}
+	}
+	.like-container {
+		position: relative;
+		@include media-breakpoint-up(md) {
+			@include background-texture;
+			box-shadow: inset 20px 0 0 #fff, inset -20px 0 0 #fff;
+		}
+	}
+}

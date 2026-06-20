@@ -1,0 +1,26 @@
+.has-background-texture {
+	@include background-texture;
+}
+.has-background-stripes {
+	@include background-stripes;
+}
+
+.has-pseudo-background {
+	position: relative;
+}
+.has-pseudo-background-texture::after {
+	@include background-texture;
+}
+.has-pseudo-background-stripes::after {
+	@include background-stripes;
+}
+
+.has-background-ankle-stripes {
+	@include background-ankle-stripes;
+}
+.has-background-style-stamp {
+	@include background-style-stamp;
+}
+.has-background-accent {
+	@include background-accent;
+}

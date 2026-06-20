@@ -1,0 +1,21 @@
+{% if pagination.total > 1 %}
+<nav class="pagination-next-prev-wrapper {{ class }}" aria-label="Pagination">
+	<ul class="pagination-next-prev">
+		{% if pagination.prev %}
+		<li class="pagination-next-prev-arrow pagination-next-prev-arrow--previous">
+			<a href="{{ pagination.prev.link }}" class="btn btn-link btn-link--previous">{{ labels.previous ?: "Back" }}</a>
+		</li>
+		{% else %}
+		<li class="pagination-next-prev-arrow pagination-next-prev-arrow--previous" aria-hidden="true"></li>
+		{% endif %}
+
+		{% if pagination.next %}
+		<li class="pagination-next-prev-arrow pagination-next-prev-arrow--next">
+			<a href="{{ pagination.next.link }}" class="btn btn-link btn-link--next">{{ labels.next ?: "Next" }}</a>
+		</li>
+		{% else %}
+		<li class="pagination-next-prev-arrow pagination-next-prev-arrow--next" aria-hidden="true"></li>
+		{% endif %}
+	</ul>
+</nav>
+{% endif %}

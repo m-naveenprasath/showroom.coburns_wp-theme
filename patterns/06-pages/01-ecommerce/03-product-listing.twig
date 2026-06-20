@@ -1,0 +1,187 @@
+{% include "@sections/01-header/_ecommerce-header.twig" %}
+<main>
+	{% include "@sections/05-ecommerce/03-title.twig" with {"pageTitleImage":'<figure class="img-wrap"><img src="../../../images/page-title.jpg"></figure>'}%}
+	<section class="product-filter-container ecommerce-container">
+		<div class="container">
+			<div class="row ecommerce--content">
+				<div class="ecommerce--text-top col-lg-3 col-xl-2">
+					{% include "@components/04-e-commerce/01-filter.twig"%}
+					<div class="mobile-hide">
+						{# Information repeated twice #}
+						<h2>Lorem ipsum dolor sit amet sectetur.</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+					</div>
+				</div>
+				<div class="ecommerce--items col-lg-9 col-xl-10">
+					<div>
+						<div class="row justify-content-end">
+							<div class="product-sort">
+								<select class="form-control">
+									<option selected="selected" value="">Sort By...</option>
+									<option value="Manufacturer">Brand</option>
+									<option value="ItemName">Product Name</option>
+									<option value="ItemIDDesc">Newest Products</option>
+									<option value="PriceAsc">Priced Low to High</option>
+									<option value="PriceDesc">Priced High to Low</option>
+									<option value="SalesRank">Best Sellers</option>
+								</select>
+							</div>
+						</div>
+						{% include "@sections/05-ecommerce/02-product-grid.twig" %}
+					</div>
+				</div>
+				<div class="ecommerce--text-bottom page-content col-lg-3 col-xl-2 desktop-hide">
+					{# Information repeated twice #}
+					<h2>Lorem ipsum dolor sit amet sectetur.</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="category-container">
+		<div class="container">
+			<h5 class="subhead text-center">Popular Categories</h5>
+			<div class="row category--popular">
+				<div class="col-12">
+					<div class="row">
+						<article class="col-6 col-lg-3 category--product">
+							<div class="card card-product">
+								<figure class="img-wrap">
+									<a href="#"><img src="../../../images/sample/thumb-square-yosemite.jpg"></a>
+								</figure>
+								<div class="info-wrap">
+									<h4 class="title">
+										<a href="#">Accessories</a>
+									</h4>
+								</div>
+							</div>
+						</article>
+						<article class="col-6 col-lg-3 category--product">
+							<div class="card card-product">
+								<figure class="img-wrap">
+									<a href="#"><img src="../../../images/sample/thumb-square-yosemite.jpg"></a>
+								</figure>
+								<div class="info-wrap">
+									<h4 class="title">
+										<a href="#">Bathroom Cabinets &amp; Furniture</a>
+									</h4>
+								</div>
+							</div>
+						</article>
+						<article class="col-6 col-lg-3 category--product">
+							<div class="card card-product">
+								<figure class="img-wrap">
+									<a href="#"><img src="../../../images/sample/thumb-square-yosemite.jpg"></a>
+								</figure>
+								<div class="info-wrap">
+									<h4 class="title">
+										<a href="#">Bathroom Faucets</a>
+									</h4>
+								</div>
+							</div>
+						</article>
+						<article class="col-6 col-lg-3 category--product">
+							<div class="card card-product">
+								<figure class="img-wrap">
+									<a href="#"><img src="../../../images/sample/thumb-square-yosemite.jpg"></a>
+								</figure>
+								<div class="info-wrap">
+									<h4 class="title">
+										<a href="#">Bathroom Lighting</a>
+									</h4>
+								</div>
+							</div>
+						</article>
+						<article class="col-6 col-lg-3 category--product">
+							<div class="card card-product">
+								<figure class="img-wrap">
+									<a href="#"><img src="../../../images/sample/thumb-square-yosemite.jpg"></a>
+								</figure>
+								<div class="info-wrap">
+									<h4 class="title">
+										<a href="#">Bathroom Safety &amp; Accessibility</a>
+									</h4>
+								</div>
+							</div>
+						</article>
+						<article class="col-6 col-lg-3 category--product">
+							<div class="card card-product">
+								<figure class="img-wrap">
+									<a href="#"><img src="../../../images/sample/thumb-square-yosemite.jpg"></a>
+								</figure>
+								<div class="info-wrap">
+									<h4 class="title">
+										<a href="#">Bathroom Sinks</a>
+									</h4>
+								</div>
+							</div>
+						</article>
+						<article class="col-6 col-lg-3 category--product">
+							<div class="card card-product">
+								<figure class="img-wrap">
+									<a href="#"><img src="../../../images/sample/thumb-square-yosemite.jpg"></a>
+								</figure>
+								<div class="info-wrap">
+									<h4 class="title">
+										<a href="#">Bathroom Vanities &amp; Vanity Tops</a>
+									</h4>
+								</div>
+							</div>
+						</article>
+						<article class="col-6 col-lg-3 category--product">
+							<div class="card card-product">
+								<figure class="img-wrap">
+									<a href="#"><img src="../../../images/sample/thumb-square-yosemite.jpg"></a>
+								</figure>
+								<div class="info-wrap">
+									<h4 class="title">
+										<a href="#">Bathroom Vents, Fans &amp; Parts</a>
+									</h4>
+								</div>
+							</div>
+						</article>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="questions-container text-center has-background-stripes">
+		<div class="container">
+			<div class="row questions-card">
+				<div class="questions-card--title col-12">
+					<div class="h3 questions-card__title">Have questions?</div>
+					<p>Our exports are here to help!</p>
+				</div>
+				<div class="questions-card--buttons col-12">
+					<div class="button-group">
+						<div class="button-col"><a class="btn btn-primary btn-shadow" href="#">{% include "@icons/chat.twig" %}<span>Live Chat</span></a></div>
+						<div class="button-col"><a class="btn btn-primary btn-shadow" href="#">{% include "@icons/email.twig" %}<span>Email</span></a></div>
+						<div class="button-col"><a class="btn btn-primary btn-shadow" href="#">{% include "@icons/location.twig" %}<span>Find Your Nearest Location</span></a></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="popular-products-container has-background-texture">
+		<div class="container">
+			<h5 class="subhead text-center">Recently Viewed</h5>
+			<div class="popular-products--row row">
+				<div class="col-md-6 col-lg-3">{% include "@components/04-e-commerce/_product-card-small--wishlist.twig" %}</div>
+				<div class="col-md-6 col-lg-3">{% include "@components/04-e-commerce/_product-card-small--wishlist.twig" %}</div>
+				<div class="col-md-6 col-lg-3">{% include "@components/04-e-commerce/_product-card-small--wishlist.twig" %}</div>
+				<div class="col-md-6 col-lg-3">{% include "@components/04-e-commerce/_product-card-small--wishlist.twig" %}</div>
+			</div>
+		</div>
+		<div class="container">
+			<h5 class="subhead text-center pt-5">Popular Products</h5>
+			<div class="popular-products--row row">
+				<div class="col-md-6 col-lg-3">{% include "@components/04-e-commerce/_product-card-small--wishlist.twig" %}</div>
+				<div class="col-md-6 col-lg-3">{% include "@components/04-e-commerce/_product-card-small--wishlist.twig" %}</div>
+				<div class="col-md-6 col-lg-3">{% include "@components/04-e-commerce/_product-card-small--wishlist.twig" %}</div>
+				<div class="col-md-6 col-lg-3">{% include "@components/04-e-commerce/_product-card-small--wishlist.twig" %}</div>
+			</div>
+		</div>
+	</section>
+</main>
+<div class="ankle-container">{% include "@sections/03-ankle.twig"%}</div>
+{% include "@sections/04-footer/_footer.twig" %}

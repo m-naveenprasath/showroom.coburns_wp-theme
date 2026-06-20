@@ -1,0 +1,120 @@
+<div class="sg-theme-showroom">
+	<div class="single-style">
+		{% include "@sections/01-header/_showroom-header.twig" %}
+		<main>
+			<section class="hero-container">
+				<div class="container">
+					<nav class="breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="#">Breadcrumb A</a></li><li class="breadcrumb-item active" aria-current="page">Breadcrumb B</li></ol></nav>
+					<div class="row">
+						<div class="hero--image">
+							<img height="467" width="711" src="../../../images/hero-single-style.jpg" alt="">
+						</div>
+						<div class="hero--text">
+							<div class="content-flow-headings">
+								<h1 class="heading-style-minimal">Style Overview</h1>
+								<h2 class="h1 display">Mid-Century Modern</h2>
+							</div>
+							<div class="row">
+								<div class="col-md content-flow">
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat adipiscing elit sed do eiusmod tempor.</p>
+								</div>
+							</div>
+							<ul class="hero--sharetoolbar list-unstyled">
+								<li><div class="heading-style-minimal">share</div></li>
+								<li><a href="#">{% include "@icons/facebook-color.twig" %}</a></li>
+								<li><a href="#">{% include "@icons/pinterest-color.twig" %}</a></li>
+								<li><a href="#">{% include "@icons/email.twig" %}</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="rooms-inspire-container has-background-texture">
+				<div class="container">
+					<h5 class="rooms-inspire-container--headline subhead text-center">Rooms to Inspire</h5>
+					<div class="rooms-inspire-container--carousel">
+						<div class="container">
+							<div id="carouselInspire" class="carousel slide" data-ride="carousel">
+								<div class="carousel-inner">
+									<div class="carousel-item active">
+										<div class="carousel-col">
+											<figure class="wp-block-image">
+												<div class="img-wrap shadow img-border"><img width="100%" src="../../../images/featured-home-1.jpg" alt=""></div>
+												<figcaption>Kitchen</figcaption>
+											</figure>
+										</div>
+									</div>
+									<div class="carousel-item">
+										<div class="carousel-col">
+											<figure class="wp-block-image">
+												<div class="img-wrap shadow img-border"><img width="100%" src="../../../images/featured-home-2.jpg" alt=""></div>
+												<figcaption>Dining Room</figcaption>
+											</figure>
+										</div>
+									</div>
+									<div class="carousel-item">
+										<div class="carousel-col">
+											<figure class="wp-block-image">
+												<div class="img-wrap shadow img-border"><img width="100%" src="../../../images/featured-home-3.jpg" alt=""></div>
+												<figcaption>Living Room</figcaption>
+											</figure>
+										</div>
+									</div>
+								</div>
+								<ol class="carousel-indicators">
+									<li data-target="#carouselInspire" data-slide-to="0" class="active"></li>
+									<li data-target="#carouselInspire" data-slide-to="1"></li>
+									<li data-target="#carouselInspire" data-slide-to="2"></li>
+								</ol>
+							</div>
+						</div>
+					</div>
+					<div class="rooms-inspire-container--buttons text-right"><span class="btn-link--previous"></span><a class="btn btn-primary btn-shadow" href="#">Shop this Style</a></div>
+				</div>
+			</section>
+			{% include "@sections/05-ecommerce/_01-product-carousel.twig"%}
+			{% include "@sections/06-showroom/_brands.twig"%}
+			<section class="other-styles-container has-background-stripes">
+				<div class="container">
+					<h5 class="other-styles-container--headline subhead text-center">Other Styles</h5>
+					<div class="other-styles--images row">
+						<div class="other-styles--col col-md-6 col-xl-3">
+							<div class="img-wrap shadow"><img height="468" width="712" src="../../../images/hero-homepage.jpg" alt=""></div>
+							<div class="other-styles--links"><a href="" class="btn btn-link"><span>Mid-Century Modern</span>{% include "@icons/arrow.twig" %}</a></div>
+						</div>
+						<div class="other-styles--col col-md-6 col-xl-3">
+							<div class="img-wrap shadow"><img height="468" width="712" src="../../../images/hero-homepage.jpg" alt=""></div>
+							<div class="other-styles--links"><a href="" class="btn btn-link"><span>Mid-Century Modern</span>{% include "@icons/arrow.twig" %}</a></div>
+						</div>
+						<div class="other-styles--col col-md-6 col-xl-3">
+							<div class="img-wrap shadow"><img height="468" width="712" src="../../../images/hero-homepage.jpg" alt=""></div>
+							<div class="other-styles--links"><a href="" class="btn btn-link"><span>Mid-Century Modern</span>{% include "@icons/arrow.twig" %}</a></div>
+						</div>
+						<div class="other-styles--col col-md-6 col-xl-3">
+							<div class="img-wrap shadow"><img height="468" width="712" src="../../../images/hero-homepage.jpg" alt=""></div>
+							<div class="other-styles--links"><a href="" class="btn btn-link"><span>Mid-Century Modern</span>{% include "@icons/arrow.twig" %}</a></div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="questions-container text-center">
+				<div class="container">
+					<div class="row questions-card">
+						<div class="questions-card--title col-12">
+							<div class="h4 has-black-color questions-card__title">Not quite your style? Let’s try some other options!</div>
+						</div>
+						<div class="questions-card--buttons col-12">
+							<div class="button-group">
+								<div class="button-col"><a class="btn btn-primary btn-shadow" href="#"><span>Take Quiz</span></a></div>
+								<div class="button-col"><a class="btn btn-outline-primary btn-shadow" href="#"><span>View All Styles</span></a></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			{% include "@sections/06-showroom/_pinterest.twig"%}
+		</main>
+		<div class="ankle-container">{% include "@sections/03-ankle.twig"%}</div>
+		{% include "@sections/04-footer/_footer.twig" %}
+	</div>
+</div>

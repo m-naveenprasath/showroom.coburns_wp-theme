@@ -1,0 +1,131 @@
+//!important Needed throughout to override bookly's important
+.bookly-form .bookly-progress-tracker.bookly-table {
+	//.bookly-table added for specificity issue
+	> div {
+		@include heading-style-minimal($font-size: 0.75rem, $color: $gray-light);
+		text-align: center;
+	}
+	> .active {
+		color: $gray !important;
+	}
+	.step {
+		background: $gray-light;
+		height: 8px;
+	}
+}
+.bookly-box {
+	padding: 0.25rem; //Needed for form field :focus to show entirely
+
+	font-size: 0.925rem;
+	line-height: 1.4;
+	max-width: 90ch;
+	margin-bottom: $grid-gutter-width/3;
+}
+.bookly-form {
+	margin-top: 2rem;
+}
+.bookly-mobile-step-2 .bookly-box:first-of-type:before {
+	// the content property is set in the custom CSS block in the WP backend for easier content editing
+	display: block;
+	max-width: 90ch;
+	margin-top: $grid-gutter-width/2;
+	margin-bottom: $grid-gutter-width/2;
+}
+.bookly-bold {
+	font-weight: $font-weight-base !important;
+}
+.bookly-table,
+.bookly-nav-steps {
+	max-width: none;
+}
+
+.bookly-form .bookly-table .bookly-form-group > label,
+.bookly-form .bookly-box .bookly-form-group > label {
+	//.bookly-table and .bookly-box added for specificity issue
+	color: $gray !important;
+}
+
+.bookly-form input[type="text"],
+.bookly-form input[type="number"],
+.bookly-form input[type="password"],
+.bookly-form select,
+.bookly-form textarea {
+	padding: $input-padding-y $input-padding-x !important;
+	font-size: $input-font-size !important;
+	line-height: $input-line-height !important;
+	color: $input-color;
+	border: $input-border-width solid $input-border-color !important;
+	border-radius: $input-border-radius !important;
+	@include transition($input-transition);
+	&:focus {
+		color: $input-focus-color;
+		box-shadow: $input-focus-box-shadow;
+	}
+}
+
+.bookly-form input[type="text"],
+.bookly-form input[type="number"],
+.bookly-form input[type="password"] {
+	height: $input-height !important;
+}
+.bookly-form select {
+	height: calc(
+		#{$input-line-height * 1em} + #{$input-padding-y * 2} + #{$input-height-border * 2} + 2px
+	) !important; //Added to help with font difference.
+	&:not([multiple]) {
+		background: url('data:image/svg+xml;utf8,<svg class="icon icon-expand" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><polygon fill="%23c9c9c9" points="8 12 16 20 24 12"></polygon></svg>')
+			no-repeat right 0.4rem center/8px 10px #ffffff;
+		background-size: 1.5em;
+	}
+	appearance: none;
+	padding: $input-padding-y 1.75rem $input-padding-y $input-padding-x !important;
+}
+.bookly-form select:not([multiple]):not([size]) {
+	@include heading-style-minimal($font-size: 0.75rem!important, $color: $gray);
+}
+#main {
+	.bookly-btn.bookly-btn,
+	.bookly-btn-default,
+	.bookly-btn-active {
+		//Doubled for specificity
+		border: $btn-border-width solid transparent !important;
+		display: inline-flex;
+		padding: $btn-padding-y $btn-padding-x !important;
+		letter-spacing: 0.1em;
+		min-width: auto;
+		-webkit-font-smoothing: auto;
+
+		@include button-size($btn-padding-y, $btn-padding-x, $btn-font-size, $btn-line-height, $btn-border-radius);
+
+		> span {
+			font-size: $btn-font-size !important;
+			line-height: $btn-line-height !important;
+		}
+
+		&:hover,
+		&.hover {
+			color: darken($primary, 7.5%) !important;
+			background-color: darken($primary, 7.5%) !important;
+			border-color: darken(transparent, 10%) !important;
+		}
+
+		&:focus,
+		&.focus {
+			box-shadow: $input-focus-box-shadow;
+			color: darken($primary, 7.5%) !important;
+			background-color: darken($primary, 7.5%) !important;
+			border-color: darken(transparent, 10%) !important;
+		}
+	}
+	.ladda-button {
+		@include transition($btn-transition);
+	}
+}
+
+//https://coburns.wpengine.com/appointment-cancellation/
+.bookly-js-cancellation-confirmation-buttons {
+	display: flex;
+	flex-flow: row wrap;
+	align-items: center;
+	justify-content: center;
+}

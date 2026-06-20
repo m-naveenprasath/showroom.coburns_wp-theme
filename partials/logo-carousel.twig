@@ -1,0 +1,37 @@
+{% if not component_ID %}
+	{% set component_ID = local_namespace ~ "-" ~ _key %}
+{% endif %}
+<div class="container">
+	{% if carousel_active != false %}
+	<div id="carousel-{{component_ID}}" class="carousel slide logo-carousel" data-ride="carousel">
+		<div class="carousel-inner">
+			{% for item in carousel %}
+				{% if loop.index is odd or loop.first %}
+					<div class="carousel-item{% if loop.first %} active{% endif %}">
+						<div class="carousel-col">
+				{% endif %}
+							<div class="brand">{% include ['partials/image.twig'] ignore missing with { 'image': item.image ?: item } %}</div>
+				{% if loop.index is even or loop.last %}
+						</div>
+					</div>
+				{% endif %}
+			{% endfor %}
+		</div>
+		<ol class="carousel-indicators">
+			{% for item in carousel %}
+				{% if loop.index is odd or loop.first %}
+				<li data-target="#carousel-{{component_ID}}" data-slide-to="{{ loop.index0 // 2 }}" {% if loop.first %}class="active"{% endif %}></li>
+				{% endif %}
+			{% endfor %}
+		</ol>
+	</div>
+	{% else %}
+	<div class="row align-items-center">
+		{% for item in carousel %}
+		<div class="col p-3">
+			<div class="brand">{% include ['partials/image-with-link.twig'] ignore missing with { 'image': item.image ?: item, 'link':item.link?: item } %}</div>
+		</div>
+		{% endfor %}
+	</div>
+	{% endif %}
+</div>

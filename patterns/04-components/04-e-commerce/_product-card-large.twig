@@ -1,0 +1,23 @@
+  <article class="card card-product product-large">
+
+    <figure class="img-wrap">
+      <a href="#"><img src="../../../images/sample/thumb-square-yosemite.jpg"></a>
+    </figure>
+
+    <div class="info-wrap">
+      <h4 class="title">
+        <a href="#">Original Version of Some Product Name</a>
+      </h4>
+      <h5 class="subhead">Whirlpool</h5>
+
+      <div class="row">
+        <div class="col-xl-6 price h4">$139.48</div>
+        <div class="col-xl-6 stock">Low in stock</div>
+      </div>
+      {% include "@components/_rating-stars.twig" %}
+    </div>
+
+    {{ badgeStatus }}
+	<input type="submit" value="" class="btn btn-wishlist-heart {{ wishlistActive }}">
+
+  </article>

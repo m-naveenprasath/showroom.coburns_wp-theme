@@ -1,0 +1,17 @@
+<section class="questions-container text-center has-background-{{ sectionBackground }}">
+	<div class="container">
+		<div class="row questions-card">
+			{% if headings %}
+			<div class="questions-card--title col-12">
+				{% include ['partials/heading-array.twig'] ignore missing with { 'headings': headings } %}
+				{% if sectionHtml_1 %}<div class="content-flow">{{ sectionHtml_1 }}</div>{% endif %}
+			</div>
+			{% endif %}
+			{% if buttons %}
+			<div class="questions-card--buttons col-12">
+				{% include ['partials/button-array.twig'] ignore missing with { 'button': buttons } %}
+			</div>
+			{% endif %}
+		</div>
+	</div>
+</section>

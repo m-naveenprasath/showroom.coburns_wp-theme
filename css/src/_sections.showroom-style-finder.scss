@@ -1,0 +1,35 @@
+.style-finder-container {
+	padding: 0;
+	@media (min-width: 1300px) {
+		&:before{
+			content: 'Coburn’s Style Finder';
+		}
+	}
+	.container {
+		padding-bottom: 2rem;
+		padding-top: 2rem;
+		@include background-style-stamp;
+		@include media-breakpoint-up(md) {
+			padding-bottom: 4rem;
+			padding-top: 4rem;
+		}
+	}
+	&.container-image-right .container {
+		background-position: left 41.5% top 2.25em
+	}
+	.container--image-left {
+		@include media-breakpoint-up(md) {
+			@include make-col(5);
+		}
+	}
+	.container--text-right {
+		@include media-breakpoint-up(md) {
+			@include make-col(7);
+		}
+	}
+}
+section:nth-child(2).style-finder-container {
+	@include media-breakpoint-up(md) {
+		margin-top: 4em;
+	}
+}

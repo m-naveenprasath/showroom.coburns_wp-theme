@@ -1,0 +1,55 @@
+{% extends "partials/hero.twig" %}
+
+{% block image %}
+	{% if (post.thumbnail or image) and (featuredImage_show != false) %}
+		{% include ['partials/image.twig'] ignore missing with { 'image': image ?: post.thumbnail } %}
+	{% endif %}
+{% endblock %}
+
+{% block video %}
+	{% if heroVideo.videoSection_show == true %}
+    {% if heroVideo.video_url %}
+        {% include ['partials/video.twig'] with { 'video': heroVideo.video_url } %}
+    {% elseif heroVideo.youTube_video_id %}
+        {% include ['partials/video.twig'] with { 'YTvideo': heroVideo.youTube_video_id } %}
+    {% endif %}
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+	<div class="row">
+		{% if sectionHtml_1 %}
+			<div class="col-md content-flow">
+				{{ sectionHtml_1 }}
+			</div>
+		{% endif %}
+
+		{% if sectionHtml_2 or socialLinks_show %}
+			<div class="col-md content-flow">
+				{{ sectionHtml_2 }}
+
+				{% if socialLinks_show %}
+					{% include ['partials/social-link-list.twig'] ignore missing with { 'accounts': socialCorporate, 'class': 'hero--sharetoolbar', color_icons: true } %}
+				{% endif %}
+			</div>
+		{% endif %}
+	</div>
+
+	{% include ['partials/button-array.twig'] ignore missing with { 'buttons': buttons } %}
+
+	{% if sectionHtml_3 %}
+		<div class="content-flow">
+			{{ sectionHtml_3 }}
+		</div>
+
+	{% endif %}
+
+	{% include ['partials/hero-share-with.twig'] ignore missing %}
+
+{% endblock %}
+
+{% block extracontent %}
+{% if carousel_active != false %}
+	{{ renderComponent('HeroCarousel') }}
+{% endif %}
+{% endblock %}

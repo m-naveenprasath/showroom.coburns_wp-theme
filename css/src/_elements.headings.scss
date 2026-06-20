@@ -1,0 +1,166 @@
+h1,
+.h1 {
+}
+h2,
+.h2 {
+}
+h3,
+.h3 {
+	font-family: $font-family-base;
+}
+h4,
+.h4 {
+	font-family: $font-family-base;
+}
+h5,
+.h5 {
+	font-family: $font-family-base;
+}
+h6,
+.h6 {
+	font-family: $font-family-base;
+}
+
+//Display headings
+
+.display-1,
+.display-2 {
+	color: $headings-color;
+	font-family: $headings-font-family;
+}
+.display-1 {
+	font-size: $display1-size-mobile;
+	line-height: 1;
+	@include media-breakpoint-up(lg) {
+		font-size: $display1-size-desktop;
+		line-height: 1.05;
+	}
+}
+.display-2 {
+	font-size: $display2-size-mobile;
+	line-height: 1.1;
+	@include media-breakpoint-up(md) {
+		font-size: $display2-size-desktop;
+	}
+}
+
+//==========================================
+// For legacy compatibility only
+h1,
+.h1 {
+	&.display {
+		font-size: $display1-size-mobile;
+		line-height: 1;
+
+		@include media-breakpoint-up(lg) {
+			font-size: $display1-size-desktop;
+			line-height: 1.05;
+		}
+	}
+	&.heading-style-minimal {
+		color: $tertiary;
+		font-size: 1rem;
+	}
+}
+h2,
+.h2 {
+	&.display {
+		font-size: $display2-size-mobile;
+		@include media-breakpoint-up(md) {
+			font-size: $display2-size-desktop;
+		}
+	}
+}
+//==========================================
+
+//Minimal headings
+.minimal-1 {
+	//equivalent-ish to .h1.heading-style-minimal
+	@include heading-style-minimal($font-size: 1rem, $color: $tertiary);
+}
+.minimal-2 {
+	@include heading-style-minimal($font-size: 0.85rem, $color: $gray);
+}
+.minimal-3 {
+	@include heading-style-minimal($font-size: 0.75rem, $color: $gray);
+}
+
+.minimal-body {
+	font-weight: $font-weight-strong;
+	line-height: 1.2;
+}
+
+//==========================================
+// For legacy compatibility only
+.heading-style-minimal {
+	@include heading-style-minimal($font-size: 0.75rem, $color: $gray);
+}
+//==========================================
+
+//Subhead headings
+
+.is-style-subhead {
+	@include heading-style-minimal($font-size: 0.75rem, $color: $gray);
+}
+@for $i from 1 through 6 {
+	h#{$i}.subhead,
+	.h#{$i}.subhead {
+		@include heading-style-minimal($font-size: 0.75rem, $color: $gray);
+	}
+}
+
+//Body headings
+
+.is-style-body {
+	color: $black;
+	font-family: $font-family-base;
+	font-weight: $headings-font-weight;
+}
+@for $i from 1 through 6 {
+	h#{$i}.body,
+	.h#{$i}.body {
+		color: $black;
+		font-family: $font-family-base;
+		font-weight: $headings-font-weight;
+	}
+}
+
+//Ecommerce component headings???
+//@todo: refactor/reorganize these.
+
+h3.title,
+.h3.title {
+	@include product(lg);
+	a {
+		@include link-color($blue-dark);
+	}
+}
+h4.title,
+.h4.title {
+	@include product(sm);
+	a {
+		@include link-color($blue-dark);
+	}
+}
+h3.price,
+.h3.price {
+	@include product(lg);
+	color: black;
+}
+h4.price,
+.h4.price {
+	@include product(sm);
+	color: black;
+}
+
+// Heading Stack
+// for like so <h1 class="heading-stack"><span class="tiny-lad">Line 1</span><span class="big-boy">Line 2</span></h1>
+.heading-stack {
+	display: flex;
+	flex-flow: column;
+
+	> * + * {
+		margin-top: 0.5rem;
+		margin-bottom: 0;
+	}
+}

@@ -1,0 +1,37 @@
+<div class="sg-theme-showroom">
+	<div class="home">
+		{% include "@sections/01-header/_showroom-header.twig" %}
+		<main>
+			<section class="hero-container">
+				<div class="container">
+					<div class="row">
+						<div class="hero--image">
+							<img height="468" width="712" src="../../../images/hero-homepage.jpg" alt="">
+						</div>
+						<div class="hero--text">
+							<div class="content-flow-headings">
+								<h1 class="heading-style-minimal">Coburn’s Showroom</h1>
+								<h2 class="h1 display">Make Yourself <nobr>a Home.</nobr></h2>
+							</div>
+							<div class="row">
+								<div class="col-md content-flow">
+									<p>Whether you’re building from scratch, remodeling or in need of a fresh update, Coburn’s Showroom has exactly what you’re looking for. With a plethora of inventory options tailored to your exact style, a dynamic team eager to help create the home of your dreams and more than 25 convenient showroom locations perfect for shopping ideas for your ideal home — the customization and design possibilities are endless.</p>
+								</div>
+							</div>
+							<div class="button-group"><span class="btn-link--previous hero-btn-line"></span>
+								<div class="button-col"><a href="http://coburns.local/locations/" class="btn btn-primary btn-shadow btn-icon-left"><span>Find a Location</span></a></div>
+								<div class="button-col"><a href="http://coburns.local/locations/" class="btn btn-outline-primary btn-shadow btn-icon-left"><span>Schedule an Appointment</span></a></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			{% include "@sections/06-showroom/_blog.twig"%}
+			{% include "@sections/06-showroom/_style-finder.twig"%}
+			{% include "@sections/06-showroom/_featured-home.twig"%}
+			{% include "@sections/06-showroom/_pinterest.twig"%}
+		</main>
+		<div class="ankle-container">{% include "@sections/03-ankle.twig"%}</div>
+		{% include "@sections/04-footer/_footer.twig" %}
+	</div>
+</div>

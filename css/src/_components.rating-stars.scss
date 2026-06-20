@@ -1,0 +1,36 @@
+.rating-stars {
+	display: inline-block;
+	vertical-align: middle;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	line-height: 1;
+	white-space: nowrap;
+	clear: both;
+
+	li {
+		display: block;
+		text-overflow: clip;
+		white-space: nowrap;
+		z-index: 1;
+		img {
+			width: 17px;
+		}
+	}
+	table {
+		margin-right:5px;
+	}
+	table, a {
+		vertical-align:middle;
+	}
+
+	li.stars-active {
+		z-index: 2;
+		position: absolute;
+		top: 0;
+		left: 0;
+		overflow: hidden;
+		color: $red;
+	}
+}

@@ -1,0 +1,38 @@
+{% set local_namespace = "full-width" %}
+
+{% extends "partials/_component-base.twig" %}
+
+{% set container_classes = ' ' %}
+{% if sectionPadding  %}
+	{% set container_classes = extra_classes ~ 'px-' ~ sectionPadding ~ ' ' %}
+{% endif %}
+
+{% block container %}
+
+	<div class="container-fluid d-flex flex-column align-items-center justify-content-center {{ container_classes }}">
+
+		{% include ['partials/image.twig'] ignore missing with { 'image': media.image } %}
+
+		{% if headings %}
+			{% include ['partials/heading-array.twig'] ignore missing with { 'headings': headings } %}
+		{% endif %}
+
+		{% if sectionHtml_1 %}
+			<div class="content-flow">
+				{{sectionHtml_1}}
+			</div>
+		{% endif %}
+
+		{% if embed_url %}
+			<div class="embed-responsive embed-responsive-16by9">
+				<iframe src="{{ embed_url }}" class="embed-responsive-item" frameborder="0"></iframe>
+			</div>
+		{% endif %}
+
+		{{ shortcode | shortcodes }}
+
+		{% include ['partials/button-array.twig'] ignore missing with { 'buttons': buttons } %}
+
+	</div>
+
+{% endblock %}

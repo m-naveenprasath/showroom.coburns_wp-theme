@@ -1,0 +1,47 @@
+{% for item in menu.items %}
+	{% set item_class = 'nav-item ' %}
+	{% set link_class = 'nav-link ' %}
+
+	{% if item.current %}
+		{% set item_class = item_class ~ 'nav-item--current active ' %}
+		{% set link_class = link_class ~ 'nav-item--current__link  ' %}
+	{% endif %}
+
+	{% if item.children %}
+		{% set item_class = item_class ~ 'menu-item-has-children menu-item-has-extended-nav ' %}
+		{% set link_class = link_class ~ 'collapsed  ' %}
+	{% endif %}
+
+	{% if item.style == 'highlight' %}
+		{% set item_class = item_class ~ 'highlight ' %}
+	{% endif %}
+	{% if item.style == 'nav-header' %}
+		{% set item_class = item_class ~ 'nav-header ' %}
+	{% endif %}
+
+	{% if item.visible %}
+		{% if 'desktop' not in item.visible %}
+			{% set item_class = item_class ~ 'd-lg-none ' %}
+		{% endif %}
+		{% if 'mobile' not in item.visible %}
+			{% set item_class = item_class ~ 'd-none d-lg-block ' %}
+		{% endif %}
+	{% endif %}
+
+	<li class="{{ item_class }}">
+		<a class="{{ link_class }}" href="{{ item.link }}" {{ item.target == '_blank' ? 'target="_blank" rel="noreferrer noopener"' }} {% if item.children %} data-toggle="collapse" data-target="#{{nav_id}}--{{item.id}}" aria-expanded="false" aria-controls="{{nav_id}}--{{item.id}}" role="button"{% endif %}>
+			<span>{{- item.title -}}</span>
+		</a>
+		{% if item.children %}
+			<ul class="nav sub-menu collapse" id="{{nav_id}}--{{item.id}}">
+				{% for child in item.children %}
+					<li class="nav-item">
+						<a class="nav-link" href="{{ child.link }}" {{ child.target == '_blank' ? 'target="_blank" rel="noreferrer noopener"' }}>
+							{{ child.title }}
+						</a>
+					</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+	</li>
+{% endfor %}

@@ -1,0 +1,25 @@
+<section class="pinterest-container has-background-{{ sectionBackground }}">
+	<div class="container">
+ 		<div class="row">
+			<div class="pinterest--content col-md-5 col-lg-4">
+				<div class="pinterest--headline">
+					{% if pinterestEyebrow %}
+						{% include ['partials/heading.twig'] ignore missing with { 'heading': pinterestEyebrow, 'icon': 'pinterest', class: 'pinterest--eyebrow' } %}
+					{% endif %}
+
+					{% if pinterestHeading %}
+						{% include ['partials/heading.twig'] ignore missing with { 'heading': pinterestHeading } %}
+					{% endif %}
+				</div>
+
+				{% if sectionHtml_1 %}{{ sectionHtml_1 }}{% endif %}
+
+				{% include ['partials/button.twig'] ignore missing with { 'button': button } %}
+			</div>
+
+			<div class="pinterest--image col-md-7 col-lg-8">
+				{% include ['partials/image-with-link.twig'] ignore missing with { 'image': image, 'link': button.link } %}
+			</div>
+		</div>
+	</div>
+</section>

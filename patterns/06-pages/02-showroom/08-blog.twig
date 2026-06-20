@@ -1,0 +1,45 @@
+<div class="sg-theme-showroom">
+	<div class="blog">
+		{% include "@sections/01-header/_showroom-header.twig" %}
+		<main>
+			<section class="hero-container">
+				<div class="container">
+					<div class="row">
+						<div class="hero--image">
+							<img height="467" width="711" src="../../../images/hero-single-style.jpg" alt="">
+						</div>
+						<article class="hero--text">
+							<div class="content-flow-headings">
+								<h1 class="heading-style-minimal">Coburn’s Style Blog</h1>
+								<h2 class="h1 display">This is a Blog Post That Can Go Over Two Lines</h2>
+							</div>
+							<div class="row">
+								<div class="col-md content-flow">
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ut erat rutrum, scelerisque turpis et, posuere ex. Donec turpis lorem, interdum quis eros vel, suscipit ornare sapien. Pellentesque sed hendrerit diam, id cursus leo. Vestibulum mollis pellentesque.</p>
+								</div>
+							</div>
+							<span class="btn-link--previous"></span><a class="btn btn-primary btn-shadow" href="#">Continue Reading</a>
+						</article>
+					</div>
+				</div>
+			</section>
+			<section>
+				<div class="container">
+					<div class="row">
+						<div class="blog--col col-md-6 col-lg-4">{% include "@components/03-cards/01-blog.twig"%}</div>
+						<div class="blog--col col-md-6 col-lg-4">{% include "@components/03-cards/01-blog.twig"%}</div>
+						<div class="blog--col col-md-6 col-lg-4">{% include "@components/03-cards/01-blog.twig"%}</div>
+						<div class="blog--col col-md-6 col-lg-4">{% include "@components/03-cards/01-blog.twig"%}</div>
+						<div class="blog--col col-md-6 col-lg-4">{% include "@components/03-cards/01-blog.twig"%}</div>
+						<div class="blog--col col-md-6 col-lg-4">{% include "@components/03-cards/01-blog.twig"%}</div>
+					</div>
+				</div>
+				<div class="container blog--button">
+					<a class="btn btn-primary btn-shadow" href="#">{% include "@icons/expand.twig" %}<span>Show More</span></a>
+				</div>
+			</section>
+		</main>
+		<div class="ankle-container">{% include "@sections/03-ankle.twig"%}</div>
+		{% include "@sections/04-footer/_footer.twig" %}
+	</div>
+</div>

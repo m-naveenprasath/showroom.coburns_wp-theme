@@ -1,0 +1,70 @@
+.blog-container {
+	overflow-x: hidden;
+	.blog-card {
+		text-align: left;
+		// Needed for mobile layout.
+		.card-body {
+			@include media-breakpoint-up(xl) {
+				padding-bottom: 0;
+			}
+		}
+	}
+	.blog--col:last-child {
+		@include media-breakpoint-up(xl) {
+			left: 100%;
+			margin-left: -8.33333%;
+			position: absolute;
+		}
+	}
+	&.blog-style-2 {
+		@include media-breakpoint-up(md) {
+			padding-bottom: 0;
+		}
+		@include media-breakpoint-up(xl) {
+			.blog--col:last-child {
+				margin-left: 0;
+			}
+		}
+	}
+	.btn-link--previous:before {
+		margin-right: 10px;
+		@media (min-width: 1200px) and (max-width: 1300px) {
+			width: 30px;
+		}
+	}
+	@include media-breakpoint-up(xl) {
+		.row {
+			position: relative;
+		}
+	}
+	@media (min-width: 1200px) and (max-width: 1400px) {
+		&.blog-style-2 .btn-link--previous:before {
+			width: 30px;
+		}
+	}
+	@include media-breakpoint-down(sm) {
+		.card-img-link {
+			height: 250px;
+		}
+	}
+	@include media-breakpoint-down(md) {
+		.card-img-link {
+			height: 150px;
+		}
+	}
+	@include media-breakpoint-down(lg) {
+		.blog--col:last-child .card-img-link,
+		.blog--col p {
+			display: none;
+		}
+		.blog--col:last-child .blog-card {
+			text-align: right;
+			.card-body {
+				padding: 0;
+			}
+		}
+	}
+	.search-tag {
+		display: none;
+	}
+}

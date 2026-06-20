@@ -1,0 +1,107 @@
+<div class="sg-theme-showroom">
+	<div class="style-finder-quiz">
+		{% include "@sections/01-header/_showroom-header.twig" %}
+		<main>
+			<section class="hero-container">
+				<div class="container">
+					<div class="row">
+						<div class="hero--image">
+							<img height="468" width="711" src="../../../images/hero-style-finder.jpg" alt="">
+						</div>
+						<div class="hero--text">
+							<div class="content-flow-headings">
+								<h1 class="heading-style-minimal">Lorem Ipsum</h1>
+								<h2 class="h1 display">Lorem Ipsum Dolor sit Ametin Consectetur.</h2>
+							</div>
+							<div class="row">
+								<div class="col-md content-flow">
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ut erat rutrum, scelerisque turpis et, posuere ex. Donec turpis lorem, interdum quis eros vel, suscipit ornare sapien. Pellentesque sed hendrerit diam, id cursus leo. Vestibulum mollis pellentesque.</p>
+								</div>
+							</div>
+							<div class="button-group"><span class="btn-link--previous"></span>
+								<div class="button-col"><a class="btn btn-primary btn-shadow" href="#">Start the Quiz</a></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="style-finder-quiz-container">
+				<div class="container">
+					<div class="row">
+						<div class="style-finder-quiz--instructions col-lg-8">
+							<div class="h5 subhead">Instructions</div>
+							<div>
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ut erat rutrum, scelerisque turpis et, posuere ex. Donec turpis lorem, interdum quis eros vel, suscipit ornare sapien. Pellentesque sed hendrerit diam, id cursus leo. Vestibulum mollis pellentesque libero vitae cursus. Integer pharetra, felis eget venenatis fringilla, est odio pretium diam, vel luctus mi odio id tellus.</p>
+								<div class="has-teal-color">{% include "@icons/expand.twig" %}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="style-finder-quiz--quiz has-background-accent">
+					<div class="container">
+						<div class="row">
+							<div class="style-finder-quiz--headline col-lg-8">
+								<h1 class="heading-style-minimal">Coburn’s Style-Finder Quiz</h1>
+								<h2 class="h1 display">Which of these lighting fixtures is your favorite?</h2>
+							</div>
+						</div>
+						<div class="style-finder-quiz--images">
+							<div class="row">
+								<div class="quiz--col col-6 col-md-4 col-lg-3 col-xl-4">
+									<figure class="img-wrap shadow"><img src="../../../images/style-finder-quiz-1.jpg" alt=""></figure>
+								</div>
+								<div class="quiz--col col-6 col-md-4 col-lg-3 col-xl-4">
+									<figure class="img-wrap shadow active"><img src="../../../images/style-finder-quiz-2.jpg" alt=""></figure>
+								</div>
+							</div>
+							<div class="row">
+								<div class="quiz--col col-6 col-md-4 col-lg-3 col-xl-4">
+									<figure class="img-wrap shadow"><img src="../../../images/style-finder-quiz-3.jpg" alt=""></figure>
+								</div>
+								<div class="quiz--col col-6 col-md-4 col-lg-3 col-xl-4">
+									<figure class="img-wrap shadow"><img src="../../../images/style-finder-quiz-4.jpg" alt=""></figure>
+								</div>
+							</div>
+							<div class="row style-finder-quiz--navigation">
+								<div class="navigation-col text-left">
+									<a href="" class="btn btn-link btn-link--next">back</a>
+								</div>
+								<div class="navigation-col text-right">
+									<a href="" class="btn btn-link btn-link--previous">next</a>
+								</div>
+							</div>
+						</div>
+						<div class="style-finder-quiz--progress">
+							<div class="row justify-content-md-center">
+								<div class="col-md-8 col-lg-6 col-xl-8">
+									<div class="progress">
+										<div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+									</div>Question 1/5
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="questions-container text-center">
+				<div class="container">
+					<div class="row questions-card">
+						<div class="questions-card--title col-12">
+							<div class="h4 has-black-color questions-card__title">Share this quiz with your friends <nobr>and family!</nobr></div>
+						</div>
+						<div class="questions-card--buttons col-12">
+							<div class="button-group">
+								<div class="button-col"><a href="" class="btn btn-primary">{% include "@icons/email.twig" %}<span>Email</span></a></div>
+								<div class="button-col"><a href="" class="btn btn-facebook">{% include "@icons/facebook.twig" %}<span>Facebook</span></a></div>
+								<div class="button-col"><a href="" class="btn btn-pinterest">{% include "@icons/pinterest.twig" %}<span>Pinterest</span></a></div>
+								<div class="button-col"><a href="" class="btn btn-twitter">{% include "@icons/twitter.twig" %}<span>Twitter</span></a></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+		<div class="ankle-container">{% include "@sections/03-ankle.twig"%}</div>
+		{% include "@sections/04-footer/_footer.twig" %}
+	</div>
+</div>

@@ -1,0 +1,91 @@
+{% extends "partials/hero.twig" %}
+
+{% block image %}
+	{% if (post.thumbnail.id) and (featuredImage_show != false) %}
+		{% include ['partials/image.twig'] ignore missing with { 'id': post.thumbnail.id } %}
+	{% endif %}
+
+	{% if (post.image2 or post.image3) and (additionalImages_show != false) %}
+	<div class="hero--image-row">
+		{% if post.image2 %}
+		<div class="hero--image-col">
+		{% include ['partials/image.twig'] ignore missing with { 'id': post.image2 } %}
+		</div>
+		{% endif %}
+		{% if post.image3 %}
+		<div class="hero--image-col">
+		{% include ['partials/image.twig'] ignore missing with { 'id': post.image3 } %}
+		</div>
+		{% endif %}
+	</div>
+	{% endif %}
+{% endblock %}
+
+{% block headings %}
+	{% if headings %}
+		{% include ['partials/heading-array.twig'] ignore missing with { 'headings': headings } %}
+	{% else %}
+		<div class="content-flow-headings">
+			{% if brand_hero_default and post.post_type == 'brands' %}
+				<span class="minimal-1">{{ brand_hero_default.eyebrow }}</span>
+			{% endif %}
+
+			<h1 class="display-1">{{ post.title }}</h1>
+		</div>
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+	{% if sectionHtml_1 or post.meta('sectionHtml_1') %}
+		{% set section_content = sectionHtml_1 ?: post.meta('sectionHtml_1') %}
+		{% if section_content|striptags|length < 100 %}
+			{% set section_content_class = "lead" %}
+		{% endif %}
+		<div class="row">
+			<div class="col-md content-flow {{ section_content_class }}">
+				{{ section_content }}
+			</div>
+		</div>
+	{% endif %}
+
+	{% set product_lines = post.terms({query:{taxonomy:'product_line', orderby:'name', order: 'ASC'}}) %}
+	{% if product_lines and (brandProductLines_show != false) %}
+	<div class="row">
+		<div class="col-md content-flow">
+			<span class="h3">{{ brand_hero_default.product_lines_title }}</span>
+			<p>{% for term in product_lines %}{% if loop.first %}{% else %}, {% endif %}{{ term.title }}{% endfor %}</p>
+		</div>
+	</div>
+	{% endif %}
+
+	{% if buttons %}
+		{% include ['partials/button-array.twig'] ignore missing with { 'buttons': buttons } %}
+	{% elseif brandHeroButtons_show != false %}
+		<div class="button-group">
+			{% if post.meta("shop") %}
+			<div class="button-col">
+				<a href="{{ post.meta("shop") }}" class="btn btn-primary btn-shadow">
+					{% include ['partials/icon.twig'] ignore missing with {'icon': 'cart'} %}
+					<span>{{ brand_hero_default.shop_link_label }}</span>
+				</a>
+			</div>
+			{% endif %}
+			{% if post.meta("website") %}
+			<div class="button-col">
+				<a href="{{ post.meta("website") }}" class="btn btn-outline-primary btn-shadow" target="_blank">
+					<span>{{ brand_hero_default.website_link_label }}</span>
+					<span class="sr-only">(opens in new window)</span>
+					{% include ['partials/icon.twig'] ignore missing with {'icon': 'link'} %}
+				</a>
+			</div>
+			{% endif %}
+		</div>
+	{% endif %}
+
+{% endblock %}
+
+{% block extracontent %}
+{% if carousel_active != false %}
+	{{ renderComponent('HeroCarousel') }}
+{% endif %}
+{% endblock %}

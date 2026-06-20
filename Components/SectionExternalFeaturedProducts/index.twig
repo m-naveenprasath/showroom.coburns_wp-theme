@@ -1,0 +1,31 @@
+{% if source == "americommerce" and card == 'carousel' %}
+	{% set local_namespace = 'product-carousel-container' %}
+{% else %}
+	{% set local_namespace = 'product-feature-container' %}
+{% endif %}
+
+{% extends "partials/_component-base.twig" %}
+
+{% block container %}
+<div class="container">
+{% if source == "americommerce" %} 
+<h2 class="minimal-2 text-center">{{ featured_products_heading ?: featured_products_heading_default }}</h2>
+{% endif %}
+
+	{% if source == "americommerce" and filterProducts %}
+	<featuredproducts
+		id="{{ component_ID }}_carousel"
+		type="{{ filterProducts }}"
+		carousel="{{ card == 'carousel' ? 'true' : 'false' }}"
+	>
+		<a class="btn btn-link" href="https://www.coburns.com/search?keywords={{ filterProducts }}">
+			<span>Shop {{ filterProducts }} Products</span>
+		</a>
+	</featuredproducts>
+
+		{% elseif source == "cartSync" and filter_name and filter_type %}
+		<div id="featuredProductsWidget-{{ component_ID }}" data-filter="{{filter_name}}" data-filter-label="{{filter_type}}"></div>
+
+	{% endif %}
+</div>
+{% endblock %}

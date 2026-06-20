@@ -1,0 +1,26 @@
+.blog {
+	.hero--image .img-wrap {
+		height: 300px;
+		@include media-breakpoint-up(sm) {
+			height: 500px;
+		}
+	}
+	.blog-card .card-body {
+		padding-bottom: 3.5rem;
+	}
+	@include media-breakpoint-down(xs) {
+		.blog--col {
+			padding: 0;
+		}
+		.card-body {
+			padding-left: $gutter-padding;
+			padding-right: $gutter-padding;
+		}
+	}
+	.blog--button {
+		text-align: center;
+		.btn {
+			position: relative;
+		}
+	}
+}

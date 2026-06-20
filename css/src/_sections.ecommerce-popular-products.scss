@@ -1,0 +1,75 @@
+.product-feature-container,
+.popular-products-container,
+.space-products-container {
+	.product-small {
+		border: $border-width solid $border-color;
+		padding: 1rem;
+		@include media-breakpoint-down(md) {
+			margin-top: 1rem;
+		}
+		.btn-wishlist-heart .icon {
+			right: -0.5rem;
+		}
+	}
+
+	.popular-products--row {
+		@include media-breakpoint-up(md) {
+			padding-top: 1rem;
+		}
+		@include media-breakpoint-up(lg) {
+			padding-top: 2rem;
+		}
+	}
+}
+
+.product-feature-container.has-background-texture,
+.popular-products-container {
+	text-align: left;
+	// Needed for mobile layout.
+	@include media-breakpoint-up(md) {
+		box-shadow: $section-box-shadow;
+	}
+
+	&.has-background-texture {
+		&:after {
+			@include background-texture;
+		}
+	}
+}
+
+.product-feature-container.has-background-stripes,
+.space-products-container {
+	background: none !important;
+	padding-top: 0;
+
+	@include media-breakpoint-up(md) {
+		position: relative;
+		&:after {
+			content: "";
+			height: 54%;
+			width: 100%;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			z-index: -1;
+		}
+	}
+
+	&.has-background-stripes {
+		&:after {
+			@include background-stripes;
+		}
+	}
+}
+
+
+[id^=featuredProductsWidget] {
+position: relative;
+}
+[id^=featuredProductsWidget] .carousel-control-next{
+	right: -50px;
+}
+
+[id^=featuredProductsWidget] .carousel-control-prev{
+	left: -50px;
+}

@@ -1,0 +1,17 @@
+{%- apply spaceless -%}
+{%- if buttons -%}
+<div class="button-group">
+	{%- if navigational == 'previous' -%}<span class="btn-link--previous"></span>{%- endif -%}
+	{%- for button in buttons -%}
+		<div class="button-col">
+		{%- if button.style == 'link'%}
+			{%- include ['partials/button-link.twig'] ignore missing with { 'button': button } -%}
+		{%- else -%}
+			{%- include ['partials/button.twig'] ignore missing with { 'button': button } -%}
+		{%- endif -%}
+		</div>
+	{%- endfor -%}
+	{%- if navigational == 'next' -%}<span class="btn-link--next"></span>{%- endif -%}
+</div>
+{%- endif -%}
+{%- endapply -%}

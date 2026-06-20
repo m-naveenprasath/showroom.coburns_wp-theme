@@ -1,0 +1,99 @@
+{% if color_icons == true %}
+	{% set icon_suffix = '-color' %}
+{% else %}
+	{% set icon_suffix = '' %}
+{% endif %}
+
+<ul class="list-unstyled {{ class ?: 'social-media-links' }}">
+	{%- if accountLinks.Facebook -%}
+	<li>
+		<a target="_blank" rel="noopener" href="{{ accountLinks.Facebook }}">
+			{%- include ['partials/icon.twig'] ignore missing with { 'icon': 'facebook' ~ icon_suffix } -%}
+			<span class="sr-only">Facebook (opens in new window)</span>
+		</a>
+	</li>
+	{%- endif -%}
+
+	{%- if accountLinks.Google -%}
+	<li>
+		<a target="_blank" rel="noopener" href="{{ accountLinks.Google }}">
+			{%- include ['partials/icon.twig'] ignore missing with { 'icon': 'google-business' ~ icon_suffix } -%}
+			<span class="sr-only">Google (opens in new window)</span>
+		</a>
+	</li>
+	{%- endif -%}
+
+	{%- if accountLinks.Instagram -%}
+	<li>
+		<a target="_blank" rel="noopener" href="{{ accountLinks.Instagram }}">
+			{%- include ['partials/icon.twig'] ignore missing with { 'icon': 'instagram' ~ icon_suffix } -%}
+			<span class="sr-only">Instagram (opens in new window)</span>
+		</a>
+	</li>
+	{%- endif -%}
+
+	{%- if accountLinks.LinkedIn -%}
+	<li>
+		<a target="_blank" rel="noopener" href="{{ accountLinks.LinkedIn }}">
+			{%- include ['partials/icon.twig'] ignore missing with { 'icon': 'linkedin' ~ icon_suffix } -%}
+			<span class="sr-only">LinkedIn (opens in new window)</span>
+		</a>
+	</li>
+	{%- endif -%}
+
+	{%- if accountLinks.Pinterest -%}
+	<li>
+		<a target="_blank" rel="noopener" href="{{ accountLinks.Pinterest }}">
+			{%- include ['partials/icon.twig'] ignore missing with { 'icon': 'pinterest' ~ icon_suffix } -%}
+			<span class="sr-only">Pinterest (opens in new window)</span>
+		</a>
+	</li>
+	{%- endif -%}
+
+	{%- if accountLinks.Twitter -%}
+	<li>
+		<a target="_blank" rel="noopener" href="{{ accountLinks.Twitter }}">
+			{%- include ['partials/icon.twig'] ignore missing with { 'icon': 'twitter' ~ icon_suffix } -%}
+			<span class="sr-only">Twitter (opens in new window)</span>
+		</a>
+	</li>
+	{%- endif -%}
+
+	{%- if accountLinks.Youtube -%}
+	<li>
+		<a target="_blank" rel="noopener" href="{{ accountLinks.Youtube }}">
+			{%- include ['partials/icon.twig'] ignore missing with { 'icon': 'youtube' ~ icon_suffix } -%}
+			<span class="sr-only">YouTube (opens in new window)</span>
+		</a>
+	</li>
+	{%- endif -%}
+
+	{# For if this is an ACF repeater #}
+	{% if accounts %}
+		{% for item in accounts %}
+		<li>
+			<a target="_blank" rel="noopener" href="{{ item.url }}">
+				{%- include ['partials/icon.twig'] ignore missing with { 'icon': item.service.value ~ icon_suffix } -%}
+				<span class="sr-only">{{ item.service.label }}: {{ item.username }} (opens in new window)</span>
+			</a>
+		</li>
+		{% endfor %}
+	{% endif %}
+
+	{# For if this is Flamedrop data #}
+	{% if SocialSites %}
+		{% for item in SocialSites %}
+		{% if "Google" in item.type %}
+		{% set icon = "google-business" %}
+		{% else %}
+		{% set icon = item.type|sanitize %}
+		{% endif %}
+		<li>
+			<a target="_blank" rel="noopener" href="{{ item.url }}" title="{{ item.type }}">
+				{%- include ['partials/icon.twig'] ignore missing with { 'icon': icon ~ icon_suffix } -%}
+				<span class="sr-only">{{ item.type }} (opens in new window)</span>
+			</a>
+		</li>
+		{% endfor %}
+	{% endif %}
+</ul>

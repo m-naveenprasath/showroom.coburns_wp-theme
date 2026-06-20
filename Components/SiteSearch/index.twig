@@ -1,0 +1,81 @@
+{% set local_namespace = 'search-page-content-container' %}
+{% extends "partials/_component-base.twig" %}
+
+{% set column_class = "col-md-9" %}
+
+{% if searchQuery and posts.found_posts >= 2 %}
+	{% set searchResultsCount %}
+		<strong>{{ posts.found_posts }}</strong> {{ searchResultCount.termPlural }}
+	{% endset %}
+{% elseif searchQuery and posts.found_posts == 1 %}
+	{% set searchResultsCount %}
+		<strong>{{ posts.found_posts }}</strong> {{ searchResultCount.termSingular }}
+	{% endset %}
+{% else %}
+
+{% endif %}
+
+{% block container %}
+<div class="search-page-content--headline">
+	<div class="container">
+		<div class="justify-content-md-center row">
+			<div class="{{ column_class }}">
+				<h1>
+					{% if searchResultsCount %}
+						<span class="minimal-2">{{ searchResultsTitle ?: "Search" }}</span>
+						<div>{{ searchResultsCount }}</div>
+					{% else %}
+						{{ searchTitle ?: "Search" }}
+					{% endif %}
+				</h1>
+			</div>
+			<div class="{{ column_class }}">
+				<form class="form-search" role="search" action="{{ site.url }}">
+					<label class="sr-only">{{ searchField.label }}</label>
+					<div class="input-group">
+						<input name="s" class="form-control form-control-lg" placeholder="{{ searchField.placeholder }}" value="{{ searchQuery }}">
+						<button type="submit" class="btn btn-outline-primary">{% include ['partials/icon.twig'] ignore missing with {'icon': 'search'} %}
+							<span class="form-search-text">{{ searchField.button }}</span>
+						</button>
+					</div>
+				</form>
+				{% if searchQuery and posts.found_posts > 0 %}
+				<p class="text-right">
+					<em>{{ searchEcommercePrompt.sentenceStart }}<a href="https://shop.coburns.com/store/Search.aspx?SearchTerms={{ searchQuery|url_encode }}">{{ searchEcommercePrompt.linkStart }}<strong>{{ searchQuery }}</strong>{{ searchEcommercePrompt.linkEnd }}</a>{{ searchEcommercePrompt.sentenceEnd }}</em>
+				</p>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</div>
+<div class="search-page-content--results container">
+	<div class="justify-content-md-center row">
+		{% if searchQuery and posts|length > 0 %}
+			{% for post in posts %}
+			<div class="{{ column_class }}">
+				{% include 'partials/blog-card-full.twig' %}
+			</div>
+			{% endfor %}
+		{% elseif searchQuery %}
+			<div class="{{ column_class }} text-center">
+				<p class="lead">{{ searchResultCount.noResults }}</p>
+
+				{% if searchQuery %}
+					<p>{{ searchEcommercePrompt.sentenceStart }}<a href="https://shop.coburns.com/store/Search.aspx?SearchTerms={{ searchQuery|url_encode }}">{{ searchEcommercePrompt.linkStart }}<strong>{{ searchQuery }}</strong>{{ searchEcommercePrompt.linkEnd }}</a>{{ searchEcommercePrompt.sentenceEnd }}</p>
+				{% endif %}
+			</div>
+		{% endif %}
+	</div>
+	{% if searchQuery and posts.pagination %}
+	<div class="justify-content-md-center row">
+		<div class="{{ column_class }}">
+			{% include ['partials/pagination.twig'] ignore missing with { 'pagination': posts.pagination, 'class': 'search-page-pagination' } only %}
+		</div>
+	</div>
+	{% endif %}
+</div>
+<script>console.log({{posts|json_encode}})</script>
+<script>console.log({{posts.found_posts|json_encode}})</script>
+<script>console.log({{posts.pagination|json_encode}})</script>
+<script>console.log({{posts.pagination.pages|json_encode}})</script>
+{% endblock %}

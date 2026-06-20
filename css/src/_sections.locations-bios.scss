@@ -1,0 +1,67 @@
+.location-bios-headings {
+	> * + * {
+		margin-top: 0.75rem;
+	}
+
+	margin-bottom: 1.5rem;
+}
+
+.bio-item {
+	@include collapse($link-color);
+	@include basic-transition;
+	text-align: center;
+	cursor: pointer;
+
+	&:before {
+		background: $brown-light;
+		content: "";
+		display: block;
+		height: $border-width;
+		margin: 1rem auto;
+		width: 50%;
+		@include media-breakpoint-up(md) {
+			display: none;
+		}
+	}
+}
+.bio-item--desktop {
+	padding: $grid-gutter-width / 2;
+
+	@include media-breakpoint-down(sm) {
+		display: none;
+	}
+}
+.bio-item--mobile {
+	@include media-breakpoint-up(md) {
+		display: none;
+	}
+}
+.location-bios-accordion.active .bio-item--desktop.collapsed {
+	opacity: 0.5;
+}
+
+.bio-title {
+	@include heading-style-minimal($font-size: 0.75rem, $color: $gray);
+}
+.bio-details {
+	@include media-breakpoint-up(md) {
+		text-align: left;
+		padding: 2rem 0 0;
+	}
+	@include media-breakpoint-up(lg) {
+		padding: 2rem 3rem 0;
+	}
+	@include media-breakpoint-up(xl) {
+		padding: 2rem 4rem 0;
+	}
+}
+
+// @todo: remove
+section:nth-child(2).location-bios-container {
+	@include media-breakpoint-up(md) {
+		margin-top: 4em;
+		&.has-background-accent:before {
+			top: 50%;
+		}
+	}
+}

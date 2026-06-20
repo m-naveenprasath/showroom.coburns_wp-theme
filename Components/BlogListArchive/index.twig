@@ -1,0 +1,25 @@
+{% if posts %}
+<section class="section">
+	<div class="container">
+		<div class="row">
+			{% for post in posts %}
+				<div class="blog--col col-md-6 col-lg-4">{% include ['partials/blog-card-narrow.twig'] %}</div>
+			{% endfor %}
+		</div>
+
+		{% if posts.pagination %}
+			{% include ['partials/pagination.twig'] ignore missing with { 'pagination': posts.pagination } only %}
+		{% endif %}
+	</div>
+</section>
+{% else %}
+<section class="section">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 text-center">
+				<p class="posts-empty">{{ labels.noPostsFound ?: "No posts found!" }}</p>
+			</div>
+		</div>
+	</div>
+</section>
+{% endif %}

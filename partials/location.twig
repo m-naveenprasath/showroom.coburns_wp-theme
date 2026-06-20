@@ -1,0 +1,20 @@
+<div class="{{ local_namespace }}__location map-location">
+	{% if location.name %}
+	<h3 class="{{ local_namespace }}__location__name map-location__name">{{ location.name }}</h3>
+	{% endif %}
+
+	{% if location.location.address %}
+	<address class="{{ local_namespace }}__location__address map-location__address">
+		{{ location.location.street_number }} {{ location.location.street_name }}<br/>{{ location.location.state }} {{ location.location.post_code }}
+	</address>
+	{% endif %}
+	{% if globalHeadings.heroPhoneTitle and location.phone %}
+		<h5 class="subhead">{{globalHeadings.heroPhoneTitle}}</h5>
+		<p><a class="has-gray-color" href="tel:{{ location.phone }}"  target="_blank">{{ location.phone }}</a></p>
+	{% endif %}	
+	{% if globalHeadings.heroHoursTitle and location.hours_line_1 %}
+		<h5 class="subhead">{{globalHeadings.heroHoursTitle}}</h5>
+		<p>{{location.hours_line_1}}{% if location.hours_line_2 %}<br/>{{location.hours_line_2}}{% endif %}</p>
+	{% endif %}
+</div>
+

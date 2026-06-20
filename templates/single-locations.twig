@@ -1,0 +1,24 @@
+{% extends 'templates/_document.twig' %}
+
+{% block content %}
+
+	{{ renderComponent('LocationsHero') }}
+
+	{% if post.staff %}{{ renderComponent('LocationsStaff') }}{% endif %}
+
+	{% set hasLocationsOfferings = false %}
+	{% for component in post.meta('pageComponents') %}
+		{{ renderComponent(component) }}
+
+		{% if component.acf_fc_layout == "LocationsOfferings" %}
+		{% set hasLocationsOfferings = true %}
+		{% endif %}
+	{% else %}
+		{% include "partials/post-full.twig" ignore missing %}
+	{% endfor %}
+
+	{% if not hasLocationsOfferings %}
+		{{ renderComponent('LocationsOfferings') }}
+	{% endif %}
+
+{% endblock %}

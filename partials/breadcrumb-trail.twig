@@ -1,0 +1,17 @@
+{% if parent_posts %}
+
+<nav class="breadcrumbs">
+	<ol class="breadcrumb">
+		{% for post in parent_posts %}
+		<li class="breadcrumb-item">
+			<a href="{{ post.link }}" >{{ post.title }}</a>
+		</li>
+		{% endfor %}
+
+		<li class="breadcrumb-item active" aria-current="page">
+			<span class="sr-only"> {{ post.title }} </span>
+		</li>
+	</ol>
+</nav>
+
+{% endif %}

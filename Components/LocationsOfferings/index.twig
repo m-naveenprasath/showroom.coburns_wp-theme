@@ -1,0 +1,37 @@
+{% set local_namespace = "locations-offerings" %}
+{% extends "partials/section.twig" %}
+
+{% block container %}
+{% if not headings %}
+{% set headings = location_offerings_default.headings %}
+{% endif %}
+{% if not sectionHtml_1 %}
+{% set sectionHtml_1 = location_offerings_default.sectionHtml_1 %}
+{% endif %}
+{% if not sectionHtml_2 %}
+{% set sectionHtml_2 = location_offerings_default.sectionHtml_2 %}
+{% endif %}
+
+	<div class="container">
+		<div class="row">
+
+			<div class="container--text container--text-left">
+				{% if headings %}
+					{% include ['partials/heading-array.twig'] ignore missing with { 'headings': location_offerings_default.headings } %}
+				{% endif %}
+
+				{% if sectionHtml_1 %}
+					<div class="content-flow">{{sectionHtml_1}}</div>
+				{% endif %}
+			</div>
+
+			<div class="container--text container--text-right">
+				{% if sectionHtml_2 %}
+					<div class="content-flow">{{sectionHtml_2}}</div>
+				{% endif %}
+			</div>
+
+		</div>
+	</div>
+
+{% endblock %}

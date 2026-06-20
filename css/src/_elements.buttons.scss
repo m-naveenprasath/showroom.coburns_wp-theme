@@ -1,0 +1,115 @@
+.btn {
+	@include btn-additions;
+}
+
+.btn-shadow {
+	box-shadow: $btn-shadow;
+	&:hover {
+		box-shadow: $btn-shadow-hover;
+	}
+}
+
+.btn-link {
+	padding: 0;
+	font-weight: $btn-font-weight;
+	@include link-color($link-color);
+
+	@include hover-focus-active() {
+		text-decoration: underline;
+	}
+
+	@supports (text-decoration-color: transparent) {
+		text-decoration: underline;
+		text-decoration-color: transparent;
+
+		@include hover-focus-active() {
+			text-decoration-color: currentColor;
+		}
+	}
+}
+
+@each $color, $value in $colors {
+	.btn-#{$color} {
+		@include button-variant($value, $value);
+	}
+	.btn-outline-#{$color} {
+		@include button-outline-variant($value);
+	}
+	.btn-link-#{$color} {
+		color: $value;
+
+		@include hover() {
+			color: darken($value, 10%);
+		}
+	}
+}
+
+.button-group {
+	@include media-breakpoint-up(sm) {
+		margin-bottom: $paragraph-margin-bottom;
+	}
+	.button-col {
+		display: inline-block;
+		margin: 8px;
+		@include media-breakpoint-up(sm) {
+			margin: 8px 16px 8px 0;
+			&:last-of-type {
+				margin-right: 0;
+			}
+		}
+	}
+}
+
+//Social Buttons
+
+.btn-social {
+	svg {
+		opacity: 0.5;
+	}
+}
+
+// Icons
+
+.btn .icon,
+.nav .icon {
+	display: inline-block;
+	font-size: 1.75em;
+	--icon-spacing: 0.5rem;
+	bottom: auto;
+}
+.btn-link .icon {
+	font-size: 1.125em;
+	--icon-spacing: 0.5em;
+}
+
+// These special exceptions might be better if implemented outside of .icon
+.btn .icon.icon-arrow {
+	font-size: 1em;
+
+	@supports (display: inline-flex) {
+		//IE11 flexbox bug
+		width: auto;
+	}
+	height: 1.33ch;
+}
+.btn-link .icon.icon-arrow {
+	--icon-spacing: 0.3em;
+}
+
+.btn .icon {
+	margin-right: 0.5rem;
+	margin-right: var(--icon-spacing);
+}
+.btn .icon:last-child,
+.btn-icon-right .icon {
+	margin-right: 0;
+	margin-left: 0.5rem;
+	margin-left: var(--icon-spacing);
+}
+.btn-icon-right .icon {
+	order: 10;
+}
+
+.btn .icon:only-child {
+	margin: 0;
+}

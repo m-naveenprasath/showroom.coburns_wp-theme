@@ -1,0 +1,10 @@
+{% if button.link %}
+<a
+	class="btn btn-link btn-link-{{ button.color }} btn-icon-{{ button.iconPosition }}"
+	href="{{ button.link.url }}"
+	{% if button.link.target %}target="{{ button.link.target }}"{% endif %}
+	{% if button.link.title %}aria-label="{{ button.link.title }}"{% endif %}
+	>
+	{%- include ['partials/icon.twig'] ignore missing with { 'icon': button.icon } -%}<span>{{ button.text }}</span>
+</a>
+{% endif %}

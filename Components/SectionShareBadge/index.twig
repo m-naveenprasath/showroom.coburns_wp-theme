@@ -1,0 +1,36 @@
+{% set share_title = shareText %}
+{% set share_text = post.link | url_encode %}
+{% set share_url = post.link | url_encode %}
+
+<section class="badge-container badge--{{ local_namespace }} has-background-{{sectionBackground}}">
+	<div class="container text-center">
+		<div class="justify-content-md-center row">
+			{% if image %}
+			<div class="badge--headline col-lg-8">
+				{% set image = Image(image) %}<img src="{{ image.src }}" srcset="{{ image.srcset }}" sizes="{{ image.img_sizes }}" alt="{{ image.alt | escape('html_attr') }}" class="shadow" width="100%" />
+			</div>
+			{% endif %}
+
+			{% if shareWith_show %}<div class="col-lg-8">
+				<ul class="badge--sharetoolbar list-unstyled">
+					{% if shareWithHeading %}
+					<li>
+						{% include ['partials/heading.twig'] ignore missing with { 'heading': shareWithHeading, class: 'hero--sharetoolbar__heading' } %}
+					</li>
+					{% endif %}
+
+					<ul>
+						{% if shareWith.Facebook %}<li><a target="_blank" rel="noopener" href="https://www.facebook.com/sharer.php?u={{share_url}}"><span class="svg-icon" aria-hidden="true">{% include ['partials/icon.twig'] ignore missing with {'icon': 'facebook-color'} %}</span><span class="sr-only">via Facebook</span></a></li>{% endif %}
+						{% if shareWith.LinkedIn %}<li><a target="_blank" rel="noopener" href="https://www.linkedin.com/shareArticle?mini=true&url={{share_url}}&title={{share_title}}&summary={{share_text}}&source={{site.url}}"><span class="svg-icon" aria-hidden="true">{% include ['partials/icon.twig'] ignore missing with {'icon': 'linkedin-color'} %}</span><span class="sr-only">via LinkedIn</span></a></li>{% endif %}
+						{% if shareWith.Twitter %}<li><a target="_blank" rel="noopener" href="https://twitter.com/intent/tweet?url={{shareUrl}}&text={{share_title}}{% if socialmedia.socialmedia.share_twitter_account %}&via={{socialmedia.socialmedia.share_twitter_account}}{% endif %}{% if socialmedia.socialmedia.share_twitter_hashtags %}&hashtags={{socialmedia.socialmedia.share_twitter_hashtags}}{% endif %}"><span class="svg-icon" aria-hidden="true">{% include ['partials/icon.twig'] ignore missing with {'icon': 'twitter-color'} %}</span><span class="sr-only">via Twitter</span></a></li>{% endif %}
+						{% if shareWith.Pinterest %}<li><a target="_blank" rel="noopener" href="http://pinterest.com/pin/create/link/?url={{shareUrl}}&media={{ image.src }}&description={{share_title}}"><span class="svg-icon" aria-hidden="true">{% include ['partials/icon.twig'] ignore missing with {'icon': 'pinterest-color'} %}</span><span class="sr-only">via Pinterest</span></a></li>{% endif %}
+						{% if shareWith.Email %}<li><a target="_blank" rel="noopener" href="mailto:?subject={{share_title}}&body={{shareUrl}}"><span class="svg-icon" aria-hidden="true">{% include ['partials/icon.twig'] ignore missing with {'icon': 'email'} %}</span><span class="sr-only">via Email</span></a>
+						</li>{% endif %}
+					</ul>
+
+					{% include ['partials/button-array.twig'] ignore missing with { 'buttons': buttons } %}
+				</ul>
+			</div>{% endif %}
+		</div>
+	</div>
+</section>

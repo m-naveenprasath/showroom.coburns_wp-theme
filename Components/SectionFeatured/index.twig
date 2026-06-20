@@ -1,0 +1,37 @@
+{% set local_namespace = "featured-home-container" %}
+
+<section class="{{ local_namespace }} has-background-{{ sectionBackground }}">
+	<div class="container">
+		<div class="row">
+			<div class="featured-home--text col-md-6 col-lg-3">
+				{% if sectionTertiary %}
+					<h5 class="featured-home--headline">{{sectionTertiary}}</h5>
+				{% endif %}
+
+				{% include ['partials/heading-array.twig'] ignore missing with { 'headings': headings } %}
+
+				{% if author.image %}
+					<figure class="image-circle image-circle--small">
+					{% include ['partials/image.twig'] ignore missing with { 'image': author.image } %}
+					</figure>
+				{% endif %}
+
+				{% if author.quote %}
+				<p class="featured-home--quote">{{ author.quote }}</p>
+				{% endif %}
+
+				{% if author.name %}
+				<p class="featured-home--author">– {{ author.name }}</p>
+				{% endif %}
+			</div>
+			{% include "partials/image-carousel.twig"  %}
+		</div>
+		{% if buttons %}
+		<div class="row">
+			<div class="featured-home--link col-lg-3">
+				{% include ['partials/button-array.twig'] ignore missing with { 'buttons': buttons } %}
+			</div>
+		</div>
+		{% endif %}
+	</div>
+</section>

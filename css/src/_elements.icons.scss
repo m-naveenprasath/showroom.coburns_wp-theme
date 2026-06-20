@@ -1,0 +1,17 @@
+.icon {
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	position: relative;
+	bottom: -0.1em; //this isn't great but it's close
+	vertical-align: baseline;
+}
+
+.icon-hamburger {
+	* {
+		transition-property: transform, opacity, color;
+		transition-duration: 300ms;
+
+		transform-origin: center;
+	}
+}

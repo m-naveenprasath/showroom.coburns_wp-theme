@@ -1,0 +1,154 @@
+.nav-mega {
+	display: none;
+	z-index: 1001; /*bring above ankle*/
+}
+@include media-breakpoint-up(lg) {
+	.nav-mega {
+		display: block;
+		@include link-color($main-nav-color);
+		border-top: 0;
+		border: $mega-border-width solid $border-color;
+		border-radius: $border-radius;
+		position: relative;
+		> .nav {
+			background-color: white;
+			flex-wrap: nowrap;
+		}
+		.nav-item {
+			padding: $mega-nav-item-padding 0;
+			text-align: center;
+			max-width: 190px;
+			width: auto;
+			flex-grow: 1;
+			&.has-red-color a {
+				@include link-color($red);
+			}
+			.nav-link {
+				@include heading-style-minimal($font-size: 0.75rem, $color: $main-nav-color);
+				padding: $mega-nav-link-padding-y $mega-nav-link-padding-x;
+				&:hover {
+					color: $blue-light;
+				}
+			}
+			& ~ .nav-item .nav-link {
+				border-left: $mega-border-width solid $border-color;
+				padding: 1rem 0;
+			}
+			& ~ .nav-item .sub-menu .nav-item .nav-link {
+				border-left: 0;
+				padding: 1rem;
+			}
+			&.nav-header {
+				flex-grow: 0;
+				flex-shrink: 0;
+				position: relative;
+				a {
+					padding: $mega-nav-link-padding-y 2rem;
+					pointer-events: none;
+				}
+				&:after,
+				&:before {
+					content: "";
+					border-right: $mega-border-width solid $border-color;
+					height: 1.75em;
+					position: absolute;
+					right: 0.25em;
+				}
+				&:after {
+					transform: rotate(30deg);
+					bottom: 0.5rem;
+				}
+				&:before {
+					transform: rotate(-30deg);
+					top: 0.5em;
+				}
+			}
+			&:nth-child(2) .nav-link {
+				border-left: 0;
+			}
+			&.nav-back {
+				a {
+					@include link-color($blue-dark);
+				}
+				.icon-arrow {
+					bottom: -0.1em;
+					margin-right: 4px;
+					transform: rotate(180deg);
+					width: 0.5em;
+				}
+			}
+			&.nav-text a {
+				@include link-color($blue-dark);
+				pointer-events: none;
+			}
+			&.menu-item-has-children {
+				@include menu-item-has-children(blue-dark);
+				color: $body-color;
+				background-color: $white;
+				a {
+					@include link-color($main-nav-color);
+				}
+				> a {
+					&:after {
+						border: 0;
+						right: 0.3rem;
+						top: 0.3rem;
+					}
+				}
+				.sub-menu li {
+					background-color: $white;
+					border-top: $mega-border-width solid $border-color;
+				}
+			}
+			&.highlight {
+				border-left: 0;
+				padding: 0;
+				flex-grow: 0;
+				z-index: 1;
+				&:last-child {
+					border-radius: 0 0.15rem 0.15rem 0;
+					@supports (display: flex) {
+						// IE11 flexbox bug caused this to shoot the element offscreen
+						margin-left: auto;
+					}
+				}
+				.nav-link {
+					margin-right: -2px;
+					padding: ($mega-nav-item-padding + $mega-nav-link-padding-y) ($mega-nav-link-padding-y * 2);
+
+					color: white;
+					background-color: $teal;
+					border-color: none;
+					@include hover-focus-active() {
+						color: white;
+						background-color: darken($teal, 10%);
+					}
+
+					span {
+						border-color: transparent;
+					}
+				}
+			}
+		}
+		.nav-item.active:not(.nav-header):not(.highlight) > .nav-link {
+			@include link-color($blue-light);
+			span {
+				border-bottom: 2px solid $blue-light;
+				padding-bottom: 0.25rem;
+			}
+		}
+		.sub-menu {
+			flex-direction: column;
+			flex-wrap: nowrap;
+			margin-top: 10px;
+			position: absolute;
+			z-index: $zindex-dropdown;
+			.nav-item {
+				padding: 0;
+				.nav-link {
+					padding: 0.5rem 1rem;
+				}
+			}
+		}
+	}
+}

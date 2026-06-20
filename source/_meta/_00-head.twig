@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html class="{{ htmlClass }}">
+  <head>
+
+    <title>{{ title }}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width"/>
+
+		{# ========== CSS ==========  #}
+    <link rel="stylesheet" href="https://use.typekit.net/ute8tox.css" media="all"/>
+
+    <link rel="stylesheet" href="../../css/dist/min/style-ecommerce.css?{{ cacheBuster }}" media="screen" title="Default"/>
+    <link rel="stylesheet" href="../../css/dist/min/style-showroom--pl.css?{{ cacheBuster }}" media="screen" title="Default" />
+
+		{# Alternate stylesheets only work in Firefox, sadly, but they do make it easier to check stuff. #}
+    <link rel="alternate stylesheet" href="../../css/dist/min/style-ecommerce.css?{{ cacheBuster }}" media="screen" title="eCommerce"/>
+    <link rel="alternate stylesheet" href="../../css/dist/min/style-showroom.css?{{ cacheBuster }}" media="screen" title="Showroom" />
+
+    <link rel="alternate stylesheet" href="../../css/dist/min/print.css?{{ cacheBuster }}" media="screen" title="Print" />
+    <link rel="stylesheet" href="../../css/dist/min/print.css?{{ cacheBuster }}" media="print" />
+
+    <link rel="stylesheet" href="../../css/dist/min/pattern-scaffolding.css?{{ cacheBuster }}" media="all"/>
+		{# ========== /CSS ==========  #}
+
+		{# ========== JS ==========  #}
+		{# We're only putting script tags in the head and using the CDN version to streamline Pattern Lab development. Production JS should be self-hosted and located in the footer, as commented out in _01-foot.twig #}
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js" integrity="sha512-jGsMH83oKe9asCpkOVkBnUrDDTp8wl+adkB2D+//JtlxO4SrLoJdhbOysIFQJloQFD+C4Fl1rMsQZF76JjV0eQ==" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.min.js" integrity="sha512-BKbSR+cfyxLdMAsE0naLReFSLg8/pjbgfxHh/k/kUC82Hy7r6HtR5hLhobaln2gcTvzkyyehrdREdjpsQwy2Jw==" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js" integrity="sha512-8qmis31OQi6hIRgvkht0s6mCOittjMa9GMqtK9hes5iEQBQE/Ca6yGE5FsW36vyipGoWQswBj/QBm2JR086Rkw==" crossorigin="anonymous"></script>
+
+		<script src="https://minicart.coburns.com/dist/wp/AcCart.umd.min.js"></script>
+		<script src="https://featured-items.coburns.com/dist/wp/FeaturedProducts.umd.min.js"></script>
+		{# ========== /JS ==========  #}
+
+    <!-- Begin Pattern Lab (Required for Pattern Lab to run properly) -->
+    {{ patternLabHead | raw }}
+    <!-- End Pattern Lab -->
+
+  </head>
+  <body class="{{ bodyClass }}"></body>
+</html>

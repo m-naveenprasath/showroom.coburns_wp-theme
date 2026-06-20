@@ -1,0 +1,62 @@
+{
+  "name": "coburns-pattern-library",
+  "version": "1.1.2",
+  "repository": "git@github.com:bbrcreative/coburns-showroom.git",
+  "author": "cbirdsong@bbrcreative.com",
+  "license": "MIT",
+  "scripts": {
+    "start": "npm run serve",
+    "clean": "git clean -d -X -f",
+    "serve": "npm-run-all --parallel css:serve pl:serve",
+    "build": "npm-run-all css:build js:build pl:build",
+    "pl:build": "patternlab build --config ./patternlab-config.json",
+    "pl:serve": "patternlab serve --config ./patternlab-config.json",
+    "pl:version": "patternlab --version",
+    "css:build": "npm-run-all css:sass:build css:postcss:build",
+    "css:sass:build": "sass --load-path=node_modules css/src:css/dist",
+    "css:postcss:build": "postcss css/dist/*.css -d css/dist/min --map --use autoprefixer cssnano",
+    "css:serve": "npm-run-all --parallel css:sass:serve css:postcss:serve",
+    "css:sass:serve": "sass --load-path=node_modules css/src:css/dist --watch",
+    "css:postcss:serve": "postcss css/dist/*.css -d css/dist/min --watch --map --use autoprefixer",
+    "js:build": "",
+    "js:serve": "",
+    "test:create-local-snapshot": "backstop reference --config=./backstopConfig.js",
+    "test:compare-to-local-snapshot": "backstop test --config=./backstopConfig.js",
+    "test:view-last-test": "backstop openReport --config=./backstopConfig.js",
+    "test:approve-changes": "backstop approve --config=./backstopConfig.js"
+  },
+  "dependencies": {
+    "bootstrap": "^4.5.3",
+    "keen-slider": "^5.2.4",
+    "tablesort": "^5.2.1",
+    "vue": "^2.6.12"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.1",
+    "@babel/core": "^7.12.3",
+    "@babel/plugin-transform-runtime": "^7.12.1",
+    "@babel/preset-env": "^7.12.1",
+    "@babel/runtime": "^7.12.1",
+    "@pattern-lab/cli": "^5.10.1",
+    "@pattern-lab/core": "^5.10.1",
+    "@pattern-lab/engine-twig-php": "^5.10.1",
+    "@pattern-lab/starterkit-twig-demo": "^5.10.1",
+    "@pattern-lab/uikit-workshop": "^5.10.2",
+    "@prettier/plugin-php": "^0.16.0",
+    "autoprefixer": "^9.7.5",
+    "backstopjs": "^5.0.1",
+    "browserslist": "^4.20.4",
+    "cssnano": "^4.1.10",
+    "jquery": "^1.12.4",
+    "node-fetch": "^2.6.0",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^7.1.0",
+    "postcss-loader": "^3.0.0",
+    "prettier": "^2.1.2",
+    "sass": "^1.29.0"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "keywords": []
+}

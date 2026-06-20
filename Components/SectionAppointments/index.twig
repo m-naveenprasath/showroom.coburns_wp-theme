@@ -1,0 +1,24 @@
+{% set local_namespace = "appointments" %}
+<section class="{{ local_namespace }}-page-content-container page-content" id="appointments">
+	<div class="{{ local_namespace }}-page-content--headline">
+		<div class="container">
+			<div class="justify-content-md-center row">
+				{% if headings %}
+					<div class="col-12 text-center">
+						{% include ['partials/heading-array.twig'] ignore missing with { 'headings': headings } %}
+					</div>
+				{% endif %}
+
+				{% if sectionHtml_1 %}
+					<div class="col-lg-8">{{ sectionHtml_1 }}</div>
+				{% endif %}
+
+				{% if form_shortcode %}
+					<div class="col-lg-12">
+						{{ form_shortcode | shortcodes }}
+					</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</section>

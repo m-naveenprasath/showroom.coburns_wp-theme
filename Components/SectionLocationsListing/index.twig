@@ -1,0 +1,92 @@
+{% set map_list_namespace = "hero-locations" %}
+{% extends "partials/hero.twig" %}
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block image %}
+	{% include ['partials/location-map.twig'] ignore missing with { 'location': locations } %}
+{% endblock %}
+
+{% block content %}
+<div class="hero--locations">
+	<div class="hero--locations-buttons">
+		<form class="hero--form form-search" id="search-location">
+			<input id="search-location-latitude" type="hidden">
+			<input id="search-location-longitude" type="hidden">
+
+			<label class="sr-only" for="search-location-input">Search</label>
+			<div class="input-group">
+				<input class="form-control" id="search-location-input"  autocomplete="postal-code" placeholder="{{ location_search_field_placeholder_label }}">
+				<button id="search-location-submit" type="submit" class="btn btn-primary">{% include ['partials/icon.twig'] ignore missing with {'icon': 'search'} %}<span class="form-search-text">Search</span>
+				</button>
+			</div>
+			<div class="button-group mt-2" id="geolocation">
+				<button id="search-location-geocode" type="button" class="btn btn-outline-primary btn-shadow" >
+					{% include ['partials/icon.twig'] ignore missing with {'icon': 'location-arrow'} %}
+					<span>{{ location_search_button_label }}</span>
+				</button>
+			</div>
+			<div id="search-location-spinner" class="form-spinner">
+				<div class="spinner-border" role="status">
+					<span class="sr-only">Loading...</span>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="hero--locations-text content-flow">
+		{% if sectionHtml_1 %}{{sectionHtml_1}}{% endif %}
+	</div>
+</div>
+{% endblock %}
+
+{% block extracontent %}
+{% set map_namespace = "section-map" %}
+{% set map_list_namespace = "locations" %}
+<section class="section" id="section-{{ map_list_namespace }}-listing">
+	<div class="container">
+		<div class="table listing-table">
+			<table class="table-hover" id="search-location-table">
+				<caption class="sr-only">Showroom Locations</caption>
+				<thead>
+					<tr>
+						<th scope="col">Location</th>
+						<th scope="col" class="listing-address" data-sort-method="none">Address</th>
+						<th scope="col" class="listing-dist" data-sort-default><abbr title="Distance">Dist.</abbr></th>
+						<th scope="col" data-sort-method="none">Phone</th>
+						<th scope="col" data-sort-method="none">Actions</th>
+					</tr>
+				</thead>
+
+				{% if locations %}
+				<tbody>
+					{% for location in locations %}
+						{% include ['partials/location-table-row.twig'] ignore missing %}
+					{% endfor %}
+				</tbody>
+				{% endif %}
+			</table>
+		</div>
+		<div class="row justify-content-center align-items-center">
+			<div class="col-auto">
+				<button id="search-location-table-reset" type="button" class="btn btn-sm btn-outline-primary | search-location-reset" hidden>
+					{% include ['partials/icon.twig'] ignore missing with {'icon': 'eye'} %}
+					<span>{{ location_reset_button_label ?: "Show All Locations" }}</span>
+				</button>
+			</div>
+		</div>
+	</div>
+
+	{% if buttonHeading or buttons %}
+	<div class="container">
+		<div class="justify-content-md-center row">
+			<div class="{{ map_list_namespace }}--page-content">
+				{% include ['partials/heading-array.twig'] ignore missing with { 'headings': buttonHeadings } %}
+				{% if sectionHtml_2 %}<div class="content-flow">{{sectionHtml_2}}</div>{% endif %}
+
+				{% include ['partials/button-array.twig'] ignore missing with { 'buttons': buttons } %}
+			</div>
+		</div>
+	</div>
+	{% endif %}
+</section>
+{% endblock %}

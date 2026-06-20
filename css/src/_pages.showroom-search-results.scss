@@ -1,0 +1,80 @@
+.search-page-content-container {
+	padding-top: 0;
+}
+
+.search-page-content--headline {
+	padding-bottom: 155px;
+	padding-top: 2rem;
+	@include background-texture;
+	@include media-breakpoint-up(md) {
+		padding-bottom: 180px;
+	}
+	@include media-breakpoint-up(lg) {
+		box-shadow: inset 20px 0 0 #fff, inset -20px 0 0 #fff;
+		margin-top: -36px;
+		padding-bottom: 220px;
+		padding-top: 6.25rem;
+	}
+}
+.search-page-content--results {
+	margin-top: -125px;
+	@include media-breakpoint-up(md) {
+		margin-top: -150px;
+	}
+}
+
+.search-page-pagination {
+	margin-top: 2rem;
+
+	@include media-breakpoint-up(md) {
+		margin-top: 4rem;
+	}
+}
+
+// This should probably move into its own partial
+.pagination-next-prev {
+	// Reset
+	&,
+	ul,
+	li {
+		list-style-type: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	// Structure
+	display: flex;
+	flex-flow: column;
+	// accounts for small/zoomed phones without compromising the layout for every phone
+	@media (min-width: 350px) {
+		flex-flow: row wrap;
+	}
+
+	align-items: center;
+	justify-content: center;
+
+	.pagination-next-prev-arrow {
+		min-width: 10rem;
+	}
+	.pagination-next-prev-item {
+		padding: $grid-gutter-width * 0.5;
+
+		a {
+			color: $blue-dark;
+			font-weight: $font-weight-strong;
+		}
+		.current {
+			color: $black;
+			text-decoration: underline;
+		}
+	}
+
+	.pagination-next-prev-arrow--previous {
+		text-align: left;
+		margin-right: auto;
+	}
+	.pagination-next-prev-arrow--next {
+		text-align: right;
+		margin-left: auto;
+	}
+}

@@ -1,0 +1,120 @@
+//Raw Colors
+
+$blue-darker: #000627;
+$blue-dark: #002a64;
+$blue: #7f94b1;
+$blue-light: #7db2d5;
+$teal: #11a4c3;
+
+$red: #f10036;
+
+$beige: #e4a539;
+
+$brown-dark: #555249;
+$brown-light: #c6b89f;
+
+$accent: #f7f3ef;
+$watermark: #e7dbd1;
+
+$gray-dark: #212529;
+$gray: #585858;
+$gray-med: #a5a5a5;
+$gray-light: #c9c9c9;
+$gray-xlight: #f8f8f8;
+
+$white: #ffffff;
+$black: #000000;
+$color-yiq-light: #ffffff;
+$color-yiq-dark: $gray-dark;
+
+$colors: (
+	"blue-darker": $blue-darker,
+	"blue-dark": $blue-dark,
+	"blue": $blue,
+	"blue-light": $blue-light,
+	"teal": $teal,
+	"red": $red,
+	"beige": $beige,
+	"brown-dark": $brown-dark,
+	"brown-light": $brown-light,
+	"accent": $accent,
+	"watermark": $watermark,
+	"gray": $gray,
+	"gray-med": $gray-med,
+	"gray-light": $gray-light,
+	"white": $white,
+	"black": $black,
+);
+
+$facebook: #405d9d;
+$instagram: #e52d27;
+$youtube: #c8046c;
+$twitter: #42aeec;
+$pinterest: #e60019;
+$linkedin: #0073b1;
+
+$social-colors: (
+	"facebook": $facebook,
+	"instagram": $instagram,
+	"youtube": $youtube,
+	"twitter": $twitter,
+	"pinterest": $pinterest,
+	"linkedin": $linkedin,
+);
+
+//Bootstrap Colors
+$body-bg: $white;
+$body-color: $gray;
+$bg: $white;
+
+$headings-color: $blue-dark;
+$link-color: $blue-light !default;
+$hr-border-color: $gray-light;
+$text-muted: #737373;
+
+$primary: $blue-light !default;
+$secondary: $blue;
+$tertiary: $primary !default;
+$info: $gray;
+$warning: $beige;
+$danger: $red;
+$ankle-icons: $blue-dark !default;
+
+//Forms
+$input-placeholder-color: $gray-light;
+$input-color: $gray;
+$input-focus-color: $gray-dark;
+$input-border-color: $gray-light;
+$input-focus-border-color: $gray-light;
+$input-group-addon-bg: $gray-xlight;
+
+// Our Custom Colors
+$card-border-color: $gray-light;
+$border-color: $gray-light;
+$custom-control-indicator-checked-bg: $secondary;
+$custom-control-indicator-focus-border-color: $secondary;
+$custom-control-indicator-border-color: $gray-light;
+
+$product-title-color: $blue-dark;
+
+//Navigation
+$main-nav-color: $gray;
+$mega-nav-color: $gray;
+
+//Blog
+$blog-hover: $beige !default;
+
+//Pagination
+$pagination-border-color: $gray-light;
+
+// $pagination-hover-color: $link-hover-color !default;
+$pagination-hover-bg: rgba($gray-light, 0.5);
+$pagination-hover-border-color: $gray-light;
+
+// $pagination-active-color: $white;
+// $pagination-active-bg: $blue-dark;
+// $pagination-active-border-color: $pagination-active-bg !default;
+
+$pagination-disabled-color: rgba($gray-light, 0.85);
+// $pagination-disabled-bg: $white !default;
+$pagination-disabled-border-color: rgba($gray-light, 0.5);

@@ -1,0 +1,29 @@
+.image-gallery-container {
+	@include media-breakpoint-up(lg) {
+		.row {
+			align-items: center;
+			justify-content: center;
+		}
+	}
+	.button-group .button-col {
+		@include media-breakpoint-up(sm) {
+			margin: 8px;
+		}
+	}
+
+  .container{
+    margin-top: 2rem;
+  }
+
+	.image {
+		max-width: 100vw;
+
+		img,
+		svg {
+			max-width: 80vw;
+			width: auto;
+			height: auto;
+		}
+	}
+}
+

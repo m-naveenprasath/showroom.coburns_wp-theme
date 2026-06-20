@@ -1,0 +1,45 @@
+{% set global_namespace = "section" %}
+
+{# Set up local namespace and component IDs #}
+
+{% if not local_namespace %}
+	{% if component.acf_fc_layout %}
+		{% set local_namespace = component.acf_fc_layout %}
+	{% elseif component_name %}
+		{% set local_namespace = component_name %}
+	{% else %}
+		{% set local_namespace = 'component' %}
+	{% endif %}
+{% endif %}
+
+{% if not component_ID %}
+  {% if _key and post %}
+    {% set component_ID = post.slug ~ "-" ~ _key %}
+		{% else %}
+		{% set component_ID = local_namespace ~ "-" ~ _key %}
+  {% endif %}
+{% endif %}
+
+{# Set up media position logic #}
+
+{% if media.position == 'left' and media.type != 'none' %}
+	{% set mediaPosition = 'left' %}
+	{% set textPosition = 'right' %}
+{% endif %}
+{% if media.position == 'right' and media.type != 'none' %}
+	{% set mediaPosition = 'right' %}
+	{% set textPosition = 'left' %}
+{% endif %}
+
+{# Add extra classes #}
+
+{% set extra_classes = '' %}
+
+{% if styleFinderStamp_show or styleFinderAccent_show %}
+	{% set extra_classes = extra_classes ~ "has-background-accent " %}
+{% endif %}
+
+<section class="{{ global_namespace }} {{ local_namespace }} {{ local_namespace }}-container {{ extra_classes }} {{ sectionBackground ? "has-background-" ~ sectionBackground }} {{ sectionTextAlign ? "text-" ~ sectionTextAlign }} {{ mediaPosition ? "container-image-" ~ mediaPosition }}" id="{{ component_ID }}">
+	{% block container %}
+	{% endblock %}
+</section>

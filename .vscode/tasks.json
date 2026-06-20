@@ -1,0 +1,23 @@
+{
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "serve",
+			"problemMatcher": [],
+			"label": "npm: serve",
+			"detail": "npm run build && npm run css:serve & npm run pl:serve",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		},
+		{
+			"type": "npm",
+			"script": "build",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "npm: build",
+			"detail": "npm run css:build && npm run js:build && npm run pl:build"
+		}
+	]
+}

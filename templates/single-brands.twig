@@ -1,0 +1,15 @@
+{% extends 'templates/_document.twig' %}
+
+{% block content %}
+
+	{% for component in post.meta('pageComponents') %}
+		{{ renderComponent(component) }}
+	{% else %}
+		{% set featuredImage_show = true %}
+		{% set additionalImages_show = true %}
+		{% set brandProductLines_show = true %}
+		{% set brandHeroButtons_show = true %}
+		{{ renderComponent('BrandHero') }}
+	{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "partials/hero.twig" %}
+
+{% block image %}
+	{% include ['partials/image.twig'] ignore missing with { 'image': post.thumbnail } %}
+{% endblock %}
+
+{% block content %}
+
+	<div class="row">
+		{% if sectionHtml_1 %}
+			<div class="col-md">
+			{{sectionHtml_1}}
+			</div>
+		{% endif %}
+	</div>
+
+	{% include ['partials/hero-share-with.twig'] ignore missing %}
+
+{% endblock %}
+
+{% block extracontent %}
+	{{ renderComponent('HeroCarousel') }}
+{% endblock %}
+

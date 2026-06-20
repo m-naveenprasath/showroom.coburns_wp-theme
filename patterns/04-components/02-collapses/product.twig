@@ -1,0 +1,17 @@
+{# @todo: these should turn into collapses at mobile #}
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="measurements-tab" data-toggle="tab" href="#measurements" role="tab" aria-controls="measurements" aria-selected="false">Measurements & Dimensions</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews</a>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"><strong>Product #:</strong> 14539IL202KL<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>
+  <div class="tab-pane fade" id="measurements" role="tabpanel" aria-labelledby="measurements-tab">Width: 24”<br/>Height: 18”<br/>Depth: 3’</div>
+  <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">{% include "@components/03-cards/03-review.twig" %}{% include "@components/03-cards/03-review.twig" %}<a href="" class="btn btn-primary">More Reviews</a></div>
+</div>

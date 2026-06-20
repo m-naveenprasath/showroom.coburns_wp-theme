@@ -1,0 +1,59 @@
+<div class="form--login">
+	<div class="form--login-header">
+    <div class="h2">Create Account</div>
+    <p>Get started with your free account</p>
+    <p>
+      <a href="" class="btn btn-twitter">{% include "@icons/twitter.twig" %}
+        <span>Twitter</span></a>
+      <a href="" class="btn btn-facebook">{% include "@icons/facebook.twig" %}
+        <span>Facebook</span></a>
+    </p>
+    <p class="divider-text">
+      <span>OR</span>
+    </p>
+   </div>
+    <form>
+      <div class="form-group">
+	  <label class="sr-only"></label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">{% include "@icons/person.twig" %}</span>
+        </div>
+        <input class="form-control" type="text" id="name" placeholder="Full name">
+        </div>
+      </div>
+      <div class="form-group">
+	  <label class="sr-only"></label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">{% include "@icons/email.twig" %}</span>
+        </div>
+        <input class="form-control" type="email" id="email" placeholder="Email address">
+      </div>
+        </div>
+      <div class="form-group">
+	  <label class="sr-only"></label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">{% include "@icons/lock.twig" %}</span>
+        </div>
+        <input class="form-control" type="password" id="password" placeholder="Create password">
+      </div>
+      </div>
+      <div class="form-group">
+	  <label class="sr-only"></label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">{% include "@icons/lock.twig" %}</span>
+        </div>
+        <input class="form-control" type="password" id="password2" placeholder="Repeat password">
+      </div>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block">Register</button>
+      </div>
+      <p class="form--login-footer">
+        <a href="" class="btn btn-link">Have an account? Log In</a>
+      </p>
+    </form>
+</div>

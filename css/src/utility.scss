@@ -1,0 +1,34 @@
+//* SETTINGS
+@import "settings";
+
+//* BOOTSTRAP
+@import "bootstrap.mixins";
+
+//* TOOLS
+@import "tools";
+
+// Wordpress admin bar
+
+.admin-bar {
+	--wp-admin-bar-height: 32px;
+
+	@media (max-width: 782px) {
+		--wp-admin-bar-height: 46px;
+	}
+}
+
+.admin-bar body {
+	margin-top: calc(#{$mobile-nav-sticky-height} + var(--wp-admin-bar-height));
+	@include media-breakpoint-up(lg) {
+		margin: 0;
+	}
+}
+.admin-bar .site-wrapper {
+	padding-top: var(--wp-admin-bar-height);
+	scroll-margin-top: calc(var(--wp-admin-bar-height) * 2);
+}
+
+.admin-bar #mobile-header,
+.admin-bar .mobile-header {
+	top: var(--wp-admin-bar-height);
+}

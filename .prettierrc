@@ -1,0 +1,22 @@
+{
+	"useTabs": true,
+	"tabWidth": 2,
+	"printWidth": 120,
+	"overrides": [
+		{
+			"files": "*.php",
+			"options": {
+				"useTabs": false,
+				"tabWidth": 4,
+				"singleQuote": true
+			}
+		},
+		{
+			"files": "*.json",
+			"options": {
+				"useTabs": false,
+				"tabWidth": 2
+			}
+		}
+	]
+}

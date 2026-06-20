@@ -1,0 +1,44 @@
+{% set global_namespace = "SbBlogPost" %}
+{% set local_namespace = "SbBlogPostTease" %}
+
+<article class="{{ global_namespace }} {{ local_namespace }} {{ local_namespace }}--{{ list.layout }} image-{{ list.image_position }}">
+	<header class="{{ local_namespace }}__header">
+		{% if post.categories and 'categories' in list.elements %}
+		{% include ['partials/post__tax-list--inline.twig'] ignore missing with { 'terms': post.categories } %}
+		{% endif %}
+
+		{% if post.tags and 'tags' in list.elements %}
+		{% include ['partials/post__tax-list--inline.twig'] ignore missing with { 'terms': post.tags } %}
+		{% endif %}
+
+		{% if 'date' in list.elements %}
+		{% include ['partials/date-long.twig'] ignore missing with { 'date': post.post_date } %}
+		{% endif %}
+
+		<h2 class="{{ global_namespace }}__title">
+			<a href="{{ post.link }}">
+				{{ post.title }}
+			</a>
+		</h2>
+	</header>
+
+	{% if post.thumbnail and 'image' in list.elements %}
+	<figure class="{{ local_namespace }}__image">
+		<a href="{{ post.link }}">
+		{% include ['partials/image.twig'] ignore missing with { 'image': post.thumbnail } %}
+		</a>
+	</figure>
+	{% endif %}
+
+	<div class="{{ local_namespace }}__content">
+		{% if post.preview and 'excerpt' in list.elements %}
+		<div class="{{ local_namespace }}__excerpt">
+		<p>{{ post.preview.read_more(false) }}</p>
+		</div>
+		{% endif %}
+
+		{% if post.link and 'read_more' in list.elements %}
+		<a class="button button--small" href="{{ post.link }}">{{ labels.readMore }}</a>
+		{% endif %}
+	</div>
+</article>

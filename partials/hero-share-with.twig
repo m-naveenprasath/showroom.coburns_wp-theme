@@ -1,0 +1,29 @@
+
+{% if shareWith_show %}
+
+	{% set share_title = post.title | url_encode %}
+	{% set share_text = post.link | url_encode %}
+	{% set share_url = post.link | url_encode %}
+
+	<ul class="hero--sharetoolbar list-unstyled">
+		<li>
+			{% if shareWithHeading %}
+				{% include ['partials/heading.twig'] ignore missing with { 'heading': shareWithHeading, class: 'hero--sharetoolbar__heading' } %}
+			{% else %}
+				<div class="hero--sharetoolbar__heading minimal-2">{{ social_media_share_label ?: "Share" }}</div>
+			{% endif %}
+		</li>
+		{% if shareWith.Facebook %}
+			<li><a target="_blank" rel="noopener" href="https://www.facebook.com/sharer.php?u={{share_url}}"><span class="svg-icon" aria-hidden="true">{% include ['partials/icon.twig'] ignore missing with {'icon': 'facebook-color'} %}</span><span class="sr-only">via Facebook</span></a></li>{% endif %}
+		{% if shareWith.LinkedIn %}
+			<li><a target="_blank" rel="noopener" href="https://www.linkedin.com/shareArticle?mini=true&url={{share_url}}&title={{share_title}}&summary={{share_text}}&source={{site.url}}"><span class="svg-icon" aria-hidden="true">{% include ['partials/icon.twig'] ignore missing with {'icon': 'linkedin-color'} %}</span><span class="sr-only">via LinkedIn</span></a></li>{% endif %}
+		{% if shareWith.Pinterest %}
+			<li><a target="_blank" rel="noopener" href="http://pinterest.com/pin/create/link/?url={{share_url}}&media={{ post.thumbnail.src }}&description={{share_title}}"><span class="svg-icon" aria-hidden="true">{% include ['partials/icon.twig'] ignore missing with {'icon': 'pinterest-color'} %}</span><span class="sr-only">via Pinterest</span></a></li>{% endif %}
+		{% if shareWith.Twitter %}
+			<li><a target="_blank" rel="noopener" href="https://twitter.com/intent/tweet?url={{share_url}}&text={{share_title}}{% if socialmedia.socialmedia.share_twitter_account %}&via={{socialmedia.socialmedia.share_twitter_account}}{% endif %}{% if socialmedia.socialmedia.share_twitter_hashtags %}&hashtags={{socialmedia.socialmedia.share_twitter_hashtags}}{% endif %}"><span class="svg-icon" aria-hidden="true">{% include ['partials/icon.twig'] ignore missing with {'icon': 'twitter-color'} %}</span><span class="sr-only">via Twitter</span></a></li>{% endif %}
+		{% if shareWith.Email %}<li>
+			<a target="_blank" rel="noopener" href="mailto:?subject={{share_title}}&body={{share_url}}"><span class="svg-icon" aria-hidden="true">{% include ['partials/icon.twig'] ignore missing with {'icon': 'email'} %}</span><span class="sr-only">via Email</span></a>
+		</li>{% endif %}
+	</ul>
+
+{% endif %}

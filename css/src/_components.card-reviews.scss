@@ -1,0 +1,21 @@
+.review-card {
+	.card-body {
+		padding: 0 0 1rem;
+	}
+    .review-card__header {
+        display: inline-flex;
+        align-items: center;
+        .review-card__header-text-wrap {
+            margin-bottom: 1rem;
+            padding-left: 10px;
+        }
+    }
+    .review-card__headline a {
+        @include link-color($black);
+    }
+    .review-card__image {
+        float: left;
+        flex-shrink: 0;
+        @include circle(60px);
+    }
+}

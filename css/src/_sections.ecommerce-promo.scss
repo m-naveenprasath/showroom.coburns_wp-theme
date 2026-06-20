@@ -1,0 +1,94 @@
+.promo-container {
+	padding-bottom: 0;
+	padding-top: 0;
+	position: relative;
+	.container {
+		border-bottom: 2px $gray-light solid;
+		border-top: 2px $gray-light solid;
+		padding-bottom: 22px;
+		padding-top: 22px;
+		@include media-breakpoint-up(sm) {
+			background: white;
+			border: 2px $gray-light solid;
+			padding-bottom: 44px;
+			padding-top: 44px;
+		}
+	}
+	.headline {
+		@include link-color($blue-dark);
+	}
+	&:before {
+		content: '';
+		height: 100px;
+		width: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		@include background-texture;
+		z-index: -1;
+		@include media-breakpoint-up(sm) {
+			height: 190px;
+		}
+		@include media-breakpoint-up(md) {
+			box-shadow: inset 20px 0 0 #fff, inset -20px 0 0 #fff;
+		}
+	}
+	.carousel.image-carousel {
+		.carousel-indicators {
+			@include media-breakpoint-down(md) {
+				display: flex;
+				width: auto;
+			}
+			@include media-breakpoint-up(sm) {
+				margin-top: 3rem;
+			}
+		}
+		.carousel-col {
+			@include media-breakpoint-up(sm) {
+				@include make-col(12);
+				left: 0;
+				padding: 0 44px;
+			}
+			@include media-breakpoint-up(md) {
+				@include make-col(6);
+				&:before {
+					content: '';
+					border-left: 2px $gray-light solid;
+					height: 100%;
+					position: absolute;
+					left: -1px;
+					top: 0;
+				}
+				&:first-child:before,&:nth-child(3):before {
+					display: none;
+				}
+				.carousel-indicators {
+					margin-top: .5rem;
+				}
+			}
+			@include media-breakpoint-up(lg) {
+				@include make-col(4);
+				&:nth-child(3):before {
+					display: block;
+				}
+				&:nth-child(4):before {
+					display: none;
+				}
+				
+			}
+		}
+		.img-wrap {
+			@include media-breakpoint-up(sm) {
+				height: 270px;
+			}
+			@include media-breakpoint-up(lg) {
+				height: 290px;
+			}
+		}
+	}
+	.card-body {
+		@include media-breakpoint-down(sm) {
+			padding-bottom: 0;
+		}
+	}
+}

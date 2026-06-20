@@ -1,0 +1,13 @@
+{% if id %}
+  {% set image = TimberImage(id | number_format(0,'','')) %}
+{% endif %}
+{% if image.alt and not alt %}
+	{% set alt = image.alt %}
+{% endif %}
+
+
+{% if "svg" in image.post_mime_type %}
+	{% include image.file_loc ignore missing %}
+{% elseif image.src %}
+	<img src="{{ image.src }}" srcset="{{ image.srcset }}" sizes="{{ image.img_sizes }}" alt="{{ alt | escape('html_attr') }}" class="{{ class }}"/>
+{% endif %}

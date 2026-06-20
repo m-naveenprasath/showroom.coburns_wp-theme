@@ -1,0 +1,16 @@
+<div class="col-md-4 bio-item {{ size ? "bio-item--" ~ size }} {{ person.bio ? "collapsed" }}" {% if person.bio %}data-toggle="collapse" data-target="#collapseBio{{ loopIndex }}" role="button" aria-expanded="false" aria-controls="collapseBio{{ loopIndex }}"{% endif %}>
+
+	{% if person.name %}
+		<h3 class="h2 bio-name">{{person.name}}</h3>
+	{% endif %}
+
+	{% if person.title %}
+		<p class="h4 bio-title">{{person.title}}</p>
+	{% endif %}
+
+	{% if person.bio %}
+		<button class="btn btn-link" aria-label="{{ staff_bio_collapse_label }} - {{ person.name }}" data-open-label="{{ staff_bio_collapse_open_label }}" data-close-label="{{ staff_bio_collapse_close_label }}">
+			{{ staff_bio_collapse_label }}
+		</button>
+	{% endif %}
+</div>

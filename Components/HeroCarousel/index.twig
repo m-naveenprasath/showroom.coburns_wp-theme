@@ -1,0 +1,44 @@
+{% set local_namespace = "rooms-inspire-container" %}
+
+{% extends "partials/_component-base.twig" %}
+
+{% block container %}
+<div class="container-xl">
+
+	{% if carouselHeading %}
+		{% include ['partials/heading.twig'] ignore missing with { 'heading': carouselHeading, 'class': local_namespace ~ '--headline text-center' } %}
+	{% elseif carouselHeading_default %}
+		<h2 class="{{ local_namespace }}--headline text-center">{{ carouselHeading_default }}</h2>
+	{% endif %}
+
+</div>
+
+{% set slider_ID = component_ID ? component_ID : local_namespace %}
+
+<div class="slider-wrapper keen-slider-wrapper {{ local_namespace }}--slider-wrapper" id="{{ slider_ID }}-slider-wrapper">
+	<div class="slider keen-slider {{ local_namespace }}--slider" id="{{ slider_ID }}-slider">
+		{% for item in carousel %}
+			<div class="slide keen-slider__slide {{ local_namespace }}--slide col-12 col-md-6 col-lg-4">
+				<figure class="wp-block-image">
+					<div class="img-wrap shadow img-border">{% include ['partials/image.twig'] ignore missing with { 'image': item.image } %}</div>
+					{% if item.image.caption %}
+					<figcaption>{{ item.image.caption }}</figcaption>
+					{% endif %}
+				</figure>
+			</div>
+		{% endfor %}
+	</div>
+
+	<div id="{{ slider_ID }}-slider-nav" class="slider-nav keen-slider-nav {{ local_namespace }}-slider-nav"></div>
+</div>
+
+{% if buttons %}
+<div class="container-xl">
+	<div class="{{ local_namespace }}--buttons text-right">
+		{% include ['partials/button-array.twig'] ignore missing with { 'buttons': buttons } %}
+	</div>
+</div>
+{% endif %}
+
+{% endblock %}
+

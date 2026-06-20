@@ -1,0 +1,13 @@
+{% if terms %}
+
+<ul class="{{ global_namespace }}__tax-list {{ global_namespace }}__tax-list--inline">
+	{% for term in terms %}
+		<li class="{{ global_namespace }}__tax-list__item">
+			<a href="{{ term.link }}" class="{{ global_namespace }}-tax {{ global_namespace }}-{{ term.taxonomy }}">
+				{{ term.name }}
+			</a>
+		</li>
+	{% endfor %}
+</ul>
+
+{% endif %}

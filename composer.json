@@ -1,0 +1,37 @@
+{
+  "name": "bbrcreative/coburns-showroom",
+  "description": "A WordPress theme for Coburn's Supply. Based on FlyntWP. Uses Timber and Advanced Custom Fields.",
+  "type": "wordpress-theme",
+  "license": "MIT",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "authors": [
+    {
+      "name": "bbrcreative",
+      "email": "digitaldepartment@bbrcreative.com"
+    }
+  ],
+  "require": {
+    "timber/timber": "^1.8",
+    "flyntwp/acf-field-group-composer": "^1.0.1",
+    "erusev/parsedown": "^1.7"
+  },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "^3.4"
+  },
+  "extra": {
+    "installer-paths": {
+      "vendor/{$vendor}/{$name}/": [
+        "type:wordpress-muplugin",
+        "type:wordpress-plugin",
+        "type:wordpress-theme"
+      ]
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "Flynt\\": "lib/"
+    }
+  },
+  "version": "1.2.0"
+}

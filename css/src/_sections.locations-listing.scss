@@ -1,0 +1,46 @@
+.listing-table {
+	text-align: left;
+	// Needed for mobile layout.
+	@include responsive-tables;
+	table {
+		width: 100%;
+	}
+	address {
+		margin: 0;
+	}
+}
+
+.listing-item {
+}
+.listing-item.is-hidden {
+	display: none;
+}
+.listing-name {
+	@include heading-style-minimal($font-size: 0.75rem, $color: $link-color);
+	font-size: 0.875rem;
+}
+@media (min-width: 768px) and (max-width: 991px) {
+	.listing-address {
+		// other td style is too specific
+		display: none !important;
+	}
+}
+.listing-address a,
+.listing-phone a {
+	@include link-color($body-color);
+}
+.listing-phone,
+.listing-dist {
+	white-space: nowrap;
+}
+
+.listing-actions .btn {
+	padding: 0.594rem 0.6875rem;
+	margin-right: 0.5rem;
+	&:last-child {
+		margin-right: 0;
+	}
+	.icon {
+		margin-right: 0;
+	}
+}
