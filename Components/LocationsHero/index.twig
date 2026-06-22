@@ -52,84 +52,9 @@
 <div class="hero--locations-intro">{{ hero_content }}</div>
 {% endif %}
 
-<div class="hero--locations">
-	{% if buttons %}
-	<div class="hero--locations-buttons button-group">
-		{% include ['partials/button-array.twig'] ignore missing with { 'buttons': buttons } %}
-	</div>
-	{% endif %}
-
-	<div class="hero--locations-text row">
-		<div class="col-md-6 content-flow">
-			{% if address %}
-			<h3>{{ address_label ?: "Address" }}</h3>
-			<address>
-			{% if address.street_number %}
-				{{ address.street_number }} {{ address.street_name_short ? address.street_name_short : address.street_name }}<br/>
-				{{ address.city }}, {{ address.state_short ? address.state_short : address.state }} {{ address.post_code }}
-			{% else %}
-				{{ address }}, {{ city }}, {{ state }} {{ zip }}
-			{% endif %}
-			</address>
-			{% endif %}
-
-			{% if phone %}
-			<h3>{{ phone_label ?: "Phone" }}</h3>
-			<p><a class="has-gray-color" href="tel:+1{{ phone | replace({' ': '', '(': '', ')': '', '-': '' }) }}"  target="_blank">{{ phone }}</a></p>
-			{% endif %}
-
-			{% if managers or manager or ShowroomManager %}
-				{% if ShowroomManager or manager %}
-				<h3>{{ manager_label_singular ?: "Manager" }}</h3>
-				{% elseif managers %}
-				<h3>{{ manager_label_plural ?: "Managers" }}</h3>
-				{% endif %}
-
-				{% if ShowroomManager %}
-				<p>
-					{{ ShowroomManager }}
-				</p>
-				{# {% elseif manager %}
-				<p>
-					{{ manager }} #}
-				{# </p> #}
-				{% endif %}
-
-				{# {% if managers %}
-				<p>
-				{% for manager in managers %}
-					{% if manager.name %}
-						{% if managers | length > 1 and manager.title and manager.title not in manager_label_plural %}
-							<strong>{{ manager.name }}</strong>, {{ manager.title }}
-						{% else %}
-							{{ manager.name }}
-						{% endif %}
-						{% if not loop.last %}<br/>{% endif %}
-					{% endif %}
-				{% endfor %}
-				</p>
-				{% endif %} #}
-			{% endif %}
-
-		</div>
-		<div class="col-md-6 content-flow">
-			{% if showroomSchedule %}
-				<h3>{{ hours_label ?: "Hours" }}</h3>
-				<p>{{ showroomSchedule | nl2br }}</p>
-			{% endif %}
-
-			{% if openingYear %}
-				<h3>{{ year_opened_label ?: "Open Since" }}</h3>
-				<p><time>{{ openingYear }}</time></p>
-			{% endif %}
-
-			{% if SocialSites %}
-				<h3>{{ social_label ?: "Find Us On Social" }}</h3>
-
-				{% include ['partials/social-link-list.twig'] ignore missing with { 'SocialSites': SocialSites, 'class': 'hero--sharetoolbar', color_icons: true } %}
-
-			{% endif %}
-		</div>
-	</div>
+{% if buttons %}
+<div class="hero--locations-buttons button-group">
+	{% include ['partials/button-array.twig'] ignore missing with { 'buttons': buttons } %}
 </div>
+{% endif %}
 {% endblock %}

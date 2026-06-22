@@ -1,0 +1,33 @@
+{% set local_namespace = "locations-features" %}
+
+<section class="{{ local_namespace }}">
+	<div class="container">
+		{% if heading %}
+			{% include ['partials/heading-array.twig'] ignore missing with { 'headings': heading } %}
+		{% endif %}
+
+		<div class="row no-gutters">
+			{% if features %}
+				{% for feature in features %}
+					<div class="col-lg-3 col-md-6 {{ local_namespace }}__item">
+						{% if feature.image %}
+							<div class="{{ local_namespace }}__image">
+								{% include ['partials/image.twig'] ignore missing with { 'image': feature.image } %}
+							</div>
+						{% elseif feature.icon %}
+							<div class="{{ local_namespace }}__icon">
+								{% include ['partials/icon.twig'] ignore missing with {'icon': feature.icon} %}
+							</div>
+						{% endif %}
+						{% if feature.title %}
+							<h3 class="{{ local_namespace }}__title">{{ feature.title }}</h3>
+						{% endif %}
+						{% if feature.description %}
+							<p class="{{ local_namespace }}__description">{{ feature.description }}</p>
+						{% endif %}
+					</div>
+				{% endfor %}
+			{% endif %}
+		</div>
+	</div>
+</section>

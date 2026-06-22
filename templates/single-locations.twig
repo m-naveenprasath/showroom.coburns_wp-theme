@@ -4,6 +4,16 @@
 
 	{{ renderComponent('LocationsHero') }}
 
+	{{ renderComponent('LocationsFeatures') }}
+
+	{{ renderComponent('LocationsMap') }}
+
+    {{ renderComponent('LocationsCTA') }}
+
+	{{ renderComponent('LocationsDepartments') }}
+
+	{{ renderComponent('LocationsWhyCoburns') }}
+
 	{% if post.staff %}{{ renderComponent('LocationsStaff') }}{% endif %}
 
 	{% set hasLocationsOfferings = false %}
@@ -17,8 +27,8 @@
 		{% include "partials/post-full.twig" ignore missing %}
 	{% endfor %}
 
-	{% if not hasLocationsOfferings %}
+	{# {% if not hasLocationsOfferings %}
 		{{ renderComponent('LocationsOfferings') }}
-	{% endif %}
+	{% endif %} #}
 
 {% endblock %}

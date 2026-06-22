@@ -1,0 +1,53 @@
+{% set local_namespace = "locations-departments" %}
+
+<section class="{{ local_namespace }}">
+	<div class="container">
+		{% if heading %}
+			<div class="{{ local_namespace }}__heading">
+				{% include ['partials/heading-array.twig'] ignore missing with { 'headings': heading } %}
+			</div>
+		{% endif %}
+
+		<div class="row {{ local_namespace }}__row">
+			{% if departments %}
+				{% for department in departments %}
+					<div class="col-lg-3 col-md-6 {{ local_namespace }}__col">
+						<div class="{{ local_namespace }}__card">
+							<div class="{{ local_namespace }}__image">
+								{% if department.image %}
+									{% include ['partials/image.twig'] ignore missing with { 'image': department.image } %}
+								{% else %}
+									<div class="{{ local_namespace }}__image-placeholder"></div>
+								{% endif %}
+							</div>
+
+							<div class="{{ local_namespace }}__body" style="{% if department.background_color %}background-color: {{ department.background_color }};{% endif %}">
+								{% if department.title %}
+									<h3 class="{{ local_namespace }}__title">{{ department.title }}</h3>
+								{% endif %}
+
+								{% if department.description %}
+									<p class="{{ local_namespace }}__description">{{ department.description }}</p>
+								{% endif %}
+
+								{% if department.link %}
+									<a href="{{ department.link.url }}" class="{{ local_namespace }}__link" aria-label="{{ department.link.title }}">
+										<span class="{{ local_namespace }}__link-arrow">
+											{%- include ['partials/icon.twig'] ignore missing with {'icon': 'arrow'} -%}
+										</span>
+									</a>
+								{% else %}
+									<span class="{{ local_namespace }}__link {{ local_namespace }}__link--placeholder">
+										<span class="{{ local_namespace }}__link-arrow">
+											{%- include ['partials/icon.twig'] ignore missing with {'icon': 'arrow'} -%}
+										</span>
+									</span>
+								{% endif %}
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			{% endif %}
+		</div>
+	</div>
+</section>

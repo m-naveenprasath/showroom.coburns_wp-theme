@@ -1,0 +1,29 @@
+{% set local_namespace = "locations-cta" %}
+
+<section class="{{ local_namespace }}{% if not image %} {{ local_namespace }}--no-image{% endif %}">
+	<div class="container">
+		<div class="{{ local_namespace }}__image-wrapper">
+			{% if image %}
+				{% include ['partials/image.twig'] ignore missing with { 'image': image } %}
+			{% endif %}
+
+			<div class="{{ local_namespace }}__overlay"></div>
+
+			<div class="{{ local_namespace }}__content">
+				{% if heading %}
+					<h2 class="{{ local_namespace }}__heading">{{ heading }}</h2>
+				{% endif %}
+
+				{% if description %}
+					<div class="{{ local_namespace }}__description">{{ description }}</div>
+				{% endif %}
+
+				{% if buttons %}
+					<div class="{{ local_namespace }}__buttons button-group">
+						{% include ['partials/button-array.twig'] ignore missing with { 'buttons': buttons } %}
+					</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</section>

@@ -271,6 +271,172 @@ function registerLocationsCustomFields()
     // ]);
 
     ACFComposer::registerFieldGroup([
+        "name" => $post_type . "_cta_group",
+        "title" => "CTA Section",
+        "fields" => [
+            [
+                "label" => "Background Image",
+                "name" => "cta_image",
+                "type" => "image",
+                "return_format" => "array",
+                "instructions" => "Full-width background image for the CTA banner section.",
+            ],
+            [
+                "label" => "Heading",
+                "name" => "cta_heading",
+                "type" => "text",
+                "instructions" => "Use {location_name} to insert the location name automatically.",
+            ],
+            [
+                "label" => "Description",
+                "name" => "cta_description",
+                "type" => "wysiwyg",
+                "toolbar" => "basic",
+                "media_upload" => false,
+            ],
+            [
+                "label" => "Directions URL",
+                "name" => "cta_directions_url",
+                "type" => "url",
+                "instructions" => "Paste the Google Maps or Apple Maps directions link for this location.",
+            ],
+        ],
+        "location" => [
+            [
+                [
+                    "param" => "post_type",
+                    "operator" => "==",
+                    "value" => $post_type,
+                ],
+            ],
+        ],
+    ]);
+
+    ACFComposer::registerFieldGroup([
+        "name" => $post_type . "_map_group",
+        "title" => "Map & Contact",
+        "fields" => [
+            [
+                "label" => "Map Embed",
+                "name" => "map_embed",
+                "type" => "textarea",
+                "instructions" => "Paste the Google Maps iframe embed code. In Google Maps: share → Embed a map → copy HTML.",
+                "rows" => 4,
+            ],
+            [
+                "label" => "Address City / Subtitle",
+                "name" => "map_address_city",
+                "type" => "text",
+                "instructions" => "e.g. Harahan, Louisiana",
+            ],
+            [
+                "label" => "Address",
+                "name" => "map_address",
+                "type" => "textarea",
+                "instructions" => "Street address, one line per line",
+                "rows" => 3,
+            ],
+            [
+                "label" => "Directions URL",
+                "name" => "map_directions_url",
+                "type" => "url",
+                "instructions" => "Google Maps or Apple Maps link for this location",
+            ],
+            [
+                "label" => "Phone Number",
+                "name" => "map_phone",
+                "type" => "text",
+            ],
+            [
+                "label" => "Hours",
+                "name" => "map_hours",
+                "type" => "repeater",
+                "layout" => "table",
+                "button_label" => "Add Row",
+                "sub_fields" => [
+                    [
+                        "label" => "Days",
+                        "name" => "days",
+                        "type" => "text",
+                    ],
+                    [
+                        "label" => "Time",
+                        "name" => "time",
+                        "type" => "text",
+                    ],
+                ],
+            ],
+            [
+                "label" => "Hours Note",
+                "name" => "map_hours_note",
+                "type" => "textarea",
+                "rows" => 2,
+                "instructions" => "Optional note below hours",
+            ],
+        ],
+        "location" => [
+            [
+                [
+                    "param" => "post_type",
+                    "operator" => "==",
+                    "value" => $post_type,
+                ],
+            ],
+        ],
+    ]);
+
+    ACFComposer::registerFieldGroup([
+        "name" => $post_type . "_departments_group",
+        "title" => "Departments",
+        "fields" => [
+            [
+                "label" => "Departments",
+                "name" => "departments",
+                "type" => "repeater",
+                "layout" => "block",
+                "button_label" => "Add Department",
+                "sub_fields" => [
+                    [
+                        "label" => "Image",
+                        "name" => "image",
+                        "type" => "image",
+                        "return_format" => "array",
+                    ],
+                    [
+                        "label" => "Title",
+                        "name" => "title",
+                        "type" => "text",
+                    ],
+                    [
+                        "label" => "Description",
+                        "name" => "description",
+                        "type" => "textarea",
+                    ],
+                    [
+                        "label" => "Background Color",
+                        "name" => "background_color",
+                        "type" => "color_picker",
+                    ],
+                    [
+                        "label" => "Link",
+                        "name" => "link",
+                        "type" => "link",
+                    ],
+                ],
+            ],
+        ],
+        "location" => [
+            [
+                [
+                    "param" => "post_type",
+                    "operator" => "==",
+                    "value" => $post_type,
+                ],
+            ],
+        ],
+    ]);
+
+    ACFComposer::registerFieldGroup([
         "name" => $post_type . "_staff_group",
         "title" => "Location Staff",
         "fields" => [
@@ -449,6 +615,56 @@ function registerLocationsCustomFields()
                         "label" => "Listing",
                         "instructions" => "Enter only lists.",
                     ]),
+                ],
+            ],
+            FieldVariables\getTab("Features"),
+            [
+                "name" => "location_features_default",
+                "label" => "Features Section Defaults",
+                "type" => "group",
+                "sub_fields" => [
+                    FieldVariables\getHeadingLoop(
+                        $instructions =
+                            "<strong>Defaults</strong><br/>tag: h2, style: minimal-1<br/>tag: div, style: display-1"
+                    ),
+                ],
+            ],
+            FieldVariables\getTab("Departments"),
+            [
+                "name" => "location_departments_default",
+                "label" => "Departments Section Defaults",
+                "type" => "group",
+                "sub_fields" => [
+                    FieldVariables\getHeadingLoop(
+                        $instructions =
+                            "<strong>Defaults</strong><br/>tag: h2, style: minimal-1<br/>tag: div, style: display-1"
+                    ),
+                ],
+            ],
+            FieldVariables\getTab("Map"),
+            [
+                "name" => "location_map_default",
+                "label" => "Map Section Defaults",
+                "type" => "group",
+                "sub_fields" => [
+                    FieldVariables\getHeadingLoop(
+                        $instructions =
+                            "<strong>Defaults</strong><br/>tag: h2, style: minimal-1<br/>tag: div, style: display-1"
+                    ),
+                ],
+            ],
+            FieldVariables\getTab("CTA"),
+            [
+                "name" => "location_cta_default",
+                "label" => "CTA Section Defaults",
+                "type" => "group",
+                "sub_fields" => [
+                    [
+                        "label" => "Heading",
+                        "name" => "heading",
+                        "type" => "text",
+                        "default_value" => "Find luxury kitchen and bath fixtures near {location_name}.",
+                    ],
                 ],
             ],
         ],

@@ -1,0 +1,68 @@
+{% set local_namespace = "locations-map" %}
+
+<section class="{{ local_namespace }}">
+	{% if heading %}
+		<div class="container {{ local_namespace }}__heading">
+			{% include ['partials/heading-array.twig'] ignore missing with { 'headings': heading } %}
+		</div>
+	{% endif %}
+
+	<div class="container">
+		<div class="row {{ local_namespace }}__row">
+			<div class="col-md-6 {{ local_namespace }}__map-col">
+				{% if map_embed %}
+					<div class="{{ local_namespace }}__map">
+						{{ map_embed|raw }}
+					</div>
+				{% endif %}
+			</div>
+
+			<div class="col-md-6 {{ local_namespace }}__info-col">
+
+				{% if address %}
+					<div class="{{ local_namespace }}__card">
+						<div class="{{ local_namespace }}__card-header">
+							<div>
+								<h3 class="{{ local_namespace }}__card-label">{{ address_label ?: "Address" }}</h3>
+								{% if address_city %}
+									<p class="{{ local_namespace }}__card-subtitle">{{ address_city }}</p>
+								{% endif %}
+								<address class="{{ local_namespace }}__address-text">{{ address|nl2br }}</address>
+							</div>
+							{% if directions_url %}
+								<a href="{{ directions_url }}" class="btn btn-dark {{ local_namespace }}__directions-btn" target="_blank">
+									{{ directions_label ?: "GET DIRECTIONS" }}
+								</a>
+							{% endif %}
+						</div>
+					</div>
+				{% endif %}
+
+				{% if phone %}
+					<div class="{{ local_namespace }}__card">
+						<h3 class="{{ local_namespace }}__card-label">{{ phone_label ?: "Phone" }}</h3>
+						<p class="{{ local_namespace }}__phone">{{ phone }}</p>
+					</div>
+				{% endif %}
+
+				{% if hours %}
+					<div class="{{ local_namespace }}__card">
+						<h3 class="{{ local_namespace }}__card-label">{{ hours_label ?: "Hours of Operation" }}</h3>
+						<div class="{{ local_namespace }}__hours-grid">
+							{% for hour in hours %}
+								<div class="{{ local_namespace }}__hours-item">
+									<span class="{{ local_namespace }}__hours-day">{{ hour.days }}</span>
+									<span class="{{ local_namespace }}__hours-time">{{ hour.time }}</span>
+								</div>
+							{% endfor %}
+						</div>
+						{% if hours_note %}
+							<p class="{{ local_namespace }}__hours-note">{{ hours_note }}</p>
+						{% endif %}
+					</div>
+				{% endif %}
+
+			</div>
+		</div>
+	</div>
+</section>

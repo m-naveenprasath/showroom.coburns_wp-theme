@@ -1,4 +1,4 @@
-<?
+<?php
 // Remove Default Gravity Forms styles
 add_action( 'gform_enqueue_scripts', 'gf_dequeue_stylesheets', 11 );
 function gf_dequeue_stylesheets() {
