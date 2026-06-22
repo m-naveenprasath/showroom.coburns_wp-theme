@@ -21,22 +21,22 @@ add_filter('Flynt/addComponentData?name=LocationsWhyCoburns', function ($data) {
 
         $data['features'] = [
             [
-                'icon'        => 'location-shop',
+                'icon'        => 'location-Extensive',
                 'title'       => 'Extensive Product Selection',
-                'description' => 'Discover trusted plumbing fixtures in ' . esc_html($location_name) . '. Our showroom offers brands like Kohler, Moen, and Delta.',
+                'description' => 'Discover trusted plumbing fixtures in Harahan LA. Our showroom offers brands like Kohler, Moen, and Delta.',
             ],
             [
-                'icon'        => 'location-messages',
+                'icon'        => 'location-Experience',
                 'title'       => 'Experience it in Person',
                 'description' => 'Our showroom lets you see, touch, and compare products before purchasing.',
             ],
             [
-                'icon'        => 'location-design',
+                'icon'        => 'location-Expert',
                 'title'       => 'Expert Design Guidance',
                 'description' => 'We work with homeowners, builders, and designers to choose products that meet goals and budgets.',
             ],
             [
-                'icon'        => 'location-display',
+                'icon'        => 'location-Trusted',
                 'title'       => 'Trusted Louisiana Resource',
                 'description' => "Customers in Southeast Louisiana rely on Coburn's for service.",
             ],
