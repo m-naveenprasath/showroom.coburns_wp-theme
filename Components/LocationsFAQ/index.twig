@@ -1,0 +1,84 @@
+{% set local_namespace = "locations-faq" %}
+
+<section class="{{ local_namespace }}">
+	<div class="container">
+
+		<div class="{{ local_namespace }}__header">
+			{% if eyebrow %}
+				<span class="{{ local_namespace }}__eyebrow">{{ eyebrow }}</span>
+			{% endif %}
+
+			{% if heading %}
+				<div class="{{ local_namespace }}__heading">
+					{% for headingItem in heading %}
+						<{{ headingItem.tag }}{% if headingItem.style %} style="{{ headingItem.style }}"{% endif %}>{{ headingItem.text }}</{{ headingItem.tag }}>
+					{% endfor %}
+				</div>
+			{% endif %}
+		</div>
+
+		{% if faqs %}
+			<div class="{{ local_namespace }}__list">
+				{% for item in faqs %}
+					<div class="{{ local_namespace }}__item{% if loop.first %} {{ local_namespace }}__item--open{% endif %}" data-faq-item>
+						<button
+							class="{{ local_namespace }}__question"
+							data-faq-trigger
+							aria-expanded="{{ loop.first ? 'true' : 'false' }}"
+							aria-controls="faq-answer-{{ loop.index }}"
+						>
+							<span class="{{ local_namespace }}__question-text">{{ item.question }}</span>
+							<span class="{{ local_namespace }}__chevron" aria-hidden="true">
+								{%- include ['partials/icon.twig'] ignore missing with {'icon': 'chevron-down'} -%}
+							</span>
+						</button>
+						<div
+							class="{{ local_namespace }}__answer"
+							id="faq-answer-{{ loop.index }}"
+							data-faq-answer
+						>
+							<p class="{{ local_namespace }}__answer-text">{{ item.answer }}</p>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		{% endif %}
+
+	</div>
+</section>
+
+<script>
+(function () {
+	document.querySelectorAll('[data-faq-item]').forEach(function (item) {
+		var trigger = item.querySelector('[data-faq-trigger]');
+		var answer  = item.querySelector('[data-faq-answer]');
+		if (!trigger || !answer) return;
+
+		trigger.addEventListener('click', function () {
+			var isOpen = item.classList.contains('locations-faq__item--open');
+
+			// Close all siblings in the same list
+			var list = item.parentElement;
+			list.querySelectorAll('[data-faq-item]').forEach(function (sibling) {
+				sibling.classList.remove('locations-faq__item--open');
+				var sibTrigger = sibling.querySelector('[data-faq-trigger]');
+				var sibAnswer  = sibling.querySelector('[data-faq-answer]');
+				if (sibTrigger) sibTrigger.setAttribute('aria-expanded', 'false');
+				if (sibAnswer)  sibAnswer.style.maxHeight = null;
+			});
+
+			// Toggle the clicked item
+			if (!isOpen) {
+				item.classList.add('locations-faq__item--open');
+				trigger.setAttribute('aria-expanded', 'true');
+				answer.style.maxHeight = answer.scrollHeight + 'px';
+			}
+		});
+
+		// Set initial max-height for first open item
+		if (item.classList.contains('locations-faq__item--open')) {
+			answer.style.maxHeight = answer.scrollHeight + 'px';
+		}
+	});
+})();
+</script>

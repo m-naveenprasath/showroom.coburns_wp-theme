@@ -1,0 +1,120 @@
+{% set local_namespace = "locations-testimonials" %}
+
+<section class="{{ local_namespace }}">
+	<div class="container">
+
+		<div class="{{ local_namespace }}__header">
+			{% if heading %}
+				<div class="{{ local_namespace }}__heading">
+					{% for headingItem in heading %}
+						<{{ headingItem.tag }}{% if headingItem.style %} style="{{ headingItem.style }}"{% endif %}>{{ headingItem.text }}</{{ headingItem.tag }}>
+					{% endfor %}
+				</div>
+			{% endif %}
+
+			{% if view_all_link %}
+				<a href="{{ view_all_link.url }}" class="{{ local_namespace }}__view-all"{% if view_all_link.target %} target="{{ view_all_link.target }}"{% endif %}>
+					{{ view_all_link.title ? view_all_link.title : 'View All Testimonials' }}
+					<span class="{{ local_namespace }}__view-all-arrow" aria-hidden="true">→</span>
+				</a>
+			{% endif %}
+		</div>
+
+		{% if testimonials %}
+			<div class="{{ local_namespace }}__wrap" data-lt-wrap>
+				<div class="{{ local_namespace }}__track" data-lt-track>
+					{% for item in testimonials %}
+						<div class="{{ local_namespace }}__card">
+
+							<div class="{{ local_namespace }}__card-top">
+								<div class="{{ local_namespace }}__author">
+									<div class="{{ local_namespace }}__avatar">
+										{% if item.photo %}
+											{% include ['partials/image.twig'] ignore missing with { 'image': item.photo } %}
+										{% else %}
+											<div class="{{ local_namespace }}__avatar-placeholder">
+												<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+													<circle cx="12" cy="8" r="4" fill="currentColor"/>
+													<path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" fill="currentColor"/>
+												</svg>
+											</div>
+										{% endif %}
+									</div>
+									<div class="{{ local_namespace }}__author-info">
+										{% if item.name %}
+											<span class="{{ local_namespace }}__name">{{ item.name }}</span>
+										{% endif %}
+										{% if item.role %}
+											<span class="{{ local_namespace }}__role">{{ item.role }}</span>
+										{% endif %}
+									</div>
+								</div>
+
+								{% set rating = item.rating ? item.rating|number_format(0) : 5 %}
+								<div class="{{ local_namespace }}__stars" aria-label="{{ rating }} out of 5 stars">
+									{% for i in 1..5 %}
+										<span class="{{ local_namespace }}__star{% if i > rating %} {{ local_namespace }}__star--empty{% endif %}" aria-hidden="true">★</span>
+									{% endfor %}
+								</div>
+							</div>
+
+							{% if item.review %}
+								<p class="{{ local_namespace }}__review">{{ item.review }}</p>
+							{% endif %}
+
+						</div>
+					{% endfor %}
+				</div>
+
+				<button class="{{ local_namespace }}__nav {{ local_namespace }}__nav--prev" data-lt-prev aria-label="Previous testimonials">
+					<span class="{{ local_namespace }}__nav-icon">
+						{%- include ['partials/icon.twig'] ignore missing with {'icon': 'arrow'} -%}
+					</span>
+				</button>
+				<button class="{{ local_namespace }}__nav {{ local_namespace }}__nav--next" data-lt-next aria-label="Next testimonials">
+					<span class="{{ local_namespace }}__nav-icon">
+						{%- include ['partials/icon.twig'] ignore missing with {'icon': 'arrow'} -%}
+					</span>
+				</button>
+			</div>
+		{% endif %}
+
+	</div>
+</section>
+
+<script>
+(function () {
+	document.querySelectorAll('[data-lt-wrap]').forEach(function (wrap) {
+		var track   = wrap.querySelector('[data-lt-track]');
+		var prevBtn = wrap.querySelector('[data-lt-prev]');
+		var nextBtn = wrap.querySelector('[data-lt-next]');
+		if (!track) return;
+
+		function cardScroll() {
+			var card = track.querySelector('.locations-testimonials__card');
+			return card ? card.offsetWidth + 24 : 340;
+		}
+
+		function sync() {
+			var atStart = track.scrollLeft <= 4;
+			var atEnd   = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+			if (prevBtn) prevBtn.classList.toggle('locations-testimonials__nav--hidden', atStart);
+			if (nextBtn) nextBtn.classList.toggle('locations-testimonials__nav--hidden', atEnd);
+		}
+
+		if (prevBtn) {
+			prevBtn.addEventListener('click', function () {
+				track.scrollBy({ left: -cardScroll(), behavior: 'smooth' });
+			});
+		}
+		if (nextBtn) {
+			nextBtn.addEventListener('click', function () {
+				track.scrollBy({ left: cardScroll(), behavior: 'smooth' });
+			});
+		}
+
+		track.addEventListener('scroll', sync, { passive: true });
+		sync();
+	});
+})();
+</script>

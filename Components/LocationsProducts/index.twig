@@ -1,0 +1,94 @@
+{% set local_namespace = "locations-products" %}
+
+<section class="{{ local_namespace }}">
+	<div class="container">
+
+		{% if heading %}
+			<div class="{{ local_namespace }}__heading">
+				{% for headingItem in heading %}
+					<{{ headingItem.tag }}{% if headingItem.style %} style="{{ headingItem.style }}"{% endif %}>{{ headingItem.text }}</{{ headingItem.tag }}>
+				{% endfor %}
+			</div>
+		{% endif %}
+
+		{% if products %}
+			<div class="{{ local_namespace }}__wrap" data-lp-wrap>
+				<div class="{{ local_namespace }}__track" data-lp-track>
+					{% for product in products %}
+						<div class="{{ local_namespace }}__card">
+							<div class="{{ local_namespace }}__image">
+								{% if product.image %}
+									{% include ['partials/image.twig'] ignore missing with { 'image': product.image } %}
+								{% else %}
+									<div class="{{ local_namespace }}__image-placeholder"></div>
+								{% endif %}
+							</div>
+							<div class="{{ local_namespace }}__body">
+								{% if product.title %}
+									<h3 class="{{ local_namespace }}__title">{{ product.title }}</h3>
+								{% endif %}
+								{% if product.description %}
+									<p class="{{ local_namespace }}__description">{{ product.description }}</p>
+								{% endif %}
+								{% if product.link %}
+									<a href="{{ product.link.url }}" class="{{ local_namespace }}__link"{% if product.link.target %} target="{{ product.link.target }}"{% endif %}>
+										{{ product.link.title }}
+									</a>
+								{% endif %}
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+
+				<button class="{{ local_namespace }}__nav {{ local_namespace }}__nav--prev" data-lp-prev aria-label="Previous products">
+					<span class="{{ local_namespace }}__nav-icon">
+						{%- include ['partials/icon.twig'] ignore missing with {'icon': 'arrow'} -%}
+					</span>
+				</button>
+				<button class="{{ local_namespace }}__nav {{ local_namespace }}__nav--next" data-lp-next aria-label="Next products">
+					<span class="{{ local_namespace }}__nav-icon">
+						{%- include ['partials/icon.twig'] ignore missing with {'icon': 'arrow'} -%}
+					</span>
+				</button>
+			</div>
+		{% endif %}
+
+	</div>
+</section>
+
+<script>
+(function () {
+	document.querySelectorAll('[data-lp-wrap]').forEach(function (wrap) {
+		var track   = wrap.querySelector('[data-lp-track]');
+		var prevBtn = wrap.querySelector('[data-lp-prev]');
+		var nextBtn = wrap.querySelector('[data-lp-next]');
+		if (!track) return;
+
+		function cardScroll() {
+			var card = track.querySelector('.locations-products__card');
+			return card ? (card.offsetWidth + 16) * 3 : 600;
+		}
+
+		function sync() {
+			var atStart = track.scrollLeft <= 4;
+			var atEnd   = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+			if (prevBtn) prevBtn.classList.toggle('locations-products__nav--hidden', atStart);
+			if (nextBtn) nextBtn.classList.toggle('locations-products__nav--hidden', atEnd);
+		}
+
+		if (prevBtn) {
+			prevBtn.addEventListener('click', function () {
+				track.scrollBy({ left: -cardScroll(), behavior: 'smooth' });
+			});
+		}
+		if (nextBtn) {
+			nextBtn.addEventListener('click', function () {
+				track.scrollBy({ left: cardScroll(), behavior: 'smooth' });
+			});
+		}
+
+		track.addEventListener('scroll', sync, { passive: true });
+		sync();
+	});
+})();
+</script>

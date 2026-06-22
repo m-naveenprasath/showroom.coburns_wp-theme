@@ -1,0 +1,135 @@
+.locations-consultation {
+	padding: 3rem 0 4rem;
+	background-color: $white;
+
+	@include media-breakpoint-up(md) {
+		padding: 4rem 0 5rem;
+	}
+
+	// ── Card ──────────────────────────────────────────────────────────────────
+	&__card {
+		display: flex;
+		flex-direction: column;
+		background-color: #f5f0eb;
+		border-radius: 16px;
+		overflow: hidden;
+
+		@include media-breakpoint-up(lg) {
+			flex-direction: row;
+			min-height: 400px;
+		}
+	}
+
+	// ── Left: text content ────────────────────────────────────────────────────
+	&__content {
+		flex: 1 1 0%;
+		padding: 2.5rem 2rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+
+		@include media-breakpoint-up(md) {
+			padding: 3rem 2.5rem;
+		}
+
+		@include media-breakpoint-up(lg) {
+			padding: 3.5rem 3rem 3.5rem 3.5rem;
+			max-width: 56%;
+		}
+	}
+
+	&__heading {
+		font-size: 1.75rem;
+		font-family: $headings-font-family;
+		color: #173a5e;
+		margin-bottom: 1.25rem;
+		line-height: 1.25;
+
+		@include media-breakpoint-up(md) {
+			font-size: 2rem;
+		}
+
+		@include media-breakpoint-up(lg) {
+			font-size: 2.25rem;
+		}
+	}
+
+	&__description {
+		font-size: 0.9375rem;
+		color: #555;
+		line-height: 1.7;
+		margin-bottom: 1rem;
+
+		&:last-of-type {
+			margin-bottom: 1.75rem;
+		}
+	}
+
+	// ── Buttons ───────────────────────────────────────────────────────────────
+	&__buttons {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		align-items: center;
+
+		.btn {
+			font-size: 0.8125rem;
+			font-weight: 700;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+			padding: 0.875rem 1.5rem;
+			border-radius: 0;
+			white-space: nowrap;
+		}
+
+		.btn-primary {
+			background-color: $teal;
+			border-color: $teal;
+			color: $white;
+
+			&:hover,
+			&:focus {
+				background-color: darken($teal, 8%);
+				border-color: darken($teal, 8%);
+			}
+		}
+
+		.btn-outline-primary {
+			background-color: transparent;
+			border: 2px solid $teal;
+			color: $teal;
+
+			&:hover,
+			&:focus {
+				background-color: $teal;
+				color: $white;
+			}
+		}
+	}
+
+	// ── Right: image ─────────────────────────────────────────────────────────
+	&__image {
+		flex: 0 0 auto;
+		width: 100%;
+		height: 260px;
+
+		@include media-breakpoint-up(lg) {
+			width: 44%;
+			height: auto;
+		}
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			display: block;
+		}
+
+		&-placeholder {
+			width: 100%;
+			height: 100%;
+			min-height: 260px;
+			background-color: darken(#f5f0eb, 6%);
+		}
+	}
+}

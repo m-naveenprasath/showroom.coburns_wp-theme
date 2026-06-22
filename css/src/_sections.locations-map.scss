@@ -23,6 +23,10 @@
 		padding: 0;
 		display: flex;
 		flex-direction: column;
+
+		@include media-breakpoint-up(md) {
+			padding-right: 1.5rem;
+		}
 	}
 
 	&__map {
@@ -49,19 +53,20 @@
 	&__info-col {
 		display: flex;
 		flex-direction: column;
-		gap: 0;
+		gap: 1rem;
 		padding-right: 0;
+		padding-left: 0;
+
+		@include media-breakpoint-down(sm) {
+			margin-top: 1.5rem;
+		}
 	}
 
 	&__card {
 		background-color: $white;
 		border: 1px solid rgba($beige, 0.5);
-		border-top: none;
 		padding: 1.25rem 1.5rem;
-
-		&:first-child {
-			border-top: 1px solid rgba($beige, 0.5);
-		}
+		text-align: left;
 
 		&:last-child {
 			flex: 1;
@@ -77,6 +82,12 @@
 		align-items: center;
 		justify-content: space-between;
 		gap: 1.5rem;
+
+		@include media-breakpoint-down(sm) {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 1rem;
+		}
 	}
 
 	&__card-label {
@@ -108,6 +119,11 @@
 		letter-spacing: 0.06em;
 		flex-shrink: 0;
 		padding: 0.6rem 1rem;
+
+		@include media-breakpoint-down(sm) {
+			width: 100%;
+			text-align: center;
+		}
 	}
 
 	&__phone {
@@ -121,6 +137,11 @@
 		flex-wrap: wrap;
 		gap: 0.25rem 2.5rem;
 		margin: 0.75rem 0 0.5rem;
+
+		@include media-breakpoint-down(sm) {
+			flex-direction: column;
+			gap: 0.5rem;
+		}
 	}
 
 	&__hours-item {

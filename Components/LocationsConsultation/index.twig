@@ -1,0 +1,45 @@
+{% set local_namespace = "locations-consultation" %}
+
+<section class="{{ local_namespace }}">
+	<div class="container">
+		<div class="{{ local_namespace }}__card">
+
+			<div class="{{ local_namespace }}__content">
+				{% if heading %}
+					<h2 class="{{ local_namespace }}__heading">{{ heading }}</h2>
+				{% endif %}
+
+				{% if description_1 %}
+					<p class="{{ local_namespace }}__description">{{ description_1 }}</p>
+				{% endif %}
+
+				{% if description_2 %}
+					<p class="{{ local_namespace }}__description">{{ description_2 }}</p>
+				{% endif %}
+
+				<div class="{{ local_namespace }}__buttons">
+					{% if primary_button and primary_button.url %}
+						<a href="{{ primary_button.url }}" class="btn btn-primary"{% if primary_button.target %} target="{{ primary_button.target }}"{% endif %}>
+							<span>{{ primary_button.title ? primary_button.title : 'Schedule Free Consultation' }}</span>
+						</a>
+					{% endif %}
+
+					{% if secondary_button and secondary_button.url %}
+						<a href="{{ secondary_button.url }}" class="btn btn-outline-primary"{% if secondary_button.target %} target="{{ secondary_button.target }}"{% endif %}>
+							<span>{{ secondary_button.title ? secondary_button.title : 'Call Showroom Now' }}</span>
+						</a>
+					{% endif %}
+				</div>
+			</div>
+
+			<div class="{{ local_namespace }}__image">
+				{% if consultation_image %}
+					{% include ['partials/image.twig'] ignore missing with { 'image': consultation_image } %}
+				{% else %}
+					<div class="{{ local_namespace }}__image-placeholder"></div>
+				{% endif %}
+			</div>
+
+		</div>
+	</div>
+</section>

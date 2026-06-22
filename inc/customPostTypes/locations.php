@@ -437,6 +437,203 @@ function registerLocationsCustomFields()
     ]);
 
     ACFComposer::registerFieldGroup([
+        "name" => $post_type . "_products_group",
+        "title" => "Popular Products",
+        "fields" => [
+            [
+                "label"        => "Products",
+                "name"         => "products",
+                "type"         => "repeater",
+                "layout"       => "block",
+                "button_label" => "Add Product",
+                "sub_fields"   => [
+                    [
+                        "label"         => "Image",
+                        "name"          => "image",
+                        "type"          => "image",
+                        "return_format" => "array",
+                    ],
+                    [
+                        "label" => "Title",
+                        "name"  => "title",
+                        "type"  => "text",
+                    ],
+                    [
+                        "label" => "Description",
+                        "name"  => "description",
+                        "type"  => "textarea",
+                        "rows"  => 3,
+                    ],
+                    [
+                        "label" => "Link",
+                        "name"  => "link",
+                        "type"  => "link",
+                    ],
+                ],
+            ],
+        ],
+        "location" => [
+            [
+                [
+                    "param"    => "post_type",
+                    "operator" => "==",
+                    "value"    => $post_type,
+                ],
+            ],
+        ],
+    ]);
+
+    ACFComposer::registerFieldGroup([
+        "name"  => $post_type . "_testimonials_group",
+        "title" => "Customer Testimonials",
+        "fields" => [
+            [
+                "label" => "View All Link",
+                "name"  => "view_all_link",
+                "type"  => "link",
+            ],
+            [
+                "label"        => "Testimonials",
+                "name"         => "testimonials",
+                "type"         => "repeater",
+                "layout"       => "block",
+                "button_label" => "Add Testimonial",
+                "sub_fields"   => [
+                    [
+                        "label"         => "Photo",
+                        "name"          => "photo",
+                        "type"          => "image",
+                        "return_format" => "array",
+                    ],
+                    [
+                        "label" => "Name",
+                        "name"  => "name",
+                        "type"  => "text",
+                    ],
+                    [
+                        "label" => "Role / Title",
+                        "name"  => "role",
+                        "type"  => "text",
+                    ],
+                    [
+                        "label"         => "Rating (1-5)",
+                        "name"          => "rating",
+                        "type"          => "number",
+                        "min"           => 1,
+                        "max"           => 5,
+                        "default_value" => 5,
+                    ],
+                    [
+                        "label" => "Review",
+                        "name"  => "review",
+                        "type"  => "textarea",
+                        "rows"  => 3,
+                    ],
+                ],
+            ],
+        ],
+        "location" => [
+            [
+                [
+                    "param"    => "post_type",
+                    "operator" => "==",
+                    "value"    => $post_type,
+                ],
+            ],
+        ],
+    ]);
+
+    ACFComposer::registerFieldGroup([
+        "name"  => $post_type . "_faq_group",
+        "title" => "FAQ Section",
+        "fields" => [
+            [
+                "label" => "Eyebrow Text",
+                "name"  => "eyebrow",
+                "type"  => "text",
+            ],
+            [
+                "label"        => "FAQ Items",
+                "name"         => "faqs",
+                "type"         => "repeater",
+                "layout"       => "block",
+                "button_label" => "Add FAQ Item",
+                "sub_fields"   => [
+                    [
+                        "label" => "Question",
+                        "name"  => "question",
+                        "type"  => "text",
+                    ],
+                    [
+                        "label" => "Answer",
+                        "name"  => "answer",
+                        "type"  => "textarea",
+                        "rows"  => 4,
+                    ],
+                ],
+            ],
+        ],
+        "location" => [
+            [
+                [
+                    "param"    => "post_type",
+                    "operator" => "==",
+                    "value"    => $post_type,
+                ],
+            ],
+        ],
+    ]);
+
+    ACFComposer::registerFieldGroup([
+        "name"  => $post_type . "_consultation_group",
+        "title" => "Consultation CTA",
+        "fields" => [
+            [
+                "label" => "Heading",
+                "name"  => "heading",
+                "type"  => "text",
+            ],
+            [
+                "label" => "Description (first paragraph)",
+                "name"  => "description_1",
+                "type"  => "textarea",
+                "rows"  => 3,
+            ],
+            [
+                "label" => "Description (second paragraph)",
+                "name"  => "description_2",
+                "type"  => "textarea",
+                "rows"  => 3,
+            ],
+            [
+                "label" => "Primary Button",
+                "name"  => "primary_button",
+                "type"  => "link",
+            ],
+            [
+                "label" => "Secondary Button",
+                "name"  => "secondary_button",
+                "type"  => "link",
+            ],
+            [
+                "label"         => "Image",
+                "name"          => "consultation_image",
+                "type"          => "image",
+                "return_format" => "array",
+            ],
+        ],
+        "location" => [
+            [
+                [
+                    "param"    => "post_type",
+                    "operator" => "==",
+                    "value"    => $post_type,
+                ],
+            ],
+        ],
+    ]);
+
+    ACFComposer::registerFieldGroup([
         "name" => $post_type . "_staff_group",
         "title" => "Location Staff",
         "fields" => [

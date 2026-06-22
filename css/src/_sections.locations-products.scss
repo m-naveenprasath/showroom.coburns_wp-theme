@@ -1,0 +1,193 @@
+.locations-products {
+	padding: 3.5rem 0 4rem;
+	background-color: $white;
+
+	@include media-breakpoint-up(md) {
+		padding: 4.5rem 0 5rem;
+	}
+
+	&__heading {
+		margin-bottom: 2rem;
+
+		h2 {
+			font-size: 2rem;
+			margin-bottom: 0;
+			color: #173a5e;
+			font-family: $headings-font-family;
+
+			@include media-breakpoint-up(md) {
+				font-size: 2.25rem;
+			}
+
+			@include media-breakpoint-up(lg) {
+				font-size: 2.5rem;
+			}
+		}
+	}
+
+	// ── Carousel wrapper ─────────────────────────────────────────────────────
+	&__wrap {
+		position: relative;
+	}
+
+	&__track {
+		display: flex;
+		gap: 1rem;
+		overflow-x: auto;
+		scroll-snap-type: x mandatory;
+		scrollbar-width: none;
+		-ms-overflow-style: none;
+		// Extend past container edge on mobile so last card bleeds
+		margin-right: -1rem;
+		padding-right: 1rem;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+
+		@include media-breakpoint-up(lg) {
+			margin-right: 0;
+			padding-right: 0;
+		}
+	}
+
+	// ── Product card ─────────────────────────────────────────────────────────
+	&__card {
+		flex: 0 0 180px;
+		scroll-snap-align: start;
+		display: flex;
+		flex-direction: column;
+		background-color: $white;
+		border: 1px solid rgba($gray-dark, 0.12);
+
+		@include media-breakpoint-up(md) {
+			flex: 0 0 196px;
+		}
+
+		@include media-breakpoint-up(lg) {
+			flex: 0 0 210px;
+		}
+	}
+
+	&__image {
+		height: 150px;
+		overflow: hidden;
+		background-color: $white;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.75rem;
+		flex-shrink: 0;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: contain;
+			display: block;
+		}
+
+		&-placeholder {
+			width: 60px;
+			height: 60px;
+			background-color: $watermark;
+			border-radius: 4px;
+		}
+	}
+
+	&__body {
+		padding: 0.75rem 1rem 1rem;
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		border-top: 1px solid rgba($gray-dark, 0.1);
+	}
+
+	&__title {
+		font-size: 0.875rem;
+		font-weight: 700;
+		color: $gray-dark;
+		margin: 0 0 0.5rem;
+		line-height: 1.3;
+		font-family: $headings-font-family;
+		letter-spacing: 0;
+	}
+
+	&__description {
+		flex: 1;
+		font-size: 0.8125rem;
+		color: #555;
+		line-height: 1.55;
+		margin: 0 0 0.75rem;
+	}
+
+	&__link {
+		font-size: 0.8125rem;
+		font-weight: 600;
+		color: #173a5e;
+		text-decoration: none;
+		margin-top: auto;
+
+		&:hover,
+		&:focus {
+			text-decoration: underline;
+		}
+	}
+
+	// ── Nav buttons ───────────────────────────────────────────────────────────
+	&__nav {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 2.5rem;
+		height: 2.5rem;
+		border-radius: 50%;
+		background-color: $gray-dark;
+		color: $white;
+		border: none;
+		cursor: pointer;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		z-index: 2;
+		transition: background-color 0.25s ease, opacity 0.25s ease;
+		padding: 0;
+
+		&:hover,
+		&:focus {
+			background-color: darken(#1c1c1c, 8%);
+		}
+
+		&--prev {
+			left: -1.25rem;
+
+			.locations-products__nav-icon {
+				transform: rotate(180deg);
+			}
+		}
+
+		&--next {
+			right: -1.25rem;
+		}
+
+		&--hidden {
+			opacity: 0;
+			pointer-events: none;
+		}
+	}
+
+	&__nav-icon {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 0.875rem;
+		height: 0.875rem;
+
+		.icon,
+		svg {
+			width: 100%;
+			height: 100%;
+			fill: $white;
+			stroke: $white;
+		}
+	}
+}
