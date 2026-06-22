@@ -1,0 +1,35 @@
+<div class="locations-communities">
+	<div class="container">
+
+		{% if heading %}
+			<div class="locations-communities__heading">
+				{% for headingItem in heading %}
+					<{{ headingItem.tag }}{% if headingItem.style %} style="{{ headingItem.style }}"{% endif %}>{{ headingItem.text }}</{{ headingItem.tag }}>
+				{% endfor %}
+			</div>
+		{% endif %}
+
+		{% if intro %}
+			<p class="locations-communities__intro">
+				<span class="locations-communities__bullet" aria-hidden="true"></span>
+				<span class="locations-communities__intro-text">{{ intro }}</span>
+			</p>
+		{% endif %}
+
+		{% if communities %}
+			<ul class="locations-communities__grid">
+				{% for community in communities %}
+					<li class="locations-communities__card">
+						<span class="locations-communities__number">{{ '%02d'|format(loop.index) }}</span>
+						{% if community.link %}
+							<a class="locations-communities__name" href="{{ community.link.url }}"{% if community.link.target %} target="{{ community.link.target }}"{% endif %}>{{ community.name }}</a>
+						{% else %}
+							<span class="locations-communities__name">{{ community.name }}</span>
+						{% endif %}
+					</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+
+	</div>
+</div>
