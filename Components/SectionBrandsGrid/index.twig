@@ -1,0 +1,104 @@
+{% set local_namespace = "sbg-hero" %}
+
+{% extends "partials/hero.twig" %}
+
+{% block image %}
+	{% if post.thumbnail or image %}
+		{% if image %}
+		{% include ['partials/image.twig'] ignore missing with { 'image': image } %}
+		{% else %}
+		{% include ['partials/image.twig'] ignore missing with { 'image': post.thumbnail } %}
+		{% endif %}
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+
+	{% if sectionHtml_1 %}
+		<div class="row">
+			<div class="col-md content-flow">{{ sectionHtml_1 }}</div>
+		</div>
+	{% endif %}
+
+	{% include ['partials/button-array.twig'] ignore missing with { 'buttons': buttons } %}
+
+{% endblock %}
+
+{% block extracontent %}
+
+	<section class="sbg-section">
+		<div class="sbg-container">
+			<div class="sbg-inner">
+
+			{% if categories %}
+			<div class="sbg-filter-bar" id="sbg-filter-bar">
+				<div class="sbg-filter-bar--dropdown">
+					<label for="sbg-category-filter">{{ GridCategoryDropdown.label ?: 'Filter:' }}</label>
+					<select class="form-control" id="sbg-category-filter">
+						<option value="">{{ GridCategoryDropdown.placeholder ?: 'Brand Category' }}</option>
+						{% for category in categories %}
+							<option value="{{ category.slug }}">{{ category.title }}</option>
+						{% endfor %}
+					</select>
+				</div>
+				<div class="sbg-filter-bar--active" id="sbg-filter-active"></div>
+				<div class="sbg-filter-bar--count"><span id="sbg-filter-count">{{ brands|length }}</span> {{ GridCardContent.BrandsCountLabel ?: 'Brands' }}</div>
+			</div>
+			{% endif %}
+
+			{% if brands %}
+			<div class="sbg-grid" id="sbg-grid">
+				{% for brand in brands %}
+				{% set brand_terms = brand.terms({query:{taxonomy:'product_line', orderby:'name', order: 'ASC'}}) %}
+				<div class="sbg-grid--card" data-categories="{% for term in brand_terms %}{{ term.slug }}{% if not loop.last %},{% endif %}{% endfor %}">
+					<div class="sbg-grid--image">
+						{% include ['partials/image.twig'] ignore missing with { 'id': brand.image1 ?: brand.thumbnail.id } %}
+
+						{% if brand.logo %}
+						<div class="sbg-grid--logo">
+							{% include ['partials/image.twig'] ignore missing with { 'id': brand.logo, 'alt': brand.title } %}
+						</div>
+						{% else %}
+						<div class="sbg-grid--logo sbg-grid--logo-text">{{ brand.title }}</div>
+						{% endif %}
+
+						{% if brand.website %}
+						<a href="{{ brand.website }}" target="_blank" class="sbg-grid--external" title="Visit Website for {{ brand.name }}">
+							{% include ['partials/icon.twig'] ignore missing with {'icon': 'link'} %}
+							<span class="sr-only">Visit Website for {{ brand.name }} (opens in new window)</span>
+						</a>
+						{% endif %}
+					</div>
+					<div class="sbg-grid--body">
+						{% if brand.sectionHtml_1 %}
+						<div class="sbg-grid--desc">
+							{{ brand.sectionHtml_1|striptags|slice(0, 140) }}&hellip;
+							<a href="{{ brand.link }}" class="sbg-grid--know-more">{{ GridCardContent.KnowMoreText ?: 'Know More' }}</a>
+						</div>
+						{% endif %}
+
+						{% if BrandEcommerceLink_show and brand.shop %}
+						<a href="{{ brand.shop }}" target="_blank" title="Shop for {{ brand.name }}" class="btn btn-outline-primary btn-block sbg-grid--shop">
+							<span aria-hidden="true">{{ GridCardContent.BrandShopLinkText }}</span>
+							<span class="sr-only">Shop for {{ brand.name }} (opens in new window)</span>
+						</a>
+						{% endif %}
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+
+			{% if brands|length > (GridCardContent.BrandsPerPage ?: 12) %}
+			<div class="sbg-load-more-wrap" id="sbg-load-more-wrap">
+				<button type="button" class="btn sbg-load-more" id="sbg-load-more" data-per-page="{{ GridCardContent.BrandsPerPage ?: 12 }}">
+					{{ GridCardContent.LoadMoreText ?: 'Load More' }}
+				</button>
+			</div>
+			{% endif %}
+			{% endif %}
+
+			</div>
+		</div>
+	</section>
+
+{% endblock %}

@@ -1,0 +1,571 @@
+/* Full-bleed hero overlay (overrides the shared split-column .hero-container layout).
+   No background color here: the photo is boxed to the same 1440px container as
+   the text/grid (see .sbg-hero .hero--image below), so the page's normal
+   background shows on either side of it on wide screens, matching the site's
+   other boxed sections instead of a full-bleed dark bar. */
+.hero-container.sbg-hero {
+	position: relative;
+	overflow: hidden;
+	margin-top: 0 !important;
+	margin-bottom: 0 !important;
+	padding-top: 0 !important;
+	padding-bottom: 0 !important;
+	background: none !important;
+	min-height: 22rem;
+	display: flex;
+}
+
+@media (min-width: 768px) {
+	.hero-container.sbg-hero {
+		min-height: 30rem;
+	}
+}
+
+.sbg-hero .breadcrumbs {
+	display: none;
+}
+
+/* Matches the site header's .header-container convention (max-width 1440px,
+   centered, padding 1.25rem -> 2.5rem @ lg -> 4.5rem @ xl) shared with
+   .sbg-container below, so the hero image, grid box, and header all line up
+   on the same left/right edges site-wide, on every screen size. The text
+   itself gets extra breathing room on top of this via .hero--text's own
+   padding below, instead of sharing the exact same edge as the photo. */
+.sbg-hero .container-xl {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 100%;
+	flex: 1 1 100%;
+	max-width: 1440px !important;
+	margin-left: auto;
+	margin-right: auto;
+	min-height: 22rem;
+	padding-left: 1.25rem !important;
+	padding-right: 1.25rem !important;
+}
+
+@media (min-width: 768px) {
+	.sbg-hero .container-xl {
+		min-height: 30rem;
+	}
+}
+
+@media (min-width: 992px) {
+	.sbg-hero .container-xl {
+		padding-left: 2.5rem !important;
+		padding-right: 2.5rem !important;
+	}
+}
+
+@media (min-width: 1200px) {
+	.sbg-hero .container-xl {
+		padding-left: 4.5rem !important;
+		padding-right: 4.5rem !important;
+	}
+}
+
+.sbg-hero .row {
+	display: block !important;
+	flex-direction: unset !important;
+	align-items: unset !important;
+	margin: 0 !important;
+}
+
+/* Inset by the exact same amount as .container-xl's own padding (rather than
+   filling its full padding-box, which absolute positioning would otherwise
+   do) so the photo's left/right edges match the heading/buttons/grid on
+   every screen size, never bleeding past the theme's boxed content width. */
+.sbg-hero .hero--image {
+	position: absolute !important;
+	top: 0;
+	bottom: 0;
+	left: 1.25rem;
+	right: 1.25rem;
+	width: auto !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	flex: none !important;
+	max-width: none !important;
+	z-index: 0;
+}
+
+@media (min-width: 992px) {
+	.sbg-hero .hero--image {
+		left: 2.5rem;
+		right: 2.5rem;
+	}
+}
+
+@media (min-width: 1200px) {
+	.sbg-hero .hero--image {
+		left: 4.5rem;
+		right: 4.5rem;
+	}
+}
+
+.sbg-hero .hero--image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+/* Even tint (rather than the bottom-heavy gradient a bottom-anchored hero
+   would use) since the text block now sits vertically centered over the
+   photo, so it needs consistent contrast top-to-bottom instead of just
+   near one edge. */
+.sbg-hero .hero--image::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.5);
+}
+
+/* Extra breathing room beyond the photo's own edge (.container-xl's padding
+   above), so the heading/buttons aren't flush against the same line the
+   image stops at. Forces center alignment on both the heading and button
+   row to match the reference design's centered hero (some heading
+   styles/utility classes only center multi-line text by default, which
+   left the button row aligned differently from the heading unless both
+   are forced here explicitly). */
+.sbg-hero .hero--text {
+	position: relative;
+	z-index: 2;
+	width: 100% !important;
+	max-width: 100% !important;
+	flex: none !important;
+	padding: 0 1rem !important;
+	text-align: center !important;
+	color: #fff;
+}
+
+.sbg-hero .hero--text * {
+	text-align: center !important;
+}
+
+@media (min-width: 992px) {
+	.sbg-hero .hero--text {
+		padding: 0 1.5rem !important;
+	}
+}
+
+@media (min-width: 1200px) {
+	.sbg-hero .hero--text {
+		padding: 0 2rem !important;
+	}
+}
+
+.sbg-hero .content-flow-headings,
+.sbg-hero .content-flow-headings * {
+	color: #fff;
+}
+
+/* The base .content-flow-headings rule caps this at max-width: 95ch and only
+   centers it (margin: auto) when a "text-center" ancestor class is present —
+   which partials/hero.twig only adds when there's no image, never true here.
+   Without this, text-align: center on .hero--text above just centers the
+   heading's text inside a box that itself stays flush-left, so the heading
+   visibly sits left of the (correctly full-width) button row below it. */
+.sbg-hero .content-flow-headings {
+	max-width: 100% !important;
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
+
+/* The theme's default display heading size (3.75rem desktop) reads oversized
+   against this hero's min-height, so it's sized down to keep the centered
+   text block proportionate to the reference design. */
+.sbg-hero .content-flow-headings * {
+	font-size: 1.5rem;
+	line-height: 1.15;
+}
+
+@media (min-width: 576px) {
+	.sbg-hero .content-flow-headings * {
+		font-size: 1.875rem;
+	}
+}
+
+@media (min-width: 992px) {
+	.sbg-hero .content-flow-headings * {
+		font-size: 2.25rem;
+	}
+}
+
+@media (min-width: 1200px) {
+	.sbg-hero .content-flow-headings * {
+		font-size: 2.5rem;
+	}
+}
+
+.sbg-hero .button-group {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0.75rem;
+	margin-top: 1.5rem;
+}
+
+.sbg-hero .button-group .button-col {
+	margin: 0;
+}
+
+.sbg-hero .button-group .btn {
+	background-color: transparent !important;
+	background-image: none !important;
+	border: 1px solid rgba(255, 255, 255, 0.85) !important;
+	color: #fff !important;
+	border-radius: 0;
+	text-transform: uppercase;
+	font-size: 0.75rem;
+	font-weight: 600;
+	letter-spacing: 0.05em;
+	padding: 0.75rem 1.25rem;
+	box-shadow: none !important;
+}
+
+.sbg-hero .button-group .btn:hover,
+.sbg-hero .button-group .btn:focus {
+	background-color: #fff !important;
+	color: #0e0e0e !important;
+}
+
+/* First button reads as the primary action (e.g. "Shop Brands Products") and
+   stays solid white to match the reference design, while the rest keep the
+   transparent/outlined look above. Keyed off position rather than the
+   button's own color choice since the ACF button field has no "white"
+   color option (see FieldVariables\getButtonParts). */
+.sbg-hero .button-group .button-col:first-child .btn {
+	background-color: #fff !important;
+	border-color: #fff !important;
+	color: #0e0e0e !important;
+}
+
+.sbg-hero .button-group .button-col:first-child .btn:hover,
+.sbg-hero .button-group .button-col:first-child .btn:focus {
+	background-color: rgba(255, 255, 255, 0.85) !important;
+	border-color: rgba(255, 255, 255, 0.85) !important;
+	color: #0e0e0e !important;
+}
+
+/* No background here: the dark color lives on .sbg-inner (boxed to match
+   the hero image exactly) instead of the full-width section, so the page's
+   normal background shows on either side of the grid on wide screens,
+   matching the hero above it. The theme applies a generic 4rem top padding
+   to every <section> (".section, main section"); without zeroing it out
+   here, it shows as a white gap above the black box, exactly like
+   .hero-container.sbg-hero needed padding-top: 0 above.
+
+   Bottom padding is 0 WITHOUT !important (important on purpose): when this
+   section is followed by another one (e.g. SectionBrandsContact), that
+   other section already supplies its own top padding, so stacking this
+   section's generic 4rem on top of it doubled the gap between them. But
+   when this section genuinely ends up as <main>'s last child (used with
+   nothing after it), "main > *:last-child" reserves padding-bottom: 13.5rem
+   for the site-wide "Ankle" component that follows <main> (it
+   absolutely-positions itself straddling the boundary via
+   translateY(-50%)) — that selector is more specific than a plain class,
+   so it still wins on its own in that case. Adding !important here would
+   defeat that and make the Ankle overlap the Load More button again. */
+.sbg-section {
+	color: #fff;
+	padding-top: 0 !important;
+	padding-bottom: 0;
+}
+
+/* Plain positioning shell only (max-width 1440px, centered) — matches
+   .sbg-hero .container-xl. No padding/background of its own; .sbg-inner
+   below carries those so its edges land in the same place as the photo. */
+.sbg-container {
+	width: 100%;
+	max-width: 1440px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* Inset from .sbg-container's edges via MARGIN (not padding) by the exact
+   same amount used for .sbg-hero .hero--image's left/right insets, so this
+   box's visible edges — not just its content — line up with the photo
+   above it, instead of the background bleeding to the container's full
+   width the way padding-based insets would. */
+.sbg-inner {
+	background-color: #0e0e0e;
+	padding-top: 2rem;
+	padding-bottom: 4.5rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	margin-left: 1.25rem;
+	margin-right: 1.25rem;
+}
+
+@media (min-width: 992px) {
+	.sbg-inner {
+		padding-left: 1.5rem;
+		padding-right: 1.5rem;
+		margin-left: 2.5rem;
+		margin-right: 2.5rem;
+	}
+}
+
+@media (min-width: 1200px) {
+	.sbg-inner {
+		padding-left: 2rem;
+		padding-right: 2rem;
+		margin-left: 4.5rem;
+		margin-right: 4.5rem;
+	}
+}
+
+.sbg-filter-bar {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 1rem;
+	padding-bottom: 1rem;
+	margin-bottom: 2rem;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.sbg-filter-bar--dropdown {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.sbg-filter-bar--dropdown label {
+	font-size: 0.85rem;
+	margin-bottom: 0;
+	opacity: 0.85;
+}
+
+.sbg-filter-bar--dropdown select {
+	background-color: transparent;
+	color: #fff;
+	border: 0;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+	padding: 0.15rem 1.5rem 0.15rem 0;
+	font-size: 0.85rem;
+	border-radius: 0;
+	appearance: none;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath fill='%23ffffff' d='M6 8 0 0h12z'/%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	background-position: right center;
+	background-size: 0.65rem;
+}
+
+.sbg-filter-bar--dropdown select option {
+	color: #000;
+}
+
+.sbg-filter-bar--active {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+}
+
+.sbg-filter-bar--chip {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	background-color: #fff;
+	color: #0e0e0e;
+	border-radius: 4px;
+	padding: 0.4rem 1rem;
+	font-size: 0.8rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.03em;
+}
+
+.sbg-filter-bar--chip button {
+	background: none;
+	border: 0;
+	color: inherit;
+	line-height: 1;
+	padding: 0;
+	font-size: 1rem;
+	cursor: pointer;
+}
+
+.sbg-filter-bar--count {
+	margin-left: auto;
+	font-size: 0.85rem;
+	opacity: 0.85;
+}
+
+.sbg-grid {
+	display: grid;
+	grid-template-columns: repeat(1, 1fr);
+	gap: 2rem 1.5rem;
+}
+
+@media (min-width: 576px) {
+	.sbg-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (min-width: 992px) {
+	.sbg-grid {
+		grid-template-columns: repeat(4, 1fr);
+	}
+}
+
+.sbg-grid--card {
+	display: flex;
+	flex-direction: column;
+}
+
+.sbg-grid--card.is-hidden {
+	display: none;
+}
+
+.sbg-grid--image {
+	position: relative;
+	aspect-ratio: 4 / 3;
+	overflow: hidden;
+	background-color: #1a1a1a;
+}
+
+.sbg-grid--image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.sbg-grid--image::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 55%;
+	background: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0));
+	pointer-events: none;
+}
+
+.sbg-grid--logo {
+	position: absolute;
+	left: 0.85rem;
+	bottom: 0.75rem;
+	z-index: 1;
+	max-width: 45%;
+	max-height: 2.25rem;
+}
+
+.sbg-grid--logo img,
+.sbg-grid--logo svg {
+	max-width: 100%;
+	max-height: 2.25rem;
+	width: auto;
+	height: auto;
+	display: block;
+}
+
+.sbg-grid--logo-text {
+	color: #fff;
+	font-weight: 700;
+	font-size: 1rem;
+	text-transform: uppercase;
+	letter-spacing: 0.03em;
+}
+
+.sbg-grid--external {
+	position: absolute;
+	top: 0.65rem;
+	right: 0.65rem;
+	z-index: 1;
+	width: 1.9rem;
+	height: 1.9rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: transparent;
+	border: 1px solid rgba(255, 255, 255, 0.7);
+	border-radius: 50%;
+	color: #fff;
+}
+
+.sbg-grid--external svg {
+	width: 0.8rem;
+	height: 0.8rem;
+	fill: currentColor;
+}
+
+.sbg-grid--body {
+	padding-top: 0.85rem;
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+}
+
+.sbg-grid--desc {
+	font-size: 0.85rem;
+	line-height: 1.5;
+	opacity: 0.75;
+	margin-bottom: 1rem;
+	flex-grow: 1;
+}
+
+.sbg-grid--know-more {
+	display: block;
+	margin-top: 0.35rem;
+	font-size: 0.8rem;
+	text-decoration: underline;
+	color: inherit;
+}
+
+.sbg-grid--shop {
+	margin-top: auto;
+	background-color: transparent;
+	color: #fff;
+	border: 1px solid #fff;
+	border-radius: 0;
+	text-transform: uppercase;
+	font-size: 0.8rem;
+	font-weight: 600;
+	letter-spacing: 0.05em;
+	padding: 0.65rem 1rem;
+	text-align: center;
+}
+
+/* !important needed: the theme's global
+   .btn-outline-primary:not(:disabled):not(.disabled):hover rule forces
+   color: white with higher specificity than a plain hover selector can
+   beat, which made this text invisible against the white hover background. */
+.sbg-grid--shop:hover,
+.sbg-grid--shop:focus {
+	background-color: #fff !important;
+	color: #0e0e0e !important;
+	border-color: #fff !important;
+}
+
+.sbg-load-more-wrap {
+	display: flex;
+	justify-content: center;
+	margin-top: 2.5rem;
+}
+
+.sbg-load-more-wrap.is-hidden {
+	display: none;
+}
+
+.sbg-load-more {
+	background-color: #fff;
+	color: #0e0e0e;
+	border: 0;
+	border-radius: 4px;
+	text-transform: uppercase;
+	font-size: 0.8rem;
+	font-weight: 700;
+	letter-spacing: 0.05em;
+	padding: 0.85rem 2.5rem;
+	cursor: pointer;
+}
+
+.sbg-load-more:hover,
+.sbg-load-more:focus {
+	background-color: rgba(255, 255, 255, 0.85);
+}

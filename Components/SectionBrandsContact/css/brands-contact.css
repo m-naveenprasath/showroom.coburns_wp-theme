@@ -1,0 +1,150 @@
+/* Even top/bottom padding by design. Note: the site's global
+   "main > *:last-child" rule adds a large extra bottom padding (13.5rem)
+   whenever this ends up being the last section before the site-wide
+   "Ankle" component, so the true rendered gap below won't always match
+   the top exactly — that reserved space is intentional (the Ankle
+   absolutely-positions itself straddling the boundary) and shouldn't be
+   removed, but it only appears when this is genuinely the last section
+   on the page. */
+.sbc-section {
+	background-color: #fff;
+	padding: 4rem 0;
+}
+
+@media (min-width: 768px) {
+	.sbc-section {
+		padding: 5rem 0;
+	}
+}
+
+/* Matches .sbg-hero .container-xl / .sbg-container (the site header's
+   .header-container convention: max-width 1440px, centered, padding
+   1.25rem -> 2.5rem @ lg -> 4.5rem @ xl), so this section's edges line up
+   with the Brands Grid section above it instead of Bootstrap's narrower
+   1140px .container. */
+.sbc-container {
+	width: 100%;
+	max-width: 1440px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 1.25rem;
+	padding-right: 1.25rem;
+}
+
+@media (min-width: 992px) {
+	.sbc-container {
+		padding-left: 2.5rem;
+		padding-right: 2.5rem;
+	}
+}
+
+@media (min-width: 1200px) {
+	.sbc-container {
+		padding-left: 4.5rem;
+		padding-right: 4.5rem;
+	}
+}
+
+.sbc-card {
+	display: flex;
+	flex-direction: column;
+	background-color: #f5f0eb;
+	border-radius: 16px;
+	overflow: hidden;
+}
+
+@media (min-width: 992px) {
+	.sbc-card {
+		flex-direction: row;
+		min-height: 400px;
+	}
+}
+
+.sbc-content {
+	flex: 1 1 0%;
+	padding: 2.5rem 2rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+@media (min-width: 768px) {
+	.sbc-content {
+		padding: 3rem 2.5rem;
+	}
+}
+
+@media (min-width: 992px) {
+	.sbc-content {
+		padding: 3.5rem 3rem 3.5rem 3.5rem;
+		max-width: 56%;
+	}
+}
+
+.sbc-content .content-flow-headings,
+.sbc-content .content-flow-headings * {
+	color: #173a5e;
+	font-size: 1.75rem;
+	margin-bottom: 1.25rem;
+	line-height: 1.25;
+}
+
+@media (min-width: 768px) {
+	.sbc-content .content-flow-headings * {
+		font-size: 2rem;
+	}
+}
+
+@media (min-width: 992px) {
+	.sbc-content .content-flow-headings * {
+		font-size: 2.25rem;
+	}
+}
+
+.sbc-desc {
+	font-size: 0.9375rem;
+	color: #555;
+	line-height: 1.7;
+	margin-bottom: 1.75rem;
+}
+
+.sbc-desc p:last-child {
+	margin-bottom: 0;
+}
+
+.sbc-content .button-group {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+	align-items: center;
+}
+
+.sbc-content .button-group .btn {
+	font-size: 0.8125rem;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	padding: 0.875rem 1.5rem;
+	border-radius: 0;
+	white-space: nowrap;
+}
+
+.sbc-image {
+	flex: 0 0 auto;
+	width: 100%;
+	height: 260px;
+}
+
+@media (min-width: 992px) {
+	.sbc-image {
+		width: 44%;
+		height: auto;
+	}
+}
+
+.sbc-image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}

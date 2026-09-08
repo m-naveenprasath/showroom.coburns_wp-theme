@@ -19,6 +19,8 @@ add_action('Flynt/afterRegisterComponents', function () {
         Components\SectionBlogList\getACFLayout(),
         Components\PageContentBrandFilter\getACFLayout(),
         Components\SectionBrandsListing\getACFLayout(),
+        Components\SectionBrandsGrid\getACFLayout(),
+        Components\SectionBrandsContact\getACFLayout(),
         Components\SectionLocationsListing\getACFLayout(),
         Components\LocationsOfferings\getACFLayout(),
         Components\SectionSpace\getACFLayout(),

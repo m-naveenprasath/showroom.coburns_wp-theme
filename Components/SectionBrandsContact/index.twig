@@ -1,0 +1,23 @@
+<section class="sbc-section">
+	<div class="sbc-container">
+		<div class="sbc-card">
+
+			<div class="sbc-content">
+				{% include ['partials/heading-array.twig'] ignore missing with { 'headings': headings } %}
+
+				{% if sectionHtml_1 %}
+					<div class="sbc-desc">{{ sectionHtml_1 }}</div>
+				{% endif %}
+
+				{% include ['partials/button-array.twig'] ignore missing with { 'buttons': buttons } %}
+			</div>
+
+			{% if image %}
+			<div class="sbc-image">
+				{% include ['partials/image.twig'] ignore missing with { 'image': image } %}
+			</div>
+			{% endif %}
+
+		</div>
+	</div>
+</section>
