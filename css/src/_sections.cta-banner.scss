@@ -1,0 +1,30 @@
+.section-cta-banner {
+	padding: 1.5rem 0;
+	text-align: center;
+
+	@include media-breakpoint-up(md) {
+		padding: 2.5rem 0;
+	}
+
+	> .container {
+		background-color: $accent;
+		border-radius: 0.75rem;
+		padding: 3rem 1.5rem;
+
+		@include media-breakpoint-up(md) {
+			padding: 4rem 3rem;
+		}
+	}
+
+	.content-flow-headings {
+		max-width: 640px;
+		margin: 0 auto 0.75rem;
+	}
+
+	&__content {
+		max-width: 640px;
+		margin: 0 auto 1.5rem;
+		color: $gray;
+		font-size: 0.875rem;
+	}
+}

@@ -644,6 +644,13 @@ function getStaffParts()
 {
     return [
         [
+            "label" => "Photo",
+            "name" => "photo",
+            "type" => "image",
+            "return_format" => "array",
+            "preview_size" => "medium",
+        ],
+        [
             "label" => "Name",
             "name" => "name",
             "type" => "text",

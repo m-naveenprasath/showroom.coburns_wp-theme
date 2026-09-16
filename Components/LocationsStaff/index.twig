@@ -16,19 +16,46 @@
 		{% endif %}
 	</div>
 
+	<div class="{{ local_namespace }}-grid">
+		{% for person in staff %}
+		<article class="bio-card{{ loop.first ? ' bio-card--featured' }}">
 
-	<div class="row justify-content-center accordion {{ local_namespace }}-accordion" id="{{ component_ID ?: local_namespace }}-accordion">
-		{% for person in staff %}
-			{% include ['partials/staff-member.twig'] ignore missing with { 'person': person, 'size': 'desktop', 'loopIndex': loop.index } %}
-		{% endfor %}
-		{% for person in staff %}
-			{% include ['partials/staff-member.twig'] ignore missing with { 'person': person, 'size': 'mobile', 'loopIndex': loop.index } %}
+			<header class="bio-card__head">
+				<div class="bio-card__avatar">
+					{% if person.photo %}
+						{% include ['partials/image.twig'] ignore missing with { 'image': person.photo, 'alt': person.name } %}
+					{% else %}
+						<span class="bio-card__avatar-placeholder" aria-hidden="true">
+							<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<circle cx="12" cy="8" r="4" fill="currentColor"/>
+								<path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" fill="currentColor"/>
+							</svg>
+						</span>
+					{% endif %}
+				</div>
+
+				<div class="bio-card__identity">
+					{% if person.name %}
+						<h3 class="bio-card__name">{{ person.name }}</h3>
+					{% endif %}
+					{% if person.title %}
+						<p class="bio-card__title">{{ person.title }}</p>
+					{% endif %}
+				</div>
+			</header>
 
 			{% if person.bio %}
-			<div class="bio-details col-12 collapse" id="collapseBio{{ loop.index }}" data-parent="#{{ component_ID ?: local_namespace }}-accordion">
-				{{ person.bio }}
+			<div class="bio-card__bio-wrap">
+				<div class="bio-card__bio" data-bio-content>
+					{{ person.bio }}
+				</div>
+				<button type="button" class="bio-card__toggle" data-bio-toggle hidden>
+					<span data-bio-toggle-text>{{ see_more_label|default('See more') }}</span>
+				</button>
 			</div>
 			{% endif %}
+
+		</article>
 		{% endfor %}
 	</div>
 

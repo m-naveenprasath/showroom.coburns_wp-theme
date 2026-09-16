@@ -14,20 +14,16 @@
 
 	{{ renderComponent('LocationsWhyCoburns') }}
 
-	{{ renderComponent('LocationsCommunities') }}
-
-	{{ renderComponent('LocationsProducts') }}
-
-	{{ renderComponent('LocationsTestimonials') }}
-
 	{{ renderComponent('LocationsFAQ') }}
-
-	{{ renderComponent('LocationsConsultation') }}
 
 	{% if post.staff %}{{ renderComponent('LocationsStaff') }}{% endif %}
 
 	{% set hasLocationsOfferings = false %}
 	{% for component in post.meta('pageComponents') %}
+		{% if component.acf_fc_layout == "SectionAppointments" %}
+		{{ renderComponent('LocationsConsultation') }}
+		{% endif %}
+
 		{{ renderComponent(component) }}
 
 		{% if component.acf_fc_layout == "LocationsOfferings" %}

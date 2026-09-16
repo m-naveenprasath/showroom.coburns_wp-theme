@@ -1,0 +1,15 @@
+{% set local_namespace = "section-cta-banner" %}
+
+<section class="{{ local_namespace }}">
+	<div class="container">
+		{% include ['partials/heading-array.twig'] ignore missing with { 'headings': headings } %}
+
+		{% if sectionHtml_1 %}
+			<div class="{{ local_namespace }}__content content-flow">{{ sectionHtml_1 }}</div>
+		{% endif %}
+
+		{% if buttons %}
+			{% include ['partials/button-array.twig'] ignore missing with { 'buttons': buttons } %}
+		{% endif %}
+	</div>
+</section>

@@ -1,46 +1,165 @@
+#section-locations-listing > .container {
+	@include media-breakpoint-up(xl) {
+		max-width: 1320px;
+	}
+}
+
 .listing-table {
 	text-align: left;
-	// Needed for mobile layout.
-	@include responsive-tables;
-	table {
-		width: 100%;
+	// Note: intentionally not using the `responsive-tables` mixin here — it sets
+	// `display: block` / `display: table-cell` on `tbody td` at higher specificity
+	// than the flex/grid rules below, which silently breaks this card layout.
+
+	&__heading {
+		margin-bottom: 1.5rem;
 	}
+
+	table {
+		display: block;
+		width: 100%;
+		border: 0 !important;
+	}
+
+	thead {
+		display: none !important;
+	}
+
+	tbody {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		gap: 1.25rem;
+
+		@include media-breakpoint-up(sm) {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		@include media-breakpoint-up(lg) {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 1.5rem;
+		}
+	}
+
 	address {
 		margin: 0;
 	}
 }
 
 .listing-item {
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+	background-color: $white;
+	border: $border-width solid $border-color !important;
+	border-radius: 0.5rem;
+	padding: 1.25rem;
+	box-shadow: $box-shadow;
+
+	td {
+		min-width: 0;
+		border: 0 !important;
+		padding: 0;
+	}
 }
 .listing-item.is-hidden {
 	display: none;
 }
-.listing-name {
-	@include heading-style-minimal($font-size: 0.75rem, $color: $link-color);
-	font-size: 0.875rem;
+
+.listing-icon {
+	display: block;
+	flex: none;
+	width: 1.75rem;
+	height: 1.75rem;
+	margin-right: 0.5rem;
+	object-fit: contain;
 }
-@media (min-width: 768px) and (max-width: 991px) {
-	.listing-address {
-		// other td style is too specific
-		display: none !important;
+
+.listing-name {
+	display: flex;
+	align-items: center;
+	margin-bottom: 0.75rem;
+	font-family: $headings-font-family;
+	font-size: 1rem;
+	font-weight: 600;
+
+	a {
+		min-width: 0;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		color: $blue-dark;
+
+		@include hover-focus-active() {
+			color: $teal;
+		}
 	}
 }
+
+.listing-address,
+.listing-phone,
+.listing-hours {
+	display: flex;
+	align-items: center;
+	margin-bottom: 0.5rem;
+	font-size: 0.875rem;
+
+	address,
+	a,
+	span {
+		display: block;
+		min-width: 0;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.listing-icon {
+		width: 1.25rem;
+		height: 1.25rem;
+	}
+}
+
 .listing-address a,
 .listing-phone a {
 	@include link-color($body-color);
 }
-.listing-phone,
-.listing-dist {
-	white-space: nowrap;
+
+.listing-hours span {
+	color: $gray;
 }
 
-.listing-actions .btn {
-	padding: 0.594rem 0.6875rem;
-	margin-right: 0.5rem;
-	&:last-child {
+.listing-dist {
+	display: none;
+}
+
+.listing-actions {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 0.5rem;
+	margin-top: auto;
+	padding-top: 0.75rem;
+
+	.btn {
+		min-width: 0;
+		padding: 0.5rem 0.625rem;
 		margin-right: 0;
-	}
-	.icon {
-		margin-right: 0;
+		font-size: 0.7rem;
+		white-space: normal;
+		text-align: center;
+		line-height: 1.25;
+
+		.icon {
+			flex-shrink: 0;
+			margin-right: 0.25rem;
+		}
+
+		// `.btn span { white-space: nowrap }` (from the btn-additions mixin) targets this label
+		// span directly and otherwise wins over the `white-space: normal` set on .btn above,
+		// since a rule aimed straight at the element beats one that only sets it on an ancestor.
+		.listing-actions__label {
+			min-width: 0;
+			white-space: normal;
+			overflow-wrap: break-word;
+			word-break: break-word;
+		}
 	}
 }

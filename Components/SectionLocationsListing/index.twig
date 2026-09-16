@@ -44,6 +44,7 @@
 {% set map_list_namespace = "locations" %}
 <section class="section" id="section-{{ map_list_namespace }}-listing">
 	<div class="container">
+		<h2 class="display-2 listing-table__heading">Showroom Near You</h2>
 		<div class="table listing-table">
 			<table class="table-hover" id="search-location-table">
 				<caption class="sr-only">Showroom Locations</caption>
@@ -76,7 +77,10 @@
 		</div>
 	</div>
 
-	{% if buttonHeading or buttons %}
+	{# The Button Heading / Section Text 2 / Buttons fields below are no longer rendered here —
+	   this content now lives in a dedicated "Section: CTA Banner" page section instead. The
+	   fields (and any data already entered in them) are left intact in case they're needed again. #}
+	{% if false and (buttonHeading or buttons) %}
 	<div class="container">
 		<div class="justify-content-md-center row">
 			<div class="{{ map_list_namespace }}--page-content">
