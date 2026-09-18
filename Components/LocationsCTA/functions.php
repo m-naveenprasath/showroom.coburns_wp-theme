@@ -7,23 +7,13 @@ use Flynt\FieldVariables;
 use Flynt\Utils\Options;
 
 add_filter('Flynt/addComponentData?name=LocationsCTA', function ($data) {
-    // Pull fields from post-level ACF fields (registered in locations.php)
-    $cta_image = get_field('cta_image');
-    if (!empty($cta_image)) {
-        $data['image'] = $cta_image;
-    }
+    // $data already contains this flex row's own sub-fields (image, heading, description, buttons).
 
-    $cta_description = get_field('cta_description');
-    if (!empty($cta_description)) {
-        $data['description'] = $cta_description;
-    }
-
-    $cta_heading = get_field('cta_heading');
-    if (!empty($cta_heading)) {
+    if (!empty($data['heading'])) {
         $data['heading'] = str_replace(
             '{location_name}',
             isset($GLOBALS['post']) ? $GLOBALS['post']->post_title : '',
-            $cta_heading
+            $data['heading']
         );
     }
 
@@ -45,14 +35,12 @@ add_filter('Flynt/addComponentData?name=LocationsCTA', function ($data) {
         $data['description'] = '<p>Seeking design inspiration and premium fixtures for your renovation? Coburn\'s showroom near ' . esc_html($location_name) . ' features designer faucets, luxury shower systems, and custom bath solutions. Visit our showroom to compare styles and receive personalized guidance from our design specialists.</p>';
     }
 
-    $directions_url = get_field('cta_directions_url') ?: '#';
-
     if (empty($data['buttons'])) {
         $data['buttons'] = [
             [
                 'text'  => 'Get Directions',
                 'link'  => [
-                    'url'    => $directions_url,
+                    'url'    => '#',
                     'target' => '_blank',
                     'title'  => 'Get Directions',
                 ],

@@ -10,7 +10,7 @@ add_filter('Flynt/addComponentData?name=SectionLongFormContent', function ($data
             [
                 'tag'   => 'span',
                 'style' => 'minimal-1',
-                'text'  => 'Long Form Content',
+                'text'  => '',
             ],
             [
                 'tag'   => 'h2',

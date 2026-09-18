@@ -68,6 +68,69 @@
 		}
 	}
 }
+.hero--locations-subtitle {
+	color: $blue-dark;
+	font-style: italic;
+	font-size: 1.0625rem;
+	margin-bottom: 1rem;
+}
+.hero--locations-info {
+	display: flex;
+	flex-direction: column;
+	gap: 1.25rem;
+	margin-bottom: 1.5rem;
+
+	@include media-breakpoint-up(sm) {
+		flex-direction: row;
+		gap: 2rem;
+	}
+
+	&__col {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		gap: 1.25rem;
+	}
+
+	&__label {
+		font-size: 0.9375rem;
+		font-weight: 700;
+		color: $blue-dark;
+		font-family: $headings-font-family;
+		margin: 0 0 0.35rem;
+		line-height: 1.3;
+	}
+
+	&__value {
+		font-style: normal;
+		color: $gray;
+		font-size: 0.9375rem;
+		line-height: 1.5;
+		margin: 0;
+
+		a {
+			color: $gray;
+
+			@include hover() {
+				color: $blue-dark;
+			}
+		}
+	}
+}
+.hero--locations-buttons {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+
+	&__mark {
+		background-color: $red;
+		display: inline-block;
+		flex-shrink: 0;
+		height: 2px;
+		margin-right: 1rem;
+		width: 2rem;
+	}
+}
 .hero--form {
 	margin-bottom: 8px;
 	max-width: 412px;

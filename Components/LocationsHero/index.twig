@@ -48,12 +48,64 @@
 {% endblock %}
 
 {% block content %}
+{% if hero_subtitle %}
+<p class="hero--locations-subtitle">{{ hero_subtitle }}</p>
+{% endif %}
+
 {% if hero_content %}
 <div class="hero--locations-intro">{{ hero_content }}</div>
 {% endif %}
 
+{% if address or phone or hours or year_opened or manager %}
+<div class="hero--locations-info">
+	{% if address or phone or manager %}
+	<div class="hero--locations-info__col">
+		{% if address %}
+		<div class="hero--locations-info__item">
+			<h3 class="hero--locations-info__label">{{ address_label ?: "Address" }}</h3>
+			<address class="hero--locations-info__value">{{ address|nl2br }}</address>
+		</div>
+		{% endif %}
+
+		{% if phone %}
+		<div class="hero--locations-info__item">
+			<h3 class="hero--locations-info__label">{{ phone_label ?: "Phone" }}</h3>
+			<p class="hero--locations-info__value"><a href="tel:{{ phone|replace({' ': '', '(': '', ')': '', '-': ''}) }}">{{ phone }}</a></p>
+		</div>
+		{% endif %}
+
+		{% if manager %}
+		<div class="hero--locations-info__item">
+			<h3 class="hero--locations-info__label">{{ manager_label_singular ?: "Showroom Manager" }}</h3>
+			<p class="hero--locations-info__value">{{ manager }}</p>
+		</div>
+		{% endif %}
+	</div>
+	{% endif %}
+
+	{% if hours or year_opened %}
+	<div class="hero--locations-info__col">
+		{% if hours %}
+		<div class="hero--locations-info__item">
+			<h3 class="hero--locations-info__label">{{ hours_label ?: "Showroom Hours" }}</h3>
+			<p class="hero--locations-info__value">{{ hours }}</p>
+		</div>
+		{% endif %}
+
+		{% if year_opened %}
+		<div class="hero--locations-info__item">
+			<h3 class="hero--locations-info__label">{{ year_opened_label ?: "Open Since" }}</h3>
+			<p class="hero--locations-info__value">{{ year_opened }}</p>
+		</div>
+		{% endif %}
+	</div>
+	{% endif %}
+</div>
+{% endif %}
+
 {% if buttons %}
 <div class="hero--locations-buttons button-group">
+	<span class="hero--locations-buttons__mark" aria-hidden="true"></span>
 	{% include ['partials/button-array.twig'] ignore missing with { 'buttons': buttons } %}
 </div>
 {% endif %}

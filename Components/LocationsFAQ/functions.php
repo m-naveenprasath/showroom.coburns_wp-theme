@@ -5,10 +5,8 @@ namespace Flynt\Components\LocationsFAQ;
 use Flynt\FieldVariables;
 
 add_filter('Flynt/addComponentData?name=LocationsFAQ', function ($data) {
-    $post_eyebrow = get_field('eyebrow');
-    if (!empty($post_eyebrow)) {
-        $data['eyebrow'] = $post_eyebrow;
-    }
+    // $data already contains this flex row's own `eyebrow`/`faqs` sub-field values.
+
     if (empty($data['eyebrow'])) {
         $data['eyebrow'] = 'Got Questions?';
     }
@@ -21,11 +19,6 @@ add_filter('Flynt/addComponentData?name=LocationsFAQ', function ($data) {
                 'text'  => "We've Got Answers for Your Kitchen & Bath Project",
             ],
         ];
-    }
-
-    $post_faqs = get_field('faqs');
-    if (!empty($post_faqs)) {
-        $data['faqs'] = $post_faqs;
     }
 
     if (empty($data['faqs'])) {

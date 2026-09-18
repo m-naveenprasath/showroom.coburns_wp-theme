@@ -34,10 +34,7 @@ add_filter(
 );
 
 add_filter("Flynt/addComponentData?name=LocationsStaff", function ($data) {
-    if ($fields = get_fields()) {
-        unset($fields["pageComponents"]);
-        $data = array_merge($data, $fields);
-    }
+    // $data already contains this flex row's own `staff` sub-field value.
 
     if ($options = Options::getTranslatable("LocationLabels")) {
         $data = array_merge($data, $options);
@@ -48,3 +45,21 @@ add_filter("Flynt/addComponentData?name=LocationsStaff", function ($data) {
 
     return $data;
 });
+
+function getACFLayout()
+{
+    return [
+        "label" => "Locations: Staff",
+        "name" => "LocationsStaff",
+        "sub_fields" => [
+            [
+                "label" => "Staff Members",
+                "name" => "staff",
+                "type" => "repeater",
+                "layout" => "block",
+                "button_label" => "Add Staff Member",
+                "sub_fields" => FieldVariables\getStaffParts(),
+            ],
+        ],
+    ];
+}

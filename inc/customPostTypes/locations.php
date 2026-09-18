@@ -95,6 +95,13 @@ function registerLocationsCustomFields()
         "fields" => [
             fieldVariables\getTab("Content"),
             [
+                "label" => "Subtitle",
+                "name" => "hero_subtitle",
+                "type" => "text",
+                "instructions" =>
+                    "Optional italic tagline shown below the location name, e.g. \"Premium Kitchen & Bath Design Solutions Near Metairie\".",
+            ],
+            [
                 "label" => "Hero Intro",
                 "name" => "location_hero_intro",
                 "type" => "wysiwyg",
@@ -105,6 +112,38 @@ function registerLocationsCustomFields()
                     "Insert {location_name} where you want the location's name to appear.<br/> Leave empty to use the default content.",
             ],
             fieldVariables\getButtonLoop(),
+            fieldVariables\getTab("Location Info"),
+            [
+                "label" => "Address",
+                "name" => "hero_address",
+                "type" => "textarea",
+                "rows" => 2,
+                "instructions" => "e.g. 2912 Eastex Freeway, Beaumont, TX 77703",
+            ],
+            [
+                "label" => "Phone",
+                "name" => "hero_phone",
+                "type" => "text",
+                "instructions" => "e.g. (409) 899-9911",
+            ],
+            [
+                "label" => "Showroom Hours",
+                "name" => "hero_hours",
+                "type" => "text",
+                "instructions" => "e.g. Monday to Friday, 9:00 am to 4:30 pm",
+            ],
+            [
+                "label" => "Open Since",
+                "name" => "hero_year_opened",
+                "type" => "text",
+                "instructions" => "e.g. 1985",
+            ],
+            [
+                "label" => "Showroom Manager",
+                "name" => "hero_manager",
+                "type" => "text",
+                "instructions" => "e.g. Tarin Bennett",
+            ],
             fieldVariables\getTab("Images"),
             [
                 "label" => "Image 1",
@@ -270,171 +309,177 @@ function registerLocationsCustomFields()
     //     ],
     // ]);
 
-    ACFComposer::registerFieldGroup([
-        "name" => $post_type . "_cta_group",
-        "title" => "CTA Section",
-        "fields" => [
-            [
-                "label" => "Background Image",
-                "name" => "cta_image",
-                "type" => "image",
-                "return_format" => "array",
-                "instructions" => "Full-width background image for the CTA banner section.",
-            ],
-            [
-                "label" => "Heading",
-                "name" => "cta_heading",
-                "type" => "text",
-                "instructions" => "Use {location_name} to insert the location name automatically.",
-            ],
-            [
-                "label" => "Description",
-                "name" => "cta_description",
-                "type" => "wysiwyg",
-                "toolbar" => "basic",
-                "media_upload" => false,
-            ],
-            [
-                "label" => "Directions URL",
-                "name" => "cta_directions_url",
-                "type" => "url",
-                "instructions" => "Paste the Google Maps or Apple Maps directions link for this location.",
-            ],
-        ],
-        "location" => [
-            [
-                [
-                    "param" => "post_type",
-                    "operator" => "==",
-                    "value" => $post_type,
-                ],
-            ],
-        ],
-    ]);
+    // Retired <date> — migrated into flexible-content layout LocationsCTA
+    // (see Components\LocationsCTA\getACFLayout() and pageComponents.php).
+    // ACFComposer::registerFieldGroup([
+    //     "name" => $post_type . "_cta_group",
+    //     "title" => "CTA Section",
+    //     "fields" => [
+    //         [
+    //             "label" => "Background Image",
+    //             "name" => "cta_image",
+    //             "type" => "image",
+    //             "return_format" => "array",
+    //             "instructions" => "Full-width background image for the CTA banner section.",
+    //         ],
+    //         [
+    //             "label" => "Heading",
+    //             "name" => "cta_heading",
+    //             "type" => "text",
+    //             "instructions" => "Use {location_name} to insert the location name automatically.",
+    //         ],
+    //         [
+    //             "label" => "Description",
+    //             "name" => "cta_description",
+    //             "type" => "wysiwyg",
+    //             "toolbar" => "basic",
+    //             "media_upload" => false,
+    //         ],
+    //         [
+    //             "label" => "Directions URL",
+    //             "name" => "cta_directions_url",
+    //             "type" => "url",
+    //             "instructions" => "Paste the Google Maps or Apple Maps directions link for this location.",
+    //         ],
+    //     ],
+    //     "location" => [
+    //         [
+    //             [
+    //                 "param" => "post_type",
+    //                 "operator" => "==",
+    //                 "value" => $post_type,
+    //             ],
+    //         ],
+    //     ],
+    // ]);
 
-    ACFComposer::registerFieldGroup([
-        "name" => $post_type . "_map_group",
-        "title" => "Map & Contact",
-        "fields" => [
-            [
-                "label" => "Map Embed",
-                "name" => "map_embed",
-                "type" => "textarea",
-                "instructions" => "Paste the Google Maps iframe embed code. In Google Maps: share → Embed a map → copy HTML.",
-                "rows" => 4,
-            ],
-            [
-                "label" => "Address City / Subtitle",
-                "name" => "map_address_city",
-                "type" => "text",
-                "instructions" => "e.g. Harahan, Louisiana",
-            ],
-            [
-                "label" => "Address",
-                "name" => "map_address",
-                "type" => "textarea",
-                "instructions" => "Street address, one line per line",
-                "rows" => 3,
-            ],
-            [
-                "label" => "Directions URL",
-                "name" => "map_directions_url",
-                "type" => "url",
-                "instructions" => "Google Maps or Apple Maps link for this location",
-            ],
-            [
-                "label" => "Phone Number",
-                "name" => "map_phone",
-                "type" => "text",
-            ],
-            [
-                "label" => "Hours",
-                "name" => "map_hours",
-                "type" => "repeater",
-                "layout" => "table",
-                "button_label" => "Add Row",
-                "sub_fields" => [
-                    [
-                        "label" => "Days",
-                        "name" => "days",
-                        "type" => "text",
-                    ],
-                    [
-                        "label" => "Time",
-                        "name" => "time",
-                        "type" => "text",
-                    ],
-                ],
-            ],
-            [
-                "label" => "Hours Note",
-                "name" => "map_hours_note",
-                "type" => "textarea",
-                "rows" => 2,
-                "instructions" => "Optional note below hours",
-            ],
-        ],
-        "location" => [
-            [
-                [
-                    "param" => "post_type",
-                    "operator" => "==",
-                    "value" => $post_type,
-                ],
-            ],
-        ],
-    ]);
+    // Retired <date> — migrated into flexible-content layout LocationsMap
+    // (see Components\LocationsMap\getACFLayout() and pageComponents.php).
+    // ACFComposer::registerFieldGroup([
+    //     "name" => $post_type . "_map_group",
+    //     "title" => "Map & Contact",
+    //     "fields" => [
+    //         [
+    //             "label" => "Map Embed",
+    //             "name" => "map_embed",
+    //             "type" => "textarea",
+    //             "instructions" => "Paste the Google Maps iframe embed code. In Google Maps: share → Embed a map → copy HTML.",
+    //             "rows" => 4,
+    //         ],
+    //         [
+    //             "label" => "Address City / Subtitle",
+    //             "name" => "map_address_city",
+    //             "type" => "text",
+    //             "instructions" => "e.g. Harahan, Louisiana",
+    //         ],
+    //         [
+    //             "label" => "Address",
+    //             "name" => "map_address",
+    //             "type" => "textarea",
+    //             "instructions" => "Street address, one line per line",
+    //             "rows" => 3,
+    //         ],
+    //         [
+    //             "label" => "Directions URL",
+    //             "name" => "map_directions_url",
+    //             "type" => "url",
+    //             "instructions" => "Google Maps or Apple Maps link for this location",
+    //         ],
+    //         [
+    //             "label" => "Phone Number",
+    //             "name" => "map_phone",
+    //             "type" => "text",
+    //         ],
+    //         [
+    //             "label" => "Hours",
+    //             "name" => "map_hours",
+    //             "type" => "repeater",
+    //             "layout" => "table",
+    //             "button_label" => "Add Row",
+    //             "sub_fields" => [
+    //                 [
+    //                     "label" => "Days",
+    //                     "name" => "days",
+    //                     "type" => "text",
+    //                 ],
+    //                 [
+    //                     "label" => "Time",
+    //                     "name" => "time",
+    //                     "type" => "text",
+    //                 ],
+    //             ],
+    //         ],
+    //         [
+    //             "label" => "Hours Note",
+    //             "name" => "map_hours_note",
+    //             "type" => "textarea",
+    //             "rows" => 2,
+    //             "instructions" => "Optional note below hours",
+    //         ],
+    //     ],
+    //     "location" => [
+    //         [
+    //             [
+    //                 "param" => "post_type",
+    //                 "operator" => "==",
+    //                 "value" => $post_type,
+    //             ],
+    //         ],
+    //     ],
+    // ]);
 
-    ACFComposer::registerFieldGroup([
-        "name" => $post_type . "_departments_group",
-        "title" => "Departments",
-        "fields" => [
-            [
-                "label" => "Departments",
-                "name" => "departments",
-                "type" => "repeater",
-                "layout" => "block",
-                "button_label" => "Add Department",
-                "sub_fields" => [
-                    [
-                        "label" => "Image",
-                        "name" => "image",
-                        "type" => "image",
-                        "return_format" => "array",
-                    ],
-                    [
-                        "label" => "Title",
-                        "name" => "title",
-                        "type" => "text",
-                    ],
-                    [
-                        "label" => "Description",
-                        "name" => "description",
-                        "type" => "textarea",
-                    ],
-                    [
-                        "label" => "Background Color",
-                        "name" => "background_color",
-                        "type" => "color_picker",
-                    ],
-                    [
-                        "label" => "Link",
-                        "name" => "link",
-                        "type" => "link",
-                    ],
-                ],
-            ],
-        ],
-        "location" => [
-            [
-                [
-                    "param" => "post_type",
-                    "operator" => "==",
-                    "value" => $post_type,
-                ],
-            ],
-        ],
-    ]);
+    // Retired <date> — migrated into flexible-content layout LocationsDepartments
+    // (see Components\LocationsDepartments\getACFLayout() and pageComponents.php).
+    // ACFComposer::registerFieldGroup([
+    //     "name" => $post_type . "_departments_group",
+    //     "title" => "Departments",
+    //     "fields" => [
+    //         [
+    //             "label" => "Departments",
+    //             "name" => "departments",
+    //             "type" => "repeater",
+    //             "layout" => "block",
+    //             "button_label" => "Add Department",
+    //             "sub_fields" => [
+    //                 [
+    //                     "label" => "Image",
+    //                     "name" => "image",
+    //                     "type" => "image",
+    //                     "return_format" => "array",
+    //                 ],
+    //                 [
+    //                     "label" => "Title",
+    //                     "name" => "title",
+    //                     "type" => "text",
+    //                 ],
+    //                 [
+    //                     "label" => "Description",
+    //                     "name" => "description",
+    //                     "type" => "textarea",
+    //                 ],
+    //                 [
+    //                     "label" => "Background Color",
+    //                     "name" => "background_color",
+    //                     "type" => "color_picker",
+    //                 ],
+    //                 [
+    //                     "label" => "Link",
+    //                     "name" => "link",
+    //                     "type" => "link",
+    //                 ],
+    //             ],
+    //         ],
+    //     ],
+    //     "location" => [
+    //         [
+    //             [
+    //                 "param" => "post_type",
+    //                 "operator" => "==",
+    //                 "value" => $post_type,
+    //             ],
+    //         ],
+    //     ],
+    // ]);
 
     ACFComposer::registerFieldGroup([
         "name" => $post_type . "_products_group",
@@ -543,127 +588,125 @@ function registerLocationsCustomFields()
         ],
     ]);
 
-    ACFComposer::registerFieldGroup([
-        "name"  => $post_type . "_faq_group",
-        "title" => "FAQ Section",
-        "fields" => [
-            [
-                "label" => "Eyebrow Text",
-                "name"  => "eyebrow",
-                "type"  => "text",
-            ],
-            [
-                "label"        => "FAQ Items",
-                "name"         => "faqs",
-                "type"         => "repeater",
-                "layout"       => "block",
-                "button_label" => "Add FAQ Item",
-                "sub_fields"   => [
-                    [
-                        "label" => "Question",
-                        "name"  => "question",
-                        "type"  => "text",
-                    ],
-                    [
-                        "label" => "Answer",
-                        "name"  => "answer",
-                        "type"  => "textarea",
-                        "rows"  => 4,
-                    ],
-                ],
-            ],
-        ],
-        "location" => [
-            [
-                [
-                    "param"    => "post_type",
-                    "operator" => "==",
-                    "value"    => $post_type,
-                ],
-            ],
-        ],
-    ]);
+    // Retired <date> — migrated into flexible-content layout LocationsFAQ
+    // (see Components\LocationsFAQ\getACFLayout() and pageComponents.php).
+    // ACFComposer::registerFieldGroup([
+    //     "name"  => $post_type . "_faq_group",
+    //     "title" => "FAQ Section",
+    //     "fields" => [
+    //         [
+    //             "label" => "Eyebrow Text",
+    //             "name"  => "eyebrow",
+    //             "type"  => "text",
+    //         ],
+    //         [
+    //             "label"        => "FAQ Items",
+    //             "name"         => "faqs",
+    //             "type"         => "repeater",
+    //             "layout"       => "block",
+    //             "button_label" => "Add FAQ Item",
+    //             "sub_fields"   => [
+    //                 [
+    //                     "label" => "Question",
+    //                     "name"  => "question",
+    //                     "type"  => "text",
+    //                 ],
+    //                 [
+    //                     "label" => "Answer",
+    //                     "name"  => "answer",
+    //                     "type"  => "textarea",
+    //                     "rows"  => 4,
+    //                 ],
+    //             ],
+    //         ],
+    //     ],
+    //     "location" => [
+    //         [
+    //             [
+    //                 "param"    => "post_type",
+    //                 "operator" => "==",
+    //                 "value"    => $post_type,
+    //             ],
+    //         ],
+    //     ],
+    // ]);
 
-    ACFComposer::registerFieldGroup([
-        "name"  => $post_type . "_consultation_group",
-        "title" => "Consultation CTA",
-        "fields" => [
-            [
-                "label" => "Heading",
-                "name"  => "heading",
-                "type"  => "text",
-            ],
-            [
-                "label" => "Description (first paragraph)",
-                "name"  => "description_1",
-                "type"  => "textarea",
-                "rows"  => 3,
-            ],
-            [
-                "label" => "Description (second paragraph)",
-                "name"  => "description_2",
-                "type"  => "textarea",
-                "rows"  => 3,
-            ],
-            [
-                "label" => "Primary Button",
-                "name"  => "primary_button",
-                "type"  => "link",
-            ],
-            [
-                "label" => "Secondary Button",
-                "name"  => "secondary_button",
-                "type"  => "link",
-            ],
-            [
-                "label"         => "Image",
-                "name"          => "consultation_image",
-                "type"          => "image",
-                "return_format" => "array",
-            ],
-        ],
-        "location" => [
-            [
-                [
-                    "param"    => "post_type",
-                    "operator" => "==",
-                    "value"    => $post_type,
-                ],
-            ],
-        ],
-    ]);
+    // Retired <date> — migrated into flexible-content layout LocationsConsultation
+    // (see Components\LocationsConsultation\getACFLayout() and pageComponents.php).
+    // ACFComposer::registerFieldGroup([
+    //     "name"  => $post_type . "_consultation_group",
+    //     "title" => "Consultation CTA",
+    //     "fields" => [
+    //         [
+    //             "label" => "Heading",
+    //             "name"  => "heading",
+    //             "type"  => "text",
+    //         ],
+    //         [
+    //             "label" => "Description (first paragraph)",
+    //             "name"  => "description_1",
+    //             "type"  => "textarea",
+    //             "rows"  => 3,
+    //         ],
+    //         [
+    //             "label" => "Description (second paragraph)",
+    //             "name"  => "description_2",
+    //             "type"  => "textarea",
+    //             "rows"  => 3,
+    //         ],
+    //         [
+    //             "label" => "Primary Button",
+    //             "name"  => "primary_button",
+    //             "type"  => "link",
+    //         ],
+    //         [
+    //             "label" => "Secondary Button",
+    //             "name"  => "secondary_button",
+    //             "type"  => "link",
+    //         ],
+    //         [
+    //             "label"         => "Image",
+    //             "name"          => "consultation_image",
+    //             "type"          => "image",
+    //             "return_format" => "array",
+    //         ],
+    //     ],
+    //     "location" => [
+    //         [
+    //             [
+    //                 "param"    => "post_type",
+    //                 "operator" => "==",
+    //                 "value"    => $post_type,
+    //             ],
+    //         ],
+    //     ],
+    // ]);
 
-    ACFComposer::registerFieldGroup([
-        "name" => $post_type . "_staff_group",
-        "title" => "Location Staff",
-        "fields" => [
-            // [
-            //     'label' => 'Managers',
-            //     'name' => 'managers',
-            //     'type' => 'repeater',
-            //     'layout' => 'block',
-            //     'button_label' => 'Add Manager',
-            //     'sub_fields' => FieldVariables\getManagerParts()
-            // ],
-            [
-                "label" => "Staff Members",
-                "name" => "staff",
-                "type" => "repeater",
-                "layout" => "block",
-                "button_label" => "Add Staff Member",
-                "sub_fields" => FieldVariables\getStaffParts(),
-            ],
-        ],
-        "location" => [
-            [
-                [
-                    "param" => "post_type",
-                    "operator" => "==",
-                    "value" => $post_type,
-                ],
-            ],
-        ],
-    ]);
+    // Retired <date> — migrated into flexible-content layout LocationsStaff
+    // (see Components\LocationsStaff\getACFLayout() and pageComponents.php).
+    // ACFComposer::registerFieldGroup([
+    //     "name" => $post_type . "_staff_group",
+    //     "title" => "Location Staff",
+    //     "fields" => [
+    //         [
+    //             "label" => "Staff Members",
+    //             "name" => "staff",
+    //             "type" => "repeater",
+    //             "layout" => "block",
+    //             "button_label" => "Add Staff Member",
+    //             "sub_fields" => FieldVariables\getStaffParts(),
+    //         ],
+    //     ],
+    //     "location" => [
+    //         [
+    //             [
+    //                 "param" => "post_type",
+    //                 "operator" => "==",
+    //                 "value" => $post_type,
+    //             ],
+    //         ],
+    //     ],
+    // ]);
 
     Options::addTranslatable(
         "LocationLabels",

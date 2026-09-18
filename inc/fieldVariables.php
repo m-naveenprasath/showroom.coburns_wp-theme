@@ -134,11 +134,11 @@ function getHeading($instructions = "")
     ];
 }
 
-function getHeadingLoop($instructions = "")
+function getHeadingLoop($instructions = "", $name = "headings", $label = "Headings")
 {
     return [
-        "label" => "Headings",
-        "name" => "headings",
+        "label" => $label,
+        "name" => $name,
         "type" => "repeater",
         "collapsed" => "text",
         "layout" => "table",

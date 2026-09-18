@@ -22,41 +22,8 @@ add_filter('Flynt/addComponentData?name=LocationsMap', function ($data) {
         ];
     }
 
-    // Pull post-level ACF fields (registered in locations.php)
-    $map_embed = get_field('map_embed');
-    if (!empty($map_embed)) {
-        $data['map_embed'] = $map_embed;
-    }
-
-    $address = get_field('map_address');
-    if (!empty($address) && is_string($address)) {
-        $data['address'] = $address;
-    }
-
-    $address_city = get_field('map_address_city');
-    if (!empty($address_city) && is_string($address_city)) {
-        $data['address_city'] = $address_city;
-    }
-
-    $directions_url = get_field('map_directions_url');
-    if (!empty($directions_url)) {
-        $data['directions_url'] = $directions_url;
-    }
-
-    $phone = get_field('map_phone');
-    if (!empty($phone)) {
-        $data['phone'] = $phone;
-    }
-
-    $hours = get_field('map_hours');
-    if (!empty($hours)) {
-        $data['hours'] = $hours;
-    }
-
-    $hours_note = get_field('map_hours_note');
-    if (!empty($hours_note)) {
-        $data['hours_note'] = $hours_note;
-    }
+    // $data already contains this flex row's own sub-fields (map_embed, address,
+    // address_city, directions_url, phone, hours, hours_note).
 
     // Defaults if nothing set in admin
     if (empty($data['address'])) {

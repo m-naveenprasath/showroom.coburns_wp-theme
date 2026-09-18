@@ -1,0 +1,31 @@
+{% set local_namespace = "section-long-form-content-dual" %}
+
+<section class="{{ local_namespace }}{% if sectionTextAlign == 'left' %} {{ local_namespace }}--left{% endif %}">
+	<div class="container">
+		<div class="{{ local_namespace }}__block">
+			{% include ['partials/heading-array.twig'] ignore missing with { 'headings': headings_1 } %}
+
+			{% if sectionHtml_1 %}
+				<div class="{{ local_namespace }}__content-wrap" data-longform-toggle-wrap>
+					<div class="{{ local_namespace }}__content content-flow" data-longform-content>{{ sectionHtml_1 }}</div>
+					<button type="button" class="{{ local_namespace }}__toggle" data-longform-toggle hidden>
+						<span data-longform-toggle-text>{{ see_more_label|default('See more') }}</span>
+					</button>
+				</div>
+			{% endif %}
+		</div>
+
+		<div class="{{ local_namespace }}__block">
+			{% include ['partials/heading-array.twig'] ignore missing with { 'headings': headings_2 } %}
+
+			{% if sectionHtml_2 %}
+				<div class="{{ local_namespace }}__content-wrap" data-longform-toggle-wrap>
+					<div class="{{ local_namespace }}__content content-flow" data-longform-content>{{ sectionHtml_2 }}</div>
+					<button type="button" class="{{ local_namespace }}__toggle" data-longform-toggle hidden>
+						<span data-longform-toggle-text>{{ see_more_label|default('See more') }}</span>
+					</button>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+</section>

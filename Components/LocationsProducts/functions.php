@@ -15,10 +15,7 @@ add_filter('Flynt/addComponentData?name=LocationsProducts', function ($data) {
         ];
     }
 
-    $post_products = get_field('products');
-    if (!empty($post_products)) {
-        $data['products'] = $post_products;
-    }
+    // $data already contains this flex row's own `products` sub-field value.
 
     if (empty($data['products'])) {
         $data['products'] = [

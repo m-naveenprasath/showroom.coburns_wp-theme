@@ -1,46 +1,74 @@
 .locations-features {
-	padding: 0;
+	padding: 2.5rem 0;
 	background-color: $white;
 
 	.row {
 		margin: 0;
+		background-color: $accent;
+		border: 1px solid $brown-light;
+		border-radius: 1rem;
+		overflow: hidden;
 	}
 
 	&__item {
+		position: relative;
 		text-align: center;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: flex-start;
 		padding: 2.5rem 1.5rem;
-		border-right: 1px solid $brown-light;
 
 		@include media-breakpoint-up(lg) {
-			padding: 3rem 2rem;
+			padding: 2.5rem 2rem;
 		}
 
-		&:last-child {
-			border-right: none;
+		&:not(:last-child)::after {
+			content: '';
+			position: absolute;
+			top: 20%;
+			bottom: 20%;
+			right: 0;
+			width: 1px;
+			background-color: $brown-light;
+		}
+
+		&:last-child::after {
+			display: none;
 		}
 
 		@include media-breakpoint-only(md) {
-			&:nth-child(2n) {
-				border-right: none;
+			&:nth-child(2n)::after {
+				display: none;
 			}
 			&:nth-child(1),
 			&:nth-child(2) {
-				border-bottom: 1px solid $brown-light;
+				&::after {
+					top: auto;
+					bottom: 0;
+					left: 20%;
+					right: 20%;
+					width: auto;
+					height: 1px;
+				}
 			}
 		}
 
 		@include media-breakpoint-down(sm) {
-			border-right: none;
-			border-bottom: 1px solid $brown-light;
 			width: 100%;
 			padding: 2rem 1.5rem;
 
-			&:last-child {
-				border-bottom: none;
+			&::after {
+				top: auto;
+				bottom: 0;
+				left: 20%;
+				right: 20%;
+				width: auto;
+				height: 1px;
+			}
+
+			&:last-child::after {
+				display: none;
 			}
 		}
 	}
@@ -60,7 +88,7 @@
 	}
 
 	&__icon {
-		color: $gray-dark;
+		color: $blue-light;
 		margin-bottom: 1.5rem;
 
 		.icon,

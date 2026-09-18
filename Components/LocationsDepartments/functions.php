@@ -17,11 +17,7 @@ add_filter('Flynt/addComponentData?name=LocationsDepartments', function ($data) 
         ];
     }
 
-    // Pull departments from the post-level ACF field (registered in locations.php)
-    $post_departments = get_field('departments');
-    if (!empty($post_departments)) {
-        $data['departments'] = $post_departments;
-    }
+    // $data already contains this flex row's own `departments` sub-field value.
 
     if (empty($data['departments'])) {
         $data['departments'] = [

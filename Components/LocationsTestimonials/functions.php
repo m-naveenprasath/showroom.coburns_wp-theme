@@ -15,15 +15,7 @@ add_filter('Flynt/addComponentData?name=LocationsTestimonials', function ($data)
         ];
     }
 
-    $post_view_all = get_field('view_all_link');
-    if (!empty($post_view_all)) {
-        $data['view_all_link'] = $post_view_all;
-    }
-
-    $post_testimonials = get_field('testimonials');
-    if (!empty($post_testimonials)) {
-        $data['testimonials'] = $post_testimonials;
-    }
+    // $data already contains this flex row's own `view_all_link`/`testimonials` sub-field values.
 
     if (empty($data['testimonials'])) {
         $data['testimonials'] = [
