@@ -46,8 +46,15 @@ add_filter('Flynt/addComponentData?name=LocationsHero', function ($data) {
     if (!empty($flamedrop_branch_id)) {
         $flamedrop_data = flamedrop_fetch_api_data();
         if (!empty($flamedrop_data[$flamedrop_branch_id])) {
+            // The info card (address, phone, hours, year_opened, manager) is
+            // manual-only: it shows the hero_* ACF value if the editor set one,
+            // and stays blank otherwise. Flamedrop's API happens to use the same
+            // bare key names for some of these (e.g. "address", "phone",
+            // "manager"), so it's explicitly excluded here rather than allowed
+            // to fill in the blanks.
+            $info_card_keys = ['address', 'phone', 'hours', 'year_opened', 'manager'];
             foreach ($flamedrop_data[$flamedrop_branch_id] as $key => $value) {
-                if (!empty($value)) {
+                if (!empty($value) && !in_array($key, $info_card_keys, true)) {
                     $data[$key] = $value;
                 }
             }

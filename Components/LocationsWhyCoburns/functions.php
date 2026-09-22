@@ -5,7 +5,42 @@ namespace Flynt\Components\LocationsWhyCoburns;
 use Flynt\FieldVariables;
 use Flynt\Utils\Options;
 
+const DEFAULT_ICONS = [
+    'location-Extensive',
+    'location-Experience',
+    'location-Expert',
+    'location-Trusted',
+];
+
+const ICON_FIELD_CLASS = 'locations-why-coburns-icon';
+
+// Prefill the icon input by row position (1st-4th) when it is empty; editors can still change it.
+add_filter('acf/prepare_field', function ($field) {
+    if (empty($field['wrapper']['class']) || strpos($field['wrapper']['class'], ICON_FIELD_CLASS) === false) {
+        return $field;
+    }
+
+    if (empty($field['value']) && preg_match_all('/\[row-(\d+)\]/', $field['name'], $matches)) {
+        $index = (int) end($matches[1]);
+        if (isset(DEFAULT_ICONS[$index])) {
+            $field['value'] = DEFAULT_ICONS[$index];
+        }
+    }
+
+    return $field;
+});
+
 add_filter('Flynt/addComponentData?name=LocationsWhyCoburns', function ($data) {
+    // Fall back to the default icon for rows saved without one.
+    if (!empty($data['features']) && is_array($data['features'])) {
+        foreach ($data['features'] as $index => &$feature) {
+            if (empty($feature['icon']) && isset(DEFAULT_ICONS[$index])) {
+                $feature['icon'] = DEFAULT_ICONS[$index];
+            }
+        }
+        unset($feature);
+    }
+
     if (empty($data['heading'])) {
         $data['heading'] = [
             [
@@ -59,12 +94,14 @@ function getACFLayout()
                 "type"         => "repeater",
                 "layout"       => "table",
                 "button_label" => "Add Feature",
+                "min"          => 4,
                 "sub_fields"   => [
                     [
                         "label"        => "Icon",
                         "name"         => "icon",
                         "type"         => "text",
-                        "instructions" => "Icon filename without extension (e.g. location-shop, location-design)",
+                        "instructions" => "Prefilled for the first four rows (Extensive, Experience, Expert, Trusted). Change only if needed. Icon filename without extension.",
+                        "wrapper"      => ["class" => ICON_FIELD_CLASS],
                     ],
                     [
                         "label" => "Title",

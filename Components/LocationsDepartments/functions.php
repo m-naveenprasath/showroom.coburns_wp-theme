@@ -17,6 +17,10 @@ add_filter('Flynt/addComponentData?name=LocationsDepartments', function ($data) 
         ];
     }
 
+    // Card background colours, applied in order to the first four departments
+    // whenever a colour isn't picked manually (so manual rows need no colour).
+    $defaultColors = ['#C07947', '#593E2A', '#4D592A', '#3E342B'];
+
     // $data already contains this flex row's own `departments` sub-field value.
 
     if (empty($data['departments'])) {
@@ -24,24 +28,30 @@ add_filter('Flynt/addComponentData?name=LocationsDepartments', function ($data) 
             [
                 'title' => 'Kitchen & Laundry',
                 'description' => 'Create a kitchen that blends style and performance with workstation sinks, professional-grade faucets, pot fillers, filtration systems, and the latest kitchen fixtures Metairie, LA homeowners are choosing for new builds and renovations. You\'ll also find smart laundry solutions designed for everyday convenience.',
-                'background_color' => '#b07840',
+                'background_color' => '#C07947',
             ],
             [
                 'title' => 'Bathroom',
                 'description' => 'Turn your bathroom into a relaxing retreat with luxury vanities, soaking tubs, frameless showers, smart toilets, and premium bathroom fixtures Metairie, LA homeowners trust for comfort and style. Our consultants are here to help simplify every selection.',
-                'background_color' => '#2e1e14',
+                'background_color' => '#593E2A',
             ],
             [
                 'title' => 'Home Details',
                 'description' => 'Complete your design with decorative cabinet hardware, mirrors, specialty lighting, and finishing accents that create a cohesive look throughout your home.',
-                'background_color' => '#4d5c2a',
+                'background_color' => '#4D592A',
             ],
             [
                 'title' => 'Outdoor Living',
                 'description' => 'Extend your living space outdoors with premium grills, outdoor kitchens, refrigeration units, and entertaining solutions designed to withstand Louisiana\'s climate.',
-                'background_color' => '#2a2010',
+                'background_color' => '#3E342B',
             ],
         ];
+    }
+
+    foreach ($data['departments'] as $index => $department) {
+        if (empty($department['background_color']) && isset($defaultColors[$index])) {
+            $data['departments'][$index]['background_color'] = $defaultColors[$index];
+        }
     }
 
     return $data;
