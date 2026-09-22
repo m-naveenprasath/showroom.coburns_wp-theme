@@ -60,7 +60,8 @@
 		padding: 0;
 	}
 }
-.listing-item.is-hidden {
+.listing-item.is-hidden,
+.listing-item.is-hidden-more {
 	display: none;
 }
 

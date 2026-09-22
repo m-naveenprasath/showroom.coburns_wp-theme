@@ -47,6 +47,10 @@ add_filter("Flynt/addComponentData?name=SectionLocationsListing", function ($dat
 
     wp_enqueue_script("location-sort");
 
+    if (!empty($data["locationsShowMore_show"])) {
+        wp_enqueue_script("locations-show-more");
+    }
+
     return $data;
 });
 
@@ -69,6 +73,7 @@ function getACFLayout()
             FieldVariables\getButtonLoop($limit = 2),
             FieldVariables\getTab("Options"),
             FieldVariables\getFeaturedImageToggle(),
+            FieldVariables\getLocationsShowMoreToggle(),
         ],
     ];
 }
@@ -106,6 +111,12 @@ Options::addTranslatable(
             "name" => "location_reset_button_label",
             "type" => "text",
             "default_value" => "Show All Locations",
+        ],
+        [
+            "label" => '"Show More Locations" Button Text',
+            "name" => "location_show_more_button_label",
+            "type" => "text",
+            "default_value" => "Show More Locations",
         ],
         FieldVariables\getTab("Table"),
         [

@@ -67,6 +67,15 @@
 				{% endif %}
 			</table>
 		</div>
+		{% if locationsShowMore_show and locations|length > 6 %}
+		<div class="row justify-content-center align-items-center">
+			<div class="col-auto">
+				<button id="locations-show-more" type="button" class="btn btn-sm btn-outline-primary" data-limit="6">
+					<span>{{ location_show_more_button_label ?: "Show More Locations" }}</span>
+				</button>
+			</div>
+		</div>
+		{% endif %}
 		<div class="row justify-content-center align-items-center">
 			<div class="col-auto">
 				<button id="search-location-table-reset" type="button" class="btn btn-sm btn-outline-primary | search-location-reset" hidden>

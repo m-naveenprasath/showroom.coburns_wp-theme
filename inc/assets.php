@@ -104,6 +104,15 @@ add_action("wp_enqueue_scripts", function () {
         filemtime(get_stylesheet_directory() . $js_path),
         true
     );
+
+    $js_path = "/js/src/locations-show-more.js";
+    wp_register_script(
+        "locations-show-more",
+        get_stylesheet_directory_uri() . $js_path,
+        [],
+        filemtime(get_stylesheet_directory() . $js_path),
+        true
+    );
 });
 
 // Enqueue core CSS/JS

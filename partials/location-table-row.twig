@@ -43,24 +43,24 @@
 	</td>
 	{% endif %}
 	<td class="listing-actions">
-		<a href="{{ location.link }}" class="btn btn-outline-gray listing-actions__btn" aria-label="{{ location_view_info_button_label.before }} {{ location.name }} {{ location_view_info_button_label.after }}">
+		<a href="{{ location.link }}" class="btn btn-outline-primary listing-actions__btn" aria-label="{{ location_view_info_button_label.before }} {{ location.name }} {{ location_view_info_button_label.after }}">
 			{% include ['partials/icon.twig'] ignore missing with {'icon': 'info'} %}
 			<span class="listing-actions__label">View Showroom</span>
 		</a>
 		{% if google_maps_link %}
-			<a href="{{ google_maps_link }}" target="_blank" class="btn btn-outline-gray listing-actions__btn" aria-label="{{ location_directions_button_label.before }} {{ location.name }} {{ location_directions_button_label.after }}">
+			<a href="{{ google_maps_link }}" target="_blank" class="btn btn-outline-primary listing-actions__btn" aria-label="{{ location_directions_button_label.before }} {{ location.name }} {{ location_directions_button_label.after }}">
 				{% include ['partials/icon.twig'] ignore missing with {'icon': 'location'} %}
 				<span class="listing-actions__label">Get Directions</span>
 			</a>
 		{% endif %}
 		{% if 'SectionAppointments' in location.pageComponents %}
-			<a href="{{ location.link }}#appointments" class="btn btn-outline-gray listing-actions__btn" aria-label="{{ location_appointment_button_label.before }} {{ location.name }} {{ location_appointment_button_label.after }}">
+			<a href="{{ location.link }}#appointments" class="btn btn-outline-primary listing-actions__btn" aria-label="{{ location_appointment_button_label.before }} {{ location.name }} {{ location_appointment_button_label.after }}">
 				{% include ['partials/icon.twig'] ignore missing with {'icon': 'calendar'} %}
 				<span class="listing-actions__label">Get Appointment</span>
 			</a>
 		{% endif %}
 		{% if location.virtual_tour_link %}
-			<a href="{{ location.virtual_tour_link.url }}" target="_blank" class="btn btn-outline-gray listing-actions__btn" aria-label="{{ location.name }} Virtual Tour (opens in new window)">
+			<a href="{{ location.virtual_tour_link.url }}" target="_blank" class="btn btn-outline-primary listing-actions__btn" aria-label="{{ location.name }} Virtual Tour (opens in new window)">
 				{% include ['partials/icon.twig'] ignore missing with {'icon': 'cube-sm'} %}
 				<span class="listing-actions__label">Virtual Tour</span>
 			</a>

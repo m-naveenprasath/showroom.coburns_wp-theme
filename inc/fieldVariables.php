@@ -241,6 +241,18 @@ function getBreadcrumbToggle($default = true)
         "ui_off_text" => "Hide",
     ];
 }
+function getLocationsShowMoreToggle($default = true)
+{
+    return [
+        "label" => "Limit to 6 Locations (Show More Button)",
+        "name" => "locationsShowMore_show",
+        "type" => "true_false",
+        "default_value" => $default,
+        "ui" => 1,
+        "ui_on_text" => "Show",
+        "ui_off_text" => "Hide",
+    ];
+}
 
 function getSectionContent_1()
 {
