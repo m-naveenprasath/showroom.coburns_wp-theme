@@ -4,39 +4,18 @@
 	}
 }
 
+// Base "listing-table" look — classic table with a dark header row (used by
+// SectionBrandsListing and any other section that reuses these table classes).
 .listing-table {
 	text-align: left;
-	// Note: intentionally not using the `responsive-tables` mixin here — it sets
-	// `display: block` / `display: table-cell` on `tbody td` at higher specificity
-	// than the flex/grid rules below, which silently breaks this card layout.
+	@include responsive-tables;
 
 	&__heading {
 		margin-bottom: 1.5rem;
 	}
 
 	table {
-		display: block;
 		width: 100%;
-		border: 0 !important;
-	}
-
-	thead {
-		display: none !important;
-	}
-
-	tbody {
-		display: grid;
-		grid-template-columns: minmax(0, 1fr);
-		gap: 1.25rem;
-
-		@include media-breakpoint-up(sm) {
-			grid-template-columns: repeat(2, minmax(0, 1fr));
-		}
-
-		@include media-breakpoint-up(lg) {
-			grid-template-columns: repeat(3, minmax(0, 1fr));
-			gap: 1.5rem;
-		}
 	}
 
 	address {
@@ -44,79 +23,9 @@
 	}
 }
 
-.listing-item {
-	display: flex;
-	flex-direction: column;
-	min-width: 0;
-	background-color: $white;
-	border: $border-width solid $border-color !important;
-	border-radius: 0.5rem;
-	padding: 1.25rem;
-	box-shadow: $box-shadow;
-
-	td {
-		min-width: 0;
-		border: 0 !important;
-		padding: 0;
-	}
-}
-.listing-item.is-hidden,
-.listing-item.is-hidden-more {
-	display: none;
-}
-
-.listing-icon {
-	display: block;
-	flex: none;
-	width: 1.75rem;
-	height: 1.75rem;
-	margin-right: 0.5rem;
-	object-fit: contain;
-}
-
 .listing-name {
-	display: flex;
-	align-items: center;
-	margin-bottom: 0.75rem;
-	font-family: $headings-font-family;
-	font-size: 1rem;
-	font-weight: 600;
-
-	a {
-		min-width: 0;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		white-space: nowrap;
-		color: $blue-dark;
-
-		@include hover-focus-active() {
-			color: $teal;
-		}
-	}
-}
-
-.listing-address,
-.listing-phone,
-.listing-hours {
-	display: flex;
-	align-items: center;
-	margin-bottom: 0.5rem;
+	@include heading-style-minimal($font-size: 0.75rem, $color: $link-color);
 	font-size: 0.875rem;
-
-	address,
-	a,
-	span {
-		display: block;
-		min-width: 0;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		white-space: nowrap;
-	}
-
-	.listing-icon {
-		width: 1.25rem;
-		height: 1.25rem;
-	}
 }
 
 .listing-address a,
@@ -124,43 +33,179 @@
 	@include link-color($body-color);
 }
 
-.listing-hours span {
-	color: $gray;
-}
-
+.listing-phone,
 .listing-dist {
-	display: none;
+	white-space: nowrap;
 }
 
-.listing-actions {
-	display: grid;
-	grid-template-columns: repeat(2, minmax(0, 1fr));
-	gap: 0.5rem;
-	margin-top: auto;
-	padding-top: 0.75rem;
-
-	.btn {
-		min-width: 0;
-		padding: 0.5rem 0.625rem;
+.listing-actions .btn {
+	padding: 0.594rem 0.6875rem;
+	margin-right: 0.5rem;
+	&:last-child {
 		margin-right: 0;
-		font-size: 0.7rem;
-		white-space: normal;
-		text-align: center;
-		line-height: 1.25;
+	}
+	.icon {
+		margin-right: 0;
+	}
 
-		.icon {
-			flex-shrink: 0;
-			margin-right: 0.25rem;
+	// The `btn-additions` mixin sets `.btn span { white-space: normal }` in browsers that
+	// support `display: inline-flex` (i.e. all of them), so button labels wrap by default.
+	// In this classic table layout the action cell is narrow and not flex/wrap-aware, so a
+	// wrapped label grows the button and pushes/clips the next button past the row — keep
+	// labels on one line here instead.
+	span {
+		white-space: nowrap;
+	}
+}
+
+// Card-grid layout for the Locations Listing section specifically. Scoped to
+// #section-locations-listing so it doesn't leak into other components that
+// reuse the same .listing-table / .listing-* classes (e.g. SectionBrandsListing),
+// which rely on the classic table look defined above.
+#section-locations-listing {
+	.listing-table {
+		// Not using the `responsive-tables` mixin's display rules here — it sets
+		// `display: block` / `display: table-cell` on `tbody td` at higher specificity
+		// than the flex/grid rules below, which silently breaks this card layout.
+		table {
+			display: block;
+			width: 100%;
+			border: 0 !important;
 		}
 
-		// `.btn span { white-space: nowrap }` (from the btn-additions mixin) targets this label
-		// span directly and otherwise wins over the `white-space: normal` set on .btn above,
-		// since a rule aimed straight at the element beats one that only sets it on an ancestor.
-		.listing-actions__label {
+		thead {
+			display: none !important;
+		}
+
+		tbody {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr);
+			gap: 1.25rem;
+
+			@include media-breakpoint-up(sm) {
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+			}
+
+			@include media-breakpoint-up(lg) {
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+				gap: 1.5rem;
+			}
+		}
+	}
+
+	.listing-item {
+		display: flex;
+		flex-direction: column;
+		min-width: 0;
+		background-color: $white;
+		border: $border-width solid $border-color !important;
+		border-radius: 0.5rem;
+		padding: 1.25rem;
+		box-shadow: $box-shadow;
+
+		td {
 			min-width: 0;
+			border: 0 !important;
+			padding: 0;
+		}
+	}
+	.listing-item.is-hidden,
+	.listing-item.is-hidden-more {
+		display: none;
+	}
+
+	.listing-icon {
+		display: block;
+		flex: none;
+		width: 1.75rem;
+		height: 1.75rem;
+		margin-right: 0.5rem;
+		object-fit: contain;
+	}
+
+	.listing-name {
+		display: flex;
+		align-items: center;
+		margin-bottom: 0.75rem;
+		font-family: $headings-font-family;
+		font-size: 1rem;
+		font-weight: 600;
+
+		a {
+			min-width: 0;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			color: $blue-dark;
+
+			@include hover-focus-active() {
+				color: $teal;
+			}
+		}
+	}
+
+	.listing-address,
+	.listing-phone,
+	.listing-hours {
+		display: flex;
+		align-items: center;
+		margin-bottom: 0.5rem;
+		font-size: 0.875rem;
+
+		address,
+		a,
+		span {
+			display: block;
+			min-width: 0;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+		.listing-icon {
+			width: 1.25rem;
+			height: 1.25rem;
+		}
+	}
+
+	.listing-hours span {
+		color: $gray;
+	}
+
+	.listing-dist {
+		display: none;
+	}
+
+	.listing-actions {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0.5rem;
+		margin-top: auto;
+		padding-top: 0.75rem;
+
+		.btn {
+			min-width: 0;
+			padding: 0.5rem 0.625rem;
+			margin-right: 0;
+			font-size: 0.7rem;
 			white-space: normal;
-			overflow-wrap: break-word;
-			word-break: break-word;
+			text-align: center;
+			line-height: 1.25;
+
+			.icon {
+				flex-shrink: 0;
+				margin-right: 0.25rem;
+			}
+
+			// `.btn span { white-space: nowrap }` (from the btn-additions mixin) targets this label
+			// span directly and otherwise wins over the `white-space: normal` set on .btn above,
+			// since a rule aimed straight at the element beats one that only sets it on an ancestor.
+			.listing-actions__label {
+				min-width: 0;
+				white-space: normal;
+				overflow-wrap: break-word;
+				word-break: break-word;
+			}
 		}
 	}
 }

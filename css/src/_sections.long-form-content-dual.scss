@@ -9,10 +9,10 @@
 	> .container {
 		background-color: $accent;
 		border-radius: 0.75rem;
-		padding: 3rem 1.5rem;
+		padding: 1.5rem 1rem;
 
 		@include media-breakpoint-up(md) {
-			padding: 4rem 3rem;
+			padding: 2rem 1.25rem;
 		}
 	}
 
@@ -49,7 +49,7 @@
 	}
 
 	&__content {
-		max-width: 640px;
+		max-width: 960px;
 		margin: 0 auto;
 		position: relative;
 		overflow: hidden;

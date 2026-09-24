@@ -27,7 +27,7 @@ add_action('init', function () {
 function be_dps_no_results_search( $message ) {
 
 	$message = '<div class="display-posts-listing no-results">';
-	$message .= '<p>Interested in learning more? Be sure to check back here for new related content or visit our <a href="https://lightgray-goat-239778.hostingersite.com/blog/" target="_blank">blog<a/> for other project tips and insights.</p>';
+	$message .= '<p>Interested in learning more? Be sure to check back here for new related content or visit our <a href="https://showroom.coburns.com/blog/" target="_blank">blog<a/> for other project tips and insights.</p>';
 	$message .= '</div>';
 
 	return $message;
