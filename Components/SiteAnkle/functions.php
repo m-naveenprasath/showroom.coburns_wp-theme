@@ -47,9 +47,11 @@ Options::addTranslatable("SiteAnkle", [
                 "type" => "select",
                 "required" => 1,
                 "choices" => [
-                    "Account" => "Account",
-                    "Location" => "Location",
+                    "Style" => "Find Your Style",
                     "Shop" => "Shop",
+                    "Location" => "Location",
+                    "Email" => "Email",
+                    "Account" => "Account",
                     "Wishlist" => "Wishlist",
                     "Upload My Own" => "Upload My Own",
                 ],

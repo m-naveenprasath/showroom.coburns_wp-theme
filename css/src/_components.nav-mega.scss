@@ -1,7 +1,7 @@
 $mega-pill-bg: #f6efeb;
 $mega-pill-divider-color: #efb9b9;
 $mega-pill-border-color: #d9d7e3;
-$mega-pill-text-color: #4a4a4a;
+$mega-pill-text-color: #222;
 $mega-pill-chevron-color: #c9c9c9;
 
 .nav-mega {
@@ -32,7 +32,8 @@ $mega-pill-chevron-color: #c9c9c9;
 				@include link-color($red);
 			}
 			.nav-link {
-				@include heading-style-minimal($font-size: 13px, $color: $mega-pill-text-color);
+				@include heading-style-minimal($font-size: 15px, $color: $mega-pill-text-color);
+				font-family: $inter;
 				font-style: normal;
 				font-weight: 500;
 				line-height: 22px;

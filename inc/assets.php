@@ -122,6 +122,9 @@ add_action("wp_enqueue_scripts", function () {
     $css_path = "https://use.typekit.net/ute8tox.css#preload&display=swap";
     wp_enqueue_style("typekit", $css_path, [], "all");
 
+    $css_path = "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap";
+    wp_enqueue_style("google-fonts-inter", $css_path, [], null);
+
     $css_path = "/css/dist/min/style-showroom.css";
     wp_enqueue_style(
         "showroom",

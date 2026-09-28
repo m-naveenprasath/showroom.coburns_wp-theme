@@ -9,7 +9,7 @@
 			flex-wrap: nowrap;
 		}
 		a {
-			color: #4a4a4a;
+			color: #222;
 			&:hover,
 			&:focus {
 				color: $teal;
@@ -24,8 +24,8 @@
 			display: inline-flex;
 			align-items: center;
 			padding: 0.5rem 0;
-			font-family: $font-family-base;
-			font-size: 13px;
+			font-family: $inter;
+			font-size: 15px;
 			font-style: normal;
 			font-weight: 500;
 			line-height: 22px;
