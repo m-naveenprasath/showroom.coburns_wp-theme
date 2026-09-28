@@ -89,6 +89,18 @@ ACFComposer::registerFieldGroup([
                 'id' => '',
             ],
         ],
+        [
+            'label' => 'Mega Menu',
+            'name' => 'mega_menu',
+            'type' => 'select',
+            'instructions' => 'Desktop only (Header Menu: Primary). Tabs are built from this item\'s child links: a child linking to a "style", "brand" or "space" page becomes that tab. Auto turns it on when at least two such child links exist.',
+            'choices' => [
+                '' => 'Auto',
+                'find_your_style' => 'Find Your Style (By Style / By Brand / By Space)',
+                'none' => 'Off',
+            ],
+            'return_format' => 'value',
+        ],
     ],
     'location' => [
         [

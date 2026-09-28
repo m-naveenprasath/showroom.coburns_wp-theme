@@ -1,43 +1,92 @@
 .nav-primary {
-    display: none;
+	display: none;
 }
 .nav-primary {
 	@include media-breakpoint-up(lg) {
 		display: block;
+		flex: 1 1 auto;
+		> .nav {
+			flex-wrap: nowrap;
+		}
 		a {
-			color: $main-nav-color;
-			&:hover {
-				color: $blue-light;
+			color: #4a4a4a;
+			&:hover,
+			&:focus {
+				color: $teal;
+				text-decoration: none;
 			}
 		}
-		.active > a {
-			@include link-color($blue-light);
-			border-bottom: 2px solid $blue-light;
+		.nav-item {
+			position: relative;
+			padding: 0 0.75rem;
 		}
-        .nav-item {
-            padding: $nav-link-padding-y;
-            .nav-link:after {
-                display: none;
-            }
-        }
-        .nav-link {
-            padding: 0;
-        }
+		.nav-link {
+			display: inline-flex;
+			align-items: center;
+			padding: 0.5rem 0;
+			font-family: $font-family-base;
+			font-size: 13px;
+			font-style: normal;
+			font-weight: 500;
+			line-height: 22px;
+			letter-spacing: 0;
+			white-space: nowrap;
+			&:after {
+				display: none;
+			}
+			.icon {
+				width: 1rem;
+				height: 1rem;
+				bottom: 0;
+				margin-left: 0.3rem;
+			}
+			.icon-external {
+				width: 0.875rem;
+				height: 0.875rem;
+			}
+		}
+		> .nav > .active > a {
+			color: $teal;
+		}
+
+		// Dropdowns: open on hover/keyboard focus, click still toggles via collapse
 		.menu-item-has-children {
-			@include menu-item-has-children(body-color);
-			> .nav-link:after {
-				margin-top: .8rem;
+			> .nav-link:not(.collapsed) .icon-chevron-down {
+				transform: rotate(180deg);
+			}
+			&:hover > .sub-menu,
+			&:focus-within > .sub-menu {
+				display: block;
 			}
 		}
-        .sub-menu {
-            position: absolute;
-            z-index: 999;
-        }
+		.sub-menu {
+			position: absolute;
+			top: 100%;
+			left: 0.25rem;
+			z-index: 1010; // above .nav-mega (1001)
+			min-width: 13rem;
+			max-width: none;
+			padding: 0.5rem 0;
+			background: $white;
+			border: 0;
+			border-radius: 0.5rem;
+			box-shadow: 0 8px 24px rgba($black, 0.12);
+			.nav-item {
+				padding: 0;
+				border: 0;
+			}
+			.nav-link {
+				display: block;
+				padding: 0.5rem 1.25rem;
+				&:hover {
+					background: rgba($teal, 0.08);
+				}
+			}
+		}
 	}
 	@include media-breakpoint-up(xl) {
-		font-size: 1.25rem;
-        .nav-item {
-            padding: $nav-link-padding-y $nav-link-padding-x;
+		.nav-item {
+			padding: 0 1rem;
 		}
 	}
 }

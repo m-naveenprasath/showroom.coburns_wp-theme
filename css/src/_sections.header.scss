@@ -1,14 +1,67 @@
 .navigation-wrapper {
+	position: relative;
+	z-index: 1010; // keep primary nav dropdowns above .nav-mega
 	display: flex;
-	padding: 2.5rem 0;
+	padding: 1rem 0;
 	align-items: center;
 	justify-content: space-between;
+	@include media-breakpoint-up(lg) {
+		gap: 1.5rem;
+	}
+
+	.form-search {
+		flex: 0 1 20rem;
+		.input-group {
+			flex-wrap: nowrap;
+			> .form-control {
+				height: 2.75rem;
+				padding: 0 1.25rem;
+				font-size: 0.875rem;
+				border: 1px solid $gray-light;
+				border-right: 0;
+				border-radius: 999px 0 0 999px;
+				box-shadow: none;
+				&::placeholder {
+					color: $gray-light;
+					font-style: italic;
+				}
+				&:focus {
+					border-color: $teal;
+				}
+			}
+			> .btn-search {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: 3.25rem;
+				height: 2.75rem;
+				padding: 0;
+				margin-left: 0;
+				color: $white;
+				background: $teal;
+				border: 1px solid $teal;
+				border-radius: 0 999px 999px 0;
+				&:hover,
+				&:focus {
+					background: darken($teal, 8%);
+					border-color: darken($teal, 8%);
+				}
+				.icon {
+					width: 1rem;
+					height: 1rem;
+					bottom: 0;
+					margin: 0;
+				}
+			}
+		}
+	}
 }
 
 header .logo {
 	height: 55px;
 	@include media-breakpoint-up(lg) {
-		height: 80px;
+		height: 50px;
+		width: auto;
 	}
 }
 

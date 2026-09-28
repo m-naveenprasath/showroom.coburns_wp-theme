@@ -286,3 +286,112 @@ jQuery(document).ready(function ($) {
 	//Blog Teaser on Homepage
 	$( ".home .hero--image img" ).after( $( ".blog-feature" ) );
 });
+
+// Find Your Style mega menu (desktop). Kept in its own ready handler so an error
+// elsewhere in this file (or from a plugin) can't stop it from binding.
+jQuery(function ($) {
+	// Find Your Style mega menu (desktop)
+	$(".mega-fys").each(function () {
+		var $mega = $(this);
+		var $item = $mega.closest(".menu-item-has-mega");
+		var $tabs = $mega.find(".mega-fys__tab");
+
+		function selectTab($tab) {
+			$tabs.removeClass("is-active").attr({ "aria-selected": "false", tabindex: "-1" });
+			$tab.addClass("is-active").attr({ "aria-selected": "true", tabindex: "0" });
+			$mega.find(".mega-fys__panel").attr("hidden", true);
+			$("#" + $tab.attr("aria-controls")).removeAttr("hidden");
+		}
+
+		$tabs.on("click", function () {
+			selectTab($(this));
+		});
+		$tabs.on("keydown", function (e) {
+			var step = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+			if (!step) {
+				return;
+			}
+			e.preventDefault();
+			var $next = $tabs.eq(($tabs.index(this) + step + $tabs.length) % $tabs.length);
+			selectTab($next);
+			$next.trigger("focus");
+		});
+
+		// Hovering or focusing a style/brand name swaps the preview beside it
+		$mega.on("mouseenter focus", "[data-mega-preview]", function () {
+			var $link = $(this);
+			var $panel = $link.closest(".mega-fys__panel");
+			$panel.find("[data-mega-preview]").removeClass("is-active");
+			$link.addClass("is-active");
+			$panel.find("[data-mega-preview-panel]").attr("hidden", true);
+			$panel.find('[data-mega-preview-panel="' + $link.data("mega-preview") + '"]').removeAttr("hidden");
+		});
+
+		// Open/close on click of the top-level link
+		var $toggle = $item.children(".nav-link");
+		$toggle.attr({ "aria-controls": $mega.attr("id"), "aria-expanded": "false" });
+
+		// Stretch the dimmed backdrop from the panel's bottom to the end of the page
+		function sizeBackdrop() {
+			if (!$item.hasClass("is-open")) {
+				return;
+			}
+			// Measure without the backdrop itself so it never makes the page longer
+			$mega[0].style.removeProperty("--mega-fys-backdrop");
+			var panelBottom = $mega[0].getBoundingClientRect().bottom + window.pageYOffset;
+			var pageBottom = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+			$mega[0].style.setProperty("--mega-fys-backdrop", Math.max(pageBottom - panelBottom, 0) + "px");
+		}
+
+		function setOpen(open) {
+			$item.toggleClass("is-open", open);
+			$toggle.attr("aria-expanded", open ? "true" : "false");
+			sizeBackdrop();
+		}
+		// Lazy-loaded content can grow the page, so re-measure (at most once per frame)
+		var sizeQueued = false;
+		$(window).on("resize scroll load", function () {
+			if (sizeQueued || !$item.hasClass("is-open")) {
+				return;
+			}
+			sizeQueued = true;
+			window.requestAnimationFrame(function () {
+				sizeQueued = false;
+				sizeBackdrop();
+			});
+		});
+
+		// Capture phase on document runs before Bootstrap's collapse toggle and any plugin
+		// click handlers (e.g. Thrive on /style-finder/), so nothing else can navigate away
+		document.addEventListener(
+			"click",
+			function (e) {
+				if (!$toggle[0] || !$toggle[0].contains(e.target)) {
+					return;
+				}
+				e.preventDefault();
+				e.stopImmediatePropagation();
+				setOpen(!$item.hasClass("is-open"));
+			},
+			true
+		);
+
+		// Close on click outside, on the dimmed backdrop below the panel, or on Escape
+		$(document).on("click", function (e) {
+			if ($item.hasClass("is-open") && !$.contains($item[0], e.target)) {
+				setOpen(false);
+			}
+		});
+		$mega.on("click", function (e) {
+			if (e.target === this && e.offsetY > this.offsetHeight) {
+				setOpen(false);
+			}
+		});
+		$(document).on("keydown", function (e) {
+			if (e.key === "Escape" && $item.hasClass("is-open")) {
+				setOpen(false);
+				$toggle.trigger("focus");
+			}
+		});
+	});
+});

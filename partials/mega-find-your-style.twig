@@ -1,0 +1,82 @@
+{#
+	Desktop mega menu for "Find Your Style".
+	tabs: built in Components/SiteHeader/functions.php (getMegaPanels)
+#}
+{% macro img(id, sizes, class) %}
+	{% set image = id ? TimberImage(id | number_format(0,'','')) : null %}
+	{% if image and image.src %}
+		<img src="{{ image.src('large') }}" srcset="{{ image.srcset }}" sizes="{{ sizes }}" alt="{{ image.alt | escape('html_attr') }}" class="{{ class }}" loading="lazy" decoding="async"/>
+	{% endif %}
+{% endmacro %}
+{% import _self as mega %}
+
+{% set panel_id = 'mega-fys-' ~ item.id %}
+<div class="mega-fys" id="{{ panel_id }}">
+	<div class="mega-fys__tabs" role="tablist">
+		{% for tab in tabs %}
+			<button type="button" class="mega-fys__tab{{ loop.first ? ' is-active' }}" role="tab" id="{{ panel_id }}-tab-{{ tab.id }}" aria-controls="{{ panel_id }}-panel-{{ tab.id }}" aria-selected="{{ loop.first ? 'true' : 'false' }}" {{ not loop.first ? 'tabindex="-1"' }}>
+				{{- tab.title -}}
+			</button>
+		{% endfor %}
+	</div>
+
+	{% for tab in tabs %}
+		<div class="mega-fys__panel mega-fys__panel--{{ tab.type }}" role="tabpanel" id="{{ panel_id }}-panel-{{ tab.id }}" aria-labelledby="{{ panel_id }}-tab-{{ tab.id }}" {{ not loop.first ? 'hidden' }}>
+
+			{% if tab.type == 'space' %}
+				<ul class="mega-fys__spaces">
+					{% for space in tab.items %}
+						<li class="mega-fys__space">
+							<a href="{{ space.link }}">
+								<span class="mega-fys__space-image">{{ mega.img(space.image, '160px') }}</span>
+								<span class="mega-fys__space-label">
+									<span>{{ space.title }}</span>
+									{% include ['icons/arrow-long.svg'] ignore missing %}
+								</span>
+							</a>
+						</li>
+					{% endfor %}
+				</ul>
+				<a class="btn btn-primary mega-fys__all" href="{{ tab.link }}">View All Spaces</a>
+
+			{% else %}
+				<div class="mega-fys__box mega-fys__box--list">
+					<ul class="mega-fys__list">
+						{% for entry in tab.items %}
+							<li>
+								<a class="mega-fys__list-link{{ loop.first ? ' is-active' }}" href="{{ entry.link }}" data-mega-preview="{{ loop.index0 }}">{{ entry.title }}</a>
+							</li>
+						{% endfor %}
+					</ul>
+					<a class="btn btn-primary mega-fys__all" href="{{ tab.link }}">View All {{ tab.type == 'style' ? 'Styles' : 'Brands' }}</a>
+				</div>
+
+				<div class="mega-fys__box mega-fys__box--preview">
+					{% for entry in tab.items %}
+						<div class="mega-fys__preview" data-mega-preview-panel="{{ loop.index0 }}" {{ not loop.first ? 'hidden' }}>
+							{% if tab.type == 'brand' and entry.logo %}
+								<div class="mega-fys__logo">{{ mega.img(entry.logo, '200px') }}</div>
+							{% else %}
+								<div class="mega-fys__title">{{ entry.title }}</div>
+							{% endif %}
+
+							<div class="mega-fys__images mega-fys__images--{{ entry.images | length }}">
+								{% for image_id in entry.images %}
+									<div class="mega-fys__image">{{ mega.img(image_id, '(min-width: 1200px) 400px, 30vw') }}</div>
+								{% endfor %}
+							</div>
+
+							<div class="mega-fys__footer">
+								{% if entry.text %}
+									<p class="mega-fys__text">{{ entry.text }}</p>
+								{% endif %}
+								<a class="btn btn-primary" href="{{ entry.link }}">{{ tab.type == 'brand' ? 'View Brand' : 'View ' ~ entry.title }}</a>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			{% endif %}
+
+		</div>
+	{% endfor %}
+</div>

@@ -1,3 +1,9 @@
+$mega-pill-bg: #f6efeb;
+$mega-pill-divider-color: #efb9b9;
+$mega-pill-border-color: #d9d7e3;
+$mega-pill-text-color: #4a4a4a;
+$mega-pill-chevron-color: #c9c9c9;
+
 .nav-mega {
 	display: none;
 	z-index: 1001; /*bring above ankle*/
@@ -6,65 +12,65 @@
 	.nav-mega {
 		display: block;
 		@include link-color($main-nav-color);
-		border-top: 0;
-		border: $mega-border-width solid $border-color;
-		border-radius: $border-radius;
+		background-color: $white;
+		border: 1px solid $mega-pill-border-color;
+		border-radius: 999px;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+		margin-top: 1.5rem;
+		padding: 0.75rem 0.9rem;
 		position: relative;
 		> .nav {
-			background-color: white;
+			align-items: center;
 			flex-wrap: nowrap;
 		}
 		.nav-item {
-			padding: $mega-nav-item-padding 0;
+			padding: 0;
 			text-align: center;
-			max-width: 190px;
 			width: auto;
-			flex-grow: 1;
+			flex-grow: 0;
 			&.has-red-color a {
 				@include link-color($red);
 			}
 			.nav-link {
-				@include heading-style-minimal($font-size: 0.75rem, $color: $main-nav-color);
-				padding: $mega-nav-link-padding-y $mega-nav-link-padding-x;
+				@include heading-style-minimal($font-size: 13px, $color: $mega-pill-text-color);
+				font-style: normal;
+				font-weight: 500;
+				line-height: 22px;
+				letter-spacing: 0;
+				padding: 0.8rem 1.25rem;
+				white-space: nowrap;
 				&:hover {
-					color: $blue-light;
+					color: $teal;
 				}
-			}
-			& ~ .nav-item .nav-link {
-				border-left: $mega-border-width solid $border-color;
-				padding: 1rem 0;
 			}
 			& ~ .nav-item .sub-menu .nav-item .nav-link {
 				border-left: 0;
 				padding: 1rem;
 			}
 			&.nav-header {
-				flex-grow: 0;
 				flex-shrink: 0;
 				position: relative;
 				a {
-					padding: $mega-nav-link-padding-y 2rem;
+					padding-right: 2.25rem;
 					pointer-events: none;
 				}
+				// Chevron separator pointing right
 				&:after,
 				&:before {
 					content: "";
-					border-right: $mega-border-width solid $border-color;
-					height: 1.75em;
+					border-right: 2px solid $mega-pill-chevron-color;
+					height: 1.6rem;
 					position: absolute;
-					right: 0.25em;
-				}
-				&:after {
-					transform: rotate(30deg);
-					bottom: 0.5rem;
+					right: 0.6rem;
 				}
 				&:before {
 					transform: rotate(-30deg);
-					top: 0.5em;
+					top: 0.1rem;
 				}
-			}
-			&:nth-child(2) .nav-link {
-				border-left: 0;
+				&:after {
+					transform: rotate(30deg);
+					bottom: 0.1rem;
+				}
 			}
 			&.nav-back {
 				a {
@@ -84,7 +90,6 @@
 			&.menu-item-has-children {
 				@include menu-item-has-children(blue-dark);
 				color: $body-color;
-				background-color: $white;
 				a {
 					@include link-color($main-nav-color);
 				}
@@ -103,22 +108,17 @@
 			&.highlight {
 				border-left: 0;
 				padding: 0;
-				flex-grow: 0;
 				z-index: 1;
 				&:last-child {
-					border-radius: 0 0.15rem 0.15rem 0;
 					@supports (display: flex) {
 						// IE11 flexbox bug caused this to shoot the element offscreen
 						margin-left: auto;
 					}
 				}
 				.nav-link {
-					margin-right: -2px;
-					padding: ($mega-nav-item-padding + $mega-nav-link-padding-y) ($mega-nav-link-padding-y * 2);
-
+					border-radius: 999px;
 					color: white;
 					background-color: $teal;
-					border-color: none;
 					@include hover-focus-active() {
 						color: white;
 						background-color: darken($teal, 10%);
@@ -130,10 +130,28 @@
 				}
 			}
 		}
+		// Regular items sit together in one beige pill, split by thin dividers
+		> .nav > .nav-item:not(.highlight) {
+			background-color: $mega-pill-bg;
+			&:not(.nav-header) + .nav-item:not(.highlight) {
+				border-left: 1px solid $mega-pill-divider-color;
+			}
+			&:first-child {
+				border-radius: 999px 0 0 999px;
+			}
+			&:last-child,
+			&:has(+ .highlight) {
+				border-radius: 0 999px 999px 0;
+			}
+			&:first-child:last-child,
+			&:first-child:has(+ .highlight) {
+				border-radius: 999px;
+			}
+		}
 		.nav-item.active:not(.nav-header):not(.highlight) > .nav-link {
-			@include link-color($blue-light);
+			@include link-color($teal);
 			span {
-				border-bottom: 2px solid $blue-light;
+				border-bottom: 2px solid $teal;
 				padding-bottom: 0.25rem;
 			}
 		}
@@ -147,6 +165,7 @@
 				padding: 0;
 				.nav-link {
 					padding: 0.5rem 1rem;
+					white-space: normal;
 				}
 			}
 		}
