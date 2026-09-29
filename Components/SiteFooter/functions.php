@@ -6,38 +6,81 @@ use Timber;
 use Flynt\Utils\Options;
 use Flynt\FieldVariables;
 
+const FOOTER_COLUMNS = [
+    'nav_footer_1' => 'Menu',
+    'nav_footer_2' => 'Resources',
+    'nav_footer_3' => 'Get Inspired',
+];
+
+const FOOTER_LOCATIONS_LIMIT = 5;
+
 add_action('init', function () {
     register_nav_menus([
         'nav_footer_1' => __('Footer Menu: Column 1', 'flynt'),
         'nav_footer_2' => __('Footer Menu: Column 2', 'flynt'),
         'nav_footer_3' => __('Footer Menu: Column 3', 'flynt'),
-        'nav_footer_3_bottom' => __('Footer Menu: Column 3 Bottom', 'flynt'),
-        'nav_family_sites' => __('Footer Menu: Family Sites', 'flynt'),
+        'nav_footer_locations' => __('Footer Menu: Find a Location', 'flynt'),
     ]);
 });
 
-add_filter('Flynt/addComponentData?name=SiteFooter', function ($data) {
-    if (has_nav_menu('nav_footer_1')) {
-        $data['nav_footer_1'] = new Timber\Menu('nav_footer_1');
-    }
-    if (has_nav_menu('nav_footer_2')) {
-        $data['nav_footer_2'] = new Timber\Menu('nav_footer_2');
-    }
-    if (has_nav_menu('nav_footer_3')) {
-        $data['nav_footer_3'] = new Timber\Menu('nav_footer_3');
-    }
-    if (has_nav_menu('nav_footer_3_bottom')) {
-        $data['nav_footer_3_bottom'] = new Timber\Menu('nav_footer_3_bottom');
+/**
+ * Title for a footer column: the menu's "Menu Title" field, falling back to the design default.
+ */
+function getMenuTitle($menu, $fallback)
+{
+    $title = $menu ? get_field('nav_title', 'menu_' . $menu->id) : '';
+    return $title ?: $fallback;
+}
 
-        if ($nav_footer_3_bottom_title = get_field('nav_title', 'menu_' . $data['nav_footer_3_bottom']->id)) {
-            $data['nav_footer_3_bottom_title'] = $nav_footer_3_bottom_title;
-        } else {
-            $data['nav_footer_3_bottom_title'] = 'Resources';
-            //Remove this fallback once the nav_title custom field is filled in on prod
+add_filter('Flynt/addComponentData?name=SiteFooter', function ($data) {
+    $data['footer_columns'] = [];
+    foreach (FOOTER_COLUMNS as $location => $fallbackTitle) {
+        if (!has_nav_menu($location)) {
+            continue;
+        }
+        $menu = new Timber\Menu($location);
+        $data['footer_columns'][] = [
+            'title' => getMenuTitle($menu, $fallbackTitle),
+            'menu' => $menu,
+        ];
+    }
+
+    // Find a Location: curated menu if assigned, otherwise the first few Location posts.
+    $locations = Options::getGlobal('FooterLocations') ?: [];
+    $data['footer_locations'] = [
+        'title' => 'Find a Location',
+        'items' => [],
+        'view_all' => $locations['view_all_link'] ?? null,
+    ];
+    if (has_nav_menu('nav_footer_locations')) {
+        $menu = new Timber\Menu('nav_footer_locations');
+        $data['footer_locations']['title'] = getMenuTitle($menu, 'Find a Location');
+        foreach ($menu->items as $item) {
+            $data['footer_locations']['items'][] = [
+                'title' => $item->title,
+                'link' => $item->link,
+            ];
+        }
+    } else {
+        $posts = Timber::get_posts([
+            'post_type' => 'locations',
+            'posts_per_page' => FOOTER_LOCATIONS_LIMIT,
+            'orderby' => ['menu_order' => 'ASC', 'title' => 'ASC'],
+        ]);
+        foreach ($posts as $post) {
+            // "Beaumont, Texas" -> "Beaumont"
+            $data['footer_locations']['items'][] = [
+                'title' => trim(explode(',', $post->title)[0]),
+                'link' => $post->link,
+            ];
         }
     }
-    if (has_nav_menu('nav_family_sites')) {
-        $data['nav_family_sites'] = new Timber\Menu('nav_family_sites');
+    if (empty($data['footer_locations']['view_all']['url']) && ($page = get_page_by_path('locations'))) {
+        $data['footer_locations']['view_all'] = [
+            'url' => get_permalink($page),
+            'title' => '',
+            'target' => '',
+        ];
     }
 
     $data['corporate'] = [];
@@ -81,6 +124,16 @@ Options::addGlobal('CorporateAddress', [
         'label' => 'Address Suite #',
         'type' => 'text',
         'default_value' => 'Suite 850',
+    ],
+]);
+
+Options::addGlobal('FooterLocations', [
+    [
+        'name' => 'view_all_link',
+        'label' => 'Footer "View all locations" Link',
+        'type' => 'link',
+        'return_format' => 'array',
+        'instructions' => 'Defaults to the Locations page. The list of locations comes from the "Footer Menu: Find a Location" menu (or the first ' . FOOTER_LOCATIONS_LIMIT . ' locations if no menu is assigned).',
     ],
 ]);
 

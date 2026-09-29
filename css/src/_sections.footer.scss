@@ -203,3 +203,255 @@
 		flex-direction: column-reverse;
 	}
 }
+
+// Site footer (Components/SiteFooter). The .footer-* rules above are kept for the Pattern Lab footer.
+$site-footer-text: rgba($white, 0.6);
+$site-footer-cta: #0aa5c8;
+
+.site-footer {
+	background: $blue-dark;
+	color: $white;
+	font-family: $inter;
+	padding: 3rem 0 2.5rem;
+	@include media-breakpoint-up(md) {
+		// Clear the ankle card, which overlaps the top of the footer.
+		@supports (padding: var(--last-section-padding)) {
+			padding-top: 11rem;
+		}
+	}
+	@include media-breakpoint-up(lg) {
+		padding-bottom: 3.25rem;
+	}
+}
+
+.site-footer__grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	column-gap: 1.5rem;
+	row-gap: 2.5rem;
+
+	@include media-breakpoint-up(md) {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+	@include media-breakpoint-up(lg) {
+		grid-template-columns: repeat(4, minmax(0, 1fr)) minmax(0, 1.4fr);
+		row-gap: 1.25rem;
+	}
+}
+
+.site-footer__title {
+	color: $white;
+	font-family: $inter;
+	font-size: 1.25rem;
+	font-weight: 500;
+	letter-spacing: 0;
+	line-height: 1.3;
+	margin: 0 0 1.25rem;
+	text-transform: none;
+	@include media-breakpoint-up(lg) {
+		font-size: 1.5rem;
+		margin-bottom: 1.75rem;
+	}
+}
+
+.site-footer__links {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+
+	li + li {
+		margin-top: 0.875rem;
+		@include media-breakpoint-up(lg) {
+			margin-top: 1.25rem;
+		}
+	}
+
+	a {
+		color: $site-footer-text;
+		font-size: 1rem;
+		font-weight: 400;
+		letter-spacing: 0.01em;
+		line-height: 1.5;
+		transition: color 0.2s ease;
+		@include media-breakpoint-up(lg) {
+			font-size: 1.125rem;
+		}
+
+		&:hover,
+		&:focus {
+			color: $white;
+			text-decoration: none;
+		}
+	}
+}
+
+.site-footer__locations {
+	counter-reset: footer-location;
+
+	li {
+		color: $site-footer-text;
+		counter-increment: footer-location;
+		font-size: 1rem;
+		@include media-breakpoint-up(lg) {
+			font-size: 1.125rem;
+		}
+
+		&::before {
+			content: counter(footer-location);
+			display: inline-block;
+			margin-right: 0.625rem;
+		}
+
+		+ li {
+			@include media-breakpoint-up(lg) {
+				margin-top: 0.875rem;
+			}
+		}
+	}
+}
+
+.site-footer__view-all {
+	align-items: center;
+	display: inline-flex;
+	gap: 0.5rem;
+	margin-top: 0.875rem;
+	color: $site-footer-text;
+	font-size: 1rem;
+	@include media-breakpoint-up(lg) {
+		font-size: 1.125rem;
+	}
+
+	.icon {
+		flex-shrink: 0;
+		height: 1.25rem;
+		width: 1.25rem;
+	}
+
+	span {
+		text-decoration: underline;
+		text-underline-offset: 0.3em;
+	}
+
+	&:hover,
+	&:focus {
+		color: $white;
+	}
+}
+
+.site-footer__brand {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	grid-column: 1 / -1;
+	text-align: center;
+
+	@include media-breakpoint-up(lg) {
+		grid-column: 5;
+		grid-row: 1 / span 2;
+	}
+}
+
+.site-footer__logo .logo {
+	height: auto;
+	width: 145px;
+}
+
+.site-footer__address {
+	font-weight: 400;
+	color: $white;
+	font-size: 1rem;
+	line-height: 1.75;
+	margin: 1.5rem 0 2rem;
+	@include media-breakpoint-up(lg) {
+		font-size: 1.0625rem;
+	}
+
+	a {
+		color: $white;
+	}
+
+	a:hover,
+	a:focus {
+		color: $white;
+		text-decoration: underline;
+	}
+}
+
+.site-footer__cta {
+	background: $site-footer-cta;
+	border-radius: 2px;
+	color: $white;
+	display: inline-block;
+	font-size: 0.8125rem;
+	font-weight: 500;
+	letter-spacing: 0.08em;
+	padding: 1rem 1.5rem;
+	text-transform: uppercase;
+	transition: background-color 0.2s ease;
+
+	&:hover,
+	&:focus {
+		background: darken($site-footer-cta, 8%);
+		color: $white;
+		text-decoration: none;
+	}
+}
+
+.site-footer__bottom {
+	grid-column: 1 / -1;
+	text-align: center;
+
+	@include media-breakpoint-up(md) {
+		text-align: left;
+	}
+	@include media-breakpoint-up(lg) {
+		grid-column: 1 / span 4;
+		margin-top: 0.25rem;
+	}
+}
+
+.site-footer__social {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+	justify-content: center;
+	list-style: none;
+	margin: 0 0 1rem;
+	padding: 0;
+
+	@include media-breakpoint-up(md) {
+		justify-content: flex-start;
+	}
+
+	a {
+		align-items: center;
+		border: 1.5px solid $white;
+		border-radius: 50%;
+		color: $white;
+		display: inline-flex;
+		height: 1.75rem;
+		justify-content: center;
+		transition: background-color 0.2s ease, color 0.2s ease;
+		width: 1.75rem;
+
+		&:hover,
+		&:focus {
+			background: $white;
+			color: $blue-dark;
+		}
+	}
+
+	.icon {
+		height: 0.9375rem;
+		width: 0.9375rem;
+	}
+}
+
+.site-footer__copyright {
+	color: rgba($white, 0.85);
+	font-size: 0.9375rem;
+	margin: 0;
+	@include media-breakpoint-up(lg) {
+		font-size: 1.0625rem;
+	}
+}

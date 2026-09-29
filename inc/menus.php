@@ -126,35 +126,14 @@ ACFComposer::registerFieldGroup([
             'instructions' => '',
         ],
     ],
-    'location' => [
-        // [
-        //     [
-        //         'param' => 'nav_menu',
-        //         'operator' => '==',
-        //         'value' => 'location/nav_footer_1',
-        //     ],
-        // ],
-        // [
-        //     [
-        //         'param' => 'nav_menu',
-        //         'operator' => '==',
-        //         'value' => 'location/nav_footer_2',
-        //     ],
-        // ],
-        // [
-        //     [
-        //         'param' => 'nav_menu',
-        //         'operator' => '==',
-        //         'value' => 'location/nav_footer_3',
-        //     ],
-        // ],
-        [
+    'location' => array_map(function ($location) {
+        return [
             [
                 'param' => 'nav_menu',
                 'operator' => '==',
-                'value' => 'location/nav_footer_3_bottom',
+                'value' => 'location/' . $location,
             ],
-        ],
-    ],
+        ];
+    }, ['nav_footer_1', 'nav_footer_2', 'nav_footer_3', 'nav_footer_locations']),
     'instruction_placement' => 'label',
 ]);

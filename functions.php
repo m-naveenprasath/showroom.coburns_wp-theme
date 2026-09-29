@@ -32,3 +32,17 @@ function be_dps_no_results_search( $message ) {
 
 	return $message;
 }
+
+// Load missing JS libraries from CDN (node_modules not on live server)
+add_filter('script_loader_src', function ($src) {
+    if (strpos($src, 'node_modules/bootstrap/dist/js/bootstrap.min.js') !== false) {
+        return 'https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js';
+    }
+    if (strpos($src, 'node_modules/tablesort/dist/tablesort.min.js') !== false) {
+        return 'https://cdn.jsdelivr.net/npm/tablesort@5/dist/tablesort.min.js';
+    }
+    if (strpos($src, 'node_modules/tablesort/dist/sorts/tablesort.number.min.js') !== false) {
+        return 'https://cdn.jsdelivr.net/npm/tablesort@5/dist/sorts/tablesort.number.min.js';
+    }
+    return $src;
+});
