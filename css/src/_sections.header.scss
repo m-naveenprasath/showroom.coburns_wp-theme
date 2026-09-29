@@ -171,6 +171,61 @@ header .logo {
 	}
 }
 
+// Search box, drops down under the icon bar
+#mobile-header .mobile-header__buttons > .btn-search-toggle[aria-expanded="true"] {
+	color: $blue-dark;
+	background-color: $yellow;
+}
+
+.mobile-search {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	display: flex;
+	width: 100%;
+	padding: 0.75rem 1rem;
+	background: $blue-dark;
+	border-top: 4px solid $yellow;
+	box-shadow: 0 6px 12px rgba($blue-darker, 0.3);
+
+	&[hidden] {
+		display: none;
+	}
+
+	.form-control {
+		flex: 1 1 auto;
+		height: 2.75rem;
+		padding: 0 1.25rem;
+		font-size: 1rem; // 16px stops iOS zooming in on focus
+		border: 0;
+		border-radius: 999px 0 0 999px;
+		box-shadow: none;
+		&::placeholder {
+			color: $gray-med;
+			font-style: italic;
+		}
+	}
+	.btn-search {
+		display: flex;
+		flex: 0 0 3.25rem;
+		align-items: center;
+		justify-content: center;
+		height: 2.75rem;
+		padding: 0;
+		color: $white;
+		background: $teal;
+		border: 0;
+		border-radius: 0 999px 999px 0;
+		.icon {
+			bottom: 0;
+			width: 1rem;
+			height: 1rem;
+			margin: 0;
+			font-size: 1rem;
+		}
+	}
+}
+
 // Hamburger drawer, drops down under the icon bar
 .mobile-drawer {
 	position: absolute;

@@ -90,10 +90,23 @@ $mega-fys-text: #333;
 }
 
 // Tabs
+.mega-fys__nav {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+	margin-bottom: 1.25rem;
+}
 .mega-fys__tabs {
 	display: flex;
 	gap: 1rem;
-	margin-bottom: 1.25rem;
+}
+.mega-fys__tab--link {
+	display: inline-flex;
+	align-items: center;
+	text-decoration: none;
+	&:hover {
+		text-decoration: none;
+	}
 }
 .mega-fys__tab {
 	padding: 0.75rem 1.5rem;

@@ -64,6 +64,9 @@
 		</div>
 		<div class="mobile-header__buttons has-blue-dark-background-color">
 			<button class="btn btn-menu" aria-expanded="false" aria-controls="mobile-drawer" aria-label="{{ mobileNavMenuButton.label }}">{% include ['partials/icon.twig'] ignore missing with {'icon': 'hamburger'} %}</button>
+			{% if HeaderSearch_show %}
+			<button type="button" class="btn btn-search-toggle" aria-expanded="false" aria-controls="mobile-search" aria-label="{{ mobileNavSearchButton.label ?: 'Search' }}" title="{{ mobileNavSearchButton.label ?: 'Search' }}">{% include ['partials/icon.twig'] ignore missing with {'icon': 'mobile-search'} %}</button>
+			{% endif %}
 			{% for link in mobile_header_links %}
 			<a href="{{ link.url }}" class="btn btn-icon" aria-label="{{ link.title }}" title="{{ link.title }}"{% if link.target == '_blank' %} target="_blank" rel="noreferrer noopener"{% endif %}>
 				{% include ['partials/icon.twig'] ignore missing with {'id': link.icon_id, 'icon': link.icon} %}
@@ -71,6 +74,38 @@
 			{% endfor %}
 		</div>
 
+		{% if HeaderSearch_show %}
+		<form class="mobile-search" id="mobile-search" role="search" action="{{ site.url }}" hidden>
+			<label class="sr-only" for="mobile-search-input">{{ searchField.label ?: 'Search' }}</label>
+			<input id="mobile-search-input" type="search" name="s" class="form-control" placeholder="{{ searchField.placeholder ?: 'Search Product, brands, ideas...' }}">
+			<button type="submit" class="btn btn-search" aria-label="{{ searchField.button ?: 'Search' }}">{% include ['partials/icon.twig'] ignore missing with {'icon': 'search'} %}</button>
+		</form>
+		{% endif %}
+
 		{% include 'partials/mobile-drawer.twig' with { 'items': mobile_drawer } %}
 	</div>
+	{% if nav_mega %}
+	<nav class="nav-mega-mobile d-lg-none" aria-label="{{ nav_mega.name }}">
+		<div class="nav-mega-mobile__card">
+			<div class="nav-mega-mobile__top">
+				{% for item in nav_mega.items|filter(item => item.style == 'nav-header') %}
+					<span class="nav-mega-mobile__label">{{ item.title }}</span>
+				{% endfor %}
+				{% for item in nav_mega.items|filter(item => item.style == 'highlight') %}
+					<a class="nav-mega-mobile__cta" href="{{ item.link }}"{% if item.target == '_blank' %} target="_blank" rel="noreferrer noopener"{% endif %}>
+						<span>{{ item.title }}</span>
+						{% include ['partials/icon.twig'] ignore missing with {'icon': 'arrow'} %}
+					</a>
+				{% endfor %}
+			</div>
+			<ul class="nav-mega-mobile__list">
+				{% for item in nav_mega.items|filter(item => item.style != 'highlight' and item.style != 'nav-header') %}
+					<li class="nav-mega-mobile__item{{ item.current ? ' is-active' }}">
+						<a class="nav-mega-mobile__link" href="{{ item.link }}"{% if item.target == '_blank' %} target="_blank" rel="noreferrer noopener"{% endif %}>{{ item.title }}</a>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</nav>
+	{% endif %}
 </header>

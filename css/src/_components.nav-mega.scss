@@ -8,6 +8,153 @@ $mega-pill-chevron-color: #c9c9c9;
 	display: none;
 	z-index: 1001; /*bring above ankle*/
 }
+
+// Mobile version of the mega pill (Components/SiteHeader). Desktop uses .nav-mega above.
+.nav-mega-mobile {
+	padding: 1rem;
+	background-color: $white;
+
+	.nav-mega-mobile__card {
+		padding: 1rem;
+		background-color: $white;
+		border: 1px solid $mega-pill-border-color;
+		border-radius: 20px;
+		box-shadow: 0 6px 18px rgba($blue-dark, 0.06);
+	}
+
+	// Row 1: "Get Inspired" label + Find Your Style CTA
+	.nav-mega-mobile__top {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem;
+		margin-bottom: 0.875rem;
+		padding-left: 0.5rem; // line the label up with the pill text below
+	}
+
+	.nav-mega-mobile__label {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-family: $inter;
+		font-size: 12px;
+		font-weight: 700;
+		line-height: 16px;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: $blue-dark;
+		// Small teal accent bar
+		&:before {
+			content: "";
+			flex-shrink: 0;
+			width: 3px;
+			height: 14px;
+			border-radius: 2px;
+			background-color: $teal;
+		}
+	}
+
+	.nav-mega-mobile__cta {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		margin-left: auto;
+		padding: 0.625rem 1.125rem;
+		font-family: $inter;
+		font-size: 12px;
+		font-weight: 600;
+		line-height: 16px;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		white-space: nowrap;
+		color: $white;
+		background-color: $teal;
+		border-radius: 999px;
+		box-shadow: 0 4px 10px rgba($teal, 0.3);
+		text-decoration: none;
+		transition: background-color 0.2s ease, box-shadow 0.2s ease;
+		.icon {
+			width: 0.625rem;
+			height: 0.625rem;
+			bottom: 0;
+			transition: transform 0.2s ease;
+		}
+		&:hover,
+		&:focus {
+			color: $white;
+			background-color: darken($teal, 8%);
+			box-shadow: 0 4px 12px rgba($teal, 0.4);
+			text-decoration: none;
+			.icon {
+				transform: translateX(2px);
+			}
+		}
+	}
+
+	// Row 2: equal-width beige segments, all visible
+	.nav-mega-mobile__list {
+		display: flex;
+		margin: 0;
+		padding: 0.25rem;
+		list-style: none;
+		background-color: $mega-pill-bg;
+		border-radius: 999px;
+	}
+
+	.nav-mega-mobile__item {
+		flex: 1 1 0;
+		min-width: 0;
+		position: relative;
+		// Short centred divider between segments
+		& + .nav-mega-mobile__item:before {
+			content: "";
+			position: absolute;
+			left: 0;
+			top: 50%;
+			height: 18px;
+			border-left: 1px solid $mega-pill-divider-color;
+			transform: translateY(-50%);
+		}
+	}
+
+	.nav-mega-mobile__link {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 40px; // with the list padding, a 48px tap row
+		padding: 0.5rem 0.25rem;
+		font-family: $inter;
+		font-size: 12px;
+		font-weight: 500;
+		line-height: 16px;
+		letter-spacing: 0.04em;
+		text-align: center;
+		text-transform: uppercase;
+		color: $mega-pill-text-color;
+		border-radius: 999px;
+		text-decoration: none;
+		transition: background-color 0.2s ease, color 0.2s ease;
+		&:hover,
+		&:focus {
+			color: $teal;
+			text-decoration: none;
+		}
+	}
+
+	// Current page: white chip inside the beige track
+	.is-active {
+		&:before,
+		+ .nav-mega-mobile__item:before {
+			display: none;
+		}
+		.nav-mega-mobile__link {
+			color: $teal;
+			font-weight: 700;
+			background-color: $white;
+			box-shadow: 0 1px 4px rgba($blue-dark, 0.08);
+		}
+	}
+}
 @include media-breakpoint-up(lg) {
 	.nav-mega {
 		display: block;

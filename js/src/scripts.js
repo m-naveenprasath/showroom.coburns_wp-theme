@@ -52,21 +52,40 @@ jQuery(document).ready(function ($) {
 
 	// Navigation
 	$(".dropdown-toggle").dropdown();
+	var mobileSearch = document.getElementById("mobile-search");
+	var setMobileSearch = function (open) {
+		if (!mobileSearch) {
+			return;
+		}
+		mobileSearch.hidden = !open;
+		$(".btn-search-toggle").attr("aria-expanded", open ? "true" : "false");
+		if (open) {
+			mobileSearch.querySelector("input").focus();
+		}
+	};
 	var setMobileMenu = function (open) {
 		document.body.classList.toggle("menu-open", open);
 		$(".btn-menu").attr("aria-expanded", open ? "true" : "false");
+		if (open) {
+			setMobileSearch(false);
+		}
 	};
 	$(".btn-menu").click(function (e) {
 		e.stopPropagation();
 		e.preventDefault();
 		setMobileMenu(!document.body.classList.contains("menu-open"));
 	});
+	$(".btn-search-toggle").click(function () {
+		setMobileMenu(false);
+		setMobileSearch(mobileSearch.hidden);
+	});
 	$(".mobile-drawer__backdrop").click(function () {
 		setMobileMenu(false);
 	});
 	$(document).on("keydown", function (e) {
-		if (e.key === "Escape" && document.body.classList.contains("menu-open")) {
+		if (e.key === "Escape") {
 			setMobileMenu(false);
+			setMobileSearch(false);
 		}
 	});
 
@@ -253,7 +272,7 @@ jQuery(function ($) {
 	$(".mega-fys").each(function () {
 		var $mega = $(this);
 		var $item = $mega.closest(".menu-item-has-mega");
-		var $tabs = $mega.find(".mega-fys__tab");
+		var $tabs = $mega.find(".mega-fys__tab[role='tab']");
 
 		function selectTab($tab) {
 			$tabs.removeClass("is-active").attr({ "aria-selected": "false", tabindex: "-1" });

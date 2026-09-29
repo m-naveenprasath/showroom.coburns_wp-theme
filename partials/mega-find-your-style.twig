@@ -12,12 +12,15 @@
 
 {% set panel_id = 'mega-fys-' ~ item.id %}
 <div class="mega-fys" id="{{ panel_id }}">
-	<div class="mega-fys__tabs" role="tablist">
-		{% for tab in tabs %}
-			<button type="button" class="mega-fys__tab{{ loop.first ? ' is-active' }}" role="tab" id="{{ panel_id }}-tab-{{ tab.id }}" aria-controls="{{ panel_id }}-panel-{{ tab.id }}" aria-selected="{{ loop.first ? 'true' : 'false' }}" {{ not loop.first ? 'tabindex="-1"' }}>
-				{{- tab.title -}}
-			</button>
-		{% endfor %}
+	<div class="mega-fys__nav">
+		<div class="mega-fys__tabs" role="tablist">
+			{% for tab in tabs %}
+				<button type="button" class="mega-fys__tab{{ loop.first ? ' is-active' }}" role="tab" id="{{ panel_id }}-tab-{{ tab.id }}" aria-controls="{{ panel_id }}-panel-{{ tab.id }}" aria-selected="{{ loop.first ? 'true' : 'false' }}" {{ not loop.first ? 'tabindex="-1"' }}>
+					{{- tab.title -}}
+				</button>
+			{% endfor %}
+		</div>
+		<a class="mega-fys__tab mega-fys__tab--link" href="{{ site.link }}/style-finder/">View All</a>
 	</div>
 
 	{% for tab in tabs %}

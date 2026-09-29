@@ -19,8 +19,12 @@
 				<div class="col-md-3 ankle-item">
 					<{{ tag }} class="ankle-item-inner"{% if item.ankle_link %} href="{{ item.ankle_link.url }}" target="{{ item.ankle_link.target ? item.ankle_link.target : '_self' }}"{% endif %}>
 						<span class="ankle-item-icon">
-							{% if item.ankle_icon == 'Upload My Own' %}
-								{% include ['partials/icon.twig'] ignore missing with {'id': item.ankle_icon_upload.id} %}
+							{% if item.ankle_icon == 'Upload My Own' and item.ankle_icon_upload %}
+								{% if item.ankle_icon_upload.mime_type == 'image/svg+xml' %}
+									{% include ['partials/icon.twig'] ignore missing with {'id': item.ankle_icon_upload.id} %}
+								{% else %}
+									<img src="{{ item.ankle_icon_upload.url }}" alt="" loading="lazy">
+								{% endif %}
 							{% elseif ankle_icons[item.ankle_icon] is defined %}
 								{% include ['partials/icon.twig'] ignore missing with {'icon': ankle_icons[item.ankle_icon]} %}
 							{% endif %}
