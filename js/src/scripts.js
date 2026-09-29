@@ -52,11 +52,51 @@ jQuery(document).ready(function ($) {
 
 	// Navigation
 	$(".dropdown-toggle").dropdown();
+	var setMobileMenu = function (open) {
+		document.body.classList.toggle("menu-open", open);
+		$(".btn-menu").attr("aria-expanded", open ? "true" : "false");
+	};
 	$(".btn-menu").click(function (e) {
 		e.stopPropagation();
 		e.preventDefault();
-		document.body.classList.toggle("menu-open");
+		setMobileMenu(!document.body.classList.contains("menu-open"));
 	});
+	$(".mobile-drawer__backdrop").click(function () {
+		setMobileMenu(false);
+	});
+	$(document).on("keydown", function (e) {
+		if (e.key === "Escape" && document.body.classList.contains("menu-open")) {
+			setMobileMenu(false);
+		}
+	});
+
+	// Mobile drawer accordions: the label is a link, the chevron opens the next layer
+	$(".mobile-drawer__toggle").click(function () {
+		var expanded = $(this).attr("aria-expanded") === "true";
+		$(this).attr("aria-expanded", expanded ? "false" : "true");
+		$(this).closest(".mobile-drawer__item").toggleClass("is-open", !expanded);
+		document.getElementById($(this).attr("aria-controls")).hidden = expanded;
+	});
+
+	// Footer link columns: accordion on mobile (the toggle is inert on md+ via CSS)
+	$(".site-footer__toggle").click(function () {
+		var expanded = $(this).attr("aria-expanded") === "true";
+		$(this).attr("aria-expanded", expanded ? "false" : "true");
+		$(this).closest(".site-footer__col").toggleClass("is-open", !expanded);
+	});
+
+	// Mobile header: hide the logo row once the page scrolls, leaving the icon bar stuck to the top
+	var mobileHeader = document.getElementById("mobile-header");
+	if (mobileHeader) {
+		var toggleMobileHeader = function () {
+			if (document.body.classList.contains("menu-open")) {
+				return;
+			}
+			mobileHeader.classList.toggle("is-scrolled", window.pageYOffset > 10);
+		};
+		toggleMobileHeader();
+		window.addEventListener("scroll", toggleMobileHeader, { passive: true });
+	}
 	$(".return-top a").click(function (e) {
 		e.stopPropagation();
 		e.preventDefault();
@@ -64,88 +104,7 @@ jQuery(document).ready(function ($) {
 		return false;
 	});
 
-	// Building Mobile Nav
-	var primary_nav = $("#mobile-header nav .mobile-nav-primary");
-	if (primary_nav.is(":empty")) {
-		$(".nav-primary > .nav > .nav-item").each(function () {
-			$(this).clone().appendTo(primary_nav);
-		});
-	}
-	var mega_nav = $("#mobile-header nav .mobile-nav-mega");
-	if (mega_nav.is(":empty")) {
-		$(".nav-mega > .nav > .nav-item").each(function () {
-			$(this).clone().appendTo(mega_nav);
-		});
-	}
-	var utility_nav = $("#mobile-header nav .mobile-nav-utility");
-	if (utility_nav.is(":empty")) {
-		$(".nav-utility > .nav > .nav-item").each(function () {
-			$(this).clone().appendTo(utility_nav);
-		});
-	}
-
-	//Change the ids and targets to be different for mobile.
-	$("#mobile-header nav .mobile-nav-mega .nav-link").each(function () {
-		$(this).each(function () {
-			var datatarget = $(this).next("ul").attr("id");
-			if (datatarget !== undefined) {
-				var newdatatarget = "mobile_" + datatarget;
-				//$(this).removeAttr("data-target");
-				$(this).attr("data-target", "#" + newdatatarget);
-				//$(this).removeAttr("aria-controls");
-				$(this).attr("aria-controls", newdatatarget);
-				$(this).next("ul").attr("id", newdatatarget);
-			}
-		});
-	});
-
-	$("#mobile-header nav .sub-menu").each(function () {
-		//Add back buttons to mobile nav.
-		var datatarget = $(this).attr("id");
-		if (datatarget !== undefined) {
-			var backstring =
-				'<li class="nav-item nav-back"><a class="nav-link back" href="" data-toggle="collapse" data-target="#' +
-				datatarget +
-				'" aria-expanded="true" aria-controls="' +
-				datatarget +
-				'" role="button"><svg class="icon icon-arrow" width="7px" height="10px" viewBox="0 0 7 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><polyline stroke="currentColor" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" points="1 9 6 5 1 1"></polyline></svg> Back</a></li>';
-			$(backstring).prependTo($(this));
-		}
-	});
-	$(".nav-mega .questions-container").each(function () {
-		var mobile_nav = $("#mobile-header nav .mobile-nav-mega");
-		$(this).clone().appendTo($(mobile_nav));
-	});
-	$("#mobile-header nav .mobile-nav-mega .sub-menu .questions-container").each(function () {
-		//Remove any extra question boxes.
-		$(this).remove();
-	});
-	$("#mobile-header nav .mobile-nav-mega .nav-extended-left").each(function () {
-		//Remove featured.
-		$(this).remove();
-	});
 	$(".collapse, .menu-item-has-children .nav-link").collapse({ toggle: false });
-
-	var mobilenavmega = 0;
-	$(".mobile-nav-mega .menu-item-has-children .nav-link").click(function (e) {
-		var target = $(this).data("target");
-		var target_nav = $(target).parents(".mobile-nav-mega");
-
-		if ($(this).hasClass("collapsed")) {
-			mobilenavmega = mobilenavmega + -100;
-			target_nav.css("left", mobilenavmega + "%");
-			$("#mobile-header nav")
-				.delay(200)
-				.animate({ scrollTop: $(target).offset().top }, 400);
-		}
-		if ($(this).hasClass("back")) {
-			mobilenavmega = mobilenavmega + 100;
-			target_nav.css("left", mobilenavmega + "%");
-			$("#mobile-header nav")
-				.delay(200)
-				.animate({ scrollTop: $(target).offset().top }, 400);
-		}
-	});
 
 	//Add back button to mega nav.
 	var backstring =

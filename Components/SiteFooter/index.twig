@@ -7,9 +7,15 @@
     <div class="site-footer__grid">
 
       {%- for column in footer_columns -%}
+      {%- set panel_id = 'site-footer-col-' ~ loop.index -%}
       <nav class="site-footer__col" aria-label="{{ column.title }}">
-        <h2 class="site-footer__title">{{ column.title }}</h2>
-        <ul class="site-footer__links">
+        <h2 class="site-footer__title">
+          <button class="site-footer__toggle" type="button" aria-expanded="false" aria-controls="{{ panel_id }}">
+            <span>{{ column.title }}</span>
+            <svg class="site-footer__toggle-icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M1 10h18"/><path class="site-footer__toggle-v" d="M10 1v18"/></svg>
+          </button>
+        </h2>
+        <ul class="site-footer__links site-footer__panel" id="{{ panel_id }}">
           {%- for item in column.menu.items -%}
           <li>
             <a href="{{ item.link }}" {{ item.target == '_blank' ? 'target="_blank" rel="noreferrer noopener"' }}>{{ item.title }}</a>
@@ -21,7 +27,13 @@
 
       {%- if footer_locations.items or footer_locations.view_all.url -%}
       <nav class="site-footer__col site-footer__col--locations" aria-label="{{ footer_locations.title }}">
-        <h2 class="site-footer__title">{{ footer_locations.title }}</h2>
+        <h2 class="site-footer__title">
+          <button class="site-footer__toggle" type="button" aria-expanded="false" aria-controls="site-footer-col-locations">
+            <span>{{ footer_locations.title }}</span>
+            <svg class="site-footer__toggle-icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M1 10h18"/><path class="site-footer__toggle-v" d="M10 1v18"/></svg>
+          </button>
+        </h2>
+        <div class="site-footer__panel" id="site-footer-col-locations">
         {%- if footer_locations.items -%}
         <ol class="site-footer__links site-footer__locations">
           {%- for item in footer_locations.items -%}
@@ -35,6 +47,7 @@
           <span>{{ footer_locations.view_all.title ?: 'View all locations' }}</span>
         </a>
         {%- endif -%}
+        </div>
       </nav>
       {%- endif -%}
 

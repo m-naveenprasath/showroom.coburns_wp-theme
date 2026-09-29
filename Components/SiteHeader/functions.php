@@ -73,6 +73,53 @@ Options::addGlobal('SiteHeader', [
         'ui_on_text' => 'Show',
         'ui_off_text' => 'Hide',
     ],
+    [
+        'label' => 'Mobile Header Icons',
+        'name' => 'mobileHeaderLinks',
+        'type' => 'repeater',
+        'instructions' => 'Icon links shown in the blue bar under the logo on mobile. Leave empty to use Find Your Style, Find A Location, Coburns.com, About and Contact Us.',
+        'max' => 6,
+        'layout' => 'table',
+        'button_label' => 'Add Icon',
+        'sub_fields' => [
+            [
+                'label' => 'Icon',
+                'name' => 'mobile_header_icon',
+                'type' => 'select',
+                'required' => 1,
+                'choices' => [
+                    'style' => 'Find Your Style',
+                    'location' => 'Find A Location',
+                    'shop' => 'Coburns.com',
+                    'about' => 'About',
+                    'contact' => 'Contact Us',
+                    'upload' => 'Upload My Own',
+                ],
+            ],
+            [
+                'label' => 'Icon Upload',
+                'name' => 'mobile_header_icon_upload',
+                'type' => 'image',
+                'preview_size' => 'thumbnail',
+                'conditional_logic' => [
+                    [
+                        [
+                            'fieldPath' => 'mobile_header_icon',
+                            'operator' => '==',
+                            'value' => 'upload',
+                        ],
+                    ],
+                ],
+            ],
+            [
+                'label' => 'Link',
+                'name' => 'mobile_header_link',
+                'type' => 'link',
+                'required' => 1,
+                'return_format' => 'array',
+            ],
+        ],
+    ],
 ]);
 
 add_filter('Flynt/addComponentData?name=SiteHeader', function ($data) {
@@ -107,8 +154,88 @@ add_filter('Flynt/addComponentData?name=SiteHeader', function ($data) {
         $data = array_merge($data, $labels);
     }
 
+    $data['mobile_header_links'] = getMobileHeaderLinks($data['mobileHeaderLinks'] ?? []);
+    $data['mobile_drawer'] = getMobileDrawerItems($data['mega_panels'] ?? []);
+
     return $data;
 });
+
+const MOBILE_HEADER_ICONS = [
+    'style' => 'ankle-style',
+    'location' => 'mobile-location',
+    'shop' => 'external',
+    'about' => 'mobile-about',
+    'contact' => 'ankle-email',
+];
+
+/**
+ * Icon links for the mobile header bar. Falls back to the default set when none are configured.
+ */
+function getMobileHeaderLinks($rows)
+{
+    if (empty($rows)) {
+        return [
+            ['icon' => 'ankle-style', 'title' => 'Find Your Style', 'url' => getPageUrl('style-finder')],
+            ['icon' => 'mobile-location', 'title' => 'Find A Location', 'url' => getPageUrl('locations')],
+            ['icon' => 'external', 'title' => 'Coburns.com', 'url' => 'https://www.coburns.com/', 'target' => '_blank'],
+            ['icon' => 'mobile-about', 'title' => 'About', 'url' => getPageUrl('about')],
+            ['icon' => 'ankle-email', 'title' => 'Contact Us', 'url' => getPageUrl('contact')],
+        ];
+    }
+
+    $links = [];
+    foreach ($rows as $row) {
+        $link = $row['mobile_header_link'] ?? null;
+        if (empty($link['url'])) {
+            continue;
+        }
+
+        $key = $row['mobile_header_icon'] ?? '';
+        $links[] = [
+            'icon' => MOBILE_HEADER_ICONS[$key] ?? null,
+            'icon_id' => $key === 'upload' ? getImageId($row['mobile_header_icon_upload'] ?? null) : null,
+            'title' => $link['title'] ?? '',
+            'url' => $link['url'],
+            'target' => $link['target'] ?? '',
+        ];
+    }
+
+    return $links;
+}
+
+/**
+ * Items for the mobile hamburger drawer. "Find Your Style" reuses the desktop mega menu tabs,
+ * giving three clickable layers: Find Your Style > By Style / By Brand / By Space > each entry.
+ */
+function getMobileDrawerItems($megaPanels)
+{
+    $styleChildren = [];
+    foreach (reset($megaPanels) ?: [] as $tab) {
+        $styleChildren[] = [
+            'title' => $tab['title'],
+            'url' => $tab['link'],
+            'children' => array_map(function ($entry) {
+                return ['title' => $entry['title'], 'url' => $entry['link']];
+            }, $tab['items']),
+        ];
+    }
+
+    return [
+        ['icon' => 'ankle-style', 'title' => 'Find Your Style', 'url' => getPageUrl('style-finder'), 'children' => $styleChildren],
+        ['icon' => 'mobile-location', 'title' => 'Find Your Location', 'url' => getPageUrl('locations')],
+        ['icon' => 'mobile-brands', 'title' => 'Our Brands', 'url' => getPageUrl('our-brands')],
+        ['icon' => 'mobile-about', 'title' => 'About', 'url' => getPageUrl('about')],
+        ['icon' => 'ankle-email', 'title' => 'Contact Us', 'url' => getPageUrl('contact')],
+        ['icon' => 'external', 'title' => 'Coburns.com', 'url' => 'https://coburns.com', 'target' => '_blank'],
+        ['icon' => 'mobile-blog', 'title' => 'Blogs', 'url' => getPageUrl('blog')],
+    ];
+}
+
+function getPageUrl($path)
+{
+    $page = get_page_by_path($path);
+    return $page ? get_permalink($page) : home_url('/' . $path . '/');
+}
 
 /**
  * Build the "Find Your Style" mega menu panels, keyed by menu item ID.

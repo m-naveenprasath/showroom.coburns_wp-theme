@@ -1,0 +1,39 @@
+{#
+	Mobile hamburger drawer.
+	items: built in Components/SiteHeader/functions.php (getMobileDrawerItems)
+	Every label is a link; items with children get a chevron that opens the next layer.
+#}
+{% macro items(items, parent_id, depth) %}
+	{% import _self as drawer %}
+	<ul class="mobile-drawer__list mobile-drawer__list--{{ depth }}"{% if parent_id %} id="{{ parent_id }}" hidden{% endif %}>
+		{% for item in items %}
+			{% set sub_id = 'mobile-drawer-' ~ depth ~ '-' ~ (parent_id ?: 'root') ~ '-' ~ loop.index %}
+			<li class="mobile-drawer__item">
+				<div class="mobile-drawer__row">
+					<a class="mobile-drawer__link" href="{{ item.url }}"{% if item.target == '_blank' %} target="_blank" rel="noreferrer noopener"{% endif %}>
+						{% if item.icon %}
+							<span class="mobile-drawer__icon">{% include ['partials/icon.twig'] ignore missing with {'icon': item.icon} %}</span>
+						{% endif %}
+						<span>{{ item.title }}</span>
+					</a>
+					{% if item.children %}
+						<button type="button" class="mobile-drawer__toggle" aria-expanded="false" aria-controls="{{ sub_id }}" aria-label="Show {{ item.title }}">
+							{% include ['partials/icon.twig'] ignore missing with {'icon': 'chevron-down'} %}
+						</button>
+					{% endif %}
+				</div>
+				{% if item.children %}
+					{{ drawer.items(item.children, sub_id, depth + 1) }}
+				{% endif %}
+			</li>
+		{% endfor %}
+	</ul>
+{% endmacro %}
+{% import _self as drawer %}
+
+<div class="mobile-drawer" id="mobile-drawer">
+	<nav class="mobile-drawer__panel" aria-label="Mobile">
+		{{ drawer.items(items, null, 1) }}
+	</nav>
+	<div class="mobile-drawer__backdrop"></div>
+</div>
