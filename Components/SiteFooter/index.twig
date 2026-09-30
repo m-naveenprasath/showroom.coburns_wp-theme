@@ -67,7 +67,7 @@
         {%- endif -%}
 
         {%- if corporate.link.link.url and corporate.link.text -%}
-        <a class="site-footer__cta" href="{{ corporate.link.link.url }}" {{ corporate.link.link.target ? 'target="' ~ corporate.link.link.target ~ '" rel="noopener"' }}>{{ corporate.link.text }}</a>
+        <a class="site-footer__cta" href="{{ corporate.link.link.url }}" {{ corporate.link.link.target ? 'target="' ~ corporate.link.link.target ~ '" rel="noopener"' }}><span>{{ corporate.link.text }}</span>{%- include ['partials/icon.twig'] ignore missing with {'icon': 'arrow'} -%}</a>
         {%- endif -%}
       </div>
 

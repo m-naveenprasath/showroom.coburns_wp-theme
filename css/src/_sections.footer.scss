@@ -206,7 +206,6 @@
 
 // Site footer (Components/SiteFooter). The .footer-* rules above are kept for the Pattern Lab footer.
 $site-footer-text: rgba($white, 0.6);
-$site-footer-cta: #0aa5c8;
 
 .site-footer {
 	background: $blue-dark;
@@ -452,22 +451,55 @@ $site-footer-cta: #0aa5c8;
 }
 
 .site-footer__cta {
-	background: $site-footer-cta;
-	border-radius: 2px;
+	align-items: center;
 	color: $white;
-	display: inline-block;
-	font-size: 0.8125rem;
-	font-weight: 500;
-	letter-spacing: 0.08em;
-	padding: 1rem 1.5rem;
+	display: inline-flex;
+	font-size: 0.875rem;
+	font-weight: 600;
+	gap: 0.625rem;
+	letter-spacing: 0.1em;
 	text-transform: uppercase;
-	transition: background-color 0.2s ease;
+
+	// Red accent line, matching .btn-link--next / --previous
+	&::before {
+		background-color: $red;
+		content: "";
+		display: inline-block;
+		height: 2px;
+		transition: width 0.25s ease;
+		width: 2rem;
+	}
+
+	span {
+		text-decoration: underline;
+		text-decoration-color: transparent;
+		text-underline-offset: 0.35em;
+		transition: text-decoration-color 0.2s ease;
+	}
+
+	.icon {
+		flex-shrink: 0;
+		height: 1em;
+		transition: transform 0.25s ease;
+		width: 1em;
+	}
 
 	&:hover,
 	&:focus {
-		background: darken($site-footer-cta, 8%);
 		color: $white;
 		text-decoration: none;
+
+		&::before {
+			width: 3rem;
+		}
+
+		span {
+			text-decoration-color: currentColor;
+		}
+
+		.icon {
+			transform: translateX(0.25rem);
+		}
 	}
 }
 
