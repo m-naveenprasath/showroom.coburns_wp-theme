@@ -9,6 +9,16 @@ use Timber\Timber;
 
 add_filter('Flynt/addComponentData?name=SectionImages', function ($data) {
 
+    // "View All" link beside the heading: the ACF link wins, otherwise fall back to the Brands page
+    if (empty($data['moreLink']['url'])) {
+        $brandsPage = get_page_by_path('by-brand');
+        $data['moreLink'] = $brandsPage ? [
+            'url' => get_permalink($brandsPage),
+            'title' => '',
+            'target' => '',
+        ] : null;
+    }
+
     return $data;
 });
 
@@ -21,6 +31,12 @@ function getACFLayout() {
           FieldVariables\getTab("Content"),
           FieldVariables\getHeadingLoop($instructions = '<strong>Defaults</strong><br/>tag: h2, size: auto, style: subhead'),
           FieldVariables\getSectionContent_1(),
+          [
+            'label' => 'View All Link',
+            'name' => 'moreLink',
+            'type' => 'link',
+            'instructions' => 'Small link shown beside the heading. Leave empty to link to the Brands page. "Link Text" defaults to "View All Brands".',
+          ],
           FieldVariables\getTab("Images"),
           [
             'label' => 'Images',

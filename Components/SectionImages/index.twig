@@ -8,6 +8,13 @@
 		{% else %}
 			<h2>{{ featured_brands_label ?: "Featured Brands" }}</h2>
 		{% endif %}
+
+		{% if moreLink.url %}
+			<a href="{{ moreLink.url }}" class="{{ local_namespace }}__more"{% if moreLink.target %} target="{{ moreLink.target }}"{% endif %}>
+				<span>{{ moreLink.title ?: "View All Brands" }}</span>
+				{%- include ['partials/icon.twig'] ignore missing with {'icon': 'arrow'} -%}
+			</a>
+		{% endif %}
 	</div>
 
 	{% if imagesLinks %}

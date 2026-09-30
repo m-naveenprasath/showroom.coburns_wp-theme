@@ -92,3 +92,179 @@
 		}
 	}
 }
+
+// Home page blog cards: warm cream panel with a soft lift on hover
+.blog-container {
+	.blog--col {
+		display: flex;
+	}
+	.blog-card {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		overflow: hidden;
+		border-radius: 4px;
+		background-color: $accent;
+		box-shadow: 0 1px 2px rgba($blue-darker, 0.04), 0 4px 14px rgba($blue-darker, 0.05);
+		transition: transform 0.35s ease, box-shadow 0.35s ease;
+
+		// Accent rule that draws in across the top on hover
+		&:before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 3;
+			width: 100%;
+			height: 3px;
+			background-color: $red;
+			transform: scaleX(0);
+			transform-origin: left;
+			transition: transform 0.4s ease;
+		}
+
+		.card-img-link {
+			display: block;
+			overflow: hidden;
+			&:hover:after {
+				display: none;
+			}
+		}
+		.card-img-link img,
+		.card-img-link .shadow {
+			box-shadow: none !important;
+			transition: transform 0.6s ease;
+		}
+
+		.card-body,
+		&.blog-card-narrow .card-body {
+			display: flex;
+			flex: 1 1 auto;
+			flex-direction: column;
+			padding: 22px 24px 24px;
+		}
+		.card-body h2 {
+			margin-bottom: 16px;
+			// Short red rule under the title, echoing the section eyebrow line
+			&:after {
+				content: "";
+				display: block;
+				width: 32px;
+				height: 2px;
+				margin-top: 14px;
+				background-color: $red;
+				transition: width 0.4s ease;
+			}
+		}
+		.card-body > .btn-link {
+			margin-top: auto;
+			align-self: flex-start;
+		}
+
+		&:hover,
+		&:focus-within {
+			transform: translateY(-4px);
+			box-shadow: 0 2px 4px rgba($blue-darker, 0.05), 0 14px 32px rgba($blue-darker, 0.12);
+			&:before {
+				transform: scaleX(1);
+			}
+			.card-img-link img {
+				transform: scale(1.05);
+			}
+			.card-body h2:after {
+				width: 56px;
+			}
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			&,
+			&:before,
+			.card-img-link img,
+			.card-body h2:after {
+				transition: none;
+			}
+			&:hover,
+			&:focus-within {
+				transform: none;
+			}
+		}
+	}
+
+	// "More" card: full-bleed image tile with a navy overlay and a centered white link
+	@include media-breakpoint-up(xl) {
+		.blog--col:last-child .blog-card {
+			min-height: 100%;
+			background-color: $blue-dark;
+
+			.card-img-link {
+				position: absolute;
+				inset: 0;
+				height: 100%;
+				img,
+				picture,
+				.image {
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+				}
+			}
+			.card-body {
+				position: relative;
+				z-index: 2;
+				align-items: center;
+				justify-content: center;
+				background: linear-gradient(180deg, rgba($blue-dark, 0.55) 0%, rgba($blue-darker, 0.82) 100%);
+				transition: background-color 0.35s ease;
+			}
+			.card-body > .btn-link {
+				margin-top: 0;
+				align-self: center;
+				color: $white;
+				font-size: 1.125rem;
+				letter-spacing: 0.08em;
+				text-decoration: none;
+				// Make the whole tile clickable
+				&:after {
+					content: "";
+					position: absolute;
+					inset: 0;
+				}
+				&:before {
+					width: 40px;
+					margin-right: 14px;
+					transition: width 0.4s ease;
+				}
+				svg,
+				.icon {
+					fill: currentColor;
+					color: $white;
+				}
+			}
+			&:hover,
+			&:focus-within {
+				.card-body {
+					background-color: rgba($blue-darker, 0.15);
+				}
+				.card-body > .btn-link:before {
+					width: 64px;
+				}
+			}
+		}
+	}
+
+	// Below xl the last column is only a text link, so drop the panel there
+	@include media-breakpoint-down(lg) {
+		.blog--col:last-child .blog-card {
+			background: none;
+			box-shadow: none;
+			&:hover,
+			&:focus-within {
+				transform: none;
+				box-shadow: none;
+			}
+			&:before {
+				display: none;
+			}
+		}
+	}
+}
