@@ -39,6 +39,10 @@
 	{% set extra_classes = extra_classes ~ "has-background-accent " %}
 {% endif %}
 
+{% if halfCard %}
+	{% set extra_classes = extra_classes ~ "section--half-card " %}
+{% endif %}
+
 <section class="{{ global_namespace }} {{ local_namespace }} {{ local_namespace }}-container {{ extra_classes }} {{ sectionBackground ? "has-background-" ~ sectionBackground }} {{ sectionTextAlign ? "text-" ~ sectionTextAlign }} {{ mediaPosition ? "container-image-" ~ mediaPosition }}" id="{{ component_ID }}">
 	{% block container %}
 	{% endblock %}

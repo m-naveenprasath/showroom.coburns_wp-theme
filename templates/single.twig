@@ -1,8 +1,18 @@
 {% extends 'templates/_document.twig' %}
 
 {% block content %}
-	{% for component in post.meta('pageComponents') %}
+	{% set components = post.meta('pageComponents') %}
+	{% for component in components %}
+		{# Group consecutive "Half Width Card" Image/Text sections into one side-by-side row #}
+		{% set prevComponent = loop.first ? null : components[loop.index0 - 1] %}
+		{% set nextComponent = loop.last ? null : components[loop.index0 + 1] %}
+		{% set isCard = component.acf_fc_layout == 'SectionGeneric' and component.halfCard %}
+		{% set prevIsCard = prevComponent and prevComponent.acf_fc_layout == 'SectionGeneric' and prevComponent.halfCard %}
+		{% set nextIsCard = nextComponent and nextComponent.acf_fc_layout == 'SectionGeneric' and nextComponent.halfCard %}
+
+		{% if isCard and not prevIsCard %}<div class="section-card-group"><div class="container">{% endif %}
 		{{ renderComponent(component) }}
+		{% if isCard and not nextIsCard %}</div></div>{% endif %}
 	{% else %}
 		{% include "partials/post-full.twig" ignore missing %}
 	{% endfor %}

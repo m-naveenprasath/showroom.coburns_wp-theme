@@ -67,4 +67,28 @@
 	.search-tag {
 		display: none;
 	}
+
+	// Align with the 1440 content width (matches .section-card-group) and keep every column inside it
+	@include media-breakpoint-up(xl) {
+		> .container {
+			max-width: 1440px;
+			padding-left: 60px;
+			padding-right: 60px;
+		}
+		.row {
+			flex-wrap: nowrap;
+		}
+		.blog--text,
+		.blog--col,
+		&.blog-style-2 .blog--text {
+			flex: 0 0 25%;
+			max-width: 25%;
+		}
+		.blog--col:last-child,
+		&.blog-style-2 .blog--col:last-child {
+			left: auto;
+			margin-left: 0;
+			position: relative;
+		}
+	}
 }

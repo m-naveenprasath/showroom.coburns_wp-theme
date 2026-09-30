@@ -46,6 +46,16 @@ function getACFLayout()
             FieldVariables\getSectionBackgroundSelect(),
             FieldVariables\getSectionTextAlignSelect(),
             [
+                'label' => 'Half Width Card',
+                'name' => 'halfCard',
+                'type' => 'true_false',
+                'instructions' => 'Shows this section as a card with text left and image right. Consecutive sections with this on are placed side by side.',
+                'default_value' => false,
+                'ui' => 1,
+                'ui_on_text' => 'On',
+                'ui_off_text' => 'Off',
+            ],
+            [
                 'label' => 'Style Finder Stamp',
                 'name' => 'styleFinderStamp_show',
                 'type' => 'true_false',

@@ -9,10 +9,10 @@
 	> .container {
 		background-color: $accent;
 		border-radius: 0.75rem;
-		padding: 3rem 1.5rem;
+		padding: 1.5rem 1rem;
 
 		@include media-breakpoint-up(md) {
-			padding: 4rem 3rem;
+			padding: 2rem 1.25rem;
 		}
 	}
 
@@ -34,14 +34,58 @@
 		}
 	}
 
+	&__content-wrap {
+		position: relative;
+	}
+
 	&__content {
-		max-width: 640px;
+		max-width: 960px;
 		margin: 0 auto;
+		position: relative;
+		overflow: hidden;
+		max-height: 13.6rem; // ~8 lines at 1.7 line-height
 		color: $gray;
 		line-height: 1.7;
+		transition: max-height 0.3s ease;
 
 		p + p {
 			margin-top: 1.25rem;
+		}
+
+		&::after {
+			content: "";
+			position: absolute;
+			inset: auto 0 0;
+			height: 2.5rem;
+			background: linear-gradient(to bottom, rgba($accent, 0), $accent);
+			opacity: 1;
+			transition: opacity 0.2s ease;
+		}
+
+		&.is-expanded::after {
+			opacity: 0;
+		}
+	}
+
+	&__toggle {
+		appearance: none;
+		background: none;
+		border: 0;
+		padding: 0.5rem 0 0;
+		margin: 0;
+		font-size: 0.8125rem;
+		font-weight: 700;
+		letter-spacing: 0.02em;
+		color: $teal;
+		cursor: pointer;
+
+		&[hidden] {
+			display: none;
+		}
+
+		&:hover,
+		&:focus-visible {
+			text-decoration: underline;
 		}
 	}
 

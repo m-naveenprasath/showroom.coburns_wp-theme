@@ -1,20 +1,50 @@
 {% set local_namespace = "image-gallery-container" %}
 
-<section class="{{ global_namespace }} {{ local_namespace }} {{ sectionBackground ? "has-background-" ~ sectionBackground }} text-center">
+<section class="{{ global_namespace }} {{ local_namespace }} {{ sectionBackground ? "has-background-" ~ sectionBackground }}">
 
-	{% if headings %}
-
-		<div class="text-center">
+	<div class="{{ local_namespace }}__heading">
+		{% if headings %}
 			{% include ['partials/heading-array.twig'] ignore missing with { 'headings': headings } %}
+		{% else %}
+			<h2>{{ featured_brands_label ?: "Featured Brands" }}</h2>
+		{% endif %}
+	</div>
+
+	{% if imagesLinks %}
+		<div class="{{ local_namespace }}__wrap" data-ig-wrap>
+			<div class="{{ local_namespace }}__track" data-ig-track>
+				{% for item in imagesLinks %}
+					{% set label = item.label ?: item.image.alt ?: item.image.title %}
+					{% set tag = item.link.url ? "a" : "div" %}
+					<{{ tag }} class="{{ local_namespace }}__card"
+						{%- if item.link.url %} href="{{ item.link.url }}"{% endif %}
+						{%- if item.link.target %} target="{{ item.link.target }}"{% endif %}
+						{%- if item.link.url and item.link.title %} aria-label="{{ item.link.title | escape('html_attr') }}"{% endif %}>
+						<span class="{{ local_namespace }}__logo">
+							{% include ['partials/image.twig'] ignore missing with { 'image': item.image, 'alt': label } %}
+						</span>
+						{% if label %}
+							<span class="{{ local_namespace }}__name">{{ label }}</span>
+						{% endif %}
+					</{{ tag }}>
+				{% endfor %}
+			</div>
+
+			<button type="button" class="{{ local_namespace }}__nav {{ local_namespace }}__nav--prev" data-ig-prev aria-label="Previous brands">
+				<span class="{{ local_namespace }}__nav-icon">
+					{%- include ['partials/icon.twig'] ignore missing with {'icon': 'arrow'} -%}
+				</span>
+			</button>
+			<button type="button" class="{{ local_namespace }}__nav {{ local_namespace }}__nav--next" data-ig-next aria-label="Next brands">
+				<span class="{{ local_namespace }}__nav-icon">
+					{%- include ['partials/icon.twig'] ignore missing with {'icon': 'arrow'} -%}
+				</span>
+			</button>
 		</div>
-	{% else %}
-		<h2 class="subhead text-center">{{ featured_brands_label ?: "Featured Brands" }}</h2>
 	{% endif %}
 
-	{% include "partials/image-gallery.twig" with { 'carousel' : imagesLinks } %}
-
 	{% if sectionHtml_1 or buttons %}
-	<div class="container">
+	<div class="{{ local_namespace }}__footer text-center">
 
 		{% if sectionHtml_1 %}{{ sectionHtml_1 }}{% endif %}
 
@@ -23,4 +53,40 @@
 	</div>
 	{% endif %}
 
+<script>
+(function () {
+	document.querySelectorAll('[data-ig-wrap]').forEach(function (wrap) {
+		if (wrap.dataset.igInit) return;
+		wrap.dataset.igInit = '1';
+
+		var track   = wrap.querySelector('[data-ig-track]');
+		var prevBtn = wrap.querySelector('[data-ig-prev]');
+		var nextBtn = wrap.querySelector('[data-ig-next]');
+		if (!track) return;
+
+		function step() {
+			return Math.max(track.clientWidth * 0.8, 200);
+		}
+
+		function sync() {
+			var atStart = track.scrollLeft <= 4;
+			var atEnd   = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+			prevBtn.classList.toggle('image-gallery-container__nav--hidden', atStart);
+			nextBtn.classList.toggle('image-gallery-container__nav--hidden', atEnd);
+		}
+
+		prevBtn.addEventListener('click', function () {
+			track.scrollBy({ left: -step(), behavior: 'smooth' });
+		});
+		nextBtn.addEventListener('click', function () {
+			track.scrollBy({ left: step(), behavior: 'smooth' });
+		});
+
+		track.addEventListener('scroll', sync, { passive: true });
+		window.addEventListener('resize', sync);
+		window.addEventListener('load', sync);
+		sync();
+	});
+})();
+</script>
 </section>
