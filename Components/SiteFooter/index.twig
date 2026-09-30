@@ -6,25 +6,8 @@
   <div class="container">
     <div class="site-footer__grid">
 
-      {%- for column in footer_columns -%}
-      {%- set panel_id = 'site-footer-col-' ~ loop.index -%}
-      <nav class="site-footer__col" aria-label="{{ column.title }}">
-        <h2 class="site-footer__title">
-          <button class="site-footer__toggle" type="button" aria-expanded="false" aria-controls="{{ panel_id }}">
-            <span>{{ column.title }}</span>
-            <svg class="site-footer__toggle-icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M1 10h18"/><path class="site-footer__toggle-v" d="M10 1v18"/></svg>
-          </button>
-        </h2>
-        <ul class="site-footer__links site-footer__panel" id="{{ panel_id }}">
-          {%- for item in column.menu.items -%}
-          <li>
-            <a href="{{ item.link }}" {{ item.target == '_blank' ? 'target="_blank" rel="noreferrer noopener"' }}>{{ item.title }}</a>
-          </li>
-          {%- endfor -%}
-        </ul>
-      </nav>
-      {%- endfor -%}
-
+      {%- set locations_rendered = false -%}
+      {%- set locations_column -%}
       {%- if footer_locations.items or footer_locations.view_all.url -%}
       <nav class="site-footer__col site-footer__col--locations" aria-label="{{ footer_locations.title }}">
         <h2 class="site-footer__title">
@@ -50,6 +33,29 @@
         </div>
       </nav>
       {%- endif -%}
+      {%- endset -%}
+
+      {%- for column in footer_columns -%}
+      {%- if column.locations_before -%}{{ locations_column }}{%- set locations_rendered = true -%}{%- endif -%}
+      {%- set panel_id = 'site-footer-col-' ~ loop.index -%}
+      <nav class="site-footer__col" aria-label="{{ column.title }}">
+        <h2 class="site-footer__title">
+          <button class="site-footer__toggle" type="button" aria-expanded="false" aria-controls="{{ panel_id }}">
+            <span>{{ column.title }}</span>
+            <svg class="site-footer__toggle-icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M1 10h18"/><path class="site-footer__toggle-v" d="M10 1v18"/></svg>
+          </button>
+        </h2>
+        <ul class="site-footer__links site-footer__panel" id="{{ panel_id }}">
+          {%- for item in column.menu.items -%}
+          <li>
+            <a href="{{ item.link }}" {{ item.target == '_blank' ? 'target="_blank" rel="noreferrer noopener"' }}>{{ item.title }}</a>
+          </li>
+          {%- endfor -%}
+        </ul>
+      </nav>
+      {%- endfor -%}
+
+      {%- if not locations_rendered -%}{{ locations_column }}{%- endif -%}
 
       <div class="site-footer__brand">
         <div class="site-footer__logo" aria-label="{{ corporate.name ?: site.name }} Logo">

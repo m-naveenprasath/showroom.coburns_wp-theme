@@ -6,10 +6,12 @@ use Timber;
 use Flynt\Utils\Options;
 use Flynt\FieldVariables;
 
+// Display order. "Find a Location" is rendered just before FOOTER_LOCATIONS_BEFORE, so Resources comes last.
+const FOOTER_LOCATIONS_BEFORE = 'nav_footer_2';
 const FOOTER_COLUMNS = [
     'nav_footer_1' => 'Menu',
-    'nav_footer_2' => 'Resources',
     'nav_footer_3' => 'Get Inspired',
+    'nav_footer_2' => 'Resources',
 ];
 
 const FOOTER_LOCATIONS_LIMIT = 5;
@@ -42,6 +44,7 @@ add_filter('Flynt/addComponentData?name=SiteFooter', function ($data) {
         $data['footer_columns'][] = [
             'title' => getMenuTitle($menu, $fallbackTitle),
             'menu' => $menu,
+            'locations_before' => $location === FOOTER_LOCATIONS_BEFORE,
         ];
     }
 
