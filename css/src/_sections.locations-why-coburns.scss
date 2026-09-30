@@ -1,62 +1,53 @@
-﻿.locations-why-coburns {
-	padding: 4rem 0;
+.locations-why-coburns {
+	padding: 2rem 0;
 	background-color: $white;
 
 	@include media-breakpoint-up(md) {
-		padding: 5rem 0;
+		padding: 3rem 0;
+	}
+
+	&__card {
+		background-color: #f5f0eb;
+		border-radius: 16px;
+		padding: 2.5rem 1.25rem;
+
+		@include media-breakpoint-up(md) {
+			padding: 3rem 2rem;
+		}
+
+		@include media-breakpoint-up(lg) {
+			padding: 3rem 2.5rem 2.5rem;
+		}
 	}
 
 	&__heading {
 		text-align: center;
-		margin-bottom: 3rem;
+		margin-bottom: 2rem;
 
 		h2 {
-			font-size: 2rem;
+			font-family: $headings-font-family;
+			font-size: 1.75rem;
 			font-weight: 700;
-			color: $primary;
+			color: #173a5e;
 			margin-bottom: 0;
 
 			@include media-breakpoint-up(md) {
-				font-size: 2.25rem;
+				font-size: 2rem;
 			}
 
 			@include media-breakpoint-up(lg) {
-				font-size: 2.5rem;
+				font-size: 2.25rem;
 			}
 		}
 	}
 
 	&__row {
 		margin: 0;
+		row-gap: 2rem;
 	}
 
 	&__col {
-		padding: 0;
-		border-right: 1px solid $brown-light;
-
-		&:last-child {
-			border-right: none;
-		}
-
-		@include media-breakpoint-only(md) {
-			&:nth-child(2n) {
-				border-right: none;
-			}
-
-			&:nth-child(1),
-			&:nth-child(2) {
-				border-bottom: 1px solid $brown-light;
-			}
-		}
-
-		@include media-breakpoint-down(sm) {
-			border-right: none;
-			border-bottom: 1px solid $brown-light;
-
-			&:last-child {
-				border-bottom: none;
-			}
-		}
+		padding: 0 0.75rem;
 	}
 
 	&__item {
@@ -65,40 +56,52 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: flex-start;
-		padding: 2.5rem 1.5rem;
 		height: 100%;
-
-		@include media-breakpoint-up(lg) {
-			padding: 3rem 2.5rem;
-		}
 	}
 
 	&__icon {
-		color: $gray-dark;
-		margin-bottom: 1.5rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 4.5rem;
+		height: 4.5rem;
+		border-radius: 50%;
+		background-color: rgba($teal, 0.1);
+		color: $teal;
+		margin-bottom: 1rem;
 
 		.icon,
 		svg {
-			width: 3rem;
-			height: 3rem;
+			width: 2.5rem;
+			height: 2.5rem;
 			display: block;
+		}
+
+		// Icon SVGs ship with stroke="black"; tint them teal.
+		svg [stroke] {
+			stroke: currentColor;
 		}
 	}
 
 	&__title {
-		font-size: 1.125rem;
-		font-weight: 700;
-		color: $gray-dark;
-		line-height: 1.3;
-		margin-bottom: 0.75rem;
+		font-family: $font-family-base;
+		font-size: 1.25rem;
+		font-weight: 600;
+		color: $teal;
+		line-height: 1.4;
+		margin-bottom: 1.25rem;
 		max-width: 220px;
+
+		@include media-breakpoint-up(lg) {
+			font-size: 1.375rem;
+		}
 	}
 
 	&__description {
-		color: $gray;
-		line-height: 1.65;
-		font-size: 0.875rem;
+		color: #555;
+		line-height: 1.6;
+		font-size: 0.9375rem;
 		margin-bottom: 0;
-		max-width: 250px;
+		max-width: 280px;
 	}
 }
