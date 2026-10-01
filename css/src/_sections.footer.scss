@@ -499,6 +499,23 @@ $site-footer-text: rgba($white, 0.6);
 	}
 }
 
+.site-footer__appointment {
+	align-items: center;
+	display: inline-flex;
+	gap: 0.5rem;
+	letter-spacing: 0.1em;
+	margin-top: 1.5rem;
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
+	text-transform: uppercase;
+
+	.icon {
+		flex-shrink: 0;
+		height: 1.25rem;
+		width: 1.25rem;
+	}
+}
+
 .site-footer__bottom {
 	grid-column: 1 / -1;
 	text-align: center;

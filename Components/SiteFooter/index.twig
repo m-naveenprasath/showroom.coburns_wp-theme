@@ -75,6 +75,13 @@
         {%- if corporate.link.link.url and corporate.link.text -%}
         <a class="site-footer__cta" href="{{ corporate.link.link.url }}" {{ corporate.link.link.target ? 'target="' ~ corporate.link.link.target ~ '" rel="noopener"' }}><span>{{ corporate.link.text }}</span>{%- include ['partials/icon.twig'] ignore missing with {'icon': 'arrow'} -%}</a>
         {%- endif -%}
+
+        {%- if appointment.url -%}
+        <a class="btn btn-outline-light site-footer__appointment" href="{{ appointment.url }}">
+          {%- include ['icons/mobile-schedule.svg'] ignore missing -%}
+          <span>{{ appointment.title }}</span>
+        </a>
+        {%- endif -%}
       </div>
 
       <div class="site-footer__bottom">

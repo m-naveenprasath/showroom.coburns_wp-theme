@@ -77,7 +77,7 @@ Options::addGlobal('SiteHeader', [
         'label' => 'Mobile Header Icons',
         'name' => 'mobileHeaderLinks',
         'type' => 'repeater',
-        'instructions' => 'Icon links shown in the blue bar under the logo on mobile. Leave empty to use Find Your Style, Find A Location, Coburns.com, About and Contact Us.',
+        'instructions' => 'Icon links shown in the blue bar under the logo on mobile. Leave empty to use Find Your Style, Find A Location, Schedule An Appointment, Coburns.com and Contact Us.',
         'max' => 6,
         'layout' => 'table',
         'button_label' => 'Add Icon',
@@ -92,6 +92,7 @@ Options::addGlobal('SiteHeader', [
                     'location' => 'Find A Location',
                     'shop' => 'Coburns.com',
                     'about' => 'About',
+                    'schedule' => 'Schedule An Appointment',
                     'contact' => 'Contact Us',
                     'upload' => 'Upload My Own',
                 ],
@@ -165,6 +166,7 @@ const MOBILE_HEADER_ICONS = [
     'location' => 'mobile-location',
     'shop' => 'external',
     'about' => 'mobile-about',
+    'schedule' => 'mobile-schedule',
     'contact' => 'ankle-email',
 ];
 
@@ -177,8 +179,8 @@ function getMobileHeaderLinks($rows)
         return [
             ['icon' => 'ankle-style', 'title' => 'Find Your Style', 'url' => getPageUrl('style-finder')],
             ['icon' => 'mobile-location', 'title' => 'Find A Location', 'url' => getPageUrl('locations')],
+            ['icon' => 'mobile-schedule', 'title' => 'Schedule An Appointment', 'url' => getPageUrl('schedule-an-appointment')],
             ['icon' => 'external', 'title' => 'Coburns.com', 'url' => 'https://www.coburns.com/', 'target' => '_blank'],
-            ['icon' => 'mobile-about', 'title' => 'About', 'url' => getPageUrl('about')],
             ['icon' => 'ankle-email', 'title' => 'Contact Us', 'url' => getPageUrl('contact')],
         ];
     }

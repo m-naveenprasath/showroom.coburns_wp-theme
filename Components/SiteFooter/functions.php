@@ -91,6 +91,12 @@ add_filter('Flynt/addComponentData?name=SiteFooter', function ($data) {
         $data['corporate'] = array_merge($data['corporate'], $contactInfo);
     }
 
+    $appointmentPage = get_page_by_path('schedule-an-appointment');
+    $data['appointment'] = [
+        'title' => 'Schedule An Appointment',
+        'url' => $appointmentPage ? get_permalink($appointmentPage) : home_url('/schedule-an-appointment/'),
+    ];
+
     if ($socialAccounts = Options::getGlobal('CorporateSocialMediaAccounts')) {
         $data = array_merge($data, $socialAccounts);
     }
