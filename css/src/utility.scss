@@ -32,3 +32,9 @@
 .admin-bar .mobile-header {
 	top: var(--wp-admin-bar-height);
 }
+
+.admin-bar .site-header {
+	@include media-breakpoint-up(lg) {
+		top: var(--wp-admin-bar-height);
+	}
+}

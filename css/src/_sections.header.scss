@@ -75,6 +75,22 @@ header .logo {
 	}
 }
 
+// Desktop: utility bar + primary nav stay pinned to the top while scrolling (mobile uses the fixed #mobile-header)
+.site-header {
+	@include media-breakpoint-up(lg) {
+		position: sticky;
+		top: 0;
+		z-index: $zindex-sticky;
+		background: $white;
+		transition: box-shadow 0.25s ease-in-out;
+
+		// Soft shadow only once the page has scrolled (class set in js/src/scripts.js)
+		&.is-scrolled {
+			box-shadow: 0 6px 20px rgba($blue-dark, 0.06);
+		}
+	}
+}
+
 #desktop-header {
 	display: none;
 	@include media-breakpoint-up(lg) {

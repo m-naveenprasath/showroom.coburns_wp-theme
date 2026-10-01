@@ -116,6 +116,16 @@ jQuery(document).ready(function ($) {
 		toggleMobileHeader();
 		window.addEventListener("scroll", toggleMobileHeader, { passive: true });
 	}
+
+	// Desktop sticky header: only show its shadow once the page has scrolled
+	var siteHeader = document.querySelector(".site-header");
+	if (siteHeader) {
+		var toggleSiteHeader = function () {
+			siteHeader.classList.toggle("is-scrolled", window.pageYOffset > 10);
+		};
+		toggleSiteHeader();
+		window.addEventListener("scroll", toggleSiteHeader, { passive: true });
+	}
 	$(".return-top a").click(function (e) {
 		e.stopPropagation();
 		e.preventDefault();

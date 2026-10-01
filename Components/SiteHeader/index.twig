@@ -47,13 +47,6 @@
 				{% endif %}
 
 			</div>
-			{% if nav_mega %}
-			<nav class="nav-mega" aria-label="{{ nav_mega.name }}">
-				<ul class="nav">
-					{% include ['partials/menu.twig'] ignore missing with { 'menu': nav_mega } %}
-				</ul>
-			</nav>
-			{% endif %}
 		</div>
 	</div>
 	<div id="mobile-header">
@@ -109,3 +102,13 @@
 	</nav>
 	{% endif %}
 </header>
+{# Desktop mega pill sits outside the sticky header so it scrolls away with the page #}
+{% if nav_mega %}
+<div class="header-container container-fluid d-none d-lg-block">
+	<nav class="nav-mega" aria-label="{{ nav_mega.name }}">
+		<ul class="nav">
+			{% include ['partials/menu.twig'] ignore missing with { 'menu': nav_mega } %}
+		</ul>
+	</nav>
+</div>
+{% endif %}
