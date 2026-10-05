@@ -64,6 +64,12 @@
 		overflow: hidden;
 	}
 
+	// ── See More button ───────────────────────────────────────────────────────
+	&__more {
+		margin-top: 2rem;
+		text-align: center;
+	}
+
 	// ── Question button ───────────────────────────────────────────────────────
 	&__question {
 		display: flex;

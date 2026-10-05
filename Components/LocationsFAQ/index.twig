@@ -1,4 +1,5 @@
 {% set local_namespace = "locations-faq" %}
+{% set visible_limit = 5 %}
 
 <section class="{{ local_namespace }}">
 	<div class="container">
@@ -20,7 +21,7 @@
 		{% if faqs %}
 			<div class="{{ local_namespace }}__list">
 				{% for item in faqs %}
-					<div class="{{ local_namespace }}__item{% if loop.first %} {{ local_namespace }}__item--open{% endif %}" data-faq-item>
+					<div class="{{ local_namespace }}__item{% if loop.first %} {{ local_namespace }}__item--open{% endif %}" data-faq-item{% if loop.index > visible_limit %} data-faq-extra hidden{% endif %}>
 						<button
 							class="{{ local_namespace }}__question"
 							data-faq-trigger
@@ -42,6 +43,12 @@
 					</div>
 				{% endfor %}
 			</div>
+
+			{% if faqs|length > visible_limit %}
+				<div class="{{ local_namespace }}__more">
+					<button type="button" class="btn btn-outline-primary" data-faq-more aria-expanded="false">See More</button>
+				</div>
+			{% endif %}
 		{% endif %}
 
 	</div>
@@ -79,6 +86,26 @@
 			answer.style.maxHeight = answer.scrollHeight + 'px';
 		}
 	});
+
+	// See More / See Less for long FAQ lists
+	var section = document.currentScript.closest('.locations-faq');
+	var moreBtn = section.querySelector('[data-faq-more]');
+	if (moreBtn) {
+		moreBtn.addEventListener('click', function () {
+			var expand = moreBtn.getAttribute('aria-expanded') !== 'true';
+
+			section.querySelectorAll('[data-faq-extra]').forEach(function (extra) {
+				extra.hidden = !expand;
+			});
+
+			moreBtn.setAttribute('aria-expanded', expand ? 'true' : 'false');
+			moreBtn.textContent = expand ? 'See Less' : 'See More';
+
+			if (!expand) {
+				moreBtn.scrollIntoView({ block: 'center' });
+			}
+		});
+	}
 })();
 </script>
 </section>
