@@ -1,0 +1,25 @@
+{% set local_namespace = "section-image-text" %}
+
+<section class="{{ local_namespace }}{% if imagePosition == 'left' %} {{ local_namespace }}--image-left{% endif %}"{% if backgroundColor %} style="background-color: {{ backgroundColor|e('html_attr') }};"{% endif %}>
+	<div class="container">
+		<div class="{{ local_namespace }}__inner">
+			<div class="{{ local_namespace }}__text">
+				{% include ['partials/heading-array.twig'] ignore missing with { 'headings': headings } %}
+
+				{% if sectionHtml_1 %}
+					<div class="{{ local_namespace }}__content content-flow">{{ sectionHtml_1 }}</div>
+				{% endif %}
+
+				{% if buttons %}
+					{% include ['partials/button-array.twig'] ignore missing with { 'buttons': buttons } %}
+				{% endif %}
+			</div>
+
+			{% if image %}
+				<div class="{{ local_namespace }}__media">
+					{% include ['partials/image.twig'] ignore missing with { 'image': image } %}
+				</div>
+			{% endif %}
+		</div>
+	</div>
+</section>

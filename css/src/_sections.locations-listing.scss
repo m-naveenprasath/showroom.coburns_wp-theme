@@ -87,8 +87,13 @@
 			}
 
 			@include media-breakpoint-up(lg) {
-				grid-template-columns: repeat(3, minmax(0, 1fr));
 				gap: 1.5rem;
+			}
+
+			// Three cards per row only once the container is wide enough (xl) for each card's
+			// two-up action buttons to hold their labels; on tablet widths stay at two per row.
+			@include media-breakpoint-up(xl) {
+				grid-template-columns: repeat(3, minmax(0, 1fr));
 			}
 		}
 	}
@@ -205,6 +210,18 @@
 				white-space: normal;
 				overflow-wrap: break-word;
 				word-break: break-word;
+			}
+		}
+
+		// Tablet widths: cards are too narrow for two pill buttons side by side, so labels like
+		// "Get Appointment" spill out of the button. Let the buttons auto-fit instead — two per
+		// row when there's room, otherwise one full-width button per row — and keep each label
+		// on a single line.
+		@include media-breakpoint-between(sm, lg) {
+			grid-template-columns: repeat(auto-fit, minmax(11.5rem, 1fr));
+
+			.btn .listing-actions__label {
+				white-space: nowrap;
 			}
 		}
 	}
