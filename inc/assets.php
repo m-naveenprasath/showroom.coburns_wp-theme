@@ -163,6 +163,17 @@ add_action("wp_enqueue_scripts", function () {
     ) {
         $js_path = "https://www.bugherd.com/sidebarv2.js?apikey=gl4j5scdxgwxq6btxxriqq";
         wp_enqueue_script("bugherd", $js_path, [], $js_path, false);
+
+        // BugHerd's own "Send Feedback" tab lives in a shadow root pinned to the bottom of the
+        // viewport, where it covers the mobile CTA bar. Hide it and use our own trigger instead.
+        wp_add_inline_script(
+            "bugherd",
+            'window.BugHerdConfig = Object.assign({}, window.BugHerdConfig, {feedback: {custom_feedback_id: "bugherd-feedback"}});',
+            "before"
+        );
+        add_action("wp_footer", function () {
+            echo '<button class="feedback-tab" id="bugherd-feedback" type="button">Send Feedback</button>';
+        });
     }
 });
 

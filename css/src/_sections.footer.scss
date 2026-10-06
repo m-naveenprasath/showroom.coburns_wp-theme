@@ -206,6 +206,7 @@
 
 // Site footer (Components/SiteFooter). The .footer-* rules above are kept for the Pattern Lab footer.
 $site-footer-text: rgba($white, 0.6);
+$mobile-cta-bar-height: 4rem;
 
 .site-footer {
 	background: $blue-dark;
@@ -220,6 +221,10 @@ $site-footer-text: rgba($white, 0.6);
 	}
 	@include media-breakpoint-up(lg) {
 		padding-bottom: 3.25rem;
+	}
+	@include media-breakpoint-down(md) {
+		// Keep the copyright clear of the fixed .mobile-cta-bar.
+		padding-bottom: calc(2.5rem + #{$mobile-cta-bar-height} + env(safe-area-inset-bottom, 0px));
 	}
 }
 
@@ -572,5 +577,101 @@ $site-footer-text: rgba($white, 0.6);
 	margin: 0;
 	@include media-breakpoint-up(lg) {
 		font-size: 1.0625rem;
+	}
+}
+
+// Mobile sticky bar (Find a Location / Schedule Appointment), pinned to the bottom below lg like #mobile-header.
+.mobile-cta-bar {
+	display: none;
+
+	@include media-breakpoint-down(md) {
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		z-index: $zindex-fixed; // below #mobile-header and its drawer
+		display: flex;
+		gap: 0.5rem;
+		width: 100%;
+		padding: 0.625rem 0.75rem;
+		padding-bottom: calc(0.625rem + env(safe-area-inset-bottom, 0px));
+		background: $white;
+		box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.12);
+	}
+
+	@media print {
+		display: none;
+	}
+}
+
+// BugHerd "Send Feedback" trigger (see inc/assets.php). Sits on top of the mobile CTA bar instead of over it.
+.feedback-tab {
+	position: fixed;
+	right: 0.625rem;
+	bottom: 0;
+	z-index: $zindex-fixed;
+	height: 1.875rem;
+	padding: 0 0.75rem;
+	font-family: $inter;
+	font-size: 0.75rem;
+	font-weight: 600;
+	line-height: 1;
+	color: $white;
+	text-transform: uppercase;
+	background: $blue-dark;
+	border: 0;
+	border-radius: 0.5rem 0.5rem 0 0;
+	box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.12);
+
+	@include media-breakpoint-down(md) {
+		bottom: calc(#{$mobile-cta-bar-height} + env(safe-area-inset-bottom, 0px));
+	}
+
+	@media print {
+		display: none;
+	}
+}
+
+.mobile-cta-bar__btn {
+	flex: 1 1 0;
+	gap: 0.375rem;
+	min-height: $mobile-cta-bar-height - 1.25rem;
+	min-width: 0;
+	padding: 0.25rem 0.5rem;
+	font-family: $inter;
+	font-size: 0.75rem;
+	font-weight: 700;
+	letter-spacing: 0.05em;
+	line-height: 1.2;
+	white-space: nowrap;
+
+	// Narrowest phones (320px): tighten so the label stays inside the pill.
+	@media (max-width: 359.98px) {
+		font-size: 0.6875rem;
+		letter-spacing: 0.02em;
+	}
+
+	.icon {
+		flex-shrink: 0;
+		width: 1.375rem;
+		height: 1.375rem;
+		margin: 0;
+		stroke-width: 1.75;
+		// Optically centre on the uppercase label, which reads higher than the box centre.
+		transform: translateY(-0.0625rem);
+	}
+
+	&--location {
+		@include button-variant($yellow, $yellow);
+		color: $blue-dark;
+
+		&:hover,
+		&:focus,
+		&:not(:disabled):not(.disabled):active {
+			color: $blue-dark;
+		}
+	}
+
+	&--appointment {
+		@include button-variant($blue-dark, $blue-dark);
 	}
 }

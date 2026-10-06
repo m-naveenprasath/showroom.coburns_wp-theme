@@ -97,7 +97,25 @@ add_filter('Flynt/addComponentData?name=SiteFooter', function ($data) {
         'url' => $appointmentPage ? get_permalink($appointmentPage) : home_url('/schedule-an-appointment/'),
     ];
 
-    if ($socialAccounts = Options::getGlobal('CorporateSocialMediaAccounts')) {
+    // Sticky bar pinned to the bottom of the screen on mobile. Short labels so both fit side by side.
+    $data['mobile_cta'] = [
+        [
+            'style' => 'location',
+            'icon' => 'mobile-location',
+            'title' => 'All Locations',
+            'label' => 'Find a Location',
+            'url' => ($data['footer_locations']['view_all']['url'] ?? home_url('/locations/')) . '#section-locations-listing',
+        ],
+        [
+            'style' => 'appointment',
+            'icon' => 'mobile-schedule',
+            'title' => 'Book Now',
+            'label' => 'Schedule An Appointment',
+            'url' => $data['appointment']['url'] . '#appointments',
+        ],
+    ];
+
+    if ($socialAccounts =Options::getGlobal('CorporateSocialMediaAccounts')) {
         $data = array_merge($data, $socialAccounts);
     }
 
