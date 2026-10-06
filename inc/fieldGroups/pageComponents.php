@@ -37,6 +37,7 @@ add_action('Flynt/afterRegisterComponents', function () {
         Components\SectionLongFormContentDual\getACFLayout(),
         Components\SectionCTABanner\getACFLayout(),
         Components\SectionImageText\getACFLayout(),
+        Components\SectionImageCarousel\getACFLayout(),
         Components\SectionSpace\getACFLayout(),
         Components\SectionLogos\getACFLayout(),
         Components\SectionStyleList\getACFLayout(),
