@@ -594,8 +594,16 @@ $mobile-cta-bar-height: 4rem;
 		width: 100%;
 		padding: 0.625rem 0.75rem;
 		padding-bottom: calc(0.625rem + env(safe-area-inset-bottom, 0px));
-		background: $white;
-		box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.12);
+		// Frosted glass: page content shows through, blurred. Falls back to a near-opaque white without backdrop-filter.
+		background: rgba($white, 0.85);
+		border-top: 1px solid rgba($white, 0.35);
+		box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.08);
+
+		@supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+			background: rgba($white, 0.2);
+			-webkit-backdrop-filter: blur(8px) saturate(160%);
+			backdrop-filter: blur(8px) saturate(160%);
+		}
 	}
 
 	@media print {
