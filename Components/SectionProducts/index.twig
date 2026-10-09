@@ -1,37 +1,50 @@
 
-{% set local_namespace = 'product-feature-container' %}
+{% set local_namespace = 'section-products' %}
 
 {% extends "partials/_component-base.twig" %}
 
 {% block container %}
 <div class="container">
 
-<h2 class="minimal-2 text-center">{{ featured_products_heading ?: featured_products_heading_default }}</h2>
-	
-		{% if products|length is divisible by(2) %}
-			{% set product_count_odd_even = "even" %}
-		{% else %}
-			{% set product_count_odd_even = "odd" %}
+	<header class="{{ local_namespace }}__header">
+		<h2 class="{{ local_namespace }}__heading">{{ featured_products_heading ?: featured_products_heading_default }}</h2>
+		{% if featured_products_intro %}
+			<p class="{{ local_namespace }}__intro">{{ featured_products_intro }}</p>
 		{% endif %}
+	</header>
 
-		{% if products|length <= 5 %}
-			{% set product_count_overflow = false %}
-		{% else %}
-			{% set product_count_overflow = true %}
-		{% endif %}
-
-		<div class="featured-product-container has-{{products|length}}-products has-{{ product_count_odd_even }}-number-of-products {{ product_count_overflow ? "has-product-overflow" }} ">
-			
-			{% for product in products %}
-				<article class="featured-product-item {% if product.button %}has-link{% endif %}">
-					{% include ['partials/image.twig'] ignore missing with { 'image': product.image } %}
-					{% include ['partials/heading-array.twig'] ignore missing with { 'headings': product.headings } %}
-					{% include ['partials/button.twig'] ignore missing with { 'button': product.button, "class": "stretched-link" } %}
-				</article>
-			{% endfor %}
-			
-		</div>
-
+	<div class="{{ local_namespace }}__grid">
+		{% for product in products %}
+			{% set has_link = product.button.link and product.button.text %}
+			<article class="{{ local_namespace }}__card {{ has_link ? "has-link" }}">
+				{% if product.image %}
+					<div class="{{ local_namespace }}__image">
+						{% include ['partials/image.twig'] ignore missing with { 'image': product.image } %}
+					</div>
+				{% endif %}
+				<div class="{{ local_namespace }}__body">
+					{# First heading is the card title, any others are the description. #}
+					{% for heading in product.headings %}
+						{% if heading.text %}
+							{% if loop.first %}
+								<{{ heading.tag ?: "h3" }} class="{{ local_namespace }}__title">{{ heading.text }}</{{ heading.tag ?: "h3" }}>
+							{% else %}
+								<p class="{{ local_namespace }}__excerpt">{{ heading.text }}</p>
+							{% endif %}
+						{% endif %}
+					{% endfor %}
+					{% if has_link %}
+						<a
+							class="{{ local_namespace }}__link stretched-link"
+							href="{{ product.button.link.url }}"
+							{% if product.button.link.target %}target="{{ product.button.link.target }}"{% endif %}
+							{% if product.button.link.title %}aria-label="{{ product.button.link.title }}"{% endif %}
+						>{{ product.button.text }}</a>
+					{% endif %}
+				</div>
+			</article>
+		{% endfor %}
+	</div>
 
 </div>
 {% endblock %}

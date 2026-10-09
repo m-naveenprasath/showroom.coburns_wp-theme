@@ -35,6 +35,10 @@ function getACFLayout()
                 'name' => 'image_3',
                 'type' => 'image',
             ],
+            array_merge(FieldVariables\getCarousel(), [
+                'label' => 'Additional Images',
+                'instructions' => 'Shown in the carousel after Image 1–3. Three images are visible at a time on desktop.',
+            ]),
             FieldVariables\getTab("Options"),
             FieldVariables\getSectionBackgroundSelect(),
         ]

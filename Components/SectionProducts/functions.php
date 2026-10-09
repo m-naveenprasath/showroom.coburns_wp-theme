@@ -30,6 +30,14 @@ function getACFLayout()
                 "placeholder" => "Featured Products",
                 "instructions" => "Overrides the heading set in Translatable Options > Sections > Products.",
             ],
+            [
+                "label" => "Intro Text",
+                "name" => "featured_products_intro",
+                "type" => "textarea",
+                "rows" => 3,
+                "new_lines" => "",
+                "instructions" => "Optional short paragraph shown centered under the heading.",
+            ],
             FieldVariables\getTab("Products"),
 
             [
@@ -41,7 +49,7 @@ function getACFLayout()
                 "sub_fields" => [
                     FieldVariables\getHeadingLoop(
                         $instructions =
-                            "<strong>Defaults</strong><br/>tag: h2 or h3, style: minimal 1<br/>tag: p, style: minimal body"
+                            "The first heading is the card title (tag: h3). Any further headings are shown as the card description. Style and size are set by the card design."
                     ),
                     FieldVariables\getImage(),
                     FieldVariables\getButton($instructions = "", $required = false),

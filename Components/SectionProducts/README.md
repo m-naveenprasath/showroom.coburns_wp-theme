@@ -1,3 +1,3 @@
 # Section: Products
 
-Used to sell items from the shop. Product cards can either be displayed in a carousel or with four small product cards. Ref: https://coburns-pattern-library.netlify.app/?p=sections-product-carousel, https://coburns-pattern-library.netlify.app/?p=pages-space
+Centered heading and optional intro text over a responsive grid of white cards (1 / 2 / 3 / 4 columns). Each card has an image, a title (first heading), a description (any further headings) and a text link pinned to the bottom right; the whole card is clickable when a button is set. Styles: `css/src/_sections.products.scss`.
