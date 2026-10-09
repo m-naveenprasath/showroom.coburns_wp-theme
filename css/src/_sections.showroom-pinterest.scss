@@ -1,6 +1,11 @@
 .pinterest-container {
 	overflow: hidden;
 
+	// Same white side strips the hero gets as the first section (see sections.sections).
+	@include media-breakpoint-up(md) {
+		box-shadow: $section-box-shadow;
+	}
+
 	--last-section-padding-bottom: 0;
 	@include media-breakpoint-up(sm) {
 		--last-section-padding-bottom: 2rem;

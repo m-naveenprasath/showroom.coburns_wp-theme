@@ -3,7 +3,17 @@
 	background-color: $accent;
 
 	@include media-breakpoint-up(md) {
+		// Same white side strips the hero gets as the first section (see sections.sections).
+		box-shadow: $section-box-shadow;
 		padding: 4.5rem 0 5rem;
+	}
+
+	&--white {
+		background-color: $white;
+	}
+
+	> .container {
+		@include container-hero-aligned;
 	}
 
 	&__heading {

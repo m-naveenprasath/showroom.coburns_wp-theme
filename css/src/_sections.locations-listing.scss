@@ -1,3 +1,11 @@
+// Same white side strips a hero gets as the first section (see sections.sections),
+// so they still show when this section sits further down the page.
+.hero-locations-listing {
+	@include media-breakpoint-up(md) {
+		box-shadow: $section-box-shadow;
+	}
+}
+
 #section-locations-listing > .container {
 	@include media-breakpoint-up(xl) {
 		max-width: 1320px;

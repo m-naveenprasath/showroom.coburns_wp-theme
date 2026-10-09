@@ -1,6 +1,6 @@
 {% set local_namespace = "locations-departments" %}
 
-<section class="{{ local_namespace }}">
+<section class="{{ local_namespace }} {{ local_namespace }}--{{ sectionBackground ?: 'cream' }}">
 	<div class="container">
 		{% if heading %}
 			<div class="{{ local_namespace }}__heading">

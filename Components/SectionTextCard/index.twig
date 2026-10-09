@@ -1,0 +1,21 @@
+{% set local_namespace = "section-text-card" %}
+
+<section class="{{ local_namespace }}">
+	<div class="container">
+		<div class="{{ local_namespace }}__card"{% if backgroundColor %} style="background-color: {{ backgroundColor|e('html_attr') }};"{% endif %}>
+			{% include ['partials/heading-array.twig'] ignore missing with { 'headings': headings } %}
+
+			{% if leadText %}
+				<p class="{{ local_namespace }}__lead">{{ leadText }}</p>
+			{% endif %}
+
+			{% if leadText and sectionHtml_1 %}
+				<hr class="{{ local_namespace }}__divider">
+			{% endif %}
+
+			{% if sectionHtml_1 %}
+				<div class="{{ local_namespace }}__content content-flow">{{ sectionHtml_1 }}</div>
+			{% endif %}
+		</div>
+	</div>
+</section>

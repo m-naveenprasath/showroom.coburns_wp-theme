@@ -78,3 +78,17 @@
 		}
 	}
 }
+
+// Lines a section's .container up with the left edge of .hero--text (see sections.showroom-hero).
+// $own-padding is the container's own side padding; pass 0 when the container is itself the visible card.
+@mixin container-hero-aligned($own-padding: $gutter-padding) {
+	@include media-breakpoint-up(sm) {
+		max-width: calc(100% - #{(($grid-gutter-width * 1.5) + 40px - $own-padding) * 2});
+	}
+	@include media-breakpoint-up(lg) {
+		max-width: calc(100% - #{($grid-gutter-width - $own-padding) * 2} - 5rem);
+	}
+	@include media-breakpoint-up(xl) {
+		max-width: map-get($container-max-widths, "xl") - (($grid-gutter-width - $own-padding) * 2);
+	}
+}

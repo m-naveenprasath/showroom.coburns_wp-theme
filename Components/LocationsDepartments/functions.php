@@ -65,6 +65,16 @@ function getACFLayout()
         "sub_fields" => [
             FieldVariables\getHeadingLoop(),
             [
+                "label" => "Background",
+                "name" => "sectionBackground",
+                "type" => "select",
+                "choices" => [
+                    "cream" => "Cream",
+                    "white" => "White",
+                ],
+                "default_value" => "cream",
+            ],
+            [
                 "label" => "Departments",
                 "name" => "departments",
                 "type" => "repeater",

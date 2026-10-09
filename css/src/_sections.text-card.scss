@@ -1,0 +1,136 @@
+// Design: radius 28, bg #f3f3f2. Card width follows the hero text alignment.
+// Heading: Cormorant Garamond bold italic 52; lead: Cormorant Garamond 28/46; body: Roboto 18/35
+$text-card-serif: "Cormorant Garamond", Georgia, serif;
+$text-card-sans: "Roboto", $font-family-base;
+$text-card-bg: #f3f3f2;
+$text-card-ink: #1f1f1f;
+$text-card-divider: #1a6b6b;
+
+.section-text-card {
+	padding: 1.5rem 0;
+	text-align: center;
+
+	@include media-breakpoint-up(md) {
+		padding: 2.5rem 0;
+	}
+
+	> .container {
+		@include container-hero-aligned;
+	}
+
+	&__card {
+		background-color: $text-card-bg;
+		border-radius: 20px;
+		padding: 32px 20px;
+
+		@include media-breakpoint-up(md) {
+			border-radius: 28px;
+			padding: 44px 40px 48px;
+		}
+
+		@include media-breakpoint-up(xl) {
+			padding: 48px 100px 52px;
+		}
+	}
+
+	// Every heading row renders in the design's title style, whatever style is picked in the editor
+	.content-flow-headings {
+		margin: 0 auto 20px;
+		max-width: none;
+
+		@include media-breakpoint-up(md) {
+			margin-bottom: 28px;
+		}
+
+		> * {
+			color: $text-card-ink;
+			display: block;
+			font-family: $text-card-serif;
+			font-size: 2rem;
+			font-style: italic;
+			font-weight: 700;
+			letter-spacing: -0.01em;
+			line-height: 1.15;
+			margin: 0;
+			text-transform: none;
+
+			@include media-breakpoint-up(md) {
+				font-size: 2.625rem;
+			}
+
+			@include media-breakpoint-up(xl) {
+				font-size: 3.25rem;
+			}
+
+			&:before,
+			&:after {
+				content: none;
+			}
+
+			+ * {
+				margin-top: 8px;
+			}
+		}
+	}
+
+	&__lead {
+		color: $text-card-ink;
+		font-family: $text-card-serif;
+		font-size: 1.25rem;
+		font-style: normal;
+		font-weight: 400;
+		letter-spacing: 0;
+		line-height: 1.5;
+		margin: 0 auto;
+		max-width: 1360px;
+
+		@include media-breakpoint-up(md) {
+			font-size: 1.5rem;
+		}
+
+		@include media-breakpoint-up(xl) {
+			font-size: 1.75rem;
+			line-height: 46px;
+		}
+	}
+
+	&__divider {
+		background-color: $text-card-divider;
+		border: 0;
+		height: 3px;
+		margin: 24px auto;
+		opacity: 1;
+		width: 58px;
+
+		@include media-breakpoint-up(md) {
+			margin: 28px auto 32px;
+		}
+	}
+
+	&__content {
+		color: #4a4a4a;
+		font-family: $text-card-sans;
+		font-size: 1rem;
+		font-weight: 400;
+		line-height: 1.75;
+		margin: 0 auto;
+		max-width: 910px;
+
+		@include media-breakpoint-up(md) {
+			font-size: 1.125rem;
+			line-height: 35px;
+		}
+
+		&:after {
+			display: none;
+		}
+
+		p {
+			margin-bottom: 0;
+
+			+ p {
+				margin-top: 1.25rem;
+			}
+		}
+	}
+}

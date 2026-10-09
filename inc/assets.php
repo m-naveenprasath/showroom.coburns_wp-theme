@@ -125,6 +125,10 @@ add_action("wp_enqueue_scripts", function () {
     $css_path = "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap";
     wp_enqueue_style("google-fonts-inter", $css_path, [], null);
 
+    // Used by Section: Text Card
+    $css_path = "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,700&family=Roboto:wght@400&display=swap";
+    wp_enqueue_style("google-fonts-text-card", $css_path, [], null);
+
     $css_path = "/css/dist/min/style-showroom.css";
     wp_enqueue_style(
         "showroom",
