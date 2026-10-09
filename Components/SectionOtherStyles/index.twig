@@ -1,26 +1,79 @@
-{% set local_namespace = 'other-styles' %}
+{% set local_namespace = 'section-other-styles' %}
 
-<section class="{{ local_namespace }}-container has-background-{{ sectionBackground }}">
+{% if posts %}
+<section class="{{ local_namespace }}" data-sos-wrap>
 	<div class="container">
-		<h2 class="{{ local_namespace }}-container--headline subhead text-center">{{ featured_brands_label ?: "Other Styles" }}</h2>
+		<div class="{{ local_namespace }}__header">
+			<div class="{{ local_namespace }}__intro">
+				<h2 class="{{ local_namespace }}__heading">{{ heading ?: "Explore Other Styles" }}</h2>
+				{% if archive_link %}
+					<a href="{{ archive_link }}" class="{{ local_namespace }}__link">
+						<span>{{ archive_label ?: "View All Styles" }}</span>{% include ['partials/icon.twig'] ignore missing with {'icon': 'arrow-long'} %}
+					</a>
+				{% endif %}
+			</div>
 
-		<div class="{{ local_namespace }}--images row">
-			{% for post in posts %}
-				<article class="{{ local_namespace }}--col col-md-6 col-xl-3" id="style-{{ post.id }}">
-					{% if post.thumbnail %}
-						<div class="img-wrap shadow">
-							<a href="{{ post.link }}">
-								{% include ['partials/image.twig'] ignore missing with { 'image': post.thumbnail } %}
-							</a>
-						</div>
-					{% endif %}
-					<div class="{{ local_namespace }}--links">
-						<a href="{{ post.link }}" class="btn btn-link">
-							<span>{{ post.title }}</span>{% include ['partials/icon.twig'] ignore missing with {'icon': 'arrow'} %}
-						</a>
-					</div>
-				</article>
-			{% endfor %}
+			<div class="{{ local_namespace }}__controls" data-sos-controls>
+				<button type="button" class="{{ local_namespace }}__nav {{ local_namespace }}__nav--prev" data-sos-prev aria-label="Previous styles">
+					{%- include ['partials/icon.twig'] ignore missing with {'icon': 'arrow-long'} -%}
+				</button>
+				<button type="button" class="{{ local_namespace }}__nav {{ local_namespace }}__nav--next" data-sos-next aria-label="Next styles">
+					{%- include ['partials/icon.twig'] ignore missing with {'icon': 'arrow-long'} -%}
+				</button>
+			</div>
 		</div>
+
+	<div class="{{ local_namespace }}__track" data-sos-track>
+		{% for post in posts %}
+			<article class="{{ local_namespace }}__card" id="style-{{ post.id }}" data-sos-card>
+				{% if post.thumbnail %}
+					<a href="{{ post.link }}" class="{{ local_namespace }}__image" tabindex="-1" aria-hidden="true">
+						{% include ['partials/image.twig'] ignore missing with { 'image': post.thumbnail } %}
+					</a>
+				{% endif %}
+				<h3 class="{{ local_namespace }}__title"><a href="{{ post.link }}">{{ post.title }}</a></h3>
+				{% if post.card_excerpt %}
+					<p class="{{ local_namespace }}__excerpt">{{ post.card_excerpt }}</p>
+				{% endif %}
+				<a href="{{ post.link }}" class="{{ local_namespace }}__link" aria-label="Explore {{ post.title|e('html_attr') }}">
+					<span>Explore</span>{% include ['partials/icon.twig'] ignore missing with {'icon': 'arrow-long'} %}
+				</a>
+			</article>
+		{% endfor %}
 	</div>
+	</div>
+
+<script>
+(function () {
+	document.querySelectorAll('[data-sos-wrap]:not([data-sos-ready])').forEach(function (wrap) {
+		wrap.setAttribute('data-sos-ready', '');
+
+		var track    = wrap.querySelector('[data-sos-track]');
+		var controls = wrap.querySelector('[data-sos-controls]');
+		var prevBtn  = wrap.querySelector('[data-sos-prev]');
+		var nextBtn  = wrap.querySelector('[data-sos-next]');
+		var cards    = track ? track.querySelectorAll('[data-sos-card]') : [];
+		if (!cards.length) return;
+
+		function step() {
+			return cards.length > 1 ? cards[1].offsetLeft - cards[0].offsetLeft : track.clientWidth;
+		}
+
+		function sync() {
+			var maxScroll = track.scrollWidth - track.clientWidth;
+			controls.hidden  = maxScroll < 4;
+			prevBtn.disabled = track.scrollLeft < 4;
+			nextBtn.disabled = track.scrollLeft > maxScroll - 4;
+		}
+
+		prevBtn.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
+		nextBtn.addEventListener('click', function () { track.scrollBy({ left: step(), behavior: 'smooth' }); });
+		track.addEventListener('scroll', sync, { passive: true });
+		window.addEventListener('resize', sync);
+		window.addEventListener('load', sync);
+		sync();
+	});
+})();
+</script>
 </section>
+{% endif %}
