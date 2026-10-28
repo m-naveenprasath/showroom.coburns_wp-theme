@@ -124,4 +124,20 @@
   </a>
   {%- endfor -%}
 </nav>
+
+{# Desktop version of the same actions: location button + Book Now pill in one dock #}
+<nav class="desktop-cta" aria-label="Quick actions">
+  {%- for item in mobile_cta -%}
+  {%- if item.style == 'location' -%}
+  <a class="desktop-cta__location" href="{{ item.url }}" aria-label="{{ item.label }}" data-tooltip="{{ item.label }}">
+    {%- include ['icons/' ~ item.icon ~ '.svg'] ignore missing -%}
+  </a>
+  {%- else -%}
+  <a class="desktop-cta__book" href="{{ item.url }}" aria-label="{{ item.title }} - {{ item.label }}">
+    {%- include ['icons/' ~ item.icon ~ '.svg'] ignore missing -%}
+    <span>{{ item.title }}</span>
+  </a>
+  {%- endif -%}
+  {%- endfor -%}
+</nav>
 {%- endif -%}
