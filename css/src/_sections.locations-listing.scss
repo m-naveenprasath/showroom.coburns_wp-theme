@@ -13,7 +13,7 @@
 }
 
 // Base "listing-table" look — classic table with a dark header row (used by
-// SectionBrandsListing and any other section that reuses these table classes).
+// any section that reuses these table classes).
 .listing-table {
 	text-align: left;
 	@include responsive-tables;
@@ -68,8 +68,8 @@
 
 // Card-grid layout for the Locations Listing section specifically. Scoped to
 // #section-locations-listing so it doesn't leak into other components that
-// reuse the same .listing-table / .listing-* classes (e.g. SectionBrandsListing),
-// which rely on the classic table look defined above.
+// reuse the same .listing-table / .listing-* classes, which rely on the classic
+// table look defined above.
 #section-locations-listing {
 	.listing-table {
 		// Not using the `responsive-tables` mixin's display rules here — it sets

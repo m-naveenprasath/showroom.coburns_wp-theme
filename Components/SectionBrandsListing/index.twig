@@ -1,98 +1,100 @@
-{% extends "partials/hero.twig" %}
+{% set local_namespace = "section-brands-listing" %}
+{% set per_page = 12 %}
 
-{% block image %}
-	{% if post.thumbnail or image %}
-		{% if image %}
-		{% include ['partials/image.twig'] ignore missing with { 'image': image } %}
-		{% else %}
-		{% include ['partials/image.twig'] ignore missing with { 'image': post.thumbnail } %}
+{% extends "partials/_component-base.twig" %}
+
+{% block container %}
+<div class="container">
+
+	<header class="{{ local_namespace }}__header">
+		{% include ['partials/heading-array.twig'] ignore missing with { 'headings': headings } %}
+
+		{% if sectionHtml_1 %}
+			<div class="{{ local_namespace }}__intro content-flow">{{ sectionHtml_1 }}</div>
 		{% endif %}
-	{% endif %}
-{% endblock %}
 
-{% block content %}
+		{% if categories %}
+			<form class="{{ local_namespace }}__filter">
+				<label for="brands-listing-category" class="sr-only">{{ CategoryDropdown.label }}</label>
+				<select class="form-control" id="brands-listing-category">
+					<option value="">{{ CategoryDropdown.placeholder }}</option>
+					{% for category in categories %}
+						<option value="{{ category.slug }}">{{ category.title }}</option>
+					{% endfor %}
+				</select>
+			</form>
+		{% endif %}
+	</header>
 
-{% if sectionHtml_1 %}
-	<div class="row">
-		<div class="col-md content-flow">{{ sectionHtml_1 }}</div>
-	</div>
-{% endif %}
-
-{% if categories %}
-<form class="hero--form" id="categories-search">
-	<div class="form-group">
-			<label for="categories" class="sr-only">{{ CategoryDropdown.label }}</label>
-			<select class="form-control" id="categories">
-				<option value="">{{ CategoryDropdown.placeholder }}</option>
-				{% for category in categories %}
-					<option value="{{ category.title }}">{{ category.title }}</option>
-				{% endfor %}
-			</select>
-	</div>
-</form>
-{% endif %}
-
-{% endblock %}
-
-{% block extracontent %}
-
-	{% set local_namespace = "brands" %}
-		<section class="section">
-			<div class="container">
-				<div class="table listing-table">
-					<table class="table-hover">
-						<thead>
-							<tr>
-								<th scope="col">{{ TableHeaders.name }}</th>
-								<th scope="col">{{ TableHeaders.categories }}</th>
-								<th scope="col">{{ TableHeaders.links }}</th>
-							</tr>
-						</thead>
-						{% if brands %}
-							<tbody>
-								{% for brand in brands %}
-									<tr class="{{local_namespace}}-listing__brands">
-										<td class="listing-name">
-											<a href="{{ brand.link }}" class="btn btn-link">
-												{{ brand.name }}
-											</a>
-										</td>
-										<td class="listing-keywords">{% for term in brand.terms({query:{taxonomy:'product_line', orderby:'name', order: 'ASC'}}) %}{% if loop.first %}{% else %}, {% endif %}{{ term.title }}{% endfor %}</td>
-										<td class="listing-actions">
-											{% if BrandEcommerceLink_show and brand.shop %}
-											<a href="{{ brand.shop }}" target="_blank" title="Shop for {{ brand.name }}" class="btn btn-primary btn-shadow">
-												<span aria-hidden="true">{{ TableContent.BrandShopLinkText }}</span>
-												<span class="sr-only">Shop for {{ brand.name }} (opens in new window)</span>
-											</a>
-											{% endif %}
-											{% if brand.website %}
-											<a href="{{ brand.website }}" target="_blank" title="Visit Website for {{ brand.name }}" class="btn btn-primary btn-shadow">
-												{% include ['partials/icon.twig'] ignore missing with {'icon': 'link'} %}
-												<span class="sr-only">Visit Website for {{ brand.name }} (opens in new window)</span>
-											</a>
-											{% endif %}
-										</td>
-									</tr>
-								</div>
-								{% endfor %}
-							</tbody>
+	{% if brands %}
+		<div class="{{ local_namespace }}__grid">
+			{% for brand in brands %}
+				{% set brand_image = brand.image1 ?: brand.thumbnail.id %}
+				<article class="{{ local_namespace }}__card" data-categories="{% for term in brand.terms({query:{taxonomy:'product_line', orderby:'name', order: 'ASC'}}) %}{{ term.slug }}{{ not loop.last ? "," }}{% endfor %}" {{ loop.index > per_page ? "hidden" }}>
+					<div class="{{ local_namespace }}__image">
+						{% if brand_image %}
+							{% include ['partials/image.twig'] ignore missing with { 'id': brand_image, 'alt': brand.title } %}
+						{% else %}
+							{# Most brands have no photo yet: their name stands in for it. #}
+							<span class="{{ local_namespace }}__image-text">{{ brand.title }}</span>
 						{% endif %}
-					</table>
-				</div>
-			</div>
-			{% if buttonHeading or buttons %}
-			<div class="container">
-				<div class="justify-content-md-center row">
-					<div class="{{ local_namespace }}--page-content">
-						{% include ['partials/heading-array.twig'] ignore missing with { 'headings': buttonHeading } %}
-
-						{% if sectionHtml_2 %}<div class="content-flow">{{sectionHtml_2}}</div>{% endif %}
-
-						{% include ['partials/button-array.twig'] ignore missing with { 'buttons': buttons } %}
 					</div>
-				</div>
-			</div>
-			{% endif %}
-		</section>
+					<div class="{{ local_namespace }}__body">
+						<div class="{{ local_namespace }}__brand">
+							{% if brand.logo %}
+								<div class="{{ local_namespace }}__logo">
+									{% include ['partials/image.twig'] ignore missing with { 'id': brand.logo, 'alt': brand.title } %}
+								</div>
+							{% elseif brand_image %}
+								<div class="{{ local_namespace }}__logo-text">{{ brand.title }}</div>
+							{% endif %}
+							{% if brand.website %}
+								<a href="{{ brand.website }}" target="_blank" title="Visit Website for {{ brand.title }}" class="{{ local_namespace }}__external">
+									{% include ['partials/icon.twig'] ignore missing with {'icon': 'link'} %}
+									<span class="sr-only">Visit Website for {{ brand.title }} (opens in new window)</span>
+								</a>
+							{% endif %}
+						</div>
 
+						{% if brand.sectionHtml_1 %}
+							<p class="{{ local_namespace }}__description">{{ brand.sectionHtml_1|striptags }}</p>
+							<a href="{{ brand.link }}" class="{{ local_namespace }}__know-more">
+								{{ TableContent.KnowMoreText ?: 'Know More' }}<span class="sr-only"> about {{ brand.title }}</span>
+							</a>
+						{% endif %}
+
+						<div class="{{ local_namespace }}__actions">
+							{% if BrandEcommerceLink_show and brand.shop %}
+								<a href="{{ brand.shop }}" target="_blank" title="Shop for {{ brand.title }}" class="{{ local_namespace }}__button">
+									<span aria-hidden="true">{{ TableContent.BrandShopLinkText }}</span>
+									<span class="sr-only">Shop for {{ brand.title }} (opens in new window)</span>
+								</a>
+							{% endif %}
+							<a href="{{ brand.link }}" class="{{ local_namespace }}__button">
+								{{ TableContent.ViewBrandLinkText ?: 'View Brand' }}<span class="sr-only">: {{ brand.title }}</span>
+							</a>
+						</div>
+					</div>
+				</article>
+			{% endfor %}
+		</div>
+
+		<div class="{{ local_namespace }}__more">
+			<button type="button" class="{{ local_namespace }}__button {{ local_namespace }}__load-more" data-per-page="{{ per_page }}" {{ brands|length <= per_page ? "hidden" }}>
+				{{ TableContent.LoadMoreText ?: 'Load More' }}
+			</button>
+		</div>
+	{% endif %}
+
+	{% if buttonHeading or buttons %}
+		<div class="brands--page-content">
+			{% include ['partials/heading-array.twig'] ignore missing with { 'headings': buttonHeading } %}
+
+			{% if sectionHtml_2 %}<div class="content-flow">{{ sectionHtml_2 }}</div>{% endif %}
+
+			{% include ['partials/button-array.twig'] ignore missing with { 'buttons': buttons } %}
+		</div>
+	{% endif %}
+
+</div>
 {% endblock %}

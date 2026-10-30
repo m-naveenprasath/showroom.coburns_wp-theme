@@ -270,7 +270,35 @@ jQuery(document).ready(function ($) {
 		$(".listing-table tbody tr").hide();
 		$(".listing-table tbody tr:contains('" + selected + "')").show();
 	});
-	
+
+	//Brands Listing cards: category filter and load more
+	$(".section-brands-listing").each(function () {
+		var $cards = $(this).find(".section-brands-listing__card");
+		var $loadMore = $(this).find(".section-brands-listing__load-more");
+		var perPage = $loadMore.data("per-page");
+		var visible = perPage;
+		var category = "";
+
+		function render() {
+			var $matches = $cards.filter(function () {
+				return !category || $(this).attr("data-categories").split(",").indexOf(category) !== -1;
+			});
+			$cards.attr("hidden", true);
+			$matches.slice(0, visible).removeAttr("hidden");
+			$loadMore.attr("hidden", visible >= $matches.length);
+		}
+
+		$(this).find("#brands-listing-category").on("change", function () {
+			category = $(this).val();
+			visible = perPage;
+			render();
+		});
+		$loadMore.on("click", function () {
+			visible += perPage;
+			render();
+		});
+	});
+
 	//Blog Teaser on Homepage
 	$( ".home .hero--image img" ).after( $( ".blog-feature" ) );
 });

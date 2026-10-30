@@ -1,0 +1,282 @@
+// Section: Brands Listing — centered intro panel over a grid of brand cards.
+.section-brands-listing {
+	$panel: #f6f2ee;
+	$placeholder: #ebe4dc;
+	$ink: #1f1f1f;
+
+	padding: 1rem 0 3rem;
+	background-color: $white;
+	text-align: left;
+
+	@include media-breakpoint-up(md) {
+		// Clears the Find Your Style bar, which overlaps the top of the first section.
+		padding: 4.5rem 0 4rem;
+	}
+
+	// Same edges as the site header and Find Your Style bar
+	> .container {
+		max-width: 1440px;
+		padding-right: 1.25rem;
+		padding-left: 1.25rem;
+
+		@include media-breakpoint-up(lg) {
+			padding-right: 2.5rem;
+			padding-left: 2.5rem;
+		}
+
+		@include media-breakpoint-up(xl) {
+			padding-right: 4.5rem;
+			padding-left: 4.5rem;
+		}
+	}
+
+	// ── Header (heading + intro + category filter) ───────────────────────────
+	&__header {
+		margin-bottom: 1.25rem;
+		padding: 2rem 1.25rem;
+		border-radius: 1rem;
+		background-color: $panel;
+		text-align: center;
+
+		@include media-breakpoint-up(md) {
+			padding: 2.5rem 2rem 3rem;
+		}
+
+		.content-flow-headings {
+			max-width: none;
+			margin: 0;
+		}
+
+		.minimal-1 {
+			margin-bottom: 0.75rem;
+			color: $teal;
+			font-size: 0.875rem;
+		}
+
+		.display-1 {
+			margin: 0;
+			font-size: 2.25rem;
+			line-height: 1.1;
+
+			@include media-breakpoint-up(md) {
+				font-size: 3rem;
+			}
+
+			@include media-breakpoint-up(lg) {
+				font-size: 3.5rem;
+			}
+		}
+	}
+
+	&__intro {
+		max-width: 38rem;
+		margin: 1.25rem auto 0;
+		color: $gray;
+		font-family: $inter;
+		font-size: 0.9375rem;
+		font-weight: 500;
+		line-height: 1.6;
+	}
+
+	&__filter {
+		max-width: 26rem;
+		margin: 1.5rem auto 0;
+
+		.form-control:not(:focus) {
+			border: 1px solid #e0dcd6;
+		}
+	}
+
+	// ── Grid ─────────────────────────────────────────────────────────────────
+	&__grid {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		gap: 1.25rem;
+
+		@include media-breakpoint-up(sm) {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		@include media-breakpoint-up(lg) {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+
+		// Four columns only once both card buttons fit on one line
+		@media (min-width: 1280px) {
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+		}
+	}
+
+	// ── Card ─────────────────────────────────────────────────────────────────
+	&__card {
+		display: flex;
+		flex-direction: column;
+		min-width: 0;
+		border-radius: 0.75rem;
+		background-color: $panel;
+		overflow: hidden;
+	}
+
+	&__image {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		aspect-ratio: 13 / 7;
+		background-color: $placeholder;
+		overflow: hidden;
+
+		img {
+			display: block;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+
+	&__image-text {
+		padding: 1rem;
+		color: $blue-dark;
+		font-family: $headings-font-family;
+		font-size: 1.5rem;
+		font-weight: 700;
+		line-height: 1.15;
+		text-align: center;
+	}
+
+	&__body {
+		display: flex;
+		flex: 1 1 auto;
+		flex-direction: column;
+		padding: 1.25rem 1rem 1.25rem;
+	}
+
+	// Logo + external link row
+	&__brand {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem;
+		min-height: 2.25rem;
+		margin-bottom: 1rem;
+	}
+
+	&__logo {
+		min-width: 0;
+
+		img,
+		svg {
+			display: block;
+			width: auto;
+			max-width: 9rem;
+			height: auto;
+			max-height: 2rem;
+			mix-blend-mode: multiply; // Many logo files have a white background
+		}
+	}
+
+	&__logo-text {
+		color: $ink;
+		font-family: $inter;
+		font-size: 0.9375rem;
+		font-weight: 700;
+		line-height: 1.2;
+	}
+
+	// Pinned right, so it holds its place on cards with no logo
+	&__external {
+		display: flex;
+		flex: none;
+		align-items: center;
+		justify-content: center;
+		width: 2rem;
+		height: 2rem;
+		margin-left: auto;
+		border: 1px solid $ink;
+		border-radius: 50%;
+		color: $ink;
+		transition: background-color 0.2s ease, color 0.2s ease;
+
+		&:hover,
+		&:focus-visible {
+			background-color: $ink;
+			color: $white;
+		}
+
+		svg {
+			width: 0.875rem;
+			height: 0.875rem;
+		}
+	}
+
+	&__description {
+		display: -webkit-box;
+		margin: 0;
+		color: $ink;
+		font-family: $inter;
+		font-size: 0.8125rem;
+		font-weight: 600;
+		line-height: 1.4;
+		overflow: hidden;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 4;
+	}
+
+	&__know-more {
+		align-self: flex-start;
+		margin-top: 0.125rem;
+		color: $ink;
+		font-family: $inter;
+		font-size: 0.75rem;
+		font-weight: 500;
+		line-height: 1.4;
+		text-decoration: underline;
+
+		&:hover,
+		&:focus-visible {
+			color: $teal;
+		}
+	}
+
+	// Pinned to the bottom, so buttons line up across a row
+	&__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		margin-top: auto;
+		padding-top: 1.25rem;
+	}
+
+	&__button {
+		padding: 0.625rem 0.5rem;
+		border: 1.5px solid $teal;
+		border-radius: 0.3125rem;
+		background-color: $white;
+		color: $teal;
+		font-family: $inter;
+		font-size: 0.6875rem;
+		font-weight: 700;
+		letter-spacing: 0.06em;
+		line-height: 1.25;
+		text-decoration: none;
+		text-transform: uppercase;
+		white-space: nowrap;
+		transition: background-color 0.2s ease, color 0.2s ease;
+
+		&:hover,
+		&:focus-visible {
+			background-color: $teal;
+			color: $white;
+			text-decoration: none;
+		}
+	}
+
+	&__more {
+		margin-top: 2rem;
+		text-align: center;
+	}
+
+	&__load-more {
+		padding: 0.75rem 2rem;
+		cursor: pointer;
+	}
+}

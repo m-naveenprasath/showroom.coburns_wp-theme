@@ -11,13 +11,25 @@ const POST_TYPE = "brands";
 add_filter("Flynt/addComponentData?name=SectionBrandsListing", function ($data) {
     $postType = POST_TYPE;
 
-    $data["brands"] = Timber::get_posts([
+    $brands = Timber::get_posts([
         "orderby" => "post_name",
         "order" => "ASC",
         "post_status" => "publish",
         "post_type" => $postType,
         "posts_per_page" => -1,
     ]);
+
+    // Brands with a photo lead the grid; each group keeps its A-Z order.
+    $hasImage = function ($brand) {
+        return $brand->meta("image1") || $brand->meta("_thumbnail_id");
+    };
+    $data["brands"] = array_merge(
+        array_filter($brands, $hasImage),
+        array_filter($brands, function ($brand) use ($hasImage) {
+            return !$hasImage($brand);
+        })
+    );
+
     $data["categories"] = Timber::get_terms("product_line", [
         "hide_empty" => 1,
     ]);
@@ -74,36 +86,7 @@ Options::addTranslatable(
             ],
         ],
         [
-            "label" => "Table Headers",
-            "name" => "TableHeaders",
-            "type" => "group",
-            "layout" => "table",
-            "sub_fields" => [
-                [
-                    "label" => "Name",
-                    "name" => "name",
-                    "type" => "text",
-                    "default_value" => "Brand",
-                    "required" => 1,
-                ],
-                [
-                    "label" => "Categories",
-                    "name" => "categories",
-                    "type" => "text",
-                    "default_value" => "Product Lines",
-                    "required" => 1,
-                ],
-                [
-                    "label" => "Links",
-                    "name" => "links",
-                    "type" => "text",
-                    "default_value" => "Actions",
-                    "required" => 1,
-                ],
-            ],
-        ],
-        [
-            "label" => "Table Content",
+            "label" => "Card Content",
             "name" => "TableContent",
             "type" => "group",
             "layout" => "table",
@@ -113,6 +96,27 @@ Options::addTranslatable(
                     "name" => "BrandShopLinkText",
                     "type" => "text",
                     "default_value" => "Shop This Brand",
+                    "required" => 1,
+                ],
+                [
+                    "label" => "View Brand Link Text",
+                    "name" => "ViewBrandLinkText",
+                    "type" => "text",
+                    "default_value" => "View Brand",
+                    "required" => 1,
+                ],
+                [
+                    "label" => "Know More Link Text",
+                    "name" => "KnowMoreText",
+                    "type" => "text",
+                    "default_value" => "Know More",
+                    "required" => 1,
+                ],
+                [
+                    "label" => "Load More Text",
+                    "name" => "LoadMoreText",
+                    "type" => "text",
+                    "default_value" => "Load More",
                     "required" => 1,
                 ],
             ],
@@ -139,8 +143,6 @@ function getACFLayout()
             ),
             FieldVariables\getSectionContent_2(),
             FieldVariables\getButtonLoop($limit = 2),
-            FieldVariables\getTab("Options"),
-            FieldVariables\getFeaturedImageToggle(),
         ],
     ];
 }
