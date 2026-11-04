@@ -1,0 +1,135 @@
+// Section: Buttons — centered heading, intro and buttons in a rounded card.
+// (The .questions-card styles are still used by Section: Share Buttons.)
+.section-buttons {
+	padding: 2rem 0;
+	background-color: $white;
+	text-align: center;
+
+	@include media-breakpoint-up(md) {
+		padding: 2.5rem 0;
+	}
+
+	// Same edges as the site header
+	> .container {
+		max-width: 1440px;
+		padding-right: 1.25rem;
+		padding-left: 1.25rem;
+
+		@include media-breakpoint-up(lg) {
+			padding-right: 2.5rem;
+			padding-left: 2.5rem;
+		}
+
+		@include media-breakpoint-up(xl) {
+			padding-right: 4.5rem;
+			padding-left: 4.5rem;
+		}
+	}
+
+	&__card {
+		padding: 3rem 1.25rem;
+		border-radius: 0.625rem;
+		background-color: #f6f2ee;
+
+		@include media-breakpoint-up(md) {
+			padding: 4.5rem 2rem;
+		}
+
+		@include media-breakpoint-up(lg) {
+			padding: 6rem 2.5rem;
+		}
+
+		.content-flow-headings {
+			max-width: 56rem;
+			margin: 0 auto;
+		}
+
+	}
+
+	// Every heading style and size the editors picked renders the same in the card.
+	// Nested under .section-buttons to outrank .display-1.h2.
+	.section-buttons__card .content-flow-headings > * {
+		margin: 0;
+		color: $blue-dark;
+		font-family: $headings-font-family;
+		font-size: 2.25rem;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		line-height: 1.1;
+		text-transform: none;
+
+		@include media-breakpoint-up(md) {
+			font-size: 2.75rem;
+		}
+
+		@include media-breakpoint-up(lg) {
+			font-size: 3.5rem;
+		}
+	}
+
+	&__intro {
+		max-width: 42rem;
+		margin: 1rem auto 0;
+		color: $gray;
+		font-family: $inter;
+		font-size: 0.9375rem;
+		font-weight: 500;
+		line-height: 1.6;
+	}
+
+	// ── Buttons ──────────────────────────────────────────────────────────────
+	.button-group {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 0.75rem;
+		margin: 1.5rem 0 0;
+	}
+
+	.button-col {
+		margin: 0;
+	}
+
+	.btn {
+		padding: 0.875rem 1.5rem;
+		border: 1.5px solid $teal;
+		border-radius: 0.1875rem;
+		box-shadow: none;
+		font-family: $inter;
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.06em;
+		line-height: 1.25;
+		text-transform: uppercase;
+		white-space: nowrap;
+		transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+	}
+
+	// The design has no icons on these buttons
+	.btn .icon {
+		display: none;
+	}
+
+	.btn-primary {
+		background-color: $teal;
+		color: $white;
+
+		&:hover,
+		&:focus-visible {
+			border-color: darken($teal, 8%);
+			background-color: darken($teal, 8%);
+			color: $white;
+		}
+	}
+
+	.btn-outline-primary {
+		background-color: transparent;
+		color: $teal;
+
+		&:hover,
+		&:focus-visible {
+			background-color: $teal;
+			color: $white;
+		}
+	}
+}

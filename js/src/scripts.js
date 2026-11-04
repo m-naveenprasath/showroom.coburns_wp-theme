@@ -264,6 +264,36 @@ jQuery(document).ready(function ($) {
 		return false;
 	});
 
+	//Brand Filter: logo tabs swap the photos below
+	$(".section-brand-filter").each(function () {
+		var $tabs = $(this).find(".section-brand-filter__tab");
+		var $panels = $(this).find(".section-brand-filter__panel");
+
+		function select($tab) {
+			$tabs.attr({ "aria-selected": "false", tabindex: "-1" });
+			$tab.attr("aria-selected", "true").removeAttr("tabindex");
+			$panels.attr("hidden", true);
+			$("#" + $tab.attr("aria-controls")).removeAttr("hidden");
+			// The row has no scrollbar: this brings the next clipped logos into view.
+			$tab[0].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+		}
+
+		$tabs.on("click", function () {
+			select($(this));
+		});
+
+		$tabs.on("keydown", function (e) {
+			var step = { ArrowRight: 1, ArrowLeft: -1 }[e.key];
+			if (!step) {
+				return;
+			}
+			e.preventDefault();
+			var $next = $tabs.eq(($tabs.index(this) + step) % $tabs.length);
+			select($next);
+			$next.trigger("focus");
+		});
+	});
+
 	//Brands Category Listing
 	$("#categories-search #categories").on("change", function () {
 		var selected = $(this).val();

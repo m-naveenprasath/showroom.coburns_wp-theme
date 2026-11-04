@@ -24,6 +24,9 @@ function getACFLayout()
         "label" => "Section: Brand Filter",
         "name" => "PageContentBrandFilter",
         "sub_fields" => [
+            FieldVariables\getHeadingLoop(
+                $instructions = "<strong>Defaults</strong><br/>Inspiration by Brands"
+            ),
             FieldVariables\getMessage(
                 "This section pulls in a fancy tabs type thing filled with brands from the brands post type."
             ),

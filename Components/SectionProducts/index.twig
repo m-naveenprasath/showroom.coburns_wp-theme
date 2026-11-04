@@ -16,7 +16,7 @@
 	<div class="{{ local_namespace }}__grid">
 		{% for product in products %}
 			{% set has_link = product.button.link and product.button.text %}
-			<article class="{{ local_namespace }}__card {{ has_link ? "has-link" }}">
+			<article class="{{ local_namespace }}__card">
 				{% if product.image %}
 					<div class="{{ local_namespace }}__image">
 						{% include ['partials/image.twig'] ignore missing with { 'image': product.image } %}
@@ -35,7 +35,7 @@
 					{% endfor %}
 					{% if has_link %}
 						<a
-							class="{{ local_namespace }}__link stretched-link"
+							class="{{ local_namespace }}__button"
 							href="{{ product.button.link.url }}"
 							{% if product.button.link.target %}target="{{ product.button.link.target }}"{% endif %}
 							{% if product.button.link.title %}aria-label="{{ product.button.link.title }}"{% endif %}

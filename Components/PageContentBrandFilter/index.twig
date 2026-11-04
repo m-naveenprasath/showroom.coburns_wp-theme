@@ -1,59 +1,57 @@
-{% set local_namespace = "brand-filter" %}
+{% set local_namespace = "section-brand-filter" %}
 
-<section class="section section--{{local_namespace}}">
-	<div class="container container--{{local_namespace}}">
-		<div class="row">
+{% extends "partials/_component-base.twig" %}
 
-			<div class="{{local_namespace}}--list">
+{% block container %}
+<div class="container">
 
-				<div class="product-sort product-sort--list-style">
-					<button class="btn btn-outline-gray-light has-gray-color btn-sort btn-block" aria-pressed="false" aria-label="Sort Brands"><span>{% for brand in brands %}{% if loop.first %}{{ brand.name }}{% endif %}{% endfor %}</span> {% include ['partials/icon.twig'] ignore missing with {'icon': 'arrow'} %}</button>
-					<div class="sort-settings sort-brand list-group">
-						{% for brand in brands %}
-							<a {% if loop.first %}class="active"{% endif %} href="#{{ brand.slug }}">{{ brand.name }}</a>
-						{% endfor %}
-					</div>
-				</div>
+	<header class="{{ local_namespace }}__header">
+		{% include ['partials/heading-array.twig'] ignore missing with { 'headings': headings ?: [{ 'tag': 'h2', 'text': 'Inspiration by Brands' }] } %}
+	</header>
 
-			</div>
+	{% if brands %}
+		<div class="{{ local_namespace }}__tabs" role="tablist" aria-label="Brands">
+			{% for brand in brands %}
+				<button type="button" class="{{ local_namespace }}__tab" role="tab" id="brand-tab-{{ brand.slug }}" aria-controls="brand-{{ brand.slug }}" aria-selected="{{ loop.first ? "true" : "false" }}" {{ not loop.first ? 'tabindex="-1"' }}>
+					{% if brand.logo %}
+						<span class="{{ local_namespace }}__logo">
+							{% include ['partials/image.twig'] ignore missing with { 'id': brand.logo, 'alt': '' } %}
+						</span>
+					{% endif %}
+					<span class="{{ local_namespace }}__name">{{ brand.title }}</span>
+				</button>
+			{% endfor %}
+		</div>
 
-			<div class="{{local_namespace}}--content">
+		{% for brand in brands %}
+			{% set brand_image = brand.image1 ?: brand.thumbnail.id %}
+			<div class="{{ local_namespace }}__panel" role="tabpanel" id="brand-{{ brand.slug }}" aria-labelledby="brand-tab-{{ brand.slug }}" {{ not loop.first ? "hidden" }}>
+				<div class="{{ local_namespace }}__gallery">
+					<div class="{{ local_namespace }}__image {{ local_namespace }}__image--main">
+						{% include ['partials/image.twig'] ignore missing with { 'id': brand_image, 'alt': brand.title } %}
 
-				{% for brand in brands %}
-				<div class="{{local_namespace}}--content-row {% if loop.first %}active{% endif %}" id="brand-{{ brand.slug }}">
-					<div class="{{local_namespace}}--text col-md-6 col-xl-5">
-						<h3 class="{{local_namespace}}--logo">
-							{% include ['partials/image.twig'] ignore missing with { 'id': brand.logo, 'alt': brand.title } %}
-						</h3>
-
-						{{ brand.sectionHtml_1 }}
-
-						<div class="button-group">
-							<div class="button-col">
-								<a href="{{ brand.link }}" target="_blank" class="btn btn-primary btn-shadow"><span>Explore More</span><span class="sr-only"> {{ brand.title }}</span></a>
+						<div class="{{ local_namespace }}__overlay">
+							<div class="{{ local_namespace }}__text">
+								<h3 class="{{ local_namespace }}__title">{{ brand.title }}</h3>
+								{% if brand.sectionHtml_1 %}
+									<p class="{{ local_namespace }}__description">{{ brand.sectionHtml_1|striptags }}</p>
+								{% endif %}
 							</div>
+							<a href="{{ brand.link }}" target="_blank" class="{{ local_namespace }}__button"><span>Explore More</span><span class="sr-only"> {{ brand.title }}</span></a>
 						</div>
 					</div>
-					<div class="{{local_namespace}}--image col-md-6 col-xl-7">
 
-						{% include ['partials/image.twig'] ignore missing with { 'id': brand.image1 ?: brand.thumbnail.id } %}
-
-						{% if brand.image2 or brand.image3 %}
-							<div class="{{local_namespace}}--image-row">
-								<div class="{{local_namespace}}--image-col col-md">
-									{% include ['partials/image.twig'] ignore missing with { 'id': brand.image2 } %}
-								</div>
-								<div class="{{local_namespace}}--image-col col-md">
-									{% include ['partials/image.twig'] ignore missing with { 'id': brand.image3 } %}
-								</div>
+					{% for image in [brand.image2, brand.image3] %}
+						{% if image %}
+							<div class="{{ local_namespace }}__image">
+								{% include ['partials/image.twig'] ignore missing with { 'id': image } %}
 							</div>
 						{% endif %}
-
-					</div>
+					{% endfor %}
 				</div>
-				{% endfor %}
-
 			</div>
-		</div>
-	</div>
-</section>
+		{% endfor %}
+	{% endif %}
+
+</div>
+{% endblock %}

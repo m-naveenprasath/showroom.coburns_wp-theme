@@ -1,17 +1,15 @@
-// Section: Featured Products — centered heading + intro over a grid of white cards.
+// Section: Featured Products — centered heading + intro over a grid of beige CTA cards.
 // (The legacy .featured-product-container styles in sections.showroom-featured-products are kept for the pattern library.)
 .section-products {
-	$gap: 1rem;
+	$gap: 1.5rem;
 	$ink: #1f1f1f;
 
 	padding: 3rem 0;
-	background-color: #f6f2ee;
-	text-align: left;
+	background-color: $white;
+	text-align: center;
 
 	@include media-breakpoint-up(md) {
-		// Same white side strips the hero gets as the first section (see sections.sections).
-		box-shadow: $section-box-shadow;
-		padding: 5rem 0;
+		padding: 4rem 0;
 	}
 
 	> .container {
@@ -62,94 +60,98 @@
 		grid-template-columns: minmax(0, 1fr);
 		gap: $gap;
 
-		@include media-breakpoint-up(sm) {
+		@include media-breakpoint-up(md) {
 			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
 
-		@include media-breakpoint-up(md) {
-			grid-template-columns: repeat(3, minmax(0, 1fr));
-		}
-
 		@include media-breakpoint-up(lg) {
-			grid-template-columns: repeat(4, minmax(0, 1fr));
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 2.5rem;
 		}
 	}
 
 	// ── Card ─────────────────────────────────────────────────────────────────
 	&__card {
-		position: relative; // containing block for the stretched link
 		display: flex;
 		flex-direction: column;
 		min-width: 0;
-		border-radius: 0.5rem;
-		background-color: $white;
+		border: 1px solid #d3cacd;
+		border-radius: 0.75rem;
+		background-color: #f6f2ee;
 		overflow: hidden;
-		transition: box-shadow 0.25s ease;
-
-		&.has-link:hover,
-		&.has-link:focus-within {
-			box-shadow: 0 0.5rem 1.5rem rgba($ink, 0.1);
-		}
 	}
 
-	&__image {
-		overflow: hidden;
-
-		img {
-			display: block;
-			width: 100%;
-			aspect-ratio: 3 / 2;
-			object-fit: cover;
-			transition: transform 0.4s ease;
-		}
-	}
-
-	&__card.has-link:hover &__image img {
-		transform: scale(1.03);
+	// Optional — the design has none, but a set image sits on top of the card
+	&__image img {
+		display: block;
+		width: 100%;
+		aspect-ratio: 3 / 2;
+		object-fit: cover;
 	}
 
 	&__body {
 		display: flex;
 		flex: 1 1 auto;
 		flex-direction: column;
-		padding: 1.25rem 1rem 1rem;
+		align-items: center;
+		padding: 2rem 1.5rem;
+
+		@include media-breakpoint-up(lg) {
+			padding: 2.25rem;
+		}
 	}
 
 	&__title {
-		margin: 0 0 0.5rem;
-		color: $ink;
+		margin: 0 0 1.25rem;
+		color: $blue-dark;
 		font-family: $headings-font-family;
-		font-size: 1.125rem;
-		font-weight: 400;
+		font-size: 1.5rem;
+		font-weight: 700;
 		letter-spacing: 0;
-		line-height: 1.3;
+		line-height: 1.2;
 		text-transform: none;
+
+		@include media-breakpoint-up(lg) {
+			font-size: 1.875rem;
+		}
 	}
 
 	&__excerpt {
+		max-width: 22rem;
 		margin: 0 0 0.5rem;
-		color: #6b6b6b;
+		color: $gray;
 		font-family: $inter;
-		font-size: 0.75rem;
-		line-height: 1.5;
+		font-size: 0.9375rem;
+		line-height: 1.65;
+
+		&:last-of-type {
+			margin-bottom: 1.5rem;
+		}
 	}
 
-	// Pinned to the bottom right, so links line up across a row
-	&__link {
-		align-self: flex-end;
+	// Pinned to the bottom, so buttons line up across a row
+	&__button {
+		display: block;
+		align-self: stretch;
 		margin-top: auto;
-		padding-top: 0.75rem;
-		color: $teal;
+		padding: 1.25rem 1rem;
+		border-radius: 0.5rem;
+		background-color: $teal;
+		color: $white;
 		font-family: $inter;
-		font-size: 0.6875rem;
+		font-size: 0.8125rem;
 		font-weight: 700;
+		letter-spacing: 0.04em;
 		line-height: 1.25;
 		text-decoration: none;
+		text-transform: uppercase;
+		transition: background-color 0.2s ease;
 
 		&:hover,
 		&:focus-visible {
-			color: darken($teal, 10%);
-			text-decoration: underline;
+			background-color: darken($teal, 8%);
+			color: $white;
+			text-decoration: none;
 		}
 	}
 }
